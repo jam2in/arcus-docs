@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Arcus telnet interface - My Docs</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">My Docs</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus common <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../arcus-common/arcus-admin-script-usage/">Arcus admin script usage</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-directory-structure/">Arcus directory structure</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/deploy-ssh-public-key/">Deploy ssh public key</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/faq-ko/">Faq ko</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/howto-install-dependencies/">Howto install dependencies</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/howto-manage-submodules/">Howto manage submodules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus server <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-basic-concept/">Arcus basic concept</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-collection-concept/">Arcus collection concept</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-item-attribute/">Arcus item attribute</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">Arcus telnet interface</a>
+</li>
+                                    
+<li >
+    <a href="../command-administration/">Command administration</a>
+</li>
+                                    
+<li >
+    <a href="../command-btree-collection/">Command btree collection</a>
+</li>
+                                    
+<li >
+    <a href="../command-item-attribute/">Command item attribute</a>
+</li>
+                                    
+<li >
+    <a href="../command-key-value/">Command key value</a>
+</li>
+                                    
+<li >
+    <a href="../command-list-collection/">Command list collection</a>
+</li>
+                                    
+<li >
+    <a href="../command-map-collection/">Command map collection</a>
+</li>
+                                    
+<li >
+    <a href="../command-pipelining/">Command pipelining</a>
+</li>
+                                    
+<li >
+    <a href="../command-set-collection/">Command set collection</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../arcus-item-attribute/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../command-administration/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#arcus-telnet-interface">Arcus Telnet Interface</a></li>
+            <li><a href="#telnet">Telnet 사용법</a></li>
+            <li><a href="#telnet_1">Telnet 연결</a></li>
+            <li><a href="#1-getset">예제 1 - get/set</a></li>
+            <li><a href="#2-btree">예제 2 - b+tree</a></li>
+            <li><a href="#telnet_2">Telnet 종료</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="arcus-telnet-interface">Arcus Telnet Interface</h2>
+<p>Arcus cache server의 동작을 간단히 확인하는 방법으로, telnet interface를 이용할 수 있다.</p>
+<h3 id="telnet">Telnet 사용법</h3>
+<p>OS prompt 상에서 아래와 같이 telnet 명령을 실행시킨다.
+telnet 명령의 인자로는 연결하고자 하는 Arcus cache server인 memcached의 IP와 port number를 준다.</p>
+<pre><code>$ telnet {memcached-ip} {memcached-port}
+</code></pre>
+
+<h3 id="telnet_1">Telnet 연결</h3>
+<p>Localhost에 11211 포트 번호로 memcached가 구동되어 있다고 가정한다.
+telnet 명령으로 해당 memcached에 연결하기 위해, 
+OS prompt 상에서 아래의 명령을 수행한다.</p>
+<pre><code>$ telnet localhost 11211
+Trying 127.0.0.1...
+Connected to localhost.localdomain (127.0.0.1).
+Escape character is '^]'.
+</code></pre>
+
+<p>telnet 명령으로 memcached에 연결한 이후에는 Arcus ASCII 명령을 직접 수행해 볼 수 있다.
+아래에서 그 예들을 든다. Arcus ASCII 명령의 자세한 설명은 <a href="/doc/arcus-ascii-protocol.md">Arcus cache server ascii protocol</a>을 참고하기 바란다.</p>
+<h3 id="1-getset">예제 1 - get/set</h3>
+<p>하나의 key-value item으로 &lt;"foo", "fooval"&gt;을 저장하기 위해, set 명령을 입력한다.</p>
+<pre><code>set foo 0 0 6
+fooval
+</code></pre>
+
+<p>set 명령의 수행 결과로 정상적으로 key-value item이 저장되었다는 string이 리턴된다.</p>
+<pre><code>STORED
+</code></pre>
+
+<p>저장된 foo item을 조회하기 위해, get 명령을 입력한다.</p>
+<pre><code>get foo
+</code></pre>
+
+<p>get 명령으로 조회한 foo item 결과는 아래와 같다.</p>
+<pre><code>VALUE foo 0 6
+fooval
+END
+</code></pre>
+
+<h3 id="2-btree">예제 2 - b+tree</h3>
+<p>하나의 b+tree item을 생성하면서 5개의 elements를 추가하기 위해,
+아래의 5개 bop insert 명령을 차례로 수행한다.</p>
+<pre><code>bop insert bkey1 90 6 create 11 0 0
+datum9
+bop insert bkey1 70 6
+datum7
+bop insert bkey1 50 6
+datum5
+bop insert bkey1 30 6
+datum3
+bop insert bkey1 10 6
+datum1
+</code></pre>
+
+<p>5개 bop insert 명령의 수행 결과는 아래와 같다.</p>
+<pre><code>CREATED_STORED
+STORED
+STORED
+STORED
+STORED
+</code></pre>
+
+<p>b+tree에서 30부터 80까지의 bkey(b+tree key) range에 속하는 elements를 조회하기 위하여,
+bop get 명령을 입력한다.</p>
+<pre><code>bop get bkey1 30..80
+</code></pre>
+
+<p>bop get 명령으로 조회한 결과는 아래와 같다.</p>
+<pre><code>VALUE 11 3
+30 6 datum3
+50 6 datum5
+70 6 datum7
+END
+</code></pre>
+
+<h3 id="telnet_2">Telnet 종료</h3>
+<p>현재의 telnet 연결을 종료하려면, quit 명령을 입력한다.</p>
+<pre><code>quit
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

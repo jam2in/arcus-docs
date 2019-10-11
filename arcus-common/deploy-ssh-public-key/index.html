@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Deploy ssh public key - My Docs</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">My Docs</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus common <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../arcus-admin-script-usage/">Arcus admin script usage</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-directory-structure/">Arcus directory structure</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">Deploy ssh public key</a>
+</li>
+                                    
+<li >
+    <a href="../deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../faq-ko/">Faq ko</a>
+</li>
+                                    
+<li >
+    <a href="../howto-install-dependencies/">Howto install dependencies</a>
+</li>
+                                    
+<li >
+    <a href="../howto-manage-submodules/">Howto manage submodules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus server <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../arcus-server/arcus-ascii-protocol/">Arcus ascii protocol</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/arcus-basic-concept/">Arcus basic concept</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/arcus-collection-concept/">Arcus collection concept</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/arcus-item-attribute/">Arcus item attribute</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/arcus-telnet-interface/">Arcus telnet interface</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-administration/">Command administration</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-btree-collection/">Command btree collection</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-item-attribute/">Command item attribute</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-key-value/">Command key value</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-list-collection/">Command list collection</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-map-collection/">Command map collection</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-pipelining/">Command pipelining</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-server/command-set-collection/">Command set collection</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../arcus-directory-structure/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../deploying-arcus-to-multiple-servers/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#deploy-ssh-public-key">Deploy SSH Public Key</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="deploy-ssh-public-key">Deploy SSH Public Key</h1>
+<p>SSH를 통해 다른 서버로 접속하기 위해서는 패스워드 입력을 하거나 SSH public key 인증을 사용할 수 있다.
+Arcus cache cloud는 일반적으로 외부(인터넷)에 노출되지 않고 내부망에서 동작하기 때문에
+신뢰할 수 있는 서버를 하나 지정하여 암호 없는 public key를 생성한 뒤 해당 public key를
+접근할 각 서버에 배포해 두고, 현재 서버를 게이트웨이로 사용할 수 있다.</p>
+<p>자세한 내용은 아래 링크를 참고하길 바라며 이 문서에서는 간단한 절차만 소개한다.
+https://help.ubuntu.com/community/SSH/OpenSSH/Keys (영문)</p>
+<ol>
+<li>
+<p>다른 서버를 관리할 용도의 신뢰할 수 있는 서버를 한 대 결정하고 해당 서버에 접속하여 SSH key를 생성한다.
+  <code>$ mkdir -p ~/.ssh
+  $ chmod 700 ~/.ssh
+  $ ssh-keygen -t rsa</code></p>
+</li>
+<li>
+<p>각 서버에 public key를 전송한다.
+  <code># SSH 암호를 입력해야 함. 자신의 환경에 맞게 &lt;username&gt;, &lt;hostname&gt; 변경
+  $ ssh-copy-id &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+<li>
+<p>패스워드 없이 접속이 잘 되는지 확인. 잘 안될 경우 <a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys/">sshkey 매뉴얼</a>를 참조.
+  <code>$ ssh &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+</ol>
+<!-- Reference Links --></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

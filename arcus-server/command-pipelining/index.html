@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Command pipelining - My Docs</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">My Docs</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus common <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../arcus-common/arcus-admin-script-usage/">Arcus admin script usage</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/arcus-directory-structure/">Arcus directory structure</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/deploy-ssh-public-key/">Deploy ssh public key</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/faq-ko/">Faq ko</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/howto-install-dependencies/">Howto install dependencies</a>
+</li>
+                                    
+<li >
+    <a href="../../arcus-common/howto-manage-submodules/">Howto manage submodules</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus server <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-basic-concept/">Arcus basic concept</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-collection-concept/">Arcus collection concept</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-item-attribute/">Arcus item attribute</a>
+</li>
+                                    
+<li >
+    <a href="../arcus-telnet-interface/">Arcus telnet interface</a>
+</li>
+                                    
+<li >
+    <a href="../command-administration/">Command administration</a>
+</li>
+                                    
+<li >
+    <a href="../command-btree-collection/">Command btree collection</a>
+</li>
+                                    
+<li >
+    <a href="../command-item-attribute/">Command item attribute</a>
+</li>
+                                    
+<li >
+    <a href="../command-key-value/">Command key value</a>
+</li>
+                                    
+<li >
+    <a href="../command-list-collection/">Command list collection</a>
+</li>
+                                    
+<li >
+    <a href="../command-map-collection/">Command map collection</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">Command pipelining</a>
+</li>
+                                    
+<li >
+    <a href="../command-set-collection/">Command set collection</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../command-map-collection/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../command-set-collection/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#command-pipelining">Command Pipelining</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="command-pipelining">Command Pipelining</h2>
+<p>Command pipelining은
+“pipe” 키워드를 통해 여러 collection 명령들을 pipelining하여 cache server에 전달하고,
+cache server는 각 명령을 처리한 즉시 그 response를 client로 전달하는 것이 아니라
+그 response를 reply queue에 보관해 두었다가, 마지막 명령 처리 후에 reply queue에 보관해 둔 전체 response를
+한번에 client로 전달하는 기능이다.
+기존에 N 번의 request – response를 전달하던 것에 비해
+command pipelining은 한 번의 request stream과 한 번의 response stream을 전달할 수 있게 함으로써
+network 비용을 상당히 줄일 수 있으며, 전체 latency를 줄일 수 있는 장점을 가진다.</p>
+<p>Command pipelining은 현재 collection 명령들 중 일부에 한해서만 가능하다.
+Command pipelining 가능한 명령은 아래와 같으며, 단순 response string을 가지는 명령만 이에 해당된다.
+한번에 pipelining이 가능한 최대 명령의 수는 <code>500</code>개로 제한을 두고 있음을 주의하여야 한다.</p>
+<ul>
+<li>lop 명령들 - lop insert/delete</li>
+<li>sop 명령들 - sop insert/delete/exist</li>
+<li>mop 명령들 - mop insert/delete/update</li>
+<li>bop 명령들 - bop insert/upsert/delete/update/incr/decr</li>
+</ul>
+<p>Command pipelining 수행 예로,
+특정 list의 tail 쪽으로 10개 elements를 추가하고자 한다면,
+아래와 같이 lop insert 명령을 연속하여 cache server로 보내면 된다.
+첫 번째 명령부터 마지막 바로 이전 명령까지는 모두 “pipe” 인자를 사용하여 연결하여야 하고, 
+마지막 명령에서는 “pipe” 인자를 생략함으로써 pipelining의 끝임을 표현하여야 한다.</p>
+<pre><code> lop insert lkey -1 6 pipe\r\ndatum0\r\n
+ lop insert lkey -1 6 pipe\r\ndatum1\r\n
+ lop insert lkey -1 6 pipe\r\ndatum2\r\n
+ lop insert lkey -1 6 pipe\r\ndatum3\r\n
+ lop insert lkey -1 6 pipe\r\ndatum4\r\n
+ lop insert lkey -1 6 pipe\r\ndatum5\r\n
+ lop insert lkey -1 6 pipe\r\ndatum6\r\n
+ lop insert lkey -1 6 pipe\r\ndatum7\r\n
+ lop insert lkey -1 6 pipe\r\ndatum8\r\n
+ lop insert lkey -1 6\r\ndatum9\r\n
+</code></pre>
+
+<p>Command pipelining의 response string은 아래와 같다.</p>
+<pre><code>RESPONSE &lt;count&gt;\r\n
+&lt;STATUS of the 1st pipelined command&gt;\r\n
+&lt;STATUS of the 2nd pipelined command&gt;\r\n
+...
+&lt;STATUS of the last pipelined command&gt;\r\n
+END|PIPE_ERROR &lt;error_string&gt;\r\n
+</code></pre>
+
+<p>RESPONSE 라인에서 \&lt;count>는 전체 결과 수를 나타내고,
+그 다음 라인들은 각 명령의 수행 결과를 차례로 나타낸다.
+각 명령의 결과는 각 명령마다 다르므로 각 명령에 대한 설명을 참조하여야 한다.
+마지막 라인은 pipelining 수행 상태를 나타내며, 아래 중의 하나를 가진다.</p>
+<ul>
+<li>"END" - pipelining 연산이 정상 수행됨</li>
+<li>“PIPE_ERROR command overflow” - pipelining 가능한 최대 commands 수인 500개를 초과하였다.
+  이 경우, 500개까지의 command들만 하나의 command pipelining으로 처리되고 하나의 response stream으로 리턴된다.
+  그 이후의 commands들은 처리되지 않는다.</li>
+<li>“PIPE_ERROR memory overflow” - Arcus cache server 내부에서 pipelining 처리를 위한
+  메모리 공간이 부족한 상태를 의미한다. Arcus cache server는 500개 commands의 result를 담아둘 공간을
+  미리 확보하여 수행하므로 이 오류가 발생할 가능성은 거의 없다.
+  단, 의도하지 않은 이유에 의한 경우를 대비하여 이 오류를 추가해 둔 것이다.
+  이 오류가 발생하면, 그 시점에 command pipelining을 중지하고 그 즉시 response stream을 client에 전달한다.
+  이 경우의 response stream에는 가장 마지막에 수행된 command의 response string이 생략된다.
+  그리고, 그 이후의 commands들은 처리되지 않는다.</li>
+<li>“PIPE_ERROR bad error” - pipelining 으로 어떤 command를 수행 중
+  “CLIENT_ERROR”와 “SERVER_ERROR”로 시작하는 중요 오류가 발생한 경우이다.
+  이 경우에도, 그 즉시 command pipelining을 중지하고 현재까지의 response stream을 client에 전달한다.
+  그리고, 그 이후의 commands들은 처리되지 않는다.</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
