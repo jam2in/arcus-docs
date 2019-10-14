@@ -1,190 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Arcus item attribute - My Docs</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<html>
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Arcus item attribute &mdash; My Docs</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
 
-    <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">My Docs</a>
-                </div>
-
-                <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus common <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../arcus-common/arcus-admin-script-usage/">Arcus admin script usage</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/arcus-directory-structure/">Arcus directory structure</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/deploy-ssh-public-key/">Deploy ssh public key</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/faq-ko/">Faq ko</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/howto-install-dependencies/">Howto install dependencies</a>
-</li>
-                                    
-<li >
-    <a href="../../arcus-common/howto-manage-submodules/">Howto manage submodules</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus server <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
-</li>
-                                    
-<li >
-    <a href="../arcus-basic-concept/">Arcus basic concept</a>
-</li>
-                                    
-<li >
-    <a href="../arcus-collection-concept/">Arcus collection concept</a>
-</li>
-                                    
-<li class="active">
-    <a href="./">Arcus item attribute</a>
-</li>
-                                    
-<li >
-    <a href="../arcus-telnet-interface/">Arcus telnet interface</a>
-</li>
-                                    
-<li >
-    <a href="../command-administration/">Command administration</a>
-</li>
-                                    
-<li >
-    <a href="../command-btree-collection/">Command btree collection</a>
-</li>
-                                    
-<li >
-    <a href="../command-item-attribute/">Command item attribute</a>
-</li>
-                                    
-<li >
-    <a href="../command-key-value/">Command key value</a>
-</li>
-                                    
-<li >
-    <a href="../command-list-collection/">Command list collection</a>
-</li>
-                                    
-<li >
-    <a href="../command-map-collection/">Command map collection</a>
-</li>
-                                    
-<li >
-    <a href="../command-pipelining/">Command pipelining</a>
-</li>
-                                    
-<li >
-    <a href="../command-set-collection/">Command set collection</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li >
-                                <a rel="next" href="../arcus-collection-concept/">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../arcus-telnet-interface/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
+<body ontouchstart="">
+  <div id="container">
+    <aside>
+      <div class="home">
+        <div class="title">
+          <button class="hamburger"></button>
+          <a href="../.." class="site-name"> My Docs</a>
         </div>
-
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#item-attribute">Item Attribute 설명</a></li>
-            <li><a href="#flags">flags 속성</a></li>
-            <li><a href="#expiretime">expiretime 속성</a></li>
-            <li><a href="#maxcount">maxcount 속성</a></li>
-            <li><a href="#overflowaction">overflowaction 속성</a></li>
-            <li><a href="#readable">readable 속성</a></li>
-            <li><a href="#maxbkeyrange">maxbkeyrange 속성</a></li>
-    </ul>
-</div></div>
-                <div class="col-md-9" role="main">
-
-<h2 id="item-attribute">Item Attribute 설명</h2>
+        <div class="search">
+          <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul class="root">
+          <li class="toctree-l1"><a class="nav-item" href="../..">Arcus Cache Cloud</a></li>
+          <li class="toctree-l1"><button class="section nav-item">Arcus common</button>
+  <ul class="subnav">
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-admin-script-usage/">Arcus Admin Script Usage</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-cloud-configuration-file/">Arcus Configuration File</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus Cache Cloud Setup in Multiple Servers</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-directory-structure/">Arcus Directory Structure</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/deploy-ssh-public-key/">Deploy SSH Public Key</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying Arcus To Multiple Servers</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/faq-ko/">아이템을 set 했는데 바로 사라지는 현상이 발생합니다.</a><a class="nav-item" href="../../arcus-common/faq-ko/">(유사: expire time 을 30일 이상으로 설정하고 싶습니다)</a><a class="nav-item" href="../../arcus-common/faq-ko/">자바 클라이언트 로거 설정</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/howto-install-dependencies/">How To Install Dependencies</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/howto-manage-submodules/">How To Manage GIT Submodules</a></li>
+  </ul></li>
+          <li class="toctree-l1"><button class="section nav-item">Arcus server</button>
+  <ul class="subnav">
+    <li class="toctree-l2"><a class="nav-item" href="../arcus-ascii-protocol/">Arcus-memcached Ascii Protocol</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../arcus-basic-concept/">Arcus Basic Concept</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../arcus-collection-concept/">Collection Concept</a></li>
+    <li class="toctree-l2 current"><a class="nav-item current" href="./">Item Attribute 설명</a>
+  <ul class="subnav">
+      <li class="toctree-l3"><a class="nav-item toc" href="#flags">flags 속성</a></li>
+      <li class="toctree-l3"><a class="nav-item toc" href="#expiretime">expiretime 속성</a></li>
+      <li class="toctree-l3"><a class="nav-item toc" href="#maxcount">maxcount 속성</a></li>
+      <li class="toctree-l3"><a class="nav-item toc" href="#overflowaction">overflowaction 속성</a></li>
+      <li class="toctree-l3"><a class="nav-item toc" href="#readable">readable 속성</a></li>
+      <li class="toctree-l3"><a class="nav-item toc" href="#maxbkeyrange">maxbkeyrange 속성</a></li>
+  </ul></li>
+    <li class="toctree-l2"><a class="nav-item" href="../arcus-telnet-interface/">Arcus Telnet Interface</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-administration/">Admin &amp; Monitoring 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-btree-collection/">B+Tree 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-item-attribute/">Item Attribute 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-key-value/">Simple Key-Value 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-list-collection/">LIST 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-map-collection/">MAP 명령</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-pipelining/">Command Pipelining</a></li>
+    <li class="toctree-l2"><a class="nav-item" href="../command-set-collection/">SET 명령</a></li>
+  </ul></li>
+        </ul>
+      </nav>
+      <div class="repo">
+    <div class="previous"><a href="../arcus-collection-concept/">&laquo; Previous</a></div>
+    <div class="next"><a href="../arcus-telnet-interface/">Next &raquo;</a></div>
+</div>
+    </aside>
+    <div id="spacer"><button class="arrow"></button></div>
+    <main>
+      <div class="home-top">
+        <button class="hamburger"></button>
+        <a href="../.." class="site-name"> My Docs</a>
+      </div>
+      <div id="main">
+        <nav class="breadcrumbs">
+  <ul>
+  <li>Arcus server</li>
+  </ul>
+</nav>
+        <div id="content"><h2 id="item-attribute">Item Attribute 설명</h2>
 <p>Arcus cache server는 collection 기능 지원으로 인해,
 기존 key-value item 유형 외에 list, set, map, b+tree item 유형을 가진다.
 각 item 유형에 따라 설정/조회 가능한 속성들(attributes)이 구분되며, 이들의 개요는 아래 표와 같다.
@@ -311,82 +219,20 @@ maxbkeyrange와 overflowaction에 의해 자동으로 제거된다.
 <p>maxbkeyrange 설정은 bkey의 데이터 유형에 맞게 설정하여야 하며,
 maxbkeyrange 설정이 생략되거나 명시적으로 0을 줄 경우의 default 값은
 bkey 데이터 유형에 무관하게 unlimited maxbkeyrange를 의미한다.</p></div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+        <footer>
+    <div class="footer-buttons">
+        <div class="previous"><a href="../arcus-collection-concept/" title="Arcus collection concept"><span>Previous</span></a></div>
+        <div class="next"><a href="../arcus-telnet-interface/" title="Arcus telnet interface"><span>Next</span></a></div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-    </body>
+  <div class="footer-note"><p>
+    Built with <a href="http://www.mkdocs.org">MkDocs</a> using
+    <a href="https://github.com/daizutabi/mkdocs-ivory">Ivory theme</a>.
+  </p></div>
+</footer>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/theme.js"></script>
+  <script src="../../search/main.js"></script>
+</body>
 </html>
