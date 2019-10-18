@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Arcus admin script usage - Arcus</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Arcus admin script usage";
+    var mkdocs_page_input_path = "1.11\\arcus-common\\arcus-admin-script-usage.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> Arcus</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">ARCUS document</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">1.11</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Arcus common</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Arcus admin script usage
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#arcus-admin-script-usage">
+      Arcus Admin Script Usage
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../arcus-directory-structure/">Arcus directory structure</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../deploy-ssh-public-key/">Deploy ssh public key</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../faq-ko/">Faq ko</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../howto-install-dependencies/">Howto install dependencies</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../howto-manage-submodules/">Howto manage submodules</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Arcus server</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/arcus-ascii-protocol/">Arcus ascii protocol</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/arcus-basic-concept/">Arcus basic concept</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/arcus-collection-concept/">Arcus collection concept</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/arcus-item-attribute/">Arcus item attribute</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/arcus-telnet-interface/">Arcus telnet interface</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-administration/">Command administration</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-btree-collection/">Command btree collection</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-item-attribute/">Command item attribute</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-key-value/">Command key value</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-list-collection/">Command list collection</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-map-collection/">Command map collection</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-pipelining/">Command pipelining</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../arcus-server/command-set-collection/">Command set collection</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+  </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">Arcus</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Arcus common &raquo;</li>
+        
+      
+        
+          <li>1.11 &raquo;</li>
+        
+      
+    
+    <li>Arcus admin script usage</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="arcus-admin-script-usage">Arcus Admin Script Usage</h1>
+<p><code>scripts/arcus.sh</code>는 Arcus cloud를 관리하는 용도로 사용하는 스크립트이며,
+사용법은 다음과 같다.</p>
+<pre><code>Usage: ./arcus.sh -h
+       ./arcus.sh [-z &lt;zklist&gt;] deploy &lt;conf_file&gt; | ping &lt;service_code&gt;
+       ./arcus.sh [-z &lt;zklist&gt;] zookeeper init
+       ./arcus.sh [-z &lt;zklist&gt;] zookeeper start|stop|stat
+       ./arcus.sh [-z &lt;zklist&gt;] memcached register &lt;conf_file&gt; | unregister &lt;service_code&gt;
+       ./arcus.sh [-z &lt;zklist&gt;] memcached start|stop|list &lt;service_code&gt;
+       ./arcus.sh [-z &lt;zklist&gt;] memcached listall
+       ./arcus.sh [-z &lt;zklist&gt;] quicksetup &lt;conf_file&gt;
+
+  -z, --zklist    zookeeper ensemble ip:port list, The default is &quot;localhost:2181&quot;
+                  example) -z 10.0.0.1:2181,10.0.0.2:2181,10.0.0.3:2181
+  -h, --help      This small usage guide
+  &lt;conf_file&gt;     Arcus cache cloud configuration file, having cache ip:port list and other settings.
+                  Refer to scripts/conf/test.json file
+  &lt;service_code&gt;  Arcus cache cloud name that identify each cache cloud uniquely.
+                  We also call it &quot;service code&quot; as it's a kind of cache cloud service.
+</code></pre>
+
+<p><code>scripts/arcus.sh</code>의 각 명령에서 공통으로 들어가는 인자는 ZooKeeper ensemble list이며 기본값은 "localhost:2181"이다.
+각 명령마다 이 인자를 명시적으로 주어도 되며,
+인자를 생략하고 싶다면 <code>scripts/arcus.sh</code> 파일에 있는 <code>zklist</code> 변수의 기본값을 수정하여 사용할 수 있다.</p>
+<ul>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>deploy</strong> \&lt;conf_file></li>
+<li>스크립트가 실행되는 장비의 Arcus 패키지를 ZooKeeper 장비와 Memcached 장비에 설치한다.
+    해당 장비에 Arcus 패키지가 이미 존재한다면, 이를 제거한 후 다시 설치한다.</li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>ping</strong> \&lt;service_code></li>
+<li>Arcus의 ZooKeeper 장비와 Memcached 장비에 대해 ping 명령을 수행한다.</li>
+<li>참고로, Memcached 관련 정보는 \&lt;service_code>로 ZooKeeper에서 조회하여 얻는다.</li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>zookeeper init</strong></li>
+<li><strong>init</strong> - 설정 템플릿(conf/zoo.cfg)을 이용하여 ZooKeeper 설정을 생성한 후 각 ZooKeeper 장비에 배포한다. 그리고 Arcus cloud 서비스를 위한 기본 디렉토리를 생성한다.</li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>zookeeper start|stop|stat</strong></li>
+<li><strong>start</strong> - ZooKeeper ensemble의 모든 ZooKeeper process를 구동한다.</li>
+<li><strong>stop</strong> - ZooKeeper ensemble의 모든 ZooKeeper process를 중지한다.</li>
+<li><strong>stat</strong> - ZooKeeper ensemble의 모든 ZooKeeper process에 대한 상태를 조회한다.</li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>memcached register</strong> \&lt;conf_file> | <strong>unregister</strong> \&lt;service_code> </li>
+<li><strong>register</strong> - Arcus cache cloud 정보를 \&lt;conf_file>에서 읽어 ZooKeeper에 등록한다. ZooKeeper에 \&lt;service_code>가 이미 존재한다면 새로운 \&lt;conf_file> 기준으로 업데이트 한다.</li>
+<li><strong>unregister</strong> - Arcus cache cloud 정보를 ZooKeeper에서 제거한다. </li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>memcached start|stop|list</strong> \&lt;service_code></li>
+<li><strong>start</strong> - Arcus cache cloud의 모든 Memcached process를 구동한다.</li>
+<li><strong>stop</strong> - Arcus cache cloud의 모든 Memcached process를 중지한다.</li>
+<li><strong>list</strong> - Arcus cache cloud의 모든 Memcached list를 조회한다.</li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>memcached listall</strong></li>
+<li><strong>listall</strong> - 현재 ZooKeeper에 등록된 모든 Arcus cache cloud들의 service code를 조회한다. </li>
+<li>./arcus.sh [-z \&lt;zklist>] <strong>quicksetup</strong> \&lt;conf_file></li>
+<li>deploy, zookeeper init &amp; start, memcached register &amp; start 작업을 한번에 수행한다.</li>
+</ul>
+<p>Arcus cache cloud를 동작시키기 위한 <code>scripts/arcus.sh</code> 명령의 수행 순서를 도식화하면 다음과 같다.
+점선으로 표시한 부분인 <code>deploy</code>와 <code>zookeeper init</code>은 처음 설치 시에 한번만 수행하면 되는 명령이고,
+<code>memcached register/unregister</code>는 새로운 cache cloud 사용/제거 시에 한번만 수행하면 되는 명령이다.
+(단, <code>memcached register</code>를 이미 존재하는 service code에 대해 수행하게 되면
+별도의 확인 없이 새로운 설정으로 업데이트 한다)
+실선으로 표시한 부분인 <code>zookeeper start/stop</code>과 <code>memcached start/stop</code>은 
+해당 순서에 따라 언제라도 수행할 수 있는 명령이다.</p>
+<p><img alt="arcus admin script execution order" src="https://raw.githubusercontent.com/naver/arcus/master/docs/images/arcus-admin-script-execution-order.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../arcus-cloud-configuration-file/" class="btn btn-neutral float-right" title="Arcus cloud configuration file">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../.." class="btn btn-neutral" title="ARCUS document"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../arcus-cloud-configuration-file/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+
+</body>
+</html>
