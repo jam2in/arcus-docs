@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../../img/favicon.ico">
+  <title>Command map collection - My Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Command map collection";
+    var mkdocs_page_input_path = "arcus-server\\arcus-ascii-protocol\\1.12\\command-map-collection.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../../.." class="icon icon-home"> My Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus common</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/arcus-admin-script-usage/">Arcus admin script usage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/arcus-directory-structure/">Arcus directory structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/deploy-ssh-public-key/">Deploy ssh public key</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/faq-ko/">Faq ko</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/howto-install-dependencies/">Howto install dependencies</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../../arcus-common/howto-manage-submodules/">Howto manage submodules</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../">Arcus ascii protocol</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../arcus-basic-concept/">Arcus basic concept</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../arcus-collection-concept/">Arcus collection concept</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../arcus-item-attribute/">Arcus item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../arcus-telnet-interface/">Arcus telnet interface</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-administration/">Command administration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-btree-collection/">Command btree collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-item-attribute/">Command item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-key-value/">Command key value</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-list-collection/">Command list collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-map-collection/">Command map collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-pipelining/">Command pipelining</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../../command-set-collection/">Command set collection</a>
+                </li>
+                <li class=" current">
+                    
+    <span class="caption-text">Arcus ascii protocol</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <span class="caption-text">1.11</span>
+    <ul class="subnav">
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/arcus-ascii-protocol/">Arcus ascii protocol</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/arcus-basic-concept/">Arcus basic concept</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/arcus-collection-concept/">Arcus collection concept</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/arcus-item-attribute/">Arcus item attribute</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-administration/">Command administration</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-btree-collection/">Command btree collection</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-item-attribute/">Command item attribute</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-key-value/">Command key value</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-list-collection/">Command list collection</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-map-collection/">Command map collection</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-pipelining/">Command pipelining</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../../1.11/command-set-collection/">Command set collection</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3 current">
+                    
+    <span class="caption-text">1.12</span>
+    <ul class="subnav">
+                <li class="toctree-l4">
+                    
+    <a class="" href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../arcus-basic-concept/">Arcus basic concept</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../arcus-collection-concept/">Arcus collection concept</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../arcus-item-attribute/">Arcus item attribute</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-administration/">Command administration</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-btree-collection/">Command btree collection</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-item-attribute/">Command item attribute</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-key-value/">Command key value</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-list-collection/">Command list collection</a>
+                </li>
+                <li class="toctree-l4 current">
+                    
+    <a class="current" href="./">Command map collection</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l5"><a href="#map">MAP 명령</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l6" href="#mop-create-map-collection">mop create - Map Collection 생성</a></li>
+        
+            <li><a class="toctree-l6" href="#mop-insert-map-element">mop insert - Map Element 삽입</a></li>
+        
+            <li><a class="toctree-l6" href="#mop-update-map-element">mop update - Map Element 변경</a></li>
+        
+            <li><a class="toctree-l6" href="#mop-delete-map-element">mop delete - Map Element 삭제</a></li>
+        
+            <li><a class="toctree-l6" href="#mop-get-map-field-element">mop get - Map Field, Element 조회</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-pipelining/">Command pipelining</a>
+                </li>
+                <li class="toctree-l4">
+                    
+    <a class="" href="../command-set-collection/">Command set collection</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../..">My Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>1.12 &raquo;</li>
+        
+      
+        
+          <li>Arcus ascii protocol &raquo;</li>
+        
+      
+        
+          <li>Arcus server &raquo;</li>
+        
+      
+    
+    <li>Command map collection</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="map">MAP 명령</h2>
+<p>Map collection에 관한 명령은 아래와 같다.</p>
+<ul>
+<li><a href="./#mop-create---map-collection-생성">Map collection 생성: mop create</a></li>
+<li>Map collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)</li>
+</ul>
+<p>Map element에 관한 명령은 아래와 같다. </p>
+<ul>
+<li><a href="./#mop-insert---map-element-삽입">Map element 삽입: mop insert</a></li>
+<li><a href="./#mop-update---map-element-변경">Map element 변경: mop update</a></li>
+<li><a href="./#mop-delete---map-element-삭제">Map element 삭제: mop delete</a></li>
+<li><a href="./#mop-get---map-field-element-조회">Map element 조회: mop get</a></li>
+</ul>
+<h3 id="mop-create-map-collection">mop create - Map Collection 생성</h3>
+<p>Map collection을 empty 상태로 생성한다.</p>
+<pre><code>mop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
+* &lt;attributes&gt;: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>\&lt;key> - 대상 item의 key string</li>
+<li>\&lt;attributes> - 설정할 item attributes. <a href="/doc/arcus-item-attribute.md">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>noreply - 명시하면, response string을 전달받지 않는다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"CREATED" - 성공</li>
+<li>"EXISTS" - 동일 key string을 가진 item이 이미 존재</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="mop-insert-map-element">mop insert - Map Element 삽입</h3>
+<p>Map collection에 하나의 field, element를 삽입한다.
+Map collection을 생성하면서 \&lt;field, value>로 구성된 하나의 element를 삽입할 수도 있다.</p>
+<pre><code>mop insert &lt;key&gt; &lt;field&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
+* &lt;attributes&gt;: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>\&lt;key> - 대상 item의 key string</li>
+<li>\&lt;field> - 삽입할 element의 field string</li>
+<li>\&lt;bytes> - 삽입할 element의 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)</li>
+<li>create \&lt;attributes> - 해당 map collection 없을 시에 map 생성 요청.
+                    <a href="/doc/arcus-item-attribute.md">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="/doc/command-pipelining.md">Command Pipelining</a>을 참조 바란다.</li>
+<li>\&lt;data> - 삽입할 데이터 (최대 4KB)</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"STROED" - 성공 (field, element 삽입)</li>
+<li>“CREATED_STORED” - 성공 (collection 생성하고 field, element 삽입)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“TYPE_MISMATCH” - 해당 item이 map collection이 아님</li>
+<li>“OVERFLOWED” - overflow 발생</li>
+<li>"ELEMENT_EXISTS" - 동일 이름의 field가 이미 존재. map field uniqueness 위배</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 \&lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
+<li>“CLIENT_ERROR invalid prefix name” - 유효하지(존재하지) 않는 prefix 명</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="mop-update-map-element">mop update - Map Element 변경</h3>
+<p>Map collection에서 하나의 field에 대해 element 변경을 수행한다.
+현재 다수 field에 대한 변경연산은 제공하지 않는다.</p>
+<pre><code>mop update &lt;key&gt; &lt;field&gt; &lt;bytes&gt; [noreply|pipe]\r\n&lt;data&gt;\r\n
+</code></pre>
+
+<ul>
+<li>\&lt;key> - 대상 item의 key string</li>
+<li>\&lt;field> - 대상 element의 field string</li>
+<li>\&lt;bytes> - 변경할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="/doc/command-pipelining.md">Command Pipelining</a>을 참조 바란다.</li>
+<li>\&lt;data> - 변경할 데이터 자체 (최대 4KB)</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"UPDATED" - 성공 (element 변경)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>"NOT_FOUND_ELEMENT" - field miss</li>
+<li>“TYPE_MISMATCH” - 해당 item이 map collection이 아님</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 \&lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="mop-delete-map-element">mop delete - Map Element 삭제</h3>
+<p>Map collection에서 하나 이상의 field 이름을 주어, 그에 해당하는 element를 삭제한다.</p>
+<pre><code>mop delete &lt;key&gt; &lt;lenfields&gt; &lt;numfields&gt; [drop] [noreply|pipe]\r\n
+[&lt;&quot;space separated fields&quot;&gt;]\r\n
+</code></pre>
+
+<ul>
+<li>"space separated fields" - 대상 map의 field list로, 스페이스(' ')로 구분한다.
+                           - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.</li>
+<li>\&lt;key> - 대상 item의 key string</li>
+<li>\<lenfields>\과 \<numfields>\ - field list 문자열의 길이와 field 개수를 나타낸다. 0이면 전체 field, element를 의미한다.</li>
+<li>drop - field, element 삭제로 인해 empty map이 될 경우, 그 map을 drop할 것인지를 지정한다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="/doc/command-pipelining.md">Command Pipelining</a>을 참조 바란다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"DELETED" - 성공 (전체 또는 일부 field, element 삭제)</li>
+<li>“DELETED_DROPPED” - 성공 (전체 또는 일부 field, element 삭제하고 collection을 drop한 상태)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“NOT_FOUND_ELEMENT” - field miss (삭제할 field, element가 없음. 모든 field가 없을 시에만 리턴)</li>
+<li>“TYPE_MISMATCH” - 해당 item이 map collection이 아님</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+</ul>
+<h3 id="mop-get-map-field-element">mop get - Map Field, Element 조회</h3>
+<p>Map collection에서 하나 이상의 field 이름을 주어, 그에 해당하는 element를 조회한다.</p>
+<pre><code>mop get &lt;key&gt; &lt;lenfields&gt; &lt;numfields&gt; [delete|drop]\r\n
+[&lt;&quot;space separated fields&quot;&gt;]\r\n
+</code></pre>
+
+<ul>
+<li>"space separated fields" - 대상 map의 field list로, 스페이스(' ')로 구분한다.
+                           - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.</li>
+<li>\&lt;key> - 대상 item의 key string</li>
+<li>\<lenfields\> 과 \<numfields>\ - field list 문자열의 길이와 field 개수를 나타낸다. 0이면 전체 field, element를 의미한다.</li>
+<li>delete or drop - field, element 조회하면서 그 field, element를 delete할 것인지
+                   그리고 delete로 인해 empty map이 될 경우 그 map을 drop할 것인지를 지정한다.</li>
+</ul>
+<p>성공 시의 response string은 아래와 같다.
+VALUE 라인의 \&lt;count>는 조회된 field 개수를 의미한다. 
+마지막 라인은 END, DELETED, DELETED_DROPPED 중의 하나를 가지며
+각각 field 조회만 수행한 상태, field 조회하고 삭제한 상태,
+field 조회 및 삭제하고 map을 drop한 상태를 의미한다.</p>
+<pre><code>VALUE &lt;flags&gt; &lt;count&gt;\r\n
+&lt;field&gt; &lt;bytes&gt; &lt;data&gt;\r\n
+&lt;field&gt; &lt;bytes&gt; &lt;data&gt;\r\n
+&lt;field&gt; &lt;bytes&gt; &lt;data&gt;\r\n
+...
+END|DELETED|DELETED_DROPPED\r\n
+</code></pre>
+
+<p>실패 시의 response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>“NOT_FOUND” - key miss</li>
+<li>“NOT_FOUND_ELEMENT” - field miss (주어진 field 이름들 중 하나라도 가진 element가 전혀 없는 상태임)</li>
+<li>“TYPE_MISMATCH” - 해당 item이 map collection이 아님</li>
+<li>“UNREADABLE” - 해당 item이 unreadable item임</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>"SERVER_ERROR out of memory [writing get response]”   - 메모리 부족</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../command-pipelining/" class="btn btn-neutral float-right" title="Command pipelining">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../command-list-collection/" class="btn btn-neutral" title="Command list collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../command-list-collection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../command-pipelining/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../../..';</script>
+    <script src="../../../../js/theme.js" defer></script>
+      <script src="../../../../search/main.js" defer></script>
+
+</body>
+</html>
