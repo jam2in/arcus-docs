@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Arcus cloud configuration file - Arcus</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Arcus cloud configuration file";
+    var mkdocs_page_input_path = "arcus-common\\arcus-cloud-configuration-file.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Arcus</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">ARCUS document</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus common</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../arcus-admin-script-usage/">Arcus admin script usage</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Arcus cloud configuration file</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#arcus-configuration-file">Arcus Configuration File</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../arcus-directory-structure/">Arcus directory structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploy-ssh-public-key/">Deploy ssh public key</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../faq-ko/">Faq ko</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../howto-install-dependencies/">Howto install dependencies</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../howto-manage-submodules/">Howto manage submodules</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/arcus-ascii-protocol/">Arcus ascii protocol</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/arcus-basic-concept/">Arcus basic concept</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/arcus-collection-concept/">Arcus collection concept</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/arcus-item-attribute/">Arcus item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/arcus-telnet-interface/">Arcus telnet interface</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-administration/">Command administration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-btree-collection/">Command btree collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-item-attribute/">Command item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-key-value/">Command key value</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-list-collection/">Command list collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-map-collection/">Command map collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-pipelining/">Command pipelining</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-server/command-set-collection/">Command set collection</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Arcus</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Arcus common &raquo;</li>
+        
+      
+    
+    <li>Arcus cloud configuration file</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="arcus-configuration-file">Arcus Configuration File</h1>
+<p>Arcus configuration 파일은 Arcus cache cloud의 구성 및 설정 정보를 저장한다.
+Arcus admin script 도구를 사용해,
+Arcus configuration 파일을 읽어 원하는 형태의 Arcus cache cloud를 생성 및 운영할 수 있다.</p>
+<p>Arcus configuration 파일은 scripts/conf 디렉토리에 위치하며,
+그 디렉토리에 있는 test.json 파일의 내용을 하나의 예로 보면 아래와 같다.
+해당 Arcus cache cloud는 "test-cloud" 라는 service code(or cloud name)로 식별되고,
+cache001.arcus, cache002.arcus, cache003.arcus 서버 3대 각각에 대해
+11211, 11212 포트를 가지는 2개 cache node로 구성된다.
+결국, 6개의 cache node로 구성되는 cloud 설정이다.</p>
+<pre><code>{
+    &quot;serviceCode&quot;: &quot;test-cloud&quot;
+  , &quot;servers&quot;: [
+        { &quot;hostname&quot;: &quot;cache001.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.1&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11211&quot;
+          }
+        }
+      , { &quot;hostname&quot;: &quot;cache001.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.1&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11212&quot;
+          }
+        }
+      , { &quot;hostname&quot;: &quot;cache002.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.2&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11211&quot;
+            , &quot;threads&quot;: &quot;4&quot;
+          }
+        }
+      , { &quot;hostname&quot;: &quot;cache002.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.2&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11212&quot;
+            , &quot;threads&quot;: &quot;4&quot;
+          }
+        }
+      , { &quot;hostname&quot;: &quot;cache003.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.3&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11211&quot;
+          }
+        }
+      , { &quot;hostname&quot;: &quot;cache003.arcus&quot;, &quot;ip&quot;: &quot;10.0.0.3&quot;,
+          &quot;config&quot;: {
+              &quot;port&quot;   : &quot;11212&quot;
+          }
+        }
+    ]
+  , &quot;config&quot;: {
+        &quot;threads&quot;    : &quot;6&quot;
+      , &quot;memlimit&quot;   : &quot;100&quot;
+      , &quot;connections&quot;: &quot;1000&quot;
+    }
+}
+</code></pre>
+
+<p>Arcus configuration 파일에서 설정하는 내용의 상세 설명은 아래와 같다.</p>
+<ul>
+<li>serviceCode - Arcus service code (or cloud name)</li>
+<li>Arcus cache cloud들을 관리하는 Zeekeeper ensemble에서 각각의 Arcus cache cloud를 유일하게 구분한다.</li>
+<li>servers - Arcus cache node list</li>
+<li>Arcus cache cloud에 참여하는 각 cache node의 hostname, ip 그리고, port number를 가진다.</li>
+<li>각 cache node의 port number를 포함하여 specific configuration을 명시할 수 있다.</li>
+<li>config - General cache node configuration</li>
+<li>모든 cache node에 공통으로 적용할 general configuration 정보이다.</li>
+<li>각 cache node에 specific configuration 정보가 있다면, specific configuration가 적용된다.</li>
+</ul>
+<p>Cache node configuration 항목의 설명은 아래와 같다.</p>
+<ul>
+<li>port : 각 cache node의 port number</li>
+<li>threads : 각 cache node에 생성할 worker thread들의 수</li>
+<li>memlimit : 각 cache node가 사용할 메모리의 용량 (단위: MB)</li>
+<li>connections: 각 cache node가 받아들일 수 있는 최대 연결 수</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../arcus-cloud-in-multiple-servers/" class="btn btn-neutral float-right" title="Arcus cloud in multiple servers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../arcus-admin-script-usage/" class="btn btn-neutral" title="Arcus admin script usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../arcus-admin-script-usage/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../arcus-cloud-in-multiple-servers/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
