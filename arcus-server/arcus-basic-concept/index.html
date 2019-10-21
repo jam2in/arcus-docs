@@ -1,103 +1,258 @@
 <!DOCTYPE html>
-<html>
-
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Arcus basic concept &mdash; My Docs</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
-  <link rel="stylesheet" href="../../css/theme.css">
+  <title>Arcus basic concept - My Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Arcus basic concept";
+    var mkdocs_page_input_path = "arcus-server\\arcus-basic-concept.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
-<body ontouchstart="">
-  <div id="container">
-    <aside>
-      <div class="home">
-        <div class="title">
-          <button class="hamburger"></button>
-          <a href="../.." class="site-name"> My Docs</a>
-        </div>
-        <div class="search">
-          <div role="search">
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> My Docs</a>
+        <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
-        </div>
       </div>
-      <nav class="nav">
-        <ul class="root">
-          <li class="toctree-l1"><a class="nav-item" href="../..">Arcus Cache Cloud</a></li>
-          <li class="toctree-l1"><button class="section nav-item">Arcus common</button>
-  <ul class="subnav">
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-admin-script-usage/">Arcus Admin Script Usage</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-cloud-configuration-file/">Arcus Configuration File</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus Cache Cloud Setup in Multiple Servers</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/arcus-directory-structure/">Arcus Directory Structure</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/deploy-ssh-public-key/">Deploy SSH Public Key</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying Arcus To Multiple Servers</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/faq-ko/">아이템을 set 했는데 바로 사라지는 현상이 발생합니다.</a><a class="nav-item" href="../../arcus-common/faq-ko/">(유사: expire time 을 30일 이상으로 설정하고 싶습니다)</a><a class="nav-item" href="../../arcus-common/faq-ko/">자바 클라이언트 로거 설정</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/howto-install-dependencies/">How To Install Dependencies</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../../arcus-common/howto-manage-submodules/">How To Manage GIT Submodules</a></li>
-  </ul></li>
-          <li class="toctree-l1"><button class="section nav-item">Arcus server</button>
-  <ul class="subnav">
-    <li class="toctree-l2"><a class="nav-item" href="../arcus-ascii-protocol/">Arcus-memcached Ascii Protocol</a></li>
-    <li class="toctree-l2 current"><a class="nav-item current" href="./">Arcus Basic Concept</a>
-  <ul class="subnav">
-      <li class="toctree-l3"><a class="nav-item toc" href="#_1">기본 제약 사항</a></li>
-      <li class="toctree-l3"><a class="nav-item toc" href="#cache-key">Cache Key</a></li>
-      <li class="toctree-l3"><a class="nav-item toc" href="#cache-item">Cache Item</a></li>
-      <li class="toctree-l3"><a class="nav-item toc" href="#expiration-eviction-and-sticky">Expiration, Eviction, and Sticky</a></li>
-      <li class="toctree-l3"><a class="nav-item toc" href="#memory-allocator">Memory Allocator</a></li>
-      <li class="toctree-l3"><a class="nav-item toc" href="#slab-class-lru">Slab Class 별 LRU 리스트</a></li>
-  </ul></li>
-    <li class="toctree-l2"><a class="nav-item" href="../arcus-collection-concept/">Collection Concept</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../arcus-item-attribute/">Item Attribute 설명</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../arcus-telnet-interface/">Arcus Telnet Interface</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-administration/">Admin &amp; Monitoring 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-btree-collection/">B+Tree 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-item-attribute/">Item Attribute 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-key-value/">Simple Key-Value 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-list-collection/">LIST 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-map-collection/">MAP 명령</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-pipelining/">Command Pipelining</a></li>
-    <li class="toctree-l2"><a class="nav-item" href="../command-set-collection/">SET 명령</a></li>
-    <li class="toctree-l2"><button class="section nav-item hide">Arcus ascii protocol</button>
-  <ul class="subnav hide">
-    <li class="toctree-l3"><a class="nav-item" href="../arcus-ascii-protocol/1.11/">Arcus-memcached Ascii Protocol</a></li>
-    <li class="toctree-l3"><a class="nav-item" href="../arcus-ascii-protocol/1.12/">Arcus-memcached Ascii Protocol - 1.12</a></li>
-  </ul></li>
-  </ul></li>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../bulk bop insert 슈도코드/">Bulk bop insert 슈도코드</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../bulk bop insert 요구사항/">개요</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../clang format options/">Clang format options</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../오픈소스 SW 도구 사용 현황 보고/">오픈소스 SW 도구 사용 현황 보고</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../커버리지 보고/">커버리지 보고</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus common</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/arcus-admin-script-usage/">Arcus admin script usage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/arcus-cloud-configuration-file/">Arcus cloud configuration file</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/arcus-cloud-in-multiple-servers/">Arcus cloud in multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/arcus-directory-structure/">Arcus directory structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/deploy-ssh-public-key/">Deploy ssh public key</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/deploying-arcus-to-multiple-servers/">Deploying arcus to multiple servers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/faq-ko/">Faq ko</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/howto-install-dependencies/">Howto install dependencies</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../arcus-common/howto-manage-submodules/">Howto manage submodules</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Arcus server</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Arcus basic concept</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#arcus-basic-concept">Arcus Basic Concept</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_1">기본 제약 사항</a></li>
+        
+            <li><a class="toctree-l4" href="#cache-key">Cache Key</a></li>
+        
+            <li><a class="toctree-l4" href="#cache-item">Cache Item</a></li>
+        
+            <li><a class="toctree-l4" href="#expiration-eviction-and-sticky">Expiration, Eviction, and Sticky</a></li>
+        
+            <li><a class="toctree-l4" href="#memory-allocator">Memory Allocator</a></li>
+        
+            <li><a class="toctree-l4" href="#slab-class-lru">Slab Class 별 LRU 리스트</a></li>
+        
         </ul>
-      </nav>
-      <div class="repo">
-    <div class="previous"><a href="../arcus-ascii-protocol/">&laquo; Previous</a></div>
-    <div class="next"><a href="../arcus-collection-concept/">Next &raquo;</a></div>
-</div>
-    </aside>
-    <div id="spacer"><button class="arrow"></button></div>
-    <main>
-      <div class="home-top">
-        <button class="hamburger"></button>
-        <a href="../.." class="site-name"> My Docs</a>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../arcus-collection-concept/">Arcus collection concept</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../arcus-item-attribute/">Arcus item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../arcus-telnet-interface/">Arcus telnet interface</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-administration/">Command administration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-btree-collection/">Command btree collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-item-attribute/">Command item attribute</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-key-value/">Command key value</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-list-collection/">Command list collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-map-collection/">Command map collection</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-pipelining/">Command pipelining</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../command-set-collection/">Command set collection</a>
+                </li>
+                <li class="">
+                    
+    <span class="caption-text">Arcus ascii protocol</span>
+    <ul class="subnav">
+                <li class="toctree-l3">
+                    
+    <a class="" href="../arcus-ascii-protocol/1.11/">1.11</a>
+                </li>
+                <li class="toctree-l3">
+                    
+    <a class="" href="../arcus-ascii-protocol/1.12/">1.12</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
       </div>
-      <div id="main">
-        <nav class="breadcrumbs">
-  <ul>
-  <li>Arcus server</li>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">My Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Arcus server &raquo;</li>
+        
+      
+    
+    <li>Arcus basic concept</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
   </ul>
-</nav>
-        <div id="content"><h2 id="arcus-basic-concept">Arcus Basic Concept</h2>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="arcus-basic-concept">Arcus Basic Concept</h2>
 <p>Arcus cache server는 하나의 데이터만을 value로 가지는 simple key-value 외에도
 여러 데이터를 구조화된 형태로 저장하는 collection을 하나의 value로 가지는
 확장된 key-value 데이터 모델을 제공한다.</p>
@@ -190,21 +345,53 @@ eviction 대상 item으로 오랫동안 접근되지 않은 item이 선택될 �
 small memory allocator로 부터 메모리 공간을 할당받는
 작은 크기의 key-value items과 collection items은 0번 LRU 리스트에 연결된다.
 따라서, 8000 바이트 이하의 메모리 공간에 해당하는
-기존 slab class의 LRU 리스트들은 empty가 상태가 된다.</p></div>
-        <footer>
-    <div class="footer-buttons">
-        <div class="previous"><a href="../arcus-ascii-protocol/" title="Arcus ascii protocol"><span>Previous</span></a></div>
-        <div class="next"><a href="../arcus-collection-concept/" title="Arcus collection concept"><span>Next</span></a></div>
+기존 slab class의 LRU 리스트들은 empty가 상태가 된다.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../arcus-collection-concept/" class="btn btn-neutral float-right" title="Arcus collection concept">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../arcus-ascii-protocol/" class="btn btn-neutral" title="Arcus ascii protocol"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
     </div>
-  <div class="footer-note"><p>
-    Built with <a href="http://www.mkdocs.org">MkDocs</a> using
-    <a href="https://github.com/daizutabi/mkdocs-ivory">Ivory theme</a>.
-  </p></div>
-</footer>
-      </div>
-    </main>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
   </div>
-  <script src="../../js/theme.js"></script>
-  <script src="../../search/main.js"></script>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../arcus-ascii-protocol/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../arcus-collection-concept/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
 </body>
 </html>
