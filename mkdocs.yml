@@ -1,4 +1,4 @@
 site_name: My Docs
-theme: ivory
+theme: readthedocs
 docs_dir: docs
 site_dir: site
