@@ -3,7 +3,7 @@ B+Tree 명령
 
 B+tree collection에 관한 명령은 아래와 같다.
 
-- [B+tree collection 생성: bop create](command-btree-collection.md#bop-create---btree-collection-%EC%83%9D%EC%84%B1)
+- [B+tree collection 생성: bop create](.command-btree-collection.md#bop-create---btree-collection-%EC%83%9D%EC%84%B1)
 - B+tree collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
 
 B+tree element에 관한 기본 명령은 아래와 같다.
@@ -340,7 +340,7 @@ bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항
 - key list에 지정 가능한 최대 key 수는 200이다.
 - count의 최대 값은 50이다.
 
- 
+
 성공 시의 response string은 다음과 같다.
 
 ```

@@ -1,4 +1,14 @@
-site_name: My Docs
-theme: readthedocs
+site_name: arcus docs
+theme: 
+   name: 'material'
+   feature:
+      tabs: true
+   
 docs_dir: docs
 site_dir: site
+repo_name: 'naver/arcus'
+repo_url: 'https://github.com/naver/arcus'
+
+plugins:
+   - awesome-pages
+   - search
