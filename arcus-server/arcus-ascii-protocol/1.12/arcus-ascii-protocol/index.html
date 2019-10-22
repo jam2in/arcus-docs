@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico">
-  <title>Command item attribute - My Docs</title>
+  <title>Arcus ascii protocol - My Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Command item attribute";
-    var mkdocs_page_input_path = "arcus-server\\arcus-ascii-protocol\\1.12\\command-item-attribute.md";
+    var mkdocs_page_name = "Arcus ascii protocol";
+    var mkdocs_page_input_path = "arcus-server\\arcus-ascii-protocol\\1.12\\arcus-ascii-protocol.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -119,9 +119,31 @@
                     
     <span class="caption-text">1.12</span>
     <ul class="subnav">
-                <li class="toctree-l4">
+                <li class="toctree-l4 current">
                     
-    <a class="" href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
+    <a class="current" href="./">Arcus ascii protocol</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l5"><a href="#arcus-memcached-ascii-protocol">Arcus-memcached Ascii Protocol</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l6" href="#collection-support">Collection Support</a></li>
+        
+            <li><a class="toctree-l6" href="#basic-concepts">Basic Concepts</a></li>
+        
+            <li><a class="toctree-l6" href="#simple-key-value">Simple Key-Value 기능</a></li>
+        
+            <li><a class="toctree-l6" href="#collection">Collection 기능</a></li>
+        
+            <li><a class="toctree-l6" href="#item-attributes">Item Attributes 기능</a></li>
+        
+            <li><a class="toctree-l6" href="#admin-monitoring">Admin &amp; Monitoring 기능</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="toctree-l4">
                     
@@ -143,23 +165,9 @@
                     
     <a class="" href="../command-btree-collection/">Command btree collection</a>
                 </li>
-                <li class="toctree-l4 current">
+                <li class="toctree-l4">
                     
-    <a class="current" href="./">Command item attribute</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l5"><a href="#item-attribute">Item Attribute 명령</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l6" href="#getattr-item-attribute">getattr - Item Attribute 조회</a></li>
-        
-            <li><a class="toctree-l6" href="#setattr-item-attribute">setattr - Item Attribute 변경</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../command-item-attribute/">Command item attribute</a>
                 </li>
                 <li class="toctree-l4">
                     
@@ -222,7 +230,7 @@
         
       
     
-    <li>Command item attribute</li>
+    <li>Arcus ascii protocol</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -232,53 +240,51 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="item-attribute">Item Attribute 명령</h2>
-<p>Item attributes를 조회하는 getattr 명령과 변경하는 setattr 명령을 소개한다.</p>
-<p>Arcus에서 어떤 item attributes를 제공하는 지를 알고자 한다면,
-<a href="../arcus-item-attribute/">Item Attibute 설명</a>을 참고 바란다.</p>
-<h3 id="getattr-item-attribute">getattr - Item Attribute 조회</h3>
-<p>Item attributes를 조회하는 getattr 명령은 아래와 같다.</p>
-<pre><code>getattr &lt;key&gt; [&lt;name&gt; ...]\r\n
-</code></pre>
-
+                <h1 id="arcus-memcached-ascii-protocol">Arcus-memcached Ascii Protocol</h1>
+<p>Arcus cache server가 제공하는 명령들에 대한 ascii protocol을 기술한다.
+Arcus cache server의 현재 버전은 1.7.0이며, 이 기준으로 작성한다.
+향후 버전이 바뀌면, 그에 따라 수정할 것이다.
+마지막으로, binary protocol은 현재 지원하지 않는 상태이므로, 논의에서 제외한다.</p>
+<p>본 내용은 Arcus cache client 개발자를 주 대상으로 하며,
+Arcus cache server에 관심있는 독자의 경우도 참고할 수 있다.</p>
+<h2 id="collection-support">Collection Support</h2>
+<p>Ascii protocol 관점에서 Arcus cache server는 기존 memcached 기능 외에 collection 기능을 제공한다.
+하나의 data만을 가지는 simple key-value 외에도 여러 data를 구조화된 형태로 저장/조회할 수 있으며,
+제공하는 collection 유형은 아래와 같다.</p>
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>[\&lt;name> ...] - 조회할 attribute name을 순차적으로 지정하는 것이며,
-  이를 생략하면, item 유형에 따라 조회가능한 모든 attributes 값을 조회한다.</li>
+<li>list : 데이터들의 linked list 구조</li>
+<li>set : 유일한 데이터들의 집합으로 membership 검사에 적합</li>
+<li>map : \&lt;field, value>쌍으로 구성된 데이터들의 집합으로 field 기준의 hash 구조</li>
+<li>b+tree : b+tree 키 기준으로 정렬된 데이터들의 집합으로 range scan 처리에 적합</li>
 </ul>
-<p>성공 시의 response string은 아래와 같다.
-getattr 명령의 인자로 지정한 attribute name 순서대로 name과 value의 쌍을 리턴한다.</p>
-<pre><code>ATTR &lt;name&gt;=&lt;value&gt;\r\n
-ATTR &lt;name&gt;=&lt;value&gt;\r\n
-...
-END\r\n
-</code></pre>
-
-<p>실패 시의 response string과 그 의미는 아래와 같다.</p>
+<h2 id="basic-concepts">Basic Concepts</h2>
+<p>Arcus cache server를 사용함에 있어 필요한 cache key, item, slab 등의 기본 용어와 개념은
+<a href="../arcus-basic-concept/">Arcus 기본 개념</a>에서 설명하므로, 이를 먼저 읽어보길 권한다.</p>
+<p>Arcus cache server가 제공하는 collection과 element 구조, b+tree key, element flag 등의
+중요 요소들은 <a href="../arcus-collection-concept/">Collection 기본 개념</a>에서 소개한다.</p>
+<p>Collection 기능의 제공에 따라 item 속성들이 많이 확장되었으며,
+이들은 <a href="../arcus-item-attribute/">Item 속성 설명</a>에서 자세히 다룬다.</p>
+<h2 id="simple-key-value">Simple Key-Value 기능</h2>
+<p>Arcus cache server는 memcached 1.4 기준의 key-value 명령을 그대로 제공하며, 일부에 대해 확장된 명령을 제공한다.
+따라서, 기존 memcached 1.4에서 사용한 명령들은 Arcus cache server에서도 그대로 사용 가능하다.
+<a href="../command-key-value/">Key-Value 명령</a>에서 key-value 유형의 item에 대해 수행가능한 명령들을 소개한다.</p>
+<h2 id="collection">Collection 기능</h2>
+<p>Collection 명령의 자세한 설명은 아래를 참고 바랍니다.</p>
 <ul>
-<li>“NOT_FOUND” - key miss</li>
-<li>“ATTR_ERROR not found" - 인자로 지정한 attribute가 존재하지 않거나 해당 item 유형에서 지원되지 않는 attribute임.</li>
-<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li><a href="../command-list-collection/">List collection 명령</a></li>
+<li><a href="../command-set-collection/">Set collection 명령</a></li>
+<li><a href="../command-map-collection/">Map collection 명령</a></li>
+<li><a href="../command-btree-collection/">B+tree collection 명령</a></li>
 </ul>
-<h3 id="setattr-item-attribute">setattr - Item Attribute 변경</h3>
-<p>Item attributes를 변경하는 setattr 명령은 아래와 같다.
-모든 attributes에 대해 조회가 가능하지만, 변경은 일부 attributes에 대해서만 가능하다.
-변경가능한 attributes로는 expiretime, maxcount, overflowaction, readable, maxbkeyrange가 있다.</p>
-<pre><code>setattr &lt;key&gt; &lt;name&gt;=&lt;value&gt; [&lt;name&gt;=&lt;value&gt; ...]\r\n
-</code></pre>
-
-<ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;name>=\&lt;value> - 변경할 attribute의 name과 value 쌍을 하나 이상 명시하여야 한다.</li>
-</ul>
-<p>이 명령의 response string과 그 의미는 아래와 같다.</p>
-<ul>
-<li>"OK" - 성공</li>
-<li>“NOT_FOUND” - key miss</li>
-<li>“ATTR_ERROR not found" - 인자로 지정한 attribute가 존재하지 않거나 해당 item 유형에서 지원되지 않는 attribute임.</li>
-<li>“ATTR_ERROR bad value” - 해당 attribute에 대해 새로 변경하고자 하는 value가 allowed value가 아님.</li>
-<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
-</ul>
+<p>Collection 일부 명령들은 command pipelining 처리가 가능하며,
+<a href="../command-pipelining/">Command Pipelining 기능</a>에서 설명한다.</p>
+<h2 id="item-attributes">Item Attributes 기능</h2>
+<p>Collection 지원으로 인해 item 유형이 다양해 졌으며, 다양한 item 유형에 따라 item attributes도 확장되었다.
+이러한 item attributes를 조회하거나 변경하기 위하여
+<a href="../command-item-attribute/">Item Attribute 명령</a>을 제공한다.</p>
+<h2 id="admin-monitoring">Admin &amp; Monitoring 기능</h2>
+<p>Arcus cache server의 운영 상에 필요한 기능들은
+<a href="../command-administration/">Admin &amp; Monitoring 명령</a>으로 제공한다.</p>
               
             </div>
           </div>
@@ -286,10 +292,10 @@ END\r\n
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../command-key-value/" class="btn btn-neutral float-right" title="Command key value">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../arcus-basic-concept/" class="btn btn-neutral float-right" title="Arcus basic concept">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../command-btree-collection/" class="btn btn-neutral" title="Command btree collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../1.11/command-set-collection/" class="btn btn-neutral" title="Command set collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -315,10 +321,10 @@ END\r\n
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../command-btree-collection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../1.11/command-set-collection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../command-key-value/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../arcus-basic-concept/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
