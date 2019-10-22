@@ -1,378 +1,731 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../../../../img/favicon.ico">
-  <title>Command set collection - arcus docs</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Command set collection";
-    var mkdocs_page_input_path = "arcus-server\\arcus-ascii-protocol\\1.11\\command-set-collection.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
 
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="../../../.." class="icon icon-home"> arcus docs</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../..">Home</a>
-  </li>
+        <title>Command set collection - arcus docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.74668098.js"></script>
+    
     
       
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Arcus server</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Arcus ascii protocol</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-  <li class="navtree toctree-l3 label">
-    <p class="caption">1.11</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l3 group">
-      <ul class="navtree subnav-l3 current">
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../arcus-ascii-protocol/">Arcus ascii protocol</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../arcus-basic-concept/">Arcus basic concept</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../arcus-collection-concept/">Arcus collection concept</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../arcus-item-attribute/">Arcus item attribute</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-administration/">Command administration</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-btree-collection/">Command btree collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-item-attribute/">Command item attribute</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-key-value/">Command key value</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-list-collection/">Command list collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-map-collection/">Command map collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../command-pipelining/">Command pipelining</a>
-  </li>
-        
-          
-
-
-  
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
     
-    <li class="navtree toctree-l4 page current">
-      <a class="current" href="./">
-        Command set collection
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#set" tabindex="1" class="md-skip">
+        Skip to content
       </a>
-    </li>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../../.." title="arcus docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              arcus docs
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Command set collection
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../../.." title="arcus docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    arcus docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
     
       
+      
+      
 
-  <li class="toctree-l4 current with-children">
-    <a href="#set">
-      SET 명령
-      <span class="toctree-expand"></span>
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
     </a>
   </li>
 
-
-
-  <li class="toctree-l4 current">
-    <ul class="subnav-l4 current">
     
       
-        <li class="toctree-l5">
-          <a class="toctree-l6" href="#sop-create-set-collection">sop create - Set Collection 생성</a>
-        </li>
-    
       
-        <li class="toctree-l5">
-          <a class="toctree-l6" href="#sop-insert-set-element">sop insert - Set Element 삽입</a>
-        </li>
-    
       
-        <li class="toctree-l5">
-          <a class="toctree-l6" href="#sop-delete-set-element">sop delete - Set Element 삭제</a>
-        </li>
-    
-      
-        <li class="toctree-l5">
-          <a class="toctree-l6" href="#sop-get-set-element">sop get - Set Element 조회</a>
-        </li>
-    
-      
-        <li class="toctree-l5">
-          <a class="toctree-l6" href="#sop-exist-set-element">sop exist - Set Element 존재유무 검사</a>
-        </li>
-    
-    </ul>
-  </li>
-
-
-  
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l3 label">
-    <p class="caption">1.12</p>
-  </li>
-
 
   
 
-  
-    <li class="navtree toctree-l3 group">
-      <ul class="navtree subnav-l3 current">
-          
 
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/arcus-ascii-protocol/">Arcus ascii protocol</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/arcus-basic-concept/">Arcus basic concept</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/arcus-collection-concept/">Arcus collection concept</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/arcus-item-attribute/">Arcus item attribute</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-administration/">Command administration</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-btree-collection/">Command btree collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-item-attribute/">Command item attribute</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-key-value/">Command key value</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-list-collection/">Command list collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-map-collection/">Command map collection</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-pipelining/">Command pipelining</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l4 inactive">
-    <a class="" href="../../1.12/command-set-collection/">Command set collection</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
-        
-      </ul>
-    </li>
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-  </ul>
-      </div>
-      &nbsp;
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Arcus server
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Arcus server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Arcus ascii protocol
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        Arcus ascii protocol
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      1.11
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        1.11
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-ascii-protocol/" title="Arcus ascii protocol" class="md-nav__link">
+      Arcus ascii protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-basic-concept/" title="Arcus basic concept" class="md-nav__link">
+      Arcus basic concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-collection-concept/" title="Arcus collection concept" class="md-nav__link">
+      Arcus collection concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-item-attribute/" title="Arcus item attribute" class="md-nav__link">
+      Arcus item attribute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-administration/" title="Command administration" class="md-nav__link">
+      Command administration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-btree-collection/" title="Command btree collection" class="md-nav__link">
+      Command btree collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-item-attribute/" title="Command item attribute" class="md-nav__link">
+      Command item attribute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-key-value/" title="Command key value" class="md-nav__link">
+      Command key value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-list-collection/" title="Command list collection" class="md-nav__link">
+      Command list collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-map-collection/" title="Command map collection" class="md-nav__link">
+      Command map collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-pipelining/" title="Command pipelining" class="md-nav__link">
+      Command pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Command set collection
+      </label>
+    
+    <a href="./" title="Command set collection" class="md-nav__link md-nav__link--active">
+      Command set collection
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    SET 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sop-create-set-collection" class="md-nav__link">
+    sop create - Set Collection 생성
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-insert-set-element" class="md-nav__link">
+    sop insert - Set Element 삽입
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-delete-set-element" class="md-nav__link">
+    sop delete - Set Element 삭제
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-get-set-element" class="md-nav__link">
+    sop get - Set Element 조회
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-exist-set-element" class="md-nav__link">
+    sop exist - Set Element 존재유무 검사
+  </a>
+  
+</li>
+        
+      </ul>
     </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+  
+</li>
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../..">arcus docs</a>
-      </nav>
-
       
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../../../..">Docs</a> &raquo;</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
-      
+  </li>
+
         
-          <li>1.11 &raquo;</li>
+      </ul>
+    </nav>
+  </li>
+
         
-      
-        
-          <li>Arcus ascii protocol &raquo;</li>
-        
-      
-        
-          <li>Arcus server &raquo;</li>
-        
-      
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
     
-    <li>Command set collection</li>
-    <li class="wy-breadcrumbs-aside">
-      
-    </li>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2">
+    
+    <label class="md-nav__link" for="nav-2-1-2">
+      1.12
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-2">
+        1.12
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/arcus-ascii-protocol/" title="Arcus ascii protocol" class="md-nav__link">
+      Arcus ascii protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/arcus-basic-concept/" title="Arcus basic concept" class="md-nav__link">
+      Arcus basic concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/arcus-collection-concept/" title="Arcus collection concept" class="md-nav__link">
+      Arcus collection concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/arcus-item-attribute/" title="Arcus item attribute" class="md-nav__link">
+      Arcus item attribute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-administration/" title="Command administration" class="md-nav__link">
+      Command administration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-btree-collection/" title="Command btree collection" class="md-nav__link">
+      Command btree collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-item-attribute/" title="Command item attribute" class="md-nav__link">
+      Command item attribute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-key-value/" title="Command key value" class="md-nav__link">
+      Command key value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-list-collection/" title="Command list collection" class="md-nav__link">
+      Command list collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-map-collection/" title="Command map collection" class="md-nav__link">
+      Command map collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-pipelining/" title="Command pipelining" class="md-nav__link">
+      Command pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.12/command-set-collection/" title="Command set collection" class="md-nav__link">
+      Command set collection
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    SET 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sop-create-set-collection" class="md-nav__link">
+    sop create - Set Collection 생성
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-insert-set-element" class="md-nav__link">
+    sop insert - Set Element 삽입
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-delete-set-element" class="md-nav__link">
+    sop delete - Set Element 삭제
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-get-set-element" class="md-nav__link">
+    sop get - Set Element 조회
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop-exist-set-element" class="md-nav__link">
+    sop exist - Set Element 존재유무 검사
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                
+                  <h1>Command set collection</h1>
+                
                 <h2 id="set">SET 명령</h2>
 <p>Set collection에 관한 명령은 아래와 같다.</p>
 <ul>
@@ -517,52 +870,79 @@ END|DELETED|DELETED_DROPPED\r\n
 <li>“CLIENT_ERROR too large value” : 주어진 데이터가 4KB 보다 큼</li>
 <li>“CLIENT_ERROR bad data chunk” : 주어진 데이터의 길이가 \&lt;bytes>와 다르거나 “\r\n”으로 끝나지 않음</li>
 </ul>
+                
+                  
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../1.12/arcus-ascii-protocol/" class="btn btn-neutral float-right" title="Arcus ascii protocol">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../command-pipelining/" class="btn btn-neutral" title="Command pipelining"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../command-pipelining/" title="Command pipelining" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Command pipelining
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../1.12/arcus-ascii-protocol/" title="Arcus ascii protocol" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Arcus ascii protocol
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.ac79c3b0.js"></script>
       
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
-        <span><a href="../command-pipelining/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../../1.12/arcus-ascii-protocol/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '../../../..';</script>
-    <script src="../../../../js/theme.js" defer></script>
-      <script src="../../../../search/main.js" defer></script>
-
-</body>
+    
+  </body>
 </html>
