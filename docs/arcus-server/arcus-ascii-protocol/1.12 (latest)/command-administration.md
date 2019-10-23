@@ -1,6 +1,4 @@
-## Admin & Monitoring 명령
-
-### Flush 명령
+## Flush 명령
 
 Arcus cache server는 items을 invalidate 시키기 위한 두 가지 flush 명령을 제공한다.
 
@@ -37,7 +35,7 @@ Response string과 그 의미는 아래와 같다.
 - “NOT_FOUND” - prefix miss (flush_prefix 명령인 경우만 해당)
 - CLIENT_ERROR bad command line format”	- protocol syntax 틀림
 
-### Scrub 명령
+## Scrub 명령
 
 Arcus cache server에는 유효하지 않으면서 메모리를 차지하고 있는 items이 존재할 수 있다.
 이 items은 아래 두 유형으로 구분된다.
@@ -79,7 +77,7 @@ Response string과 그 의미는 아래와 같다.
 Arcus cache server 구동 시에 ascii_scrub.so 파일을 dynamic linking 하는
 구동 옵션을 주어야 scrub 명령을 사용할 수 있다.
 
-### Stats 명령
+## Stats 명령
 
 Arcus cache server의 각종 통계 정보를 조회하거나 그 통계 정보를 reset한다.
 
@@ -105,7 +103,7 @@ stats [<args>]\r\n
 
 stats 명령은 직접 한번씩 수행해 보기를 권하며, 아래에서는 추가 설명이 필요한 부분들만 기술한다.
 
-#### Prefix 통계 정보
+## Prefix 통계 정보
 
 모든 prefix들의 item 통계 정보는 "stats prefixes" 명령으로 조회하고,
 모든 prefix들의 연산 통계 정보는 "stats detail dump" 명령으로 조회한다.
@@ -198,7 +196,7 @@ gas와 sas는 item attribute 연산의 통계이다.
   - gas - getattr 수행 횟수
   - sas - setattr 수행 횟수
   
-#### Scrub 수행 상태
+## Scrub 수행 상태
 
 Scrub 수행 상태를 조회한 결과 예는 다음과 같다.
 
@@ -215,7 +213,7 @@ END
 - visited - 현재 수행중인 또는 이전에 수행된 scrub에서 접근한 item들의 수를 나타낸다.
 - cleaned - 현재 수행중인 또는 이전에 수행된 scrub에서 삭제한 item들의 수를 나타낸다.
 
-#### slab class 별 cache key dump
+## slab class 별 cache key dump
 
 slab class 별 LRU에 달려있는 item들의 cache key들을 dump하기 위하여,
 아래의 stats cachedump 명령을 제공한다.
@@ -247,7 +245,7 @@ ITEM c:bkey2
 END
 ```
 
-### Config 명령
+## Config 명령
 
 Arcus cache server는 특정 configuration에 대해 동적으로 변경하거나 현재의 값을 조회하는 기능을 제공한다.
 동적으로 변경가능한 configuration들은 현재 아래만 지원한다.
