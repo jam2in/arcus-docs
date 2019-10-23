@@ -1,16 +1,4 @@
-LIST 명령
----------
-
-List collection에 관한 명령은 아래와 같다.
-
-- [List collection 생성: lop create](command-list-collection.md#lop-create---list-collection-%EC%83%9D%EC%84%B1)
-- List collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
-
-List element에 관한 명령은 아래와 같다.
-
-- [List element 삽입: lop insert](command-list-collection.md#lop-insert---list-element-%EC%82%BD%EC%9E%85)
-- [List element 삭제: lop delete](command-list-collection.md#lop-delete---list-element-%EC%82%AD%EC%A0%9C)
-- [List element 조회: lop get](command-list-collection.md#lop-get---list-element-%EC%A1%B0%ED%9A%8C)
+## List collection 명령
 
 ### lop create - List Collection 생성
 
@@ -33,6 +21,12 @@ Response string과 그 의미는 아래와 같다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
 
+### delete - List 삭제
+
+기존 [key-value item의 삭제 명령](./command-key-value.md)을 그대로 사용한다. 
+
+## List element 명령
+
 ### lop insert - List Element 삽입
 
 List collection에 하나의 element를 삽입한다.
@@ -53,7 +47,7 @@ lop insert <key> <index> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
 - \<data\> - 삽입할 데이터 (최대 4KB)
- 
+
 Response string과 그 의미는 아래와 같다.
 
 - "STROED" - 성공 (element만 삽입)

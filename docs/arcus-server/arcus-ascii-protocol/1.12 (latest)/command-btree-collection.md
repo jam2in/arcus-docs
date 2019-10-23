@@ -1,42 +1,4 @@
-B+Tree 명령
------------
-
-B+tree collection에 관한 명령은 아래와 같다.
-
-- [B+tree collection 생성: bop create](.command-btree-collection.md#bop-create---btree-collection-%EC%83%9D%EC%84%B1)
-- B+tree collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
-
-B+tree element에 관한 기본 명령은 아래와 같다.
-
-- [B+tree element 삽입/대체: bop insert/upsert](command-btree-collection.md#bop-insertupsert---btree-element-%EC%82%BD%EC%9E%85%EB%8C%80%EC%B2%B4)
-- [B+tree element 변경: bop update](command-btree-collection.md#bop-update---btree-element-%EB%B3%80%EA%B2%BD)
-- [B+tree element 삭제: bop delete](command-btree-collection.md#bop-delete---btree-element-%EC%82%AD%EC%A0%9C)
-- [B+tree element 조회: bop get](command-btree-collection.md#bop-get---btree-element-%EC%A1%B0%ED%9A%8C)
-- [B+tree element 개수 계산: bop count](command-btree-collection.md#bop-count---btree-element-%EA%B0%9C%EC%88%98-%EA%B3%84%EC%82%B0)
-- [B+tree element 값의 증감: bop incr/decr](command-btree-collection.md#bop-incrdecr---btree-element-%EA%B0%92%EC%9D%98-%EC%A6%9D%EA%B0%90)
-
-Arcus cache server는 다수의 b+tree들에 대한 조회 기능을 특별히 제공하며, 이들은 아래와 같다.
-
-- [하나의 명령으로 여러 b+tree들에 대한 조회를 한번에 수행하는 기능:  bop mget](command-btree-collection.md#bop-mget---btree-multiple-get)
-- [여러 b+tree들에서 조회 조건을 만족하는 elements를 sort merge하여 최종 결과를 얻는 기능: bop smget](command-btree-collection.md#bop-smget---btree-sort-merge-get)
-
-Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
-B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
-bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
-B+tree position은 0-based index로 표현한다.
-예를 들어, b+tree에 N개의 elements가 있다면 0부터 N-1까지의 index로 나타낸다.
-
-Arcus cache server에서 제공하는 b+tree position 관련 명령은 다음과 같다.
-
-- [B+tree에서 특정 bkey의 position을 조회하는 기능 : bop position](command-btree-collection.md#bop-position---btree-position-%EC%A1%B0%ED%9A%8C)
-- [B+tree에서 하나의 position 또는 position range에 해당하는 element를 조회하는 기능 : bop gbp(get by position)](command-btree-collection.md#bop-gbp---btree-get-by-position)
-- [B+tree에서 특정 bkey의 position과 element 그리고 그 위치 앞뒤의 element를 함께 조회하는 기능: bop pwg(position with get)](command-btree-collection.md#bop-pwg---btree-find-position-with-get-version-180)
-
-
-B+tree position 기반의 조회가 필요한 예를 하나 들면, ranking 시스템이 있다.
-Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저장하고,
-조회는 최고/최저 score 기준으로 몇번째 위치 또는 위치의 범위에 해당하는 element를 찾는 경우가 많다.
-
+## B+ tree collection 명령
 
 ### bop create - B+tree Collection 생성
 
@@ -58,6 +20,12 @@ Response string과 그 의미는 아래와 같다.
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
+
+### delete - B+ tree 삭제
+
+기존 [key-value item의 삭제 명령](./command-key-value.md)을 그대로 사용한다. 
+
+## B+ tree element 명령 
 
 ### bop insert/upsert - B+Tree Element 삽입/대체
 
@@ -315,6 +283,8 @@ Increment/decrement 수행 후의 데이터 값이다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory [writing get response]” - 메모리 부족
 
+## 복수 B+ tree  조회 명령 
+
 ### bop mget - B+Tree Multiple Get
 
 여러 b+tree들에 대해 동일 조회 조건(bkey range와 eflag filter)으로 element들을 한꺼번에 조회한다.
@@ -529,15 +499,35 @@ END|DUPLICATED\r\n
 smget 수행의 실패 시의 response string은 다음과 같다.
 
 - “TYPE_MISMATCH” - 어떤 key가 b+tree type이 아님
+
 - “BKEY_MISMATCH” - smget에 참여된 b+tree들의 bkey 유형이 서로 다름.
+
 - “OUT_OF_RANGE” - 기존 smget 동작에서만 발생할 수 있는 실패 response string이다.
+
 - "NOT_SUPPORTED" - 지원하지 않음
+
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
+
 - “CLIENT_ERROR bad data chunk”	- 주어진 key 리스트에 중복 key가 존재하거나
               주어진 key 리스트의 길이가 \<lenkeys\> 길이와 다르거나 “\r\n”으로 끝나지 않음.
+          
 - “CLIENT_ERROR bad value” - 앞서 기술한 smget 연산의 제약 조건을 위배
+
 - “SERVER_ERROR out of memory [writing get response]” - 메모리 부족
 
+     
+
+## B+ tree position 명령
+
+Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
+B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
+bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
+B+tree position은 0-based index로 표현한다.
+예를 들어, b+tree에 N개의 elements가 있다면 0부터 N-1까지의 index로 나타낸다.
+
+B+tree position 기반의 조회가 필요한 예를 하나 들면, ranking 시스템이 있다.
+Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저장하고,
+조회는 최고/최저 score 기준으로 몇번째 위치 또는 위치의 범위에 해당하는 element를 찾는 경우가 많다.
 
 ### bop position - B+Tree Position 조회
 

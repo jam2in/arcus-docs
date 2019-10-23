@@ -1,6 +1,3 @@
-Arcus Basic Concept
--------------------
-
 Arcus cache server는 하나의 데이터만을 value로 가지는 simple key-value 외에도
 여러 데이터를 구조화된 형태로 저장하는 collection을 하나의 value로 가지는
 확장된 key-value 데이터 모델을 제공한다.
@@ -112,5 +109,3 @@ small memory allocator로 부터 메모리 공간을 할당받는
 작은 크기의 key-value items과 collection items은 0번 LRU 리스트에 연결된다.
 따라서, 8000 바이트 이하의 메모리 공간에 해당하는
 기존 slab class의 LRU 리스트들은 empty가 상태가 된다.
-
-

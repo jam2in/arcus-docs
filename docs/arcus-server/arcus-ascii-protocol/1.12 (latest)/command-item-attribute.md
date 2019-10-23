@@ -57,5 +57,3 @@ setattr <key> <name>=<value> [<name>=<value> ...]\r\n
 - “ATTR_ERROR bad value” - 해당 attribute에 대해 새로 변경하고자 하는 value가 allowed value가 아님.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 
-
-

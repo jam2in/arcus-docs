@@ -1,17 +1,4 @@
-SET 명령
---------
-
-Set collection에 관한 명령은 아래와 같다.
-
-- [Set collection 생성: sop create](command-set-collection.md#sop-create---set-collection-%EC%83%9D%EC%84%B1)
-- Set collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
-
-Set element에 관한 명령은 아래와 같다. 
-
-- [Set element 삽입: sop insert](command-set-collection.md#sop-insert---set-element-%EC%82%BD%EC%9E%85)
-- [Set element 삭제: sop delete](command-set-collection.md#sop-delete---set-element-%EC%82%AD%EC%A0%9C)
-- [Set element 조회: sop get](command-set-collection.md#sop-get---set-element-%EC%A1%B0%ED%9A%8C)
-- [Set element 존재유무 검사: sop exist](command-set-collection.md#sop-exist---set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%EA%B2%80%EC%82%AC)
+## set collection 명령
 
 ### sop create - Set Collection 생성
 
@@ -33,6 +20,8 @@ Response string과 그 의미는 아래와 같다.
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
+
+## set element 명령
 
 ### sop insert - Set Element 삽입
 
@@ -155,5 +144,5 @@ Response string과 그 의미는 아래와 같다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “CLIENT_ERROR too large value” : 주어진 데이터가 4KB 보다 큼
 - “CLIENT_ERROR bad data chunk” : 주어진 데이터의 길이가 \<bytes\>와 다르거나 “\r\n”으로 끝나지 않음
- 
+
 

@@ -1,6 +1,3 @@
-Item Attribute 설명
-------------------
-
 Arcus cache server는 collection 기능 지원으로 인해,
 기존 key-value item 유형 외에 list, set, map, b+tree item 유형을 가진다.
 각 item 유형에 따라 설정/조회 가능한 속성들(attributes)이 구분되며, 이들의 개요는 아래 표와 같다.

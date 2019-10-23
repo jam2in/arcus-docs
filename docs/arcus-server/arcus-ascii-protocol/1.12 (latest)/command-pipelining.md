@@ -1,6 +1,3 @@
-Command Pipelining
-------------------
-
 Command pipelining은
 “pipe” 키워드를 통해 여러 collection 명령들을 pipelining하여 cache server에 전달하고,
 cache server는 각 명령을 처리한 즉시 그 response를 client로 전달하는 것이 아니라
@@ -18,7 +15,7 @@ Command pipelining 가능한 명령은 아래와 같으며, 단순 response stri
 * sop 명령들 - sop insert/delete/exist
 * mop 명령들 - mop insert/delete/update
 * bop 명령들 - bop insert/upsert/delete/update/incr/decr
- 
+
 Command pipelining 수행 예로,
 특정 list의 tail 쪽으로 10개 elements를 추가하고자 한다면,
 아래와 같이 lop insert 명령을 연속하여 cache server로 보내면 된다.

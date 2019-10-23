@@ -1,17 +1,4 @@
-MAP 명령
---------
-
-Map collection에 관한 명령은 아래와 같다.
-
-- [Map collection 생성: mop create](command-map-collection.md#mop-create---map-collection-생성)
-- Map collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
-
-Map element에 관한 명령은 아래와 같다. 
-
-- [Map element 삽입: mop insert](command-map-collection.md#mop-insert---map-element-삽입)
-- [Map element 변경: mop update](command-map-collection.md#mop-update---map-element-변경)
-- [Map element 삭제: mop delete](command-map-collection.md#mop-delete---map-element-삭제)
-- [Map element 조회: mop get](command-map-collection.md#mop-get---map-field-element-조회)
+## map collection 명령
 
 ### mop create - Map Collection 생성
 
@@ -33,6 +20,12 @@ Response string과 그 의미는 아래와 같다.
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
+
+### delete - Map Collection 삭제
+
+기존 [key-value item의 삭제 명령](./command-key-value.md)을 그대로 사용한다. 
+
+## map element 명령
 
 ### mop insert - Map Element 삽입
 
