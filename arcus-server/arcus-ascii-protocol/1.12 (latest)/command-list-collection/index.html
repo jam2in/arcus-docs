@@ -36,7 +36,7 @@
     
     
       
-        <title>LIST 명령 - arcus docs</title>
+        <title>Command list collection - arcus docs</title>
       
     
     
@@ -103,7 +103,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                LIST 명령
+                Command list collection
               
             </span>
           
@@ -425,52 +425,61 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        LIST 명령
+        Command list collection
       </label>
     
-    <a href="./" title="LIST 명령" class="md-nav__link md-nav__link--active">
-      LIST 명령
+    <a href="./" title="Command list collection" class="md-nav__link md-nav__link--active">
+      Command list collection
     </a>
     
       
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    LIST 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#lop-create-list-collection" class="md-nav__link">
     lop create - List Collection 생성
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-insert-list-element" class="md-nav__link">
     lop insert - List Element 삽입
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-delete-list-element" class="md-nav__link">
     lop delete - List Element 삭제
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-get-list-element" class="md-nav__link">
     lop get - List Element 조회
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -718,37 +727,48 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    LIST 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#lop-create-list-collection" class="md-nav__link">
     lop create - List Collection 생성
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-insert-list-element" class="md-nav__link">
     lop insert - List Element 삽입
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-delete-list-element" class="md-nav__link">
     lop delete - List Element 삭제
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#lop-get-list-element" class="md-nav__link">
     lop get - List Element 조회
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -771,8 +791,10 @@
                   <a href="https://github.com/naver/arcus/edit/master/docs/arcus-server/arcus-ascii-protocol/1.12 (latest)/command-list-collection.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="list">LIST 명령</h1>
-<h2 id="lop-create-list-collection">lop create - List Collection 생성</h2>
+                  <h1>Command list collection</h1>
+                
+                <h2 id="list">LIST 명령</h2>
+<h3 id="lop-create-list-collection">lop create - List Collection 생성</h3>
 <p>List collection을 empty 상태로 생성한다.</p>
 <pre><code>lop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
 * attributes: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
@@ -791,7 +813,7 @@
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h2 id="lop-insert-list-element">lop insert - List Element 삽입</h2>
+<h3 id="lop-insert-list-element">lop insert - List Element 삽입</h3>
 <p>List collection에 하나의 element를 삽입한다.
 List collection을 생성하면서 하나의 element를 삽입할 수도 있다.</p>
 <pre><code>lop insert &lt;key&gt; &lt;index&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
@@ -825,7 +847,7 @@ List collection을 생성하면서 하나의 element를 삽입할 수도 있다.
 <li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 \&lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h2 id="lop-delete-list-element">lop delete - List Element 삭제</h2>
+<h3 id="lop-delete-list-element">lop delete - List Element 삭제</h3>
 <p>List collection에 하나의 index 또는 index range에 해당하는 elements를 삭제한다.</p>
 <pre><code>lop delete &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [drop] [noreply|pipe]\r\n
 lop delete 명령에서 각 인자의 설명은 아래와 같다.
@@ -855,7 +877,7 @@ lop delete 명령에서 각 인자의 설명은 아래와 같다.
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h2 id="lop-get-list-element">lop get - List Element 조회</h2>
+<h3 id="lop-get-list-element">lop get - List Element 조회</h3>
 <p>List collection에 하나의 index 또는 index range에 해당하는 elements를 조회한다.</p>
 <pre><code>lop get &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [delete|drop]\r\n
 </code></pre>
