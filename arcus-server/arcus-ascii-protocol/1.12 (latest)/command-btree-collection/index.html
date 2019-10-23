@@ -200,7 +200,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../arcus-ascii-protocol/" class="md-tabs__link md-tabs__link--active">
+        <a href="../arcus-basic-concept/" class="md-tabs__link md-tabs__link--active">
           Arcus server
         </a>
       
@@ -336,18 +336,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../arcus-ascii-protocol/" title="Arcus ascii protocol" class="md-nav__link">
-      Arcus ascii protocol
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../arcus-basic-concept/" title="Arcus basic concept" class="md-nav__link">
       Arcus basic concept
     </a>
@@ -384,8 +372,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../command-administration/" title="Command administration" class="md-nav__link">
-      Command administration
+    <a href="../command-administration/" title="Admin & Monitoring 명령" class="md-nav__link">
+      Admin & Monitoring 명령
     </a>
   </li>
 
@@ -401,6 +389,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Command btree collection
@@ -414,13 +404,15 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#btree" class="md-nav__link">
-    B+Tree 명령
+  <a href="#b-tree-collection" class="md-nav__link">
+    B+ tree collection 명령
   </a>
   
     <nav class="md-nav">
@@ -432,6 +424,26 @@
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-b-tree" class="md-nav__link">
+    delete - B+ tree 삭제
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree-element" class="md-nav__link">
+    B+ tree element 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bop-insertupsert-btree-element" class="md-nav__link">
@@ -475,6 +487,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree" class="md-nav__link">
+    복수 B+ tree  조회 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#bop-mget-btree-multiple-get" class="md-nav__link">
     bop mget - B+Tree Multiple Get
@@ -488,6 +513,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree-position" class="md-nav__link">
+    B+ tree position 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bop-position-btree-position" class="md-nav__link">
@@ -556,8 +594,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../command-list-collection/" title="Command list collection" class="md-nav__link">
-      Command list collection
+    <a href="../command-list-collection/" title="LIST 명령" class="md-nav__link">
+      LIST 명령
     </a>
   </li>
 
@@ -568,8 +606,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../command-map-collection/" title="Command map collection" class="md-nav__link">
-      Command map collection
+    <a href="../command-map-collection/" title="MAP 명령" class="md-nav__link">
+      MAP 명령
     </a>
   </li>
 
@@ -592,8 +630,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../command-set-collection/" title="Command set collection" class="md-nav__link">
-      Command set collection
+    <a href="../command-set-collection/" title="SET 명령" class="md-nav__link">
+      SET 명령
     </a>
   </li>
 
@@ -795,13 +833,15 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#btree" class="md-nav__link">
-    B+Tree 명령
+  <a href="#b-tree-collection" class="md-nav__link">
+    B+ tree collection 명령
   </a>
   
     <nav class="md-nav">
@@ -813,6 +853,26 @@
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-b-tree" class="md-nav__link">
+    delete - B+ tree 삭제
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree-element" class="md-nav__link">
+    B+ tree element 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bop-insertupsert-btree-element" class="md-nav__link">
@@ -856,6 +916,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree" class="md-nav__link">
+    복수 B+ tree  조회 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#bop-mget-btree-multiple-get" class="md-nav__link">
     bop mget - B+Tree Multiple Get
@@ -869,6 +942,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tree-position" class="md-nav__link">
+    B+ tree position 명령
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bop-position-btree-position" class="md-nav__link">
@@ -915,42 +1001,8 @@
                   <a href="https://github.com/naver/arcus/edit/master/docs/arcus-server/arcus-ascii-protocol/1.12 (latest)/command-btree-collection.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Command btree collection</h1>
-                
-                <h2 id="btree">B+Tree 명령</h2>
-<p>B+tree collection에 관한 명령은 아래와 같다.</p>
-<ul>
-<li><a href=".command-btree-collection.md#bop-create---btree-collection-%EC%83%9D%EC%84%B1">B+tree collection 생성: bop create</a></li>
-<li>B+tree collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)</li>
-</ul>
-<p>B+tree element에 관한 기본 명령은 아래와 같다.</p>
-<ul>
-<li><a href="./#bop-insertupsert---btree-element-%EC%82%BD%EC%9E%85%EB%8C%80%EC%B2%B4">B+tree element 삽입/대체: bop insert/upsert</a></li>
-<li><a href="./#bop-update---btree-element-%EB%B3%80%EA%B2%BD">B+tree element 변경: bop update</a></li>
-<li><a href="./#bop-delete---btree-element-%EC%82%AD%EC%A0%9C">B+tree element 삭제: bop delete</a></li>
-<li><a href="./#bop-get---btree-element-%EC%A1%B0%ED%9A%8C">B+tree element 조회: bop get</a></li>
-<li><a href="./#bop-count---btree-element-%EA%B0%9C%EC%88%98-%EA%B3%84%EC%82%B0">B+tree element 개수 계산: bop count</a></li>
-<li><a href="./#bop-incrdecr---btree-element-%EA%B0%92%EC%9D%98-%EC%A6%9D%EA%B0%90">B+tree element 값의 증감: bop incr/decr</a></li>
-</ul>
-<p>Arcus cache server는 다수의 b+tree들에 대한 조회 기능을 특별히 제공하며, 이들은 아래와 같다.</p>
-<ul>
-<li><a href="./#bop-mget---btree-multiple-get">하나의 명령으로 여러 b+tree들에 대한 조회를 한번에 수행하는 기능:  bop mget</a></li>
-<li><a href="./#bop-smget---btree-sort-merge-get">여러 b+tree들에서 조회 조건을 만족하는 elements를 sort merge하여 최종 결과를 얻는 기능: bop smget</a></li>
-</ul>
-<p>Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
-B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
-bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
-B+tree position은 0-based index로 표현한다.
-예를 들어, b+tree에 N개의 elements가 있다면 0부터 N-1까지의 index로 나타낸다.</p>
-<p>Arcus cache server에서 제공하는 b+tree position 관련 명령은 다음과 같다.</p>
-<ul>
-<li><a href="./#bop-position---btree-position-%EC%A1%B0%ED%9A%8C">B+tree에서 특정 bkey의 position을 조회하는 기능 : bop position</a></li>
-<li><a href="./#bop-gbp---btree-get-by-position">B+tree에서 하나의 position 또는 position range에 해당하는 element를 조회하는 기능 : bop gbp(get by position)</a></li>
-<li><a href="./#bop-pwg---btree-find-position-with-get-version-180">B+tree에서 특정 bkey의 position과 element 그리고 그 위치 앞뒤의 element를 함께 조회하는 기능: bop pwg(position with get)</a></li>
-</ul>
-<p>B+tree position 기반의 조회가 필요한 예를 하나 들면, ranking 시스템이 있다.
-Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저장하고,
-조회는 최고/최저 score 기준으로 몇번째 위치 또는 위치의 범위에 해당하는 element를 찾는 경우가 많다.</p>
+                <h1 id="btree">B+Tree 명령</h1>
+<h2 id="b-tree-collection">B+ tree collection 명령</h2>
 <h3 id="bop-create-btree-collection">bop create - B+tree Collection 생성</h3>
 <p>B+tree collection을 empty 상태로 생성한다.</p>
 <pre><code>bop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
@@ -970,6 +1022,9 @@ Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
+<h3 id="delete-b-tree">delete - B+ tree 삭제</h3>
+<p>기존 <a href="../command-key-value/">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
+<h2 id="b-tree-element">B+ tree element 명령</h2>
 <h3 id="bop-insertupsert-btree-element">bop insert/upsert - B+Tree Element 삽입/대체</h3>
 <p>B+tree collection에 하나의 element를 추가하는 명령으로
 (1) 하나의 element를 삽입하는 bop insert 명령과
@@ -1206,6 +1261,7 @@ Increment/decrement 수행 후의 데이터 값이다.</p>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
+<h2 id="b-tree">복수 B+ tree  조회 명령</h2>
 <h3 id="bop-mget-btree-multiple-get">bop mget - B+Tree Multiple Get</h3>
 <p>여러 b+tree들에 대해 동일 조회 조건(bkey range와 eflag filter)으로 element들을 한꺼번에 조회한다.
 여러 b+tree들에 대한 동일 조회 조건을 사용하므로, 대상 b+tree들은 동일 bkey 유형을 가져야 한다.
@@ -1402,16 +1458,41 @@ END|DUPLICATED\r\n
 </ul>
 <p>smget 수행의 실패 시의 response string은 다음과 같다.</p>
 <ul>
-<li>“TYPE_MISMATCH” - 어떤 key가 b+tree type이 아님</li>
-<li>“BKEY_MISMATCH” - smget에 참여된 b+tree들의 bkey 유형이 서로 다름.</li>
-<li>“OUT_OF_RANGE” - 기존 smget 동작에서만 발생할 수 있는 실패 response string이다.</li>
-<li>"NOT_SUPPORTED" - 지원하지 않음</li>
-<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
-<li>“CLIENT_ERROR bad data chunk” - 주어진 key 리스트에 중복 key가 존재하거나
-              주어진 key 리스트의 길이가 \&lt;lenkeys> 길이와 다르거나 “\r\n”으로 끝나지 않음.</li>
-<li>“CLIENT_ERROR bad value” - 앞서 기술한 smget 연산의 제약 조건을 위배</li>
-<li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
+<li>
+<p>“TYPE_MISMATCH” - 어떤 key가 b+tree type이 아님</p>
+</li>
+<li>
+<p>“BKEY_MISMATCH” - smget에 참여된 b+tree들의 bkey 유형이 서로 다름.</p>
+</li>
+<li>
+<p>“OUT_OF_RANGE” - 기존 smget 동작에서만 발생할 수 있는 실패 response string이다.</p>
+</li>
+<li>
+<p>"NOT_SUPPORTED" - 지원하지 않음</p>
+</li>
+<li>
+<p>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</p>
+</li>
+<li>
+<p>“CLIENT_ERROR bad data chunk” - 주어진 key 리스트에 중복 key가 존재하거나
+              주어진 key 리스트의 길이가 \&lt;lenkeys> 길이와 다르거나 “\r\n”으로 끝나지 않음.</p>
+</li>
+<li>
+<p>“CLIENT_ERROR bad value” - 앞서 기술한 smget 연산의 제약 조건을 위배</p>
+</li>
+<li>
+<p>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</p>
+</li>
 </ul>
+<h2 id="b-tree-position">B+ tree position 명령</h2>
+<p>Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
+B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
+bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
+B+tree position은 0-based index로 표현한다.
+예를 들어, b+tree에 N개의 elements가 있다면 0부터 N-1까지의 index로 나타낸다.</p>
+<p>B+tree position 기반의 조회가 필요한 예를 하나 들면, ranking 시스템이 있다.
+Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저장하고,
+조회는 최고/최저 score 기준으로 몇번째 위치 또는 위치의 범위에 해당하는 element를 찾는 경우가 많다.</p>
 <h3 id="bop-position-btree-position">bop position - B+Tree Position 조회</h3>
 <p>b+tree collection에서 특정 element의 position을 조회한다.
 Element의 position이란 b+tree에서의 위치 정보로서,
@@ -1538,7 +1619,7 @@ END\r\n
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../command-administration/" title="Command administration" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../command-administration/" title="Admin & Monitoring 명령" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1547,7 +1628,7 @@ END\r\n
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Command administration
+                Admin & Monitoring 명령
               </span>
             </div>
           </a>
