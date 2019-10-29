@@ -1,6 +1,7 @@
-site_name: arcus docs
+site_name: 'ARCUS Documentation'
 theme: 
    name: 'material'
+   logo: 'images/logo.png'
    feature:
       tabs: true
    
