@@ -1028,7 +1028,7 @@
 
 <ul>
 <li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;attributes> - 설정할 item attributes. <a href="../Chapter 1. ARCUS Basic Concept/">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>\&lt;attributes> - 설정할 item attributes. <a href="../Chapter 1. ARCUS Basic Concept/#1-3. Item Attributes">Item Attribute 설명</a>을 참조 바란다.</li>
 <li>noreply - 명시하면, response string을 전달받지 않는다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
@@ -1059,7 +1059,7 @@ bop upsert &lt;key&gt; &lt;bkey&gt; [&lt;eflag&gt;] &lt;bytes&gt; [create &lt;at
 <li>\&lt;eflag> - 삽입할 element의 optional flag</li>
 <li>\&lt;bytes>와 \&lt;data> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)</li>
 <li>create \&lt;attributes> - b+tree collection 없을 시에 b+tree 생성 요청.
-                    <a href="../Chapter 1. ARCUS Basic Concept/">Item Attribute 설명</a>을 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-3. Item Attributes">Item Attribute 설명</a>을 참조 바란다.</li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 <a href="../Chapter 7. Collection Command Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 <li>getrim - 새로운 element 추가로 maxcount 제약에 의한 overflow trim이 발생할 경우,
@@ -1104,11 +1104,11 @@ END\r\n
 <li>\&lt;key> - 대상 item의 key string</li>
 <li>\&lt;bkey> - 대상 element의 bkey</li>
 <li>\&lt;eflag_update> - eflag update 명시.
-                     <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag update를 참조 바란다.</li>
+                     [Collection 기본 개념]./Chapter 1. ARCUS Basic Concept.md#1-2. collection concept)에서 eflag update를 참조 바란다.</li>
 <li>\&lt;bytes>와 \&lt;data> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
                          데이터 변경을 원치 않으면 \&lt;bytes>를 -1로 하고 \&lt;data>를 생략하면 된다.         </li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 <a href="/doc/command-pipelining.md">Command Pipelining</a>을 참조 바란다.</li>
+                    pipe 사용은 <a href="../Chapter 7. Collection Command Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
 <ul>
@@ -1139,11 +1139,11 @@ N 개의 elements를 삭제한다.</p>
 <li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
 <li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
 <li>\&lt;count> - 삭제할 elements 개수 지정</li>
 <li>drop - element 삭제로 인해 empty b+tree가 될 경우, 그 b+tree를 drop할 것인지를 지정한다.</li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 <a href="/doc/command-pipelining.md">Command Pipelining</a>을 참조 바란다.</li>
+                    pipe 사용은 <a href="../Chapter 7. Collection Command Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
 <ul>
@@ -1168,7 +1168,7 @@ elements에서 offset 개를 skip한 후 count 개의 elements를 조회한다.<
 <li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
 <li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
 <li>[\&lt;offset>] \&lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
 <li>delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우
                    그 b+tree를 drop할 것인지를 지정한다.</li>
@@ -1222,7 +1222,7 @@ elements 개수를 구한다.</p>
 <li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
 <li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-2. Collection Concept">Collection 기본 개념</a> 에서 eflag filter 참조 바란다.</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.</p>
 <pre><code>COUNT=&lt;count&gt;
@@ -1295,7 +1295,7 @@ Increment/decrement 수행 후의 데이터 값이다.</p>
 <li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
 <li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
 <li>[\&lt;offset>] \&lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
 </ul>
 <p>bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항을 가진다.
@@ -1394,7 +1394,7 @@ missed keys에 대한 DB 조회가 offset으로 skip된 element를 가지는 경
 <li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
 <li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="/doc/arcus-collection-concept.md">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+                    <a href="../Chapter 1. ARCUS Basic Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
 <li>\&lt;count> - 조회할 element 개수</li>
 <li>[duplicate|unique] - smget 동작 방식을 지정한다.</li>
 <li>생략되면, 예전 smget 동작을 수행한다.</li>
