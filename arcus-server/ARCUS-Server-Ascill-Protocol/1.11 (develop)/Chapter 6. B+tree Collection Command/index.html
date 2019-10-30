@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#b-tree-collection" tabindex="1" class="md-skip">
+      <a href="#6-1-b-tree-collection" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -419,8 +419,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#b-tree-collection" class="md-nav__link">
-    B+ tree collection 명령
+  <a href="#6-1-b-tree-collection" class="md-nav__link">
+    6-1. B+ tree collection 명령
   </a>
   
     <nav class="md-nav">
@@ -446,8 +446,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree-element" class="md-nav__link">
-    B+ tree element 명령
+  <a href="#6-2-b-tree-element" class="md-nav__link">
+    6-2. B+ tree element 명령
   </a>
   
     <nav class="md-nav">
@@ -501,8 +501,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree" class="md-nav__link">
-    복수 B+ tree  조회 명령
+  <a href="#6-3-b-tree" class="md-nav__link">
+    6-3. 복수 B+ tree  조회 명령
   </a>
   
     <nav class="md-nav">
@@ -528,8 +528,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree-position" class="md-nav__link">
-    B+ tree position 명령
+  <a href="#6-4-b-tree-position" class="md-nav__link">
+    6-4. B+ tree position 명령
   </a>
   
     <nav class="md-nav">
@@ -858,8 +858,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#b-tree-collection" class="md-nav__link">
-    B+ tree collection 명령
+  <a href="#6-1-b-tree-collection" class="md-nav__link">
+    6-1. B+ tree collection 명령
   </a>
   
     <nav class="md-nav">
@@ -885,8 +885,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree-element" class="md-nav__link">
-    B+ tree element 명령
+  <a href="#6-2-b-tree-element" class="md-nav__link">
+    6-2. B+ tree element 명령
   </a>
   
     <nav class="md-nav">
@@ -940,8 +940,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree" class="md-nav__link">
-    복수 B+ tree  조회 명령
+  <a href="#6-3-b-tree" class="md-nav__link">
+    6-3. 복수 B+ tree  조회 명령
   </a>
   
     <nav class="md-nav">
@@ -967,8 +967,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-tree-position" class="md-nav__link">
-    B+ tree position 명령
+  <a href="#6-4-b-tree-position" class="md-nav__link">
+    6-4. B+ tree position 명령
   </a>
   
     <nav class="md-nav">
@@ -1019,7 +1019,7 @@
                 
                   <h1>Chapter 6. B+tree Collection Command</h1>
                 
-                <h2 id="b-tree-collection">B+ tree collection 명령</h2>
+                <h2 id="6-1-b-tree-collection">6-1. B+ tree collection 명령</h2>
 <h3 id="bop-create-btree-collection">bop create - B+tree Collection 생성</h3>
 <p>B+tree collection을 empty 상태로 생성한다.</p>
 <pre><code>bop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
@@ -1041,7 +1041,7 @@
 </ul>
 <h3 id="delete-b-tree">delete - B+ tree 삭제</h3>
 <p>기존 <a href="../Chapter 2. Simple Key-Value Command/">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
-<h2 id="b-tree-element">B+ tree element 명령</h2>
+<h2 id="6-2-b-tree-element">6-2. B+ tree element 명령</h2>
 <h3 id="bop-insertupsert-btree-element">bop insert/upsert - B+Tree Element 삽입/대체</h3>
 <p>B+tree collection에 하나의 element를 추가하는 명령으로
 (1) 하나의 element를 삽입하는 bop insert 명령과
@@ -1278,7 +1278,7 @@ Increment/decrement 수행 후의 데이터 값이다.</p>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
-<h2 id="b-tree">복수 B+ tree  조회 명령</h2>
+<h2 id="6-3-b-tree">6-3. 복수 B+ tree  조회 명령</h2>
 <h3 id="bop-mget-btree-multiple-get">bop mget - B+Tree Multiple Get</h3>
 <p>여러 b+tree들에 대해 동일 조회 조건(bkey range와 eflag filter)으로 element들을 한꺼번에 조회한다.
 여러 b+tree들에 대한 동일 조회 조건을 사용하므로, 대상 b+tree들은 동일 bkey 유형을 가져야 한다.
@@ -1501,7 +1501,7 @@ END|DUPLICATED\r\n
 <p>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</p>
 </li>
 </ul>
-<h2 id="b-tree-position">B+ tree position 명령</h2>
+<h2 id="6-4-b-tree-position">6-4. B+ tree position 명령</h2>
 <p>Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
 B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
 bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
