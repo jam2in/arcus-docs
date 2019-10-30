@@ -1,4 +1,4 @@
-## Flush 명령
+## 9-1. Flush 명령
 
 Arcus cache server는 items을 invalidate 시키기 위한 두 가지 flush 명령을 제공한다.
 
@@ -35,7 +35,7 @@ Response string과 그 의미는 아래와 같다.
 - “NOT_FOUND” - prefix miss (flush_prefix 명령인 경우만 해당)
 - CLIENT_ERROR bad command line format”	- protocol syntax 틀림
 
-## Scrub 명령
+## 9-2. Scrub 명령
 
 Arcus cache server에는 유효하지 않으면서 메모리를 차지하고 있는 items이 존재할 수 있다.
 이 items은 아래 두 유형으로 구분된다.
@@ -77,7 +77,7 @@ Response string과 그 의미는 아래와 같다.
 Arcus cache server 구동 시에 ascii_scrub.so 파일을 dynamic linking 하는
 구동 옵션을 주어야 scrub 명령을 사용할 수 있다.
 
-## Stats 명령
+## 9-3. Stats 명령
 
 Arcus cache server의 각종 통계 정보를 조회하거나 그 통계 정보를 reset한다.
 
@@ -103,7 +103,7 @@ stats [<args>]\r\n
 
 stats 명령은 직접 한번씩 수행해 보기를 권하며, 아래에서는 추가 설명이 필요한 부분들만 기술한다.
 
-## Prefix 통계 정보
+## 9-4. Prefix 통계 정보
 
 모든 prefix들의 item 통계 정보는 "stats prefixes" 명령으로 조회하고,
 모든 prefix들의 연산 통계 정보는 "stats detail dump" 명령으로 조회한다.
@@ -196,7 +196,7 @@ gas와 sas는 item attribute 연산의 통계이다.
   - gas - getattr 수행 횟수
   - sas - setattr 수행 횟수
   
-## Scrub 수행 상태
+## 9-5. Scrub 수행 상태
 
 Scrub 수행 상태를 조회한 결과 예는 다음과 같다.
 
@@ -213,7 +213,7 @@ END
 - visited - 현재 수행중인 또는 이전에 수행된 scrub에서 접근한 item들의 수를 나타낸다.
 - cleaned - 현재 수행중인 또는 이전에 수행된 scrub에서 삭제한 item들의 수를 나타낸다.
 
-## slab class 별 cache key dump
+## 9-6. slab class 별 cache key dump
 
 slab class 별 LRU에 달려있는 item들의 cache key들을 dump하기 위하여,
 아래의 stats cachedump 명령을 제공한다.
@@ -245,7 +245,7 @@ ITEM c:bkey2
 END
 ```
 
-## Config 명령
+## 9-7. Config 명령
 
 Arcus cache server는 특정 configuration에 대해 동적으로 변경하거나 현재의 값을 조회하는 기능을 제공한다.
 동적으로 변경가능한 configuration들은 현재 아래만 지원한다.
@@ -255,7 +255,7 @@ Arcus cache server는 특정 configuration에 대해 동적으로 변경하거�
 - zkfailstop
 - maxconns
 
-#### **config verbosity**
+### config verbosity
 
 Arcus cache server의 verbose log level을 동적으로(restart 없이) 변경/조회한다.
 
@@ -266,7 +266,7 @@ config verbosity [<verbose>]\r\n
 \<verbose\>는 새로 지정할 verbose log level 값으로, 허용가능한 범위는 0 ~ 2이다.
 이 인자가 생략되면 현재 설정되어 있는 verbose 값을 조회한다.
 
-#### **config memlimit**
+### config memlimit
 
 Arcus cache server 구동 시에 -m 옵션으로 설정된 memory limit을 동적으로(restart 없이) 변경/조회한다.
 
@@ -278,7 +278,7 @@ config memlimit [<memsize>]\r\n
 Arcus cache server가 현재 사용 중인 메모리 크기인 tatal_malloced 보다 큰 크기로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 memory limit 값을 조회한다.
 
-#### **config zkfailstop**
+### config zkfailstop
 
 Arcus cache server의 automatic failstop 기능을 on 또는 off 한다.
 
@@ -288,7 +288,7 @@ config zkfailstop [on|off]\r\n
 
 Network failure 상태에서 정상적인 서비스를 진행하지 못하는 cache server가 cache cloud에 그대로 존재할 경우, 해당 cache server가 담당하고 있는 data 범위에 대한 요청이 모두 실패하고 DB에 부담을 주게 된다. 또한 이후에 ZooKeeper에 재연결 되더라도 old data를 가지고 있을 가능성이 있으며 이로 인해 응용에 오동작을 발생시킬 수 있다. Arcus cache server는 이를 해결하기위해 ZooKeeper session timeout이 발생할 경우 failed cache server를 cache cloud에서 자동으로 제거하는 automatic failstop 기능을 기본적으로 제공한다.
 
-#### **config maxconns**
+### config maxconns
 
 Arcus cache server 구동 시에 -c 옵션으로 설정된 최대 연결 수를 동적으로(restart 없이) 변경/조회한다.
 
@@ -299,7 +299,7 @@ config maxconns [<maxconn>]\r\n
 \<maxconn\>는 새로 지정할 최대 연결 수로서, 현재의 연결 수보다 10% 이상의 큰 값으로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 최대 연결 수 값을 조회한다.
 
-### Command Logging 명령
+## 9-8. Command Logging 명령
 
 Arcus cache server에 입력되는 command를 logging 한다.
 start 명령을 시작으로 logging이 종료될 때 까지의 모든 command를 기록한다.
@@ -347,7 +347,7 @@ The number of log files : 1                                          //file_coun
 The log file name: /Users/temp/command_11211_20160126_192729_{n}.log //path/file_name
 ```
 
-### Long query detect 명령
+## 9-9. Long query detect 명령
 
 Arcus cache server에서 collection item에 대한 요청 중에는 그 처리 시간이 오래 걸리는 요청이 존재한다.
 이를 detect하기 위한 기능으로 lqdetect 명령을 제공한다.
@@ -418,7 +418,7 @@ The number of total long query commands : 1152    //detected_commands
 The detection standard : 43                       //standard
 ```
 
-### Key dump 명령
+## 9-10. Key dump 명령
 
 Arcus cache server의 key를 dump 한다.
 
@@ -479,7 +479,7 @@ DUMP SUMMARY: { prefix=<prefix>, count=<count>, total=<total> elapsed=<elapsed> 
   - \<total\>은 cache에 있는 전체 key 개수이다.
   - \<elapsed\>는 dump하는 데 소요된 시간(단위: 초) 이다.
 
-### Zkensemble 명령
+## 9-11. Zkensemble 명령
 
 Arcus cache server가 연결되어 있는 ZooKeeper ensemble 설정에 대한 명령을 제공한다.
 
@@ -498,7 +498,7 @@ rejoin 명령은 ZK ensemble 과의 연결을 끊고 cache cloud에서 빠져 �
 - 운영자의 실수로 cache_list에 등록된 cache server의 ephemeral znode가 삭제된 경우
 
 
-### Help 명령
+## 9-12. Help 명령
 
 Arcus cache server의 acsii command syntax를 조회한다.
 

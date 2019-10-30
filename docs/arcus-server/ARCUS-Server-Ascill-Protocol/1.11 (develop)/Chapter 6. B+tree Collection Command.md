@@ -1,4 +1,4 @@
-## B+ tree collection 명령
+## 6-1. B+ tree collection 명령
 
 ### bop create - B+tree Collection 생성
 
@@ -25,7 +25,7 @@ Response string과 그 의미는 아래와 같다.
 
 기존 [key-value item의 삭제 명령](./Chapter 2. Simple Key-Value Command.md)을 그대로 사용한다. 
 
-## B+ tree element 명령 
+## 6-2. B+ tree element 명령 
 
 ### bop insert/upsert - B+Tree Element 삽입/대체
 
@@ -283,7 +283,7 @@ Increment/decrement 수행 후의 데이터 값이다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory [writing get response]” - 메모리 부족
 
-## 복수 B+ tree  조회 명령 
+## 6-3. 복수 B+ tree  조회 명령 
 
 ### bop mget - B+Tree Multiple Get
 
@@ -517,7 +517,7 @@ smget 수행의 실패 시의 response string은 다음과 같다.
 
      
 
-## B+ tree position 명령
+## 6-4. B+ tree position 명령
 
 Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
 B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,

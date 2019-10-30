@@ -1,4 +1,4 @@
-## set collection 명령
+## 4-1. set collection 명령
 
 ### sop create - Set Collection 생성
 
@@ -21,7 +21,7 @@ Response string과 그 의미는 아래와 같다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
 
-## set element 명령
+## 4-2. set element 명령
 
 ### sop insert - Set Element 삽입
 
