@@ -10,7 +10,7 @@ bop create <key> <attributes> [noreply]\r\n
 ```
 
 - \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](./Chapter-1.-ARCUS-Basic-Concept.md#1-3-item-attributes))을 참조 바란다.
+- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](./Chapter-1.-ARCUS-Basic-Concept.md#1-3-item-attributes)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -21,9 +21,9 @@ Response string과 그 의미는 아래와 같다.
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “SERVER_ERROR out of memory” - 메모리 부족
 
-### delete - B+ tree 삭제
+### delete - B+ tree Collection 삭제
 
-기존 [key-value item의 삭제 명령](./Chapter-2.-Simple-Key-Value-Command.md)을 그대로 사용한다. 
+기존 [key-value item의 s삭제 명령](./Chapter-2.-Simple-Key-Value-Command.md#2-3-deletion)을 그대로 사용한다. 
 
 ## 6-2. B+ tree element 명령 
 
