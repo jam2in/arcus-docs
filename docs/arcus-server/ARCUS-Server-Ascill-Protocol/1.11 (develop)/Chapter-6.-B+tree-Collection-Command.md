@@ -23,7 +23,7 @@ Response string과 그 의미는 아래와 같다.
 
 ### delete - B+ tree 삭제
 
-기존 [key-value item의 삭제 명령](Chapter-2.-Simple-Key-Value-Command.md)을 그대로 사용한다. 
+기존 [key-value item의 삭제 명령](./Chapter-2.-Simple-Key-Value-Command.md)을 그대로 사용한다. 
 
 ## 6-2. B+ tree element 명령 
 
@@ -46,9 +46,9 @@ bop upsert <key> <bkey> [<eflag>] <bytes> [create <attributes>] [noreply|pipe|ge
 - \<eflag\> - 삽입할 element의 optional flag
 - \<bytes\>와 \<data\> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)
 - create \<attributes\> - b+tree collection 없을 시에 b+tree 생성 요청.
-                    [Item Attribute 설명](Chapter-1.-ARCUS-Basic-Concept.md)을 참조 바란다.
+                    [Item Attribute 설명](./Chapter-1.-ARCUS-Basic-Concept.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](./Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
 - getrim - 새로운 element 추가로 maxcount 제약에 의한 overflow trim이 발생할 경우,
            trim된 element 정보를 가져온다.
 
@@ -99,7 +99,7 @@ bop update <key> <bkey> [<eflag_update>] <bytes> [noreply|pipe]\r\n[<data>\r\n]
 - \<bytes\>와 \<data\> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
                          데이터 변경을 원치 않으면 \<bytes\>를 -1로 하고 \<data\>를 생략하면 된다.         
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](./Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
@@ -132,11 +132,11 @@ bop delete <key> <bkey or "bkey range"> [<eflag_filter>] [<count>] [drop] [norep
 - \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
 - \<eflag_filter\> - eflag filter 조건.
-                    [Collection 기본 개념](Chapter-1.-ARCUS-Basic-Concept.md)에서 eflag filter 참조 바란다.
+                    [Collection 기본 개념](./Chapter-1.-ARCUS-Basic-Concept.md)에서 eflag filter 참조 바란다.
 - \<count\> - 삭제할 elements 개수 지정
 - drop - element 삭제로 인해 empty b+tree가 될 경우, 그 b+tree를 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](./Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
@@ -163,7 +163,7 @@ bop get <key> <bkey or "bkey range"> [<eflag_filter>] [[<offset>] <count>] [dele
 - \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
 - \<eflag_filter\> - eflag filter 조건.
-                    [Collection 기본 개념](Chapter-1.-ARCUS-Basic-Concept.md)에서 eflag filter 참조 바란다.
+                    [Collection 기본 개념](./Chapter-1.-ARCUS-Basic-Concept.md)에서 eflag filter 참조 바란다.
 - [\<offset\>] \<count\> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
 - delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우
                    그 b+tree를 drop할 것인지를 지정한다.
@@ -221,7 +221,7 @@ bop count <key> <bkey or "bkey range"> [<eflag_filter>]\r\n
 - \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
 - \<eflag_filter\> - eflag filter 조건.
-                    [Collection 기본 개념](Chapter-1.-ARCUS-Basic-Concept.md) 에서 eflag filter 참조 바란다.
+                    [Collection 기본 개념](./Chapter-1.-ARCUS-Basic-Concept.md) 에서 eflag filter 참조 바란다.
 
 성공 시의 response string은 아래와 같다.
 
@@ -303,7 +303,7 @@ bop mget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] [<offset>] 
 - \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
 - \<eflag_filter\> - eflag filter 조건.
-                    [Collection 기본 개념](Chapter-1.-ARCUS-Basic-Concept.md#1-2. Collection Concept)에서 eflag filter 참조 바란다.
+                    [Collection 기본 개념](./Chapter-1.-ARCUS-Basic-Concept.md#1-2. Collection Concept)에서 eflag filter 참조 바란다.
 - [\<offset\>] \<count\> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
 
 bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항을 가진다.
