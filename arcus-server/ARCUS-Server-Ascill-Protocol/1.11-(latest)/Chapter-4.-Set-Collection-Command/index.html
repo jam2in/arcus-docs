@@ -675,8 +675,8 @@
                 
                   <h1>Chapter 4. Set Collection Command</h1>
                 
-                <h2 id="4-1-set-collection">4-1. set collection 명령</h2>
-<h3 id="sop-create-set-collection">sop create - Set Collection 생성</h3>
+                <h2 id="4-1-set-collection">4-1. set collection 명령<a class="headerlink" href="#4-1-set-collection" title="Permanent link">#</a></h2>
+<h3 id="sop-create-set-collection">sop create - Set Collection 생성<a class="headerlink" href="#sop-create-set-collection" title="Permanent link">#</a></h3>
 <p>Set collection을 empty 상태로 생성한다.</p>
 <pre><code>sop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
 * &lt;attributes&gt;: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
@@ -695,8 +695,8 @@
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h2 id="4-2-set-element">4-2. set element 명령</h2>
-<h3 id="sop-insert-set-element">sop insert - Set Element 삽입</h3>
+<h2 id="4-2-set-element">4-2. set element 명령<a class="headerlink" href="#4-2-set-element" title="Permanent link">#</a></h2>
+<h3 id="sop-insert-set-element">sop insert - Set Element 삽입<a class="headerlink" href="#sop-insert-set-element" title="Permanent link">#</a></h3>
 <p>Set collection에 하나의 element를 삽입한다.
 Set collection을 생성하면서 하나의 element를 삽입할 수도 있다.</p>
 <pre><code>sop insert &lt;key&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
@@ -726,7 +726,7 @@ Set collection을 생성하면서 하나의 element를 삽입할 수도 있다.<
 <li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 \&lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="sop-delete-set-element">sop delete - Set Element 삭제</h3>
+<h3 id="sop-delete-set-element">sop delete - Set Element 삭제<a class="headerlink" href="#sop-delete-set-element" title="Permanent link">#</a></h3>
 <p>Set collection에서 하나의 element를 삭제한다.</p>
 <pre><code>sop delete &lt;key&gt; &lt;bytes&gt; [drop] [noreply|pipe]\r\n&lt;data&gt;\r\n
 </code></pre>
@@ -751,7 +751,7 @@ Set collection을 생성하면서 하나의 element를 삽입할 수도 있다.<
 <li>“CLIENT_ERROR too large value” - 삭제할 데이터가 4KB 보다 큼</li>
 <li>“CLIENT_ERROR bad data chunk” - 삭제할 데이터의 길이가 \&lt;bytes>와 다르거나 “\r\n”으로 끝나지 않음</li>
 </ul>
-<h3 id="sop-get-set-element">sop get - Set Element 조회</h3>
+<h3 id="sop-get-set-element">sop get - Set Element 조회<a class="headerlink" href="#sop-get-set-element" title="Permanent link">#</a></h3>
 <p>Set collection에서 N 개의 elements를 조회한다.</p>
 <pre><code>sop get &lt;key&gt; &lt;count&gt; [delete|drop]\r\n
 </code></pre>
@@ -785,7 +785,7 @@ END|DELETED|DELETED_DROPPED\r\n
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>"SERVER_ERROR out of memory [writing get response]”   - 메모리 부족</li>
 </ul>
-<h3 id="sop-exist-set-element">sop exist - Set Element 존재유무 검사</h3>
+<h3 id="sop-exist-set-element">sop exist - Set Element 존재유무 검사<a class="headerlink" href="#sop-exist-set-element" title="Permanent link">#</a></h3>
 <p>Set collection에 특정 element의 존재 유무를 검사한다.</p>
 <pre><code>sop exist &lt;key&gt; &lt;bytes&gt; [pipe]\r\n&lt;data&gt;\r\n
 </code></pre>

@@ -613,13 +613,13 @@
 이에 추가하여 incr/decr 명령은 그 기능을 확장 지원한다.</p>
 <p>Simple key-value 명령들의 요약은 아래와 같다.
 이들 명령들의 자세한 정보는 <a href="https://github.com/naver/arcus-memcached/blob/master/doc/protocol.txt">memcached 1.4의 기존 ascii protocol</a>를 참고하기 바란다.</p>
-<h2 id="2-1-storage">2-1. storage 명령</h2>
+<h2 id="2-1-storage">2-1. storage 명령<a class="headerlink" href="#2-1-storage" title="Permanent link">#</a></h2>
 <p>set, add, replace, append, prepend, cas 명령이 있으며 syntax는 다음과 같다.</p>
 <pre><code>&lt;command name&gt; &lt;key&gt; &lt;flags&gt; &lt;exptime&gt; &lt;bytes&gt; [noreply]\r\n&lt;data&gt;\r\n
 cas &lt;key&gt; &lt;flags&gt; &lt;exptime&gt; &lt;bytes&gt; &lt;cas unique&gt; [noreply]\r\n&lt;data&gt;\r\n
 </code></pre>
 
-<h2 id="2-2-retrieval">2-2. retrieval 명령</h2>
+<h2 id="2-2-retrieval">2-2. retrieval 명령<a class="headerlink" href="#2-2-retrieval" title="Permanent link">#</a></h2>
 <p>하나의 cache item을 조회하는 get, gets 명령이 있으며, syntax는 다음과 같다.
 get 명령은 value만 조회하는 반면 gets 명령은 value와 함께 cas value도 조회한다.</p>
 <pre><code>get &lt;key&gt;\r\n
@@ -636,12 +636,12 @@ mget 명령은 1.11 버전부터 제공한다.</p>
 <li>\&lt;”space separated keys”> - key list로, 스페이스(' ')로 구분한다.</li>
 <li>\<lenkeys\>과 \<numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.</li>
 </ul>
-<h2 id="2-3-deletion">2-3. deletion 명령</h2>
+<h2 id="2-3-deletion">2-3. deletion 명령<a class="headerlink" href="#2-3-deletion" title="Permanent link">#</a></h2>
 <p>delete 명령이 있으며 syntax는 다음과 같다.</p>
 <pre><code>delete &lt;key&gt; [&lt;time&gt;] [noreply]\r\n
 </code></pre>
 
-<h2 id="2-4-incrementdecrement">2-4. Increment/Decrement 명령</h2>
+<h2 id="2-4-incrementdecrement">2-4. Increment/Decrement 명령<a class="headerlink" href="#2-4-incrementdecrement" title="Permanent link">#</a></h2>
 <p>incr, decr 명령이 있으며, syntax는 아래와 같다.
 Arcus cache server는 이 명령을 확장하여,
 해당 key가 존재하지 않는 경우에 initial 값을 가지는 새로운 key-value item을 생성한다.</p>

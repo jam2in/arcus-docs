@@ -675,8 +675,8 @@
                 
                   <h1>Chapter 3. List Collection Command</h1>
                 
-                <h2 id="3-1-list-collection">3-1. List collection 명령</h2>
-<h3 id="lop-create-list-collection">lop create - List Collection 생성</h3>
+                <h2 id="3-1-list-collection">3-1. List collection 명령<a class="headerlink" href="#3-1-list-collection" title="Permanent link">#</a></h2>
+<h3 id="lop-create-list-collection">lop create - List Collection 생성<a class="headerlink" href="#lop-create-list-collection" title="Permanent link">#</a></h3>
 <p>List collection을 empty 상태로 생성한다.</p>
 <pre><code>lop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
 * attributes: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
@@ -695,10 +695,10 @@
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="delete-list">delete - List 삭제</h3>
+<h3 id="delete-list">delete - List 삭제<a class="headerlink" href="#delete-list" title="Permanent link">#</a></h3>
 <p>기존 <a href="../Chapter-2.-Simple-Key-Value-Command/">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
-<h2 id="3-2-list-element">3-2. List element 명령</h2>
-<h3 id="lop-insert-list-element">lop insert - List Element 삽입</h3>
+<h2 id="3-2-list-element">3-2. List element 명령<a class="headerlink" href="#3-2-list-element" title="Permanent link">#</a></h2>
+<h3 id="lop-insert-list-element">lop insert - List Element 삽입<a class="headerlink" href="#lop-insert-list-element" title="Permanent link">#</a></h3>
 <p>List collection에 하나의 element를 삽입한다.
 List collection을 생성하면서 하나의 element를 삽입할 수도 있다.</p>
 <pre><code>lop insert &lt;key&gt; &lt;index&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
@@ -732,7 +732,7 @@ List collection을 생성하면서 하나의 element를 삽입할 수도 있다.
 <li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 \&lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="lop-delete-list-element">lop delete - List Element 삭제</h3>
+<h3 id="lop-delete-list-element">lop delete - List Element 삭제<a class="headerlink" href="#lop-delete-list-element" title="Permanent link">#</a></h3>
 <p>List collection에 하나의 index 또는 index range에 해당하는 elements를 삭제한다.</p>
 <pre><code>lop delete &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [drop] [noreply|pipe]\r\n
 lop delete 명령에서 각 인자의 설명은 아래와 같다.
@@ -762,7 +762,7 @@ lop delete 명령에서 각 인자의 설명은 아래와 같다.
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h3 id="lop-get-list-element">lop get - List Element 조회</h3>
+<h3 id="lop-get-list-element">lop get - List Element 조회<a class="headerlink" href="#lop-get-list-element" title="Permanent link">#</a></h3>
 <p>List collection에 하나의 index 또는 index range에 해당하는 elements를 조회한다.</p>
 <pre><code>lop get &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [delete|drop]\r\n
 </code></pre>
