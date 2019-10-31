@@ -413,7 +413,7 @@ bop smget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] <count> [d
 - \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
 - \<eflag_filter\> - eflag filter 조건.
-                    [Collection 기본 개념](./Chapter 1. ARCUS Basic Concept.md#1-2. Collection Concept)에서 eflag filter 참조 바란다.
+                    [Collection 기본 개념](./Chapter-1.-ARCUS-Basic-Concept.md#1-2. Collection Concept)에서 eflag filter 참조 바란다.
 - \<count\> - 조회할 element 개수
 - [duplicate|unique] - smget 동작 방식을 지정한다.
   - 생략되면, 예전 smget 동작을 수행한다.
