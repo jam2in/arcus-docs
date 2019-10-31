@@ -23,7 +23,7 @@ Response string과 그 의미는 아래와 같다.
 
 ### delete - List 삭제
 
-기존 [key-value item의 삭제 명령](./Chapter 2. Simple Key-Value Command.md)을 그대로 사용한다. 
+기존 [key-value item의 삭제 명령](./Chapter-2.-Simple-Key-Value-Command.md)을 그대로 사용한다. 
 
 ## 3-2. List element 명령
 
@@ -82,7 +82,7 @@ lop delete 명령에서 각 인자의 설명은 아래와 같다.
   - -1..0: 마지막 element 부터 첫째 element 까지 (backward 순서)
 - drop - element 삭제로 인해 empty list가 될 경우, 그 list를 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](./Chapter 7. Collection Command Pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](./Chapter-7.-Collection-Command-Pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
