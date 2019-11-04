@@ -36,7 +36,7 @@
     
     
       
-        <title>Chapter 1. ARCUS Basic Concept - ARCUS Documentation</title>
+        <title>1. ARCUS Basic Concept - ARCUS Documentation</title>
       
     
     
@@ -103,7 +103,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Chapter 1. ARCUS Basic Concept
+                1. ARCUS Basic Concept
               
             </span>
           
@@ -343,11 +343,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Chapter 1. ARCUS Basic Concept
+        1. ARCUS Basic Concept
       </label>
     
-    <a href="./" title="Chapter 1. ARCUS Basic Concept" class="md-nav__link md-nav__link--active">
-      Chapter 1. ARCUS Basic Concept
+    <a href="./" title="1. ARCUS Basic Concept" class="md-nav__link md-nav__link--active">
+      1. ARCUS Basic Concept
     </a>
     
       
@@ -526,8 +526,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-2.-Simple-Key-Value-Command/" title="Chapter 2. Simple Key Value Command" class="md-nav__link">
-      Chapter 2. Simple Key Value Command
+    <a href="../2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
     </a>
   </li>
 
@@ -538,8 +538,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-3.-List-Collection-Command/" title="Chapter 3. List Collection Command" class="md-nav__link">
-      Chapter 3. List Collection Command
+    <a href="../3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
     </a>
   </li>
 
@@ -550,8 +550,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-4.-Set-Collection-Command/" title="Chapter 4. Set Collection Command" class="md-nav__link">
-      Chapter 4. Set Collection Command
+    <a href="../4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
     </a>
   </li>
 
@@ -562,8 +562,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-5.-Map-Collection-Command/" title="Chapter 5. Map Collection Command" class="md-nav__link">
-      Chapter 5. Map Collection Command
+    <a href="../5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
     </a>
   </li>
 
@@ -574,8 +574,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-6.-B+tree-Collection-Command/" title="Chapter 6. B+tree Collection Command" class="md-nav__link">
-      Chapter 6. B+tree Collection Command
+    <a href="../6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
     </a>
   </li>
 
@@ -586,8 +586,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-7.-Collection-Command-Pipelining/" title="Chapter 7. Collection Command Pipelining" class="md-nav__link">
-      Chapter 7. Collection Command Pipelining
+    <a href="../7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
     </a>
   </li>
 
@@ -598,8 +598,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-8.-Item-Attribute-Command/" title="Chapter 8. Item Attribute Command" class="md-nav__link">
-      Chapter 8. Item Attribute Command
+    <a href="../8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
     </a>
   </li>
 
@@ -610,8 +610,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-9.-Administration-Command/" title="Chapter 9. Administration Command" class="md-nav__link">
-      Chapter 9. Administration Command
+    <a href="../9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
     </a>
   </li>
 
@@ -853,12 +853,12 @@
               
                 
                 
-                  <h1>Chapter 1. ARCUS Basic Concept</h1>
+                  <h1>1. ARCUS Basic Concept</h1>
                 
                 <p>Arcus cache server는 하나의 데이터만을 value로 가지는 simple key-value 외에도
 여러 데이터를 구조화된 형태로 저장하는 collection을 하나의 value로 가지는
 확장된 key-value 데이터 모델을 제공한다.</p>
-<h2 id="1-1-basic-terms">1-1. Basic Terms<a class="headerlink" href="#1-1-basic-terms" title="Permanent link">#</a></h2>
+<h2 id="1-1-basic-terms">1-1. Basic Terms</h2>
 <p>Arcus cache server의 key-value 모델은 아래의 기본 제약 사항을 가진다.</p>
 <ul>
 <li>기존 key-value 모델의 제약 사항</li>
@@ -871,33 +871,33 @@
 <li>하나의 collection에 들어갈 수 있는 최대 element 개수는 50,000개이다.</li>
 <li>Collection의 각 element가 가지는 value의 최대 크기는 4KB(trailing 문자인 “\r\n” 포함한 길이) 이다.</li>
 </ul>
-<h3 id="cache-key">Cache Key<a class="headerlink" href="#cache-key" title="Permanent link">#</a></h3>
+<h3 id="cache-key">Cache Key</h3>
 <p>Cache key는 Arcus cache server에 저장할 데이터를 대표하는 코드이다. Cache key 형식은 아래와 같다.</p>
 <pre><code>  Cache Key : [&lt;prefix&gt;:]&lt;subkey&gt;
 </code></pre>
 
 <ul>
-<li>\&lt;prefix> - Cache key의 앞에 붙는 namespace이다.</li>
+<li>&lt;prefix> - Cache key의 앞에 붙는 namespace이다.</li>
 <li>Prefix 단위로 cache server에 저장된 key들을 그룹화하여 flush하거나 통계 정보를 볼 수 있다.</li>
 <li>Prefix를 생략할 수도 있지만, 가급적 사용하길 권한다.</li>
 <li>delimiter - Prefix와 subkey를 구분하는 문자로 default delimiter는 콜론(‘:’)이다.</li>
-<li>\&lt;subkey> - 일반적으로 응용에서 사용하는 Key이다.</li>
+<li>&lt;subkey> - 일반적으로 응용에서 사용하는 Key이다.</li>
 </ul>
 <p>Prefix와 subkey는 명명 규칙을 가지므로 주의하여야 한다.
 Prefix는 영문 대소문자, 숫자, 언더바(_), 하이픈(-), 플러스(+), 점(.) 문자만으로 구성될 수 있으며,
 이 중에 하이픈(-)은 prefix 명의 첫번째 문자로 올 수 없는 제약이 있다.
 Subkey는 공백을 포함할 수 없으며, 기본적으로 alphanumeric만을 사용하길 권장한다.</p>
-<h3 id="cache-item">Cache Item<a class="headerlink" href="#cache-item" title="Permanent link">#</a></h3>
+<h3 id="cache-item">Cache Item</h3>
 <p>Arcus cache server는 simple key-value 외에 collection 지원으로 다양한 item 유형을 가진다.</p>
 <ul>
 <li>simple key-value item - 기존 key-value item</li>
 <li>collection item</li>
 <li>list item - 데이터들의 linked list을 value가지는 item</li>
 <li>set item - 유일한 데이터들의 집합을 value로 가지는 item</li>
-<li>map item - \&lt;field, value>쌍으로 구성된 데이터 집합을 value로 가지는 item </li>
+<li>map item - &lt;field, value>쌍으로 구성된 데이터 집합을 value로 가지는 item </li>
 <li>b+tree item - b+tree key 기반으로 정렬된 데이터 집합을 value로 가지는 item</li>
 </ul>
-<h3 id="expiration-eviction-and-sticky">Expiration, Eviction, and Sticky<a class="headerlink" href="#expiration-eviction-and-sticky" title="Permanent link">#</a></h3>
+<h3 id="expiration-eviction-and-sticky">Expiration, Eviction, and Sticky</h3>
 <p>각 cache item은 expiration time 속성을 가지며,
 이 값의 설정을 통해 expire되지 않는 item 또는 특정 시간 이후에 자동 expire될 item을 지정할 수 있다.
 이에 대한 자세한 설명은 <a href="./#1-3-item-attributes">Item Attribute 설명</a>을 참고 바란다.</p>
@@ -917,7 +917,7 @@ Sticky item의 삭제는 전적으로 응용에 의해 관리되어야 함을 �
 Sticky items의 메모리 공간으로 사용될 메모리 비율이며, 0 ~ 100 범위의 값으로 지정가능하다.
 디폴트인 0은 sticky items을 허용하지 않는다는 것이며,
 100은 전체 메모리를 sticky items 저장 용도로 사용할 수 있음을 의미한다.</p>
-<h3 id="memory-allocator">Memory Allocator<a class="headerlink" href="#memory-allocator" title="Permanent link">#</a></h3>
+<h3 id="memory-allocator">Memory Allocator</h3>
 <p>Arcus cache server는 item 메모리 공간의 할당과 반환을 효율적으로 관리할 목적으로
 두 가지 memory allocator를 사용한다.</p>
 <p><strong>Slab Allocator</strong></p>
@@ -928,9 +928,9 @@ Sticky items의 메모리 공간으로 사용될 메모리 비율이며, 0 ~ 100
 <p>최대 slab 크기는 현재 1MB이다. 최소 slab 크기 즉, 첫 번째 slab class의 slab 크기와
 그 다음 slab class들의 slab 크기는 아래의 Arcus cache server 구동 옵션으로 설정한다.</p>
 <ul>
-<li>-n \&lt;bytes> : minimum space allocated from key+value+flags (default: 48)</li>
+<li>-n &lt;bytes> : minimum space allocated from key+value+flags (default: 48)</li>
 <li>최소 크기의 slab 크기를 결정한다.</li>
-<li>-f \&lt;factor> : chunk size growth factor (default: 1.25)</li>
+<li>-f &lt;factor> : chunk size growth factor (default: 1.25)</li>
 <li>Slab class 별로 slab 크기의 증가 정도를 지정하며, 1.0보다 큰 값으로 지정해야 한다.</li>
 </ul>
 <p><strong>Small Memory Allocator</strong></p>
@@ -939,7 +939,7 @@ Sticky items의 메모리 공간으로 사용될 메모리 비율이며, 0 ~ 100
 small memory allocator를 새로 개발하여 사용하고 있다.
 8000 바이트 이하의 메모리 공간은 small memory allocator가 담당하며,
 8000 바이트 초과의 메모리 공간은 기존 slab allocator가 담당한다.</p>
-<h3 id="slab-class-lru">Slab Class 별 LRU 리스트<a class="headerlink" href="#slab-class-lru" title="Permanent link">#</a></h3>
+<h3 id="slab-class-lru">Slab Class 별 LRU 리스트</h3>
 <p>Arcus cache server는 slab class 별 LRU 리스트를 유지하고,
 eviction 대상 item으로 오랫동안 접근되지 않은 item이 선택될 수 있게 한다.</p>
 <p>Small memory allocator 추가로 인해, slab class 별 LRU 리스트에 변동 사항이 있다.
@@ -948,7 +948,7 @@ small memory allocator로 부터 메모리 공간을 할당받는
 작은 크기의 key-value items과 collection items은 0번 LRU 리스트에 연결된다.
 따라서, 8000 바이트 이하의 메모리 공간에 해당하는
 기존 slab class의 LRU 리스트들은 empty가 상태가 된다.</p>
-<h2 id="1-2-collection-concept">1-2. Collection Concept<a class="headerlink" href="#1-2-collection-concept" title="Permanent link">#</a></h2>
+<h2 id="1-2-collection-concept">1-2. Collection Concept</h2>
 <p>Collection 유형과 그 구조 및 특징은 아래와 같다.</p>
 <p><strong>List</strong> - linked list</p>
 <blockquote>
@@ -965,9 +965,9 @@ small memory allocator로 부터 메모리 공간을 할당받는
   하나의 set에 들어가는 elements 개수에 비례하여 hash table 전체 크기를 동적으로 조정하기 위해,
   일반적인 tree 구조와 유사하게 여러 depth로 구성되는 hash table 구조를 가진다.</p>
 </blockquote>
-<p><strong>Map</strong> - unordered set of \&lt;field, value></p>
+<p><strong>Map</strong> - unordered set of &lt;field, value></p>
 <blockquote>
-<p>Map 자료 구조는 \&lt;field, value> 쌍을 저장한다.
+<p>Map 자료 구조는 &lt;field, value> 쌍을 저장한다.
   Field 값의 유일성 보장과 field 기준으로 해당 element 탐색을 빠르게 하기 위한 hash table 구조를 사용한다.
   하나의 map에 들어가는 elements 개수에 비례하여 hash table 전체 크기를 동적으로 조정하기 위해,
   일반적인 tree 구조와 유사하게 여러 depth로 구성되는 hash table 구조를 가진다.</p>
@@ -980,29 +980,29 @@ small memory allocator로 부터 메모리 공간을 할당받는
   그 외에, b+tree의 nonleaf node는 각 하위 node 중심의 sub-tree에 저장된 element 개수 정보를
   담고 있도록 해서, 특정 element의 position 조회 및 position 기반의 element 조회 기능도 제공한다.</p>
 </blockquote>
-<p>Collection item은 \&lt;key, "collection meta info"> 구조를 가진다.
+<p>Collection item은 &lt;key, "collection meta info"> 구조를 가진다.
 Collection meta info는 collection 유형에 따른 속성 정보를 가지며,
 해당 collection의 elements에 신속히 접근하기 정보를 가진다.
 예를 들어, list의 head/tail element 주소, set의 최상위 hash table 주소,
 map의 최상위 hash table 구조, b+tree의 root node 주소가 이에 해당된다.</p>
-<h3 id="element">Element 구조<a class="headerlink" href="#element" title="Permanent link">#</a></h3>
+<h3 id="element">Element 구조</h3>
 <p>Collection 유형에 따른 element 구조는 아래와 같다.</p>
 <ul>
-<li>list/set element : \&lt; data ></li>
+<li>list/set element : &lt; data ></li>
 </ul>
 <p>각 element는 하나의 데이터 만을 가진다.</p>
 <ul>
-<li>map element : \&lt;field(map element key), data ></li>
+<li>map element : &lt;field(map element key), data ></li>
 </ul>
 <p>map에서 각 element를 구분하기 위한 field를 필수적으로 가지며,
   field는 중복을 허용하지 않는다.</p>
 <ul>
-<li>b+tree element : \&lt; bkey(b+tree key), eflag(element flag), data ></li>
+<li>b+tree element : &lt; bkey(b+tree key), eflag(element flag), data ></li>
 </ul>
 <p>b+tree에서 elements를 어떤 기준으로 정렬하기 위한 bkey를 필수적으로 가지며,
   옵션 사항으로 bkey 기반의 scan 시에 특정 element를 filtering하기 위한 eflag를 가질 수 있으며,
   bkey에 종속되어 단순 저장/조회 용도로 사용되는 data를 가진다.</p>
-<h3 id="bkey-btree-key">BKey (B+Tree Key)<a class="headerlink" href="#bkey-btree-key" title="Permanent link">#</a></h3>
+<h3 id="bkey-btree-key">BKey (B+Tree Key)</h3>
 <p>B+tree collection에서 사용가능한 bkey 데이터 유형은 아래 두 가지이다.</p>
 <ul>
 <li>8 bytes unsigned integer</li>
@@ -1059,11 +1059,11 @@ hexadecimal 유형의 값이면 아래와 같은 lexicographical order로 두 �
 <li>두 hexadecimal 중 작은 길이만큼의 비교에서 두 값이 동일하면, 긴 길이의 hexadecimal 값이 크다고 판단한다.</li>
 <li>두 hexadecimal의 길이도 같고 각 바이트의 값도 동일하면, 두 hexadecimal 값은 같다라고 판단한다.</li>
 </ul>
-<h3 id="eflag-element-flag">EFlag (Element Flag)<a class="headerlink" href="#eflag-element-flag" title="Permanent link">#</a></h3>
+<h3 id="eflag-element-flag">EFlag (Element Flag)</h3>
 <p>eflag는 현재 b+tree element에만 존재하는 필드이다.
 eflag 데이터 유형은 hexadecimal 유형만 가능하며,
 bkey의 hexadecimal 표현과 저장 방식을 그대로 따른다. </p>
-<h3 id="eflag-filter">EFlag Filter<a class="headerlink" href="#eflag-filter" title="Permanent link">#</a></h3>
+<h3 id="eflag-filter">EFlag Filter</h3>
 <p>eflag에 대한 filter 조건은 아래와 같이 표현하며,
 (1) eflag의 전체/부분 값과 특정 값과의 compare 연산이나
 (2) eflag의 전체/부분 값에 대해 어떤 operand로 bitwise 연산을 취한 후의 결과와 특정 값과의 compare 연산이다.</p>
@@ -1071,22 +1071,22 @@ bkey의 hexadecimal 표현과 저장 방식을 그대로 따른다. </p>
 </code></pre>
 
 <ul>
-<li>\&lt;fwhere> </li>
+<li>&lt;fwhere> </li>
 <li>eflag 값에서 bitwise/compare 연산을 취할 시작 offset을 바이트 단위로 나타낸다.
-    bitwise/compare 연산을 취할 데이터의 length는 \&lt;fvalue>의 length로 한다.
-    예를 들어, eflag 전체 데이터를 선택한다면, \&lt;fwhere>는 0이어야 하고
-    \&lt;fvalue>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.</li>
-<li>[\&lt;bitwop> \&lt;foperand>]</li>
+    bitwise/compare 연산을 취할 데이터의 length는 &lt;fvalue>의 length로 한다.
+    예를 들어, eflag 전체 데이터를 선택한다면, &lt;fwhere>는 0이어야 하고
+    &lt;fvalue>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.</li>
+<li>[&lt;bitwop> &lt;foperand>]</li>
 <li>생략 가능하며, eflag에 대한 bitwise 연산을 지정한다.</li>
 <li>bitwise 연산이 지정되면 이 연산의 결과가 compare 연산의 대상이 되며,
     생략된다면 eflag 값 자체가 compare 연산의 대상이 된다.</li>
-<li>\&lt;bitwop>는 “&amp;”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.</li>
-<li>\&lt;foperand>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
-    \&lt;foperand>의 길이는 compare 연산을 취한 \&lt;fvalue>의 길이와 동일하여야 한다.</li>
-<li>\&lt;compop> \&lt;fvalue>  </li>
+<li>&lt;bitwop>는 “&amp;”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.</li>
+<li>&lt;foperand>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
+    &lt;foperand>의 길이는 compare 연산을 취한 &lt;fvalue>의 길이와 동일하여야 한다.</li>
+<li>&lt;compop> &lt;fvalue>  </li>
 <li>eflag에 대한 compare 연산을 지정한다.</li>
-<li>\&lt;compop>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,
-    \&lt;fvalue>는 compare 연산을 취할 대상 값으로 마찬가지로 hexadecimal로 표현한다.</li>
+<li>&lt;compop>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,
+    &lt;fvalue>는 compare 연산을 취할 대상 값으로 마찬가지로 hexadecimal로 표현한다.</li>
 <li>IN 또는 NOT IN 조건을 명시할 수도 있다. 
     IN 조건은 "EQ" 연산과 comma separated hexadecimal values로 명시하면 되고,
     NOT IN 조건은 "NE" 연산과 comma separated hexadecimal values로 명시하면 된다.
@@ -1104,7 +1104,7 @@ eflag가 생략될 수도 있고 서로 다른 길이의 eflag를 가질 수도 
   (1) eflag_filter 조건의 offset은 5인 경우이거나 
   (2) eflag_filter 조건의 offset은 3이고 length는 4인 경우가 있을 수 있다.</li>
 </ul>
-<h3 id="eflag-update">EFlag Update<a class="headerlink" href="#eflag-update" title="Permanent link">#</a></h3>
+<h3 id="eflag-update">EFlag Update</h3>
 <p>Eflag의 전체 또는 부분 값에 update 연산도 가능하며 아래와 같이 표현한다.
 Eflag 전체 변경은 새로운 eflag 값으로 교체하는 것이며,
 부분 변경은 eflag의 부분 데이터에 대해 bitwise 연산을 취한 결과로 교체한다.</p>
@@ -1112,22 +1112,22 @@ Eflag 전체 변경은 새로운 eflag 값으로 교체하는 것이며,
 </code></pre>
 
 <ul>
-<li>[\&lt;fwhere> \&lt;bitwop>]</li>
+<li>[&lt;fwhere> &lt;bitwop>]</li>
 <li>eflag를 부분 변경할 경우만 지정한다.</li>
-<li>\<fwhere>은 eflag에서 부분 변경할 데이터의 시작 offset을 바이트 단위로 나타내며,
-    이 경우, 부분 변경할 데이터의 length는 뒤에 명시되는 \&lt;fvalue>의 length로 결정된다.</li>
-<li>\&lt;bitwop>는 부분 변경할 데이터에 대한 취할 bitwise 연산으로,
+<li><fwhere>은 eflag에서 부분 변경할 데이터의 시작 offset을 바이트 단위로 나타내며,
+    이 경우, 부분 변경할 데이터의 length는 뒤에 명시되는 &lt;fvalue>의 length로 결정된다.</li>
+<li>&lt;bitwop>는 부분 변경할 데이터에 대한 취할 bitwise 연산으로,
     “&amp;”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 지정할 수 있다.</li>
-<li>\&lt;fvalue></li>
+<li>&lt;fvalue></li>
 <li>변경할 new value를 나타낸다.</li>
-<li>앞서 기술한 \&lt;fwhere>과 \&lt;bitwop>가 생략되면, eflag의 전체 데이터를 \&lt;fvalue>로 변경한다.
-    부분 변경을 위한 \&lt;fwhere>과 \&lt;bitwop>가 지정되면
-    \&lt;fvalue>는 eflag 부분 데이터에 대해 bitwise 연산을 취할 operand로 사용되며,
+<li>앞서 기술한 &lt;fwhere>과 &lt;bitwop>가 생략되면, eflag의 전체 데이터를 &lt;fvalue>로 변경한다.
+    부분 변경을 위한 &lt;fwhere>과 &lt;bitwop>가 지정되면
+    &lt;fvalue>는 eflag 부분 데이터에 대해 bitwise 연산을 취할 operand로 사용되며,
     bitwise 연산의 결과가 eflag의 new value로 변경된다.</li>
 </ul>
 <p>기존 eflag 값을 delete하여 eflag가 없는 상태로 변경할 수 있다.
-이를 위해서는 \&lt;fwhere>과 \&lt;bitwop>를 생략하고 \&lt;fvalue> 값으로 0을 주면 된다.</p>
-<h2 id="1-3-item-attributes">1-3. Item Attributes<a class="headerlink" href="#1-3-item-attributes" title="Permanent link">#</a></h2>
+이를 위해서는 &lt;fwhere>과 &lt;bitwop>를 생략하고 &lt;fvalue> 값으로 0을 주면 된다.</p>
+<h2 id="1-3-item-attributes">1-3. Item Attributes</h2>
 <p>Arcus cache server는 collection 기능 지원으로 인해,
 기존 key-value item 유형 외에 list, set, map, b+tree item 유형을 가진다.
 각 item 유형에 따라 설정/조회 가능한 속성들(attributes)이 구분되며, 이들의 개요는 아래 표와 같다.
@@ -1165,16 +1165,16 @@ Eflag 전체 변경은 새로운 eflag 값으로 교체하는 것이며,
 </code></pre>
 
 <p>Arcus cache server는 item 속성들을 조회하거나 변경하는 용도의 getattr 명령과 setattr 명령을 제공한다.
-이들 명령에 대한 자세한 설명은 <a href="../Chapter-8.-Item-Attribute-Command/">Item Attribute 명령</a>을 참고 바란다.</p>
+이들 명령에 대한 자세한 설명은 <a href="../8.-Item-Attribute-Command/">Item Attribute 명령</a>을 참고 바란다.</p>
 <p>Item 속성들 중 정확한 이해를 돕기 위해 추가 설명이 필요한 속성들에 대해 아래에서 자세히 설명한다.</p>
-<h3 id="flags">flags 속성<a class="headerlink" href="#flags" title="Permanent link">#</a></h3>
+<h3 id="flags">flags 속성</h3>
 <p>Flags는 item의 data-specific 정보를 저장하기 위한 목적으로 사용된다.
 예를 들어, Arcus java client는 어떤 java object를 cache server에 저장할 경우,
 그 java object의 type에 따라 serialization(or marshalling)하여 저장할 data를 만들고, 
 그 java object의 type 정보를 flags 값으로 하여 Arcus cache server에 요청하여 저장한다.
 Data 조회 시에는 Arcus cache server로 부터 data와 함께 flags 정보를 함께 얻어와서,
 해당 java object의 type에 따라 그 data를 de-serialization(or de-marshalling)하여 java object를 생성한다.</p>
-<h3 id="expiretime">expiretime 속성<a class="headerlink" href="#expiretime" title="Permanent link">#</a></h3>
+<h3 id="expiretime">expiretime 속성</h3>
 <p>Item의 expiretime 속성으로 그 item의 expiration time을 초(second) 단위로 설정한다.</p>
 <p>Arcus cache server는 expire 되지 않고 메모리 부족 상황에서도 evict 되지 않는 sticky item 기능을 제공한다.
 Sticky item 또한 expiretime 속성으로 지정한다.</p>
@@ -1187,7 +1187,7 @@ Sticky item 또한 expiretime 속성으로 지정한다.</p>
       이 경우, X를 unix time으로 인식하여 expiration time으로 설정하는 것이며,
       X가 현재 시간보다 작으면 그 즉시 expire 된다.</li>
 </ul>
-<h3 id="maxcount">maxcount 속성<a class="headerlink" href="#maxcount" title="Permanent link">#</a></h3>
+<h3 id="maxcount">maxcount 속성</h3>
 <p>Collection item에만 유효한 속성으로, 하나의 collection에 저장할 수 있는 최대 element 수를 규정한다.</p>
 <p>Maxcount 속성의 hard limit과 default(설정 생략 또는 0을 값으로 주는 경우) 값은 아래와 같다.</p>
 <ul>
@@ -1198,7 +1198,7 @@ Sticky item 또한 expiretime 속성으로 지정한다.</p>
 Event-driven processing 모델에 따라
 하나의 worker thread가 비동기 방식으로 여러 client requests를 처리해야 하는 상황에서,
 한 request의 처리 비용이 가급적 작아야만 다른 request의 execution latency에 주는 영향을 최소화할 수 있다.</p>
-<h3 id="overflowaction">overflowaction 속성<a class="headerlink" href="#overflowaction" title="Permanent link">#</a></h3>
+<h3 id="overflowaction">overflowaction 속성</h3>
 <p>Collection의 maxcount를 초과하여 element 추가하면 overflow가 발생하며, 이 경우 취할 action을 지정한다.</p>
 <ul>
 <li>"error"</li>
@@ -1224,7 +1224,7 @@ Event-driven processing 모델에 따라
 </ul>
 <p>참고로, 아래에 기술하는 maxbkeyrange 속성에 따라 element를 제거하는 경우에도
 overflow action이 참조된다.</p>
-<h3 id="readable">readable 속성<a class="headerlink" href="#readable" title="Permanent link">#</a></h3>
+<h3 id="readable">readable 속성</h3>
 <p>Arcus cache server는 다수 element를 가진 collection을 atomic하게 생성하는 명령을 제공하지 않는다.
 대신, 하나의 element를 추가하는 명령을 반복 수행함으로써 원하는 collection을 만들 수 있다.
 이 경우, 하나의 collection이 완성되기 전의 incomplete collection이 응용에게 노출될 수 있는 문제가 있다.
@@ -1237,7 +1237,7 @@ incomplete 친구 정보가 응용에게 노출되게 된다.
 그 collection에 대한 조회 요청은 UNREADABLE 오류를 발생시키게 하고,
 그 collection에 모든 element들을 추가한 후에 마지막으로 readable 속성을 다시 on 상태로 변경함으로써
 complete collection이 응용에 의해 조회될 수 있게 할 수 있다.</p>
-<h3 id="maxbkeyrange">maxbkeyrange 속성<a class="headerlink" href="#maxbkeyrange" title="Permanent link">#</a></h3>
+<h3 id="maxbkeyrange">maxbkeyrange 속성</h3>
 <p>B+tree only 속성으로 smallest bkey와 largest bkey의 최대 범위를 규정한다.
 B+tree에 설정된 maxbkeyrange를 위배시키는 새로운 bkey를 가진 element를 삽입하는 경우,
 b+tree의 overflow action 정책에 따라 오류를 내거나
@@ -1291,13 +1291,13 @@ bkey 데이터 유형에 무관하게 unlimited maxbkeyrange를 의미한다.</p
           </a>
         
         
-          <a href="../Chapter-2.-Simple-Key-Value-Command/" title="Chapter 2. Simple Key Value Command" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Chapter 2. Simple Key Value Command
+                2. Simple Key Value Command
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

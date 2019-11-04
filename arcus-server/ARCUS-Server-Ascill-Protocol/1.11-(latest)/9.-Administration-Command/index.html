@@ -36,7 +36,7 @@
     
     
       
-        <title>Chapter 9. Administration Command - ARCUS Documentation</title>
+        <title>9. Administration Command - ARCUS Documentation</title>
       
     
     
@@ -103,7 +103,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Chapter 9. Administration Command
+                9. Administration Command
               
             </span>
           
@@ -200,7 +200,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../Chapter-1.-ARCUS-Basic-Concept/" class="md-tabs__link md-tabs__link--active">
+        <a href="../1.-ARCUS-Basic-Concept/" class="md-tabs__link md-tabs__link--active">
           Arcus server
         </a>
       
@@ -336,8 +336,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-1.-ARCUS-Basic-Concept/" title="Chapter 1. ARCUS Basic Concept" class="md-nav__link">
-      Chapter 1. ARCUS Basic Concept
+    <a href="../1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
     </a>
   </li>
 
@@ -348,8 +348,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-2.-Simple-Key-Value-Command/" title="Chapter 2. Simple Key Value Command" class="md-nav__link">
-      Chapter 2. Simple Key Value Command
+    <a href="../2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
     </a>
   </li>
 
@@ -360,8 +360,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-3.-List-Collection-Command/" title="Chapter 3. List Collection Command" class="md-nav__link">
-      Chapter 3. List Collection Command
+    <a href="../3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
     </a>
   </li>
 
@@ -372,8 +372,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-4.-Set-Collection-Command/" title="Chapter 4. Set Collection Command" class="md-nav__link">
-      Chapter 4. Set Collection Command
+    <a href="../4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
     </a>
   </li>
 
@@ -384,8 +384,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-5.-Map-Collection-Command/" title="Chapter 5. Map Collection Command" class="md-nav__link">
-      Chapter 5. Map Collection Command
+    <a href="../5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
     </a>
   </li>
 
@@ -396,8 +396,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-6.-B+tree-Collection-Command/" title="Chapter 6. B+tree Collection Command" class="md-nav__link">
-      Chapter 6. B+tree Collection Command
+    <a href="../6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
     </a>
   </li>
 
@@ -408,8 +408,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-7.-Collection-Command-Pipelining/" title="Chapter 7. Collection Command Pipelining" class="md-nav__link">
-      Chapter 7. Collection Command Pipelining
+    <a href="../7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
     </a>
   </li>
 
@@ -420,8 +420,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-8.-Item-Attribute-Command/" title="Chapter 8. Item Attribute Command" class="md-nav__link">
-      Chapter 8. Item Attribute Command
+    <a href="../8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
     </a>
   </li>
 
@@ -439,11 +439,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Chapter 9. Administration Command
+        9. Administration Command
       </label>
     
-    <a href="./" title="Chapter 9. Administration Command" class="md-nav__link md-nav__link--active">
-      Chapter 9. Administration Command
+    <a href="./" title="9. Administration Command" class="md-nav__link md-nav__link--active">
+      9. Administration Command
     </a>
     
       
@@ -787,9 +787,9 @@
               
                 
                 
-                  <h1>Chapter 9. Administration Command</h1>
+                  <h1>9. Administration Command</h1>
                 
-                <h2 id="9-1-flush">9-1. Flush 명령<a class="headerlink" href="#9-1-flush" title="Permanent link">#</a></h2>
+                <h2 id="9-1-flush">9-1. Flush 명령</h2>
 <p>Arcus cache server는 items을 invalidate 시키기 위한 두 가지 flush 명령을 제공한다.</p>
 <ul>
 <li>flush_all : 모든 items을 flush</li>
@@ -812,8 +812,8 @@ flush_prefix &lt;prefix&gt; [&lt;delay&gt;] [noreply]\r\n
 </code></pre>
 
 <ul>
-<li>\&lt;prefix> - prefix string. "\&lt;null>"을 사용하면, prefix string이 없는 item들을 invalidate시킨다.</li>
-<li>\&lt;delay> - 지연된 invalidation 요청 시에 명시하며, 그 지연 기간을 초(second) 단위로 지정한다.</li>
+<li>&lt;prefix> - prefix string. "&lt;null>"을 사용하면, prefix string이 없는 item들을 invalidate시킨다.</li>
+<li>&lt;delay> - 지연된 invalidation 요청 시에 명시하며, 그 지연 기간을 초(second) 단위로 지정한다.</li>
 <li>noreply - 명시하면, response string이 생략된다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
@@ -822,7 +822,7 @@ flush_prefix &lt;prefix&gt; [&lt;delay&gt;] [noreply]\r\n
 <li>“NOT_FOUND” - prefix miss (flush_prefix 명령인 경우만 해당)</li>
 <li>CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h2 id="9-2-scrub">9-2. Scrub 명령<a class="headerlink" href="#9-2-scrub" title="Permanent link">#</a></h2>
+<h2 id="9-2-scrub">9-2. Scrub 명령</h2>
 <p>Arcus cache server에는 유효하지 않으면서 메모리를 차지하고 있는 items이 존재할 수 있다.
 이 items은 아래 두 유형으로 구분된다.</p>
 <ul>
@@ -861,12 +861,12 @@ flush_prefix &lt;prefix&gt; [&lt;delay&gt;] [noreply]\r\n
 <p>참고 사항으로, scrub 명령은 ascii 명령의 extension 기능으로 구현되었기에,
 Arcus cache server 구동 시에 ascii_scrub.so 파일을 dynamic linking 하는
 구동 옵션을 주어야 scrub 명령을 사용할 수 있다.</p>
-<h2 id="9-3-stats">9-3. Stats 명령<a class="headerlink" href="#9-3-stats" title="Permanent link">#</a></h2>
+<h2 id="9-3-stats">9-3. Stats 명령</h2>
 <p>Arcus cache server의 각종 통계 정보를 조회하거나 그 통계 정보를 reset한다.</p>
 <pre><code>stats [&lt;args&gt;]\r\n
 </code></pre>
 
-<p>\&lt;args>를 생략하거나, 어떤 값을 주느냐에 따라 stats 명령의 동작은 아래와 같이 달라진다.</p>
+<p>&lt;args>를 생략하거나, 어떤 값을 주느냐에 따라 stats 명령의 동작은 아래와 같이 달라진다.</p>
 <pre><code> &lt;args&gt;             | stats 명령의 동작
  ------------------ | -------------------------------------------
                     | General purpose 통계 정보 조회
@@ -881,13 +881,13 @@ Arcus cache server 구동 시에 ascii_scrub.so 파일을 dynamic linking 하는
 </code></pre>
 
 <p>stats 명령은 직접 한번씩 수행해 보기를 권하며, 아래에서는 추가 설명이 필요한 부분들만 기술한다.</p>
-<h2 id="9-4-prefix">9-4. Prefix 통계 정보<a class="headerlink" href="#9-4-prefix" title="Permanent link">#</a></h2>
+<h2 id="9-4-prefix">9-4. Prefix 통계 정보</h2>
 <p>모든 prefix들의 item 통계 정보는 "stats prefixes" 명령으로 조회하고,
 모든 prefix들의 연산 통계 정보는 "stats detail dump" 명령으로 조회한다.
 그리고, Prefix들의 연산 통계 정보에 한해,
 통계 정보의 수집 여부를 on 또는 off 할 수 있다.</p>
 <p>모든 prefix들의 item 통계 정보의 결과 예는 아래와 같다.
-\&lt;null> prefix 통계는 prefix를 가지지 않는 items 통계이다.</p>
+&lt;null> prefix 통계는 prefix를 가지지 않는 items 통계이다.</p>
 <pre><code>PREFIX &lt;null&gt; itm 2 kitm 1 litm 1 sitm 0 mitm 0 bitm 0 tsz 144 ktsz 64 ltsz 80 stsz 0 mtsz 0 btsz 0 time 20121105152422
 PREFIX a itm 5 kitm 5 litm 0 sitm 0 mitm 0 bitm 0 tsz 376 ktsz 376 ltsz 0 stsz 0 mtsz 0 btsz 0 time 20121105152422
 PREFIX b itm 2 kitm 2 litm 0 sitm 0 mitm 0 bitm 0 tsz 144 ktsz 144 ltsz 0 stsz 0 mtsz 0 btsz 0 time 20121105152422
@@ -965,7 +965,7 @@ gas와 sas는 item attribute 연산의 통계이다.</p>
 <li>gas - getattr 수행 횟수</li>
 <li>sas - setattr 수행 횟수</li>
 </ul>
-<h2 id="9-5-scrub">9-5. Scrub 수행 상태<a class="headerlink" href="#9-5-scrub" title="Permanent link">#</a></h2>
+<h2 id="9-5-scrub">9-5. Scrub 수행 상태</h2>
 <p>Scrub 수행 상태를 조회한 결과 예는 다음과 같다.</p>
 <pre><code>STAT scrubber:status stopped
 STAT scrubber:last_run 0
@@ -980,15 +980,15 @@ END
 <li>visited - 현재 수행중인 또는 이전에 수행된 scrub에서 접근한 item들의 수를 나타낸다.</li>
 <li>cleaned - 현재 수행중인 또는 이전에 수행된 scrub에서 삭제한 item들의 수를 나타낸다.</li>
 </ul>
-<h2 id="9-6-slab-class-cache-key-dump">9-6. slab class 별 cache key dump<a class="headerlink" href="#9-6-slab-class-cache-key-dump" title="Permanent link">#</a></h2>
+<h2 id="9-6-slab-class-cache-key-dump">9-6. slab class 별 cache key dump</h2>
 <p>slab class 별 LRU에 달려있는 item들의 cache key들을 dump하기 위하여,
 아래의 stats cachedump 명령을 제공한다.</p>
 <pre><code>stats cachedump &lt;slab_clsid&gt; &lt;limit&gt; [ forward | backward [sticky] ]\r\n
 </code></pre>
 
 <ul>
-<li>\&lt;slab_clsid>    - dump 대상 LRU를 지정하기 위한 slab class id이다.</li>
-<li>\&lt;limit> - dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다.
+<li>&lt;slab_clsid> - dump 대상 LRU를 지정하기 위한 slab class id이다.</li>
+<li>&lt;limit>  - dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다.
               0이면 default로 50개로 지정되며, 200 초과이면 200개만 dump한다.
               해당 LRU의 head 또는 tail에서 시작하여 limit 개 item들의 cache key들을 dump한다.</li>
 <li>forward or backward - LRU의 head 또는 tail 중에 어디에서 dump를 시작할 것인지를 지정한다.
@@ -1008,7 +1008,7 @@ ITEM c:bkey2
 END
 </code></pre>
 
-<h2 id="9-7-config">9-7. Config 명령<a class="headerlink" href="#9-7-config" title="Permanent link">#</a></h2>
+<h2 id="9-7-config">9-7. Config 명령</h2>
 <p>Arcus cache server는 특정 configuration에 대해 동적으로 변경하거나 현재의 값을 조회하는 기능을 제공한다.
 동적으로 변경가능한 configuration들은 현재 아래만 지원한다.</p>
 <ul>
@@ -1017,35 +1017,35 @@ END
 <li>zkfailstop</li>
 <li>maxconns</li>
 </ul>
-<h3 id="config-verbosity">config verbosity<a class="headerlink" href="#config-verbosity" title="Permanent link">#</a></h3>
+<h3 id="config-verbosity">config verbosity</h3>
 <p>Arcus cache server의 verbose log level을 동적으로(restart 없이) 변경/조회한다.</p>
 <pre><code>config verbosity [&lt;verbose&gt;]\r\n
 </code></pre>
 
-<p>\&lt;verbose>는 새로 지정할 verbose log level 값으로, 허용가능한 범위는 0 ~ 2이다.
+<p>&lt;verbose>는 새로 지정할 verbose log level 값으로, 허용가능한 범위는 0 ~ 2이다.
 이 인자가 생략되면 현재 설정되어 있는 verbose 값을 조회한다.</p>
-<h3 id="config-memlimit">config memlimit<a class="headerlink" href="#config-memlimit" title="Permanent link">#</a></h3>
+<h3 id="config-memlimit">config memlimit</h3>
 <p>Arcus cache server 구동 시에 -m 옵션으로 설정된 memory limit을 동적으로(restart 없이) 변경/조회한다.</p>
 <pre><code>config memlimit [&lt;memsize&gt;]\r\n
 </code></pre>
 
-<p>\&lt;memsize>는 새로 지정할 memory limit으로 MB 단위로 설정하며,
+<p>&lt;memsize>는 새로 지정할 memory limit으로 MB 단위로 설정하며,
 Arcus cache server가 현재 사용 중인 메모리 크기인 tatal_malloced 보다 큰 크기로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 memory limit 값을 조회한다.</p>
-<h3 id="config-zkfailstop">config zkfailstop<a class="headerlink" href="#config-zkfailstop" title="Permanent link">#</a></h3>
+<h3 id="config-zkfailstop">config zkfailstop</h3>
 <p>Arcus cache server의 automatic failstop 기능을 on 또는 off 한다.</p>
 <pre><code>config zkfailstop [on|off]\r\n
 </code></pre>
 
 <p>Network failure 상태에서 정상적인 서비스를 진행하지 못하는 cache server가 cache cloud에 그대로 존재할 경우, 해당 cache server가 담당하고 있는 data 범위에 대한 요청이 모두 실패하고 DB에 부담을 주게 된다. 또한 이후에 ZooKeeper에 재연결 되더라도 old data를 가지고 있을 가능성이 있으며 이로 인해 응용에 오동작을 발생시킬 수 있다. Arcus cache server는 이를 해결하기위해 ZooKeeper session timeout이 발생할 경우 failed cache server를 cache cloud에서 자동으로 제거하는 automatic failstop 기능을 기본적으로 제공한다.</p>
-<h3 id="config-maxconns">config maxconns<a class="headerlink" href="#config-maxconns" title="Permanent link">#</a></h3>
+<h3 id="config-maxconns">config maxconns</h3>
 <p>Arcus cache server 구동 시에 -c 옵션으로 설정된 최대 연결 수를 동적으로(restart 없이) 변경/조회한다.</p>
 <pre><code>config maxconns [&lt;maxconn&gt;]\r\n
 </code></pre>
 
-<p>\&lt;maxconn>는 새로 지정할 최대 연결 수로서, 현재의 연결 수보다 10% 이상의 큰 값으로만 설정이 가능하다.
+<p>&lt;maxconn>는 새로 지정할 최대 연결 수로서, 현재의 연결 수보다 10% 이상의 큰 값으로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 최대 연결 수 값을 조회한다.</p>
-<h2 id="9-8-command-logging">9-8. Command Logging 명령<a class="headerlink" href="#9-8-command-logging" title="Permanent link">#</a></h2>
+<h2 id="9-8-command-logging">9-8. Command Logging 명령</h2>
 <p>Arcus cache server에 입력되는 command를 logging 한다.
 start 명령을 시작으로 logging이 종료될 때 까지의 모든 command를 기록한다.
 단, 성능유지를 위해 skip되는 command가 있을 수 있으며 stats 명령을 통해 그 수를 확인할 수 있다.
@@ -1053,7 +1053,7 @@ start 명령을 시작으로 logging이 종료될 때 까지의 모든 command�
 <pre><code>cmdlog [start [&lt;log_file_path&gt;] | stop | stats]\r\n
 </code></pre>
 
-<p>\&lt;log_file_path>는 logging 정보를 저장할 file의 path이다.
+<p>&lt;log_file_path>는 logging 정보를 저장할 file의 path이다.
 - path는 생략 가능하며, 생략할 경우 default로 지정된다.
   - default로 자동 지정할 경우 log file은 memcached구동위치/command_log 디렉터리 안에 생성된다.
   - command_log 디렉터리는 자동생성되지 않으며, memcached process가 구동된 위치에 생성해 주어야 한다.
@@ -1084,7 +1084,7 @@ The number of log files : 1                                          //file_coun
 The log file name: /Users/temp/command_11211_20160126_192729_{n}.log //path/file_name
 </code></pre>
 
-<h2 id="9-9-long-query-detect">9-9. Long query detect 명령<a class="headerlink" href="#9-9-long-query-detect" title="Permanent link">#</a></h2>
+<h2 id="9-9-long-query-detect">9-9. Long query detect 명령</h2>
 <p>Arcus cache server에서 collection item에 대한 요청 중에는 그 처리 시간이 오래 걸리는 요청이 존재한다.
 이를 detect하기 위한 기능으로 lqdetect 명령을 제공한다.
 start 명령을 시작으로 detection이 종료될 때 까지 long query 가능성이 있는 command에 대하여, 
@@ -1107,7 +1107,7 @@ long query 대상이 되는 모든 command에 대해 20개의 샘플 저장이 �
 <pre><code>lqdetect [start [&lt;detect_standard&gt;] | stop | show | stats]\r\n
 </code></pre>
 
-<p>\&lt;detect_standard>는 long query로 분류하는 기준으로 해당 요청에서 접근하는 elements 수로 나타내며, 어떤 요청에서 detection 기준 이상으로 많은 elements를 접근하는 요청을 long query로 구분한다. 생략 시 default standard는 4000이다.</p>
+<p>&lt;detect_standard>는 long query로 분류하는 기준으로 해당 요청에서 접근하는 elements 수로 나타내며, 어떤 요청에서 detection 기준 이상으로 많은 elements를 접근하는 요청을 long query로 구분한다. 생략 시 default standard는 4000이다.</p>
 <p>start 명령으로 detection을 시작할 수 있다.</p>
 <p>stop 명령은 detection이 완료되기 전 중지하고 싶을 때 사용할 수 있다.</p>
 <p>show 명령은 저장된 명령어 샘플을 출력하고 그 결과는 아래와 같다.</p>
@@ -1146,7 +1146,7 @@ The number of total long query commands : 1152    //detected_commands
 The detection standard : 43                       //standard
 </code></pre>
 
-<h2 id="9-10-key-dump">9-10. Key dump 명령<a class="headerlink" href="#9-10-key-dump" title="Permanent link">#</a></h2>
+<h2 id="9-10-key-dump">9-10. Key dump 명령</h2>
 <p>Arcus cache server의 key를 dump 한다.</p>
 <p>dump ascii command는 아래와 같다.</p>
 <pre><code>dump start key [&lt;prefix&gt;] filepath\r\n
@@ -1158,11 +1158,11 @@ stats dump\r\n
 - 첫번째 인자는 무조건 "key"이다.
   - 현재는 일단 key string만을 dump한다.
   - 향후에 key or item을 선택할 수 있게 하여, item인 경우 item 전체 내용을 dump할 수 있다.
-- 두번째 인자는 \&lt;prefix>는 cache key의 prefix를 의미하며, 생략 가능하다.
+- 두번째 인자는 &lt;prefix>는 cache key의 prefix를 의미하며, 생략 가능하다.
   - 생략하면, 모든 key string을 dump한다.
-  - "\&lt;null>"을 주면, prefix가 없는 key string을 dump한다.
+  - "&lt;null>"을 주면, prefix가 없는 key string을 dump한다.
   - 어떤 prefix를 주면, 그 prefix의 모든 key string을 dump한다.
-- 세번째 인자는 \&lt;file path>이다.
+- 세번째 인자는 &lt;file path>이다.
   - 반드시 명시해야 한다.
   - 절대 path로 줄 수도 있으며, 상대 path도 가능하다.
   - 상대 path이면 memcached process가 구동된 위치에서의 상대 path이다.</p>
@@ -1179,45 +1179,45 @@ DUMP SUMMARY: { prefix=&lt;prefix&gt;, count=&lt;count&gt;, total=&lt;total&gt; 
 
 <p>위의 결과에서 각 의미는 아래와 같다.
 - key dump 결과 부분
-  - \<type\>은 item type으로 1 character로 표시한다.
+  - <type\>은 item type으로 1 character로 표시한다.
      - "K" : kv 
      - "L" : list
      - "S" : set
      - "M" : map
      - "B" : b+tree
-  - \<key_string\>은 cache server에 저장되어 있는 key string 이다.
-  - \<exptime\>은 key의 exptime으로 아래 값들 중 하나이다.
+  - <key_string\>은 cache server에 저장되어 있는 key string 이다.
+  - <exptime\>은 key의 exptime으로 아래 값들 중 하나이다.
     -  0 (exptime = 0인 경우)
     - -1 : sticky item (exptime = -1인 경우)
     - timestamp (exptime > 0인 경우)으로
       "time since the Epoch (00:00:00 UTC, January 1, 1970), measured in seconds" 이다.
 - DUMP SUMMARY 부분
-  - \&lt;prefix>는 prefix name이다.
-    - 모든 key dump이면, "\&lt;all>"이 명시된다.
-    - prefix 없는 key dump이면, "\&lt;null>"이 명시된다.
+  - &lt;prefix>는 prefix name이다.
+    - 모든 key dump이면, "&lt;all>"이 명시된다.
+    - prefix 없는 key dump이면, "&lt;null>"이 명시된다.
     - 특정 prefix의 key dump이면, 그 prefix name이 명시된다.
-  - \&lt;count>는 dump한 key 개수이다.
-  - \&lt;total>은 cache에 있는 전체 key 개수이다.
-  - \&lt;elapsed>는 dump하는 데 소요된 시간(단위: 초) 이다.</p>
-<h2 id="9-11-zkensemble">9-11. Zkensemble 명령<a class="headerlink" href="#9-11-zkensemble" title="Permanent link">#</a></h2>
+  - &lt;count>는 dump한 key 개수이다.
+  - &lt;total>은 cache에 있는 전체 key 개수이다.
+  - &lt;elapsed>는 dump하는 데 소요된 시간(단위: 초) 이다.</p>
+<h2 id="9-11-zkensemble">9-11. Zkensemble 명령</h2>
 <p>Arcus cache server가 연결되어 있는 ZooKeeper ensemble 설정에 대한 명령을 제공한다.</p>
 <pre><code>zkensemble set &lt;ensemble_list&gt;\r\n
 zkensemble get\r\n
 zkensemble rejoin\r\n
 </code></pre>
 
-<p>set 명령은 ZK ensemble 주소를 변경한다. ensemble_list는 \&lt;ip:port>,...,\&lt;ip:port>  와 같은 ZK server 들의 list 형태 혹은 ZK ensemble의 도메인 주소 형태로 지정할 수 있다.</p>
-<p>get 명령은 ZK ensemble 주소를 조회한다. 조회 결과는 \&lt;ip:port>,...,\&lt;ip:port> 형식으로 확인할 수 있다.</p>
+<p>set 명령은 ZK ensemble 주소를 변경한다. ensemble_list는 &lt;ip:port>,...,&lt;ip:port>  와 같은 ZK server 들의 list 형태 혹은 ZK ensemble의 도메인 주소 형태로 지정할 수 있다.</p>
+<p>get 명령은 ZK ensemble 주소를 조회한다. 조회 결과는 &lt;ip:port>,...,&lt;ip:port> 형식으로 확인할 수 있다.</p>
 <p>rejoin 명령은 ZK ensemble 과의 연결을 끊고 cache cloud에서 빠져 대기하는 cache server를 다시 ZK ensemble에 연결하도록 하는 명령이다. Cache cloud에서 cache server가 빠져나가는 경우는 아래와 같다.
 - Failstop off 상태에서 ZooKeeper session timeout이 일어난 경우
 - 운영자의 실수로 cache_list에 등록된 cache server의 ephemeral znode가 삭제된 경우</p>
-<h2 id="9-12-help">9-12. Help 명령<a class="headerlink" href="#9-12-help" title="Permanent link">#</a></h2>
+<h2 id="9-12-help">9-12. Help 명령</h2>
 <p>Arcus cache server의 acsii command syntax를 조회한다.</p>
 <pre><code>help [&lt;subcommand&gt;]\r\n
 </code></pre>
 
-<p>\&lt;subcommand>로는 kv, lop, sop, mop, bop, stats, flush, config, etc가 있으며,
-\&lt;subcommand>가 생략되면, help 명령에서 사용가능한 subcommand 목록이 출력된다.</p>
+<p>&lt;subcommand>로는 kv, lop, sop, mop, bop, stats, flush, config, etc가 있으며,
+&lt;subcommand>가 생략되면, help 명령에서 사용가능한 subcommand 목록이 출력된다.</p>
                 
                   
                 
@@ -1238,7 +1238,7 @@ zkensemble rejoin\r\n
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../Chapter-8.-Item-Attribute-Command/" title="Chapter 8. Item Attribute Command" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1247,7 +1247,7 @@ zkensemble rejoin\r\n
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Chapter 8. Item Attribute Command
+                8. Item Attribute Command
               </span>
             </div>
           </a>

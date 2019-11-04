@@ -36,7 +36,7 @@
     
     
       
-        <title>Chapter 6. B+tree Collection Command - ARCUS Documentation</title>
+        <title>6. B+tree Collection Command - ARCUS Documentation</title>
       
     
     
@@ -103,7 +103,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Chapter 6. B+tree Collection Command
+                6. B+tree Collection Command
               
             </span>
           
@@ -200,7 +200,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../Chapter-1.-ARCUS-Basic-Concept/" class="md-tabs__link md-tabs__link--active">
+        <a href="../1.-ARCUS-Basic-Concept/" class="md-tabs__link md-tabs__link--active">
           Arcus server
         </a>
       
@@ -336,8 +336,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-1.-ARCUS-Basic-Concept/" title="Chapter 1. ARCUS Basic Concept" class="md-nav__link">
-      Chapter 1. ARCUS Basic Concept
+    <a href="../1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
     </a>
   </li>
 
@@ -348,8 +348,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-2.-Simple-Key-Value-Command/" title="Chapter 2. Simple Key Value Command" class="md-nav__link">
-      Chapter 2. Simple Key Value Command
+    <a href="../2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
     </a>
   </li>
 
@@ -360,8 +360,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-3.-List-Collection-Command/" title="Chapter 3. List Collection Command" class="md-nav__link">
-      Chapter 3. List Collection Command
+    <a href="../3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
     </a>
   </li>
 
@@ -372,8 +372,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-4.-Set-Collection-Command/" title="Chapter 4. Set Collection Command" class="md-nav__link">
-      Chapter 4. Set Collection Command
+    <a href="../4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
     </a>
   </li>
 
@@ -384,8 +384,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-5.-Map-Collection-Command/" title="Chapter 5. Map Collection Command" class="md-nav__link">
-      Chapter 5. Map Collection Command
+    <a href="../5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
     </a>
   </li>
 
@@ -403,11 +403,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Chapter 6. B+tree Collection Command
+        6. B+tree Collection Command
       </label>
     
-    <a href="./" title="Chapter 6. B+tree Collection Command" class="md-nav__link md-nav__link--active">
-      Chapter 6. B+tree Collection Command
+    <a href="./" title="6. B+tree Collection Command" class="md-nav__link md-nav__link--active">
+      6. B+tree Collection Command
     </a>
     
       
@@ -578,8 +578,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-7.-Collection-Command-Pipelining/" title="Chapter 7. Collection Command Pipelining" class="md-nav__link">
-      Chapter 7. Collection Command Pipelining
+    <a href="../7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
     </a>
   </li>
 
@@ -590,8 +590,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-8.-Item-Attribute-Command/" title="Chapter 8. Item Attribute Command" class="md-nav__link">
-      Chapter 8. Item Attribute Command
+    <a href="../8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
     </a>
   </li>
 
@@ -602,8 +602,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Chapter-9.-Administration-Command/" title="Chapter 9. Administration Command" class="md-nav__link">
-      Chapter 9. Administration Command
+    <a href="../9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
     </a>
   </li>
 
@@ -837,18 +837,18 @@
               
                 
                 
-                  <h1>Chapter 6. B+tree Collection Command</h1>
+                  <h1>6. B+tree Collection Command</h1>
                 
-                <h2 id="6-1-b-tree-collection">6-1. B+ tree collection 명령<a class="headerlink" href="#6-1-b-tree-collection" title="Permanent link">#</a></h2>
-<h3 id="bop-create-btree-collection">bop create - B+tree Collection 생성<a class="headerlink" href="#bop-create-btree-collection" title="Permanent link">#</a></h3>
+                <h2 id="6-1-b-tree-collection">6-1. B+ tree collection 명령</h2>
+<h3 id="bop-create-btree-collection">bop create - B+tree Collection 생성</h3>
 <p>B+tree collection을 empty 상태로 생성한다.</p>
 <pre><code>bop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
 * attributes: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;attributes> - 설정할 item attributes. <a href="../Chapter-1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;attributes> - 설정할 item attributes. <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>을 참조 바란다.</li>
 <li>noreply - 명시하면, response string을 전달받지 않는다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
@@ -859,10 +859,10 @@
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="delete-b-tree-collection">delete - B+ tree Collection 삭제<a class="headerlink" href="#delete-b-tree-collection" title="Permanent link">#</a></h3>
-<p>기존 <a href="../Chapter-2.-Simple-Key-Value-Command/#2-3-deletion">key-value item의 s삭제 명령</a>을 그대로 사용한다. </p>
-<h2 id="6-2-b-tree-element">6-2. B+ tree element 명령<a class="headerlink" href="#6-2-b-tree-element" title="Permanent link">#</a></h2>
-<h3 id="bop-insertupsert-btree-element">bop insert/upsert - B+Tree Element 삽입/대체<a class="headerlink" href="#bop-insertupsert-btree-element" title="Permanent link">#</a></h3>
+<h3 id="delete-b-tree-collection">delete - B+ tree Collection 삭제</h3>
+<p>기존 <a href="../2.-Simple-Key-Value-Command/#2-3-deletion">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
+<h2 id="6-2-b-tree-element">6-2. B+ tree element 명령</h2>
+<h3 id="bop-insertupsert-btree-element">bop insert/upsert - B+Tree Element 삽입/대체</h3>
 <p>B+tree collection에 하나의 element를 추가하는 명령으로
 (1) 하나의 element를 삽입하는 bop insert 명령과
 (2) 현재 삽입하는 bkey를 가진 element가 없으면 현재의 element를 삽입하고
@@ -874,14 +874,14 @@ bop upsert &lt;key&gt; &lt;bkey&gt; [&lt;eflag&gt;] &lt;bytes&gt; [create &lt;at
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey> - 삽입할 element의 bkey</li>
-<li>\&lt;eflag> - 삽입할 element의 optional flag</li>
-<li>\&lt;bytes>와 \&lt;data> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)</li>
-<li>create \&lt;attributes> - b+tree collection 없을 시에 b+tree 생성 요청.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept.md#1-3-item-attributes">Item Attribute 설명</a>)을 참조 바란다.</li>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey> - 삽입할 element의 bkey</li>
+<li>&lt;eflag> - 삽입할 element의 optional flag</li>
+<li>&lt;bytes>와 &lt;data> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)</li>
+<li>create &lt;attributes> - b+tree collection 없을 시에 b+tree 생성 요청.
+                    <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>)을 참조 바란다.</li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 <a href="../Chapter-7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 <li>getrim - 새로운 element 추가로 maxcount 제약에 의한 overflow trim이 발생할 경우,
            trim된 element 정보를 가져온다.</li>
 </ul>
@@ -913,7 +913,7 @@ END\r\n
 <li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터의 길이가 <bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="bop-update-btree-element">bop update - B+Tree Element 변경<a class="headerlink" href="#bop-update-btree-element" title="Permanent link">#</a></h3>
+<h3 id="bop-update-btree-element">bop update - B+Tree Element 변경</h3>
 <p>B+tree collection에서 하나의 element에 대해 eflag 변경 그리고/또는 data 변경을 수행한다.
 현재 다수 elements에 대한 변경 연산은 제공하지 않고 있다.</p>
 <pre><code>bop update &lt;key&gt; &lt;bkey&gt; [&lt;eflag_update&gt;] &lt;bytes&gt; [noreply|pipe]\r\n[&lt;data&gt;\r\n]
@@ -921,14 +921,14 @@ END\r\n
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey> - 대상 element의 bkey</li>
-<li>\&lt;eflag_update> - eflag update 명시.
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey> - 대상 element의 bkey</li>
+<li>&lt;eflag_update> - eflag update 명시.
                      [Collection 기본 개념]./Chapter 1. ARCUS Basic Concept.md#1-2. collection concept)에서 eflag update를 참조 바란다.</li>
-<li>\&lt;bytes>와 \&lt;data> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
-                         데이터 변경을 원치 않으면 \&lt;bytes>를 -1로 하고 \&lt;data>를 생략하면 된다.         </li>
+<li>&lt;bytes>와 &lt;data> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
+                         데이터 변경을 원치 않으면 &lt;bytes>를 -1로 하고 &lt;data>를 생략하면 된다.         </li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 <a href="../Chapter-7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
 <ul>
@@ -937,9 +937,9 @@ END\r\n
 <li>"NOT_FOUND_ELEMENT" - element miss (변경할 element가 없음)</li>
 <li>“TYPE_MISMATCH” - 해당 item이 b+tree colleciton이 아님</li>
 <li>"BKEY_MISMATCH" - 명령 인자로 주어진 bkey 유형과 대상 b+tree의 bkey 유형이 다름</li>
-<li>"EFLAG_MISMATCH" - 해당 element의 eflag 값에 대해 \&lt;eflag_update>를 적용할 수 없음.
+<li>"EFLAG_MISMATCH" - 해당 element의 eflag 값에 대해 &lt;eflag_update>를 적용할 수 없음.
                      예를 들어, 변경하고자 하는 eflag가 존재하지 않거나,
-                     존재하더라도 \&lt;eflag_update> 조건으로 명시된 부분의 데이터를 가지지 않은 상태이다.</li>
+                     존재하더라도 &lt;eflag_update> 조건으로 명시된 부분의 데이터를 가지지 않은 상태이다.</li>
 <li>“NOTHING_TO_UPDATE” - eflag 변경과 data 변경 중 어느 하나도 명시되지 않은 상태</li>
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
@@ -947,7 +947,7 @@ END\r\n
 <li>“CLIENT_ERROR bad data chunk” - 변경할 데이터의 길이가 <bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
 <li>“SERVER_ERROR out of memory” - 메모리 부족</li>
 </ul>
-<h3 id="bop-delete-btree-element">bop delete - B+Tree Element 삭제<a class="headerlink" href="#bop-delete-btree-element" title="Permanent link">#</a></h3>
+<h3 id="bop-delete-btree-element">bop delete - B+Tree Element 삭제</h3>
 <p>b+tree collection에서 하나의 bkey 또는 bkey range 조건과 eflag filter 조건을 만족하는
 N 개의 elements를 삭제한다.</p>
 <pre><code>bop delete &lt;key&gt; &lt;bkey or &quot;bkey range&quot;&gt; [&lt;eflag_filter&gt;] [&lt;count&gt;] [drop] [noreply|pipe]\r\n
@@ -955,15 +955,15 @@ N 개의 elements를 삭제한다.</p>
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
-<li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept/">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
-<li>\&lt;count> - 삭제할 elements 개수 지정</li>
+<li>&lt;eflag_filter> - eflag filter 조건.
+                    <a href="../1.-ARCUS-Basic-Concept/">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+<li>&lt;count> - 삭제할 elements 개수 지정</li>
 <li>drop - element 삭제로 인해 empty b+tree가 될 경우, 그 b+tree를 drop할 것인지를 지정한다.</li>
 <li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 <a href="../Chapter-7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
 </ul>
 <p>Response string과 그 의미는 아래와 같다.</p>
 <ul>
@@ -976,7 +976,7 @@ N 개의 elements를 삭제한다.</p>
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h3 id="bop-get-btree-element">bop get - B+Tree Element 조회<a class="headerlink" href="#bop-get-btree-element" title="Permanent link">#</a></h3>
+<h3 id="bop-get-btree-element">bop get - B+Tree Element 조회</h3>
 <p>B+tree collection에서 하나의 bkey 또는 bkey range 조건과 eflag filter 조건을 만족하는 
 elements에서 offset 개를 skip한 후 count 개의 elements를 조회한다.</p>
 <pre><code>bop get &lt;key&gt; &lt;bkey or &quot;bkey range&quot;&gt; [&lt;eflag_filter&gt;] [[&lt;offset&gt;] &lt;count&gt;] [delete|drop]\r\n
@@ -984,17 +984,17 @@ elements에서 offset 개를 skip한 후 count 개의 elements를 조회한다.<
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
-<li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept/">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
-<li>[\&lt;offset>] \&lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
+<li>&lt;eflag_filter> - eflag filter 조건.
+                    <a href="../1.-ARCUS-Basic-Concept/">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+<li>[&lt;offset>] &lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
 <li>delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우
                    그 b+tree를 drop할 것인지를 지정한다.</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.
-VALUE 라인의 \&lt;count>는 조회된 element 개수를 나타내며,
+VALUE 라인의 &lt;count>는 조회된 element 개수를 나타내며,
 그 다음 라인 부터 조회된 각 element의 bkey, flag, data가 나타낸다.
 마지막 라인은 조회 상래로서 END, TRIMMED, DELETED, DELETED_DROPPED 중 하나를 가진다.
 END, DELEETED, DELEETD_DROPPED은 각각
@@ -1030,7 +1030,7 @@ END|TRIMMED|DELETED|DELETED_DROPPED\r\n
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
-<h3 id="bop-count-btree-element">bop count - B+Tree Element 개수 계산<a class="headerlink" href="#bop-count-btree-element" title="Permanent link">#</a></h3>
+<h3 id="bop-count-btree-element">bop count - B+Tree Element 개수 계산</h3>
 <p>b+tree collection에서 하나의 bkey 또는 bkey range 조건과 eflag filter 조건을 만족하는
 elements 개수를 구한다.</p>
 <pre><code>bop count &lt;key&gt; &lt;bkey or &quot;bkey range&quot;&gt; [&lt;eflag_filter&gt;]\r\n
@@ -1038,11 +1038,11 @@ elements 개수를 구한다.</p>
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
-<li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept/">Collection 기본 개념</a> 에서 eflag filter 참조 바란다.</li>
+<li>&lt;eflag_filter> - eflag filter 조건.
+                    <a href="../1.-ARCUS-Basic-Concept/">Collection 기본 개념</a> 에서 eflag filter 참조 바란다.</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.</p>
 <pre><code>COUNT=&lt;count&gt;
@@ -1057,7 +1057,7 @@ elements 개수를 구한다.</p>
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h3 id="bop-incrdecr-btree-element">bop incr/decr - B+Tree Element 값의 증감<a class="headerlink" href="#bop-incrdecr-btree-element" title="Permanent link">#</a></h3>
+<h3 id="bop-incrdecr-btree-element">bop incr/decr - B+Tree Element 값의 증감</h3>
 <p>B+tree collection 특정 하나의 eleement에 있는 데이터를 increment 또는 decrement하고,
 증감된 데이터를 반환한다.
 이 명령은 key-value item에 대한 incr/decr 명령과 유사한 명령으로 
@@ -1067,13 +1067,13 @@ bop decr &lt;key&gt; &lt;bkey&gt; &lt;delta&gt; [&lt;initial&gt; [&lt;eflag&gt;]
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey> - 대상 element의 bkey</li>
-<li>\&lt;delta> - increment/decrement할 delta 값으로서, 0 보다 큰 숫자 값을 가져야 한다.</li>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey> - 대상 element의 bkey</li>
+<li>&lt;delta> - increment/decrement할 delta 값으로서, 0 보다 큰 숫자 값을 가져야 한다.</li>
 <li>increment 연산으로 64bit unsigned integer가 overflow되면, wrap around되어 잔여 값으로 설정된다.</li>
 <li>decrement 연산으로 64bit unsigned integer가 underflow되면, 새로운 값은 무조건 0으로 설정된다.</li>
-<li>\&lt;initial> - 대상 element가 없을 경우, 새로운 element를 생성하고 initial 값으로 설정한다.</li>
-<li>\&lt;eflag>는 새로은 element에 eflag 값을 줄 경우에 명시할 수 있다.</li>
+<li>&lt;initial> - 대상 element가 없을 경우, 새로운 element를 생성하고 initial 값으로 설정한다.</li>
+<li>&lt;eflag>는 새로은 element에 eflag 값을 줄 경우에 명시할 수 있다.</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.
 Increment/decrement 수행 후의 데이터 값이다.</p>
@@ -1098,8 +1098,8 @@ Increment/decrement 수행 후의 데이터 값이다.</p>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
-<h2 id="6-3-b-tree">6-3. 복수 B+ tree  조회 명령<a class="headerlink" href="#6-3-b-tree" title="Permanent link">#</a></h2>
-<h3 id="bop-mget-btree-multiple-get">bop mget - B+Tree Multiple Get<a class="headerlink" href="#bop-mget-btree-multiple-get" title="Permanent link">#</a></h3>
+<h2 id="6-3-b-tree">6-3. 복수 B+ tree  조회 명령</h2>
+<h3 id="bop-mget-btree-multiple-get">bop mget - B+Tree Multiple Get</h3>
 <p>여러 b+tree들에 대해 동일 조회 조건(bkey range와 eflag filter)으로 element들을 한꺼번에 조회한다.
 여러 b+tree들에 대한 동일 조회 조건을 사용하므로, 대상 b+tree들은 동일 bkey 유형을 가져야 한다.
 그리고, eflag에 대해서도 동일 성격의 데이터를 사용하기를 권고한다.</p>
@@ -1109,14 +1109,14 @@ Increment/decrement 수행 후의 데이터 값이다.</p>
 </code></pre>
 
 <ul>
-<li>\&lt;”space separated keys”> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
+<li>&lt;”space separated keys”> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
                              - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.</li>
-<li>\<lenkeys\>과 \<numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.</li>
-<li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
+<li><lenkeys\>과 <numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.</li>
+<li>&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
-<li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
-<li>[\&lt;offset>] \&lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
+<li>&lt;eflag_filter> - eflag filter 조건.
+                    <a href="../1.-ARCUS-Basic-Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+<li>[&lt;offset>] &lt;count> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수</li>
 </ul>
 <p>bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항을 가진다.
 - key list에 지정 가능한 최대 key 수는 200이다.
@@ -1161,11 +1161,11 @@ flags와 ecount를 포함하여 조회된 element 정보가 생략된다.</p>
 <ul>
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
-<li>“CLIENT_ERROR bad data chunk” - space separated key list의 길이가 \&lt;lenkeys>와 다르거나 “\r\n”으로 끝나지 않음</li>
+<li>“CLIENT_ERROR bad data chunk” - space separated key list의 길이가 &lt;lenkeys>와 다르거나 “\r\n”으로 끝나지 않음</li>
 <li>“CLIENT_ERROR bad value” - bop mget 명령의 제약 조건을 위배함.</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
-<h3 id="bop-smget-btree-sort-merge-get">bop smget - B+Tree Sort Merge Get<a class="headerlink" href="#bop-smget-btree-sort-merge-get" title="Permanent link">#</a></h3>
+<h3 id="bop-smget-btree-sort-merge-get">bop smget - B+Tree Sort Merge Get</h3>
 <p>여러 b+tree들에서 bkey range 조건과 eflag filter 조건을 모두 만족하는
 elements를 sort merge 형태로 조회하면서 count 개의 elements를 가져온다.
 즉, 여러 b+tree들을 하나의 large b+tree로 구성되어 있다고 보고,
@@ -1208,14 +1208,14 @@ missed keys에 대한 DB 조회가 offset으로 skip된 element를 가지는 경
 </code></pre>
 
 <ul>
-<li>\&lt;”space separated keys”> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
+<li>&lt;”space separated keys”> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
                              - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.</li>
-<li>\<lenkeys\>과 \<numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.</li>
-<li>\&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
+<li><lenkeys\>과 <numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.</li>
+<li>&lt;bkey or "bkey range"> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.</li>
-<li>\&lt;eflag_filter> - eflag filter 조건.
-                    <a href="../Chapter-1.-ARCUS-Basic-Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
-<li>\&lt;count> - 조회할 element 개수</li>
+<li>&lt;eflag_filter> - eflag filter 조건.
+                    <a href="../1.-ARCUS-Basic-Concept/#1-2. Collection Concept">Collection 기본 개념</a>에서 eflag filter 참조 바란다.</li>
+<li>&lt;count> - 조회할 element 개수</li>
 <li>[duplicate|unique] - smget 동작 방식을 지정한다.</li>
 <li>생략되면, 예전 smget 동작을 수행한다.</li>
 <li>지정되면, 신규 smget 동작을 수행한다. duplicate는 중복 bkey를 허용하고, unique는 중복 bkey를 제거한다.</li>
@@ -1244,7 +1244,7 @@ END|DUPLICATED|TRIMMED|DUPLICATRED_TRIMMED\r\n
 <li>Element 정보는 bkey 기준으로 정렬되며,
     동일 bkey를 가진 elements는 key string 기준으로 정렬된다.</li>
 <li>MISSED_KEYS 부분: smget 조회에 참여하지 못한 key list와 그 원인을 나타낸다.</li>
-<li>\&lt;key>는 smget에 참여하지 못한 key string이다.</li>
+<li>&lt;key>는 smget에 참여하지 못한 key string이다.</li>
 <li>마지막 라인은 smget response string의 마지막을 나타낸다.</li>
 <li>END: 조회 결과에 중복 bkey가 없음 </li>
 <li>DUPLICATED: 조회 결과에 중복 bkey가 있음.</li>
@@ -1278,16 +1278,16 @@ END|DUPLICATED\r\n
 <li>Element 정보는 bkey 기준으로 정렬되며,
     동일 bkey를 가진 elements는 key string 기준으로 정렬된다.</li>
 <li>MISSED_KEYS 부분: smget 조회에 참여하지 못한 key list와 그 원인을 나타낸다.</li>
-<li>\&lt;key>는 smget에 참여하지 못한 key string이다.</li>
-<li>\&lt;cause>는 smget에 참여하지 못한 원인을 나타낸다.<ul>
+<li>&lt;key>는 smget에 참여하지 못한 key string이다.</li>
+<li>&lt;cause>는 smget에 참여하지 못한 원인을 나타낸다.<ul>
 <li>NOT_FOUND: 그 key가 cache에 존재하지 않음</li>
 <li>UNREADABLE: 그 key가 unreadable 상태에 있음</li>
 <li>OUT_OF_RANGE: bkey range의 시작 부분이 그 key의 trim 영역과 겹쳐 있음</li>
 </ul>
 </li>
 <li>TRIMMED_KEYS 부분: smget 조회 범위의 뒷 부분에서 trim이 발생한 key list이다.</li>
-<li>\&lt;key>는 trim이 발생한 key string이다.</li>
-<li>\&lt;bkey>는 trim 직전에 있던 마지막 bkey 이다.</li>
+<li>&lt;key>는 trim이 발생한 key string이다.</li>
+<li>&lt;bkey>는 trim 직전에 있던 마지막 bkey 이다.</li>
 <li>Timmed keys 정보는 bkey 기준으로 정렬된다.</li>
 <li>마지막 라인은 smget response string의 마지막을 나타낸다.</li>
 <li>END: 조회 결과에 중복 bkey가 없음 </li>
@@ -1312,7 +1312,7 @@ END|DUPLICATED\r\n
 </li>
 <li>
 <p>“CLIENT_ERROR bad data chunk” - 주어진 key 리스트에 중복 key가 존재하거나
-              주어진 key 리스트의 길이가 \&lt;lenkeys> 길이와 다르거나 “\r\n”으로 끝나지 않음.</p>
+              주어진 key 리스트의 길이가 &lt;lenkeys> 길이와 다르거나 “\r\n”으로 끝나지 않음.</p>
 </li>
 <li>
 <p>“CLIENT_ERROR bad value” - 앞서 기술한 smget 연산의 제약 조건을 위배</p>
@@ -1321,7 +1321,7 @@ END|DUPLICATED\r\n
 <p>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</p>
 </li>
 </ul>
-<h2 id="6-4-b-tree-position">6-4. B+ tree position 명령<a class="headerlink" href="#6-4-b-tree-position" title="Permanent link">#</a></h2>
+<h2 id="6-4-b-tree-position">6-4. B+ tree position 명령</h2>
 <p>Arcus cache server는 bkey 기반의 element 조회 기능 외에도 b+tree position 기반의 element 조회 기능을 제공한다.
 B+tree에서 특정 element의 position이란 b+teee에서의 그 element의 위치 정보로서,
 bkey들의 정렬(ASC or DESC) 기준으로 봐서 몇 번째 위치한 element인지를 나타낸다.
@@ -1330,7 +1330,7 @@ B+tree position은 0-based index로 표현한다.
 <p>B+tree position 기반의 조회가 필요한 예를 하나 들면, ranking 시스템이 있다.
 Ranking 시스템에서는 특정 score를 bkey로 하여 해당 elements를 저장하고,
 조회는 최고/최저 score 기준으로 몇번째 위치 또는 위치의 범위에 해당하는 element를 찾는 경우가 많다.</p>
-<h3 id="bop-position-btree-position">bop position - B+Tree Position 조회<a class="headerlink" href="#bop-position-btree-position" title="Permanent link">#</a></h3>
+<h3 id="bop-position-btree-position">bop position - B+Tree Position 조회</h3>
 <p>b+tree collection에서 특정 element의 position을 조회한다.
 Element의 position이란 b+tree에서의 위치 정보로서,
 bkey들의 정렬(ASC or DESC) 기준으로 몇 번째 위치한 element인지를 나타내는
@@ -1340,9 +1340,9 @@ bkey들의 정렬(ASC or DESC) 기준으로 몇 번째 위치한 element인지�
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey> - 대상 element의 bkey</li>
-<li>\&lt;order> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시</li>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey> - 대상 element의 bkey</li>
+<li>&lt;order> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.</p>
 <pre><code>POSITION=&lt;position&gt;\r\n
@@ -1358,16 +1358,16 @@ bkey들의 정렬(ASC or DESC) 기준으로 몇 번째 위치한 element인지�
 <li>"NOT_SUPPORTED" - 지원하지 않음</li>
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 </ul>
-<h3 id="bop-gbp-btree-get-by-position">bop gbp - B+Tree Get By Position<a class="headerlink" href="#bop-gbp-btree-get-by-position" title="Permanent link">#</a></h3>
+<h3 id="bop-gbp-btree-get-by-position">bop gbp - B+Tree Get By Position</h3>
 <p>B+tree collection에서 position 기반으로 elements를 조회한다.</p>
 <pre><code>bop gbp &lt;key&gt; &lt;order&gt; &lt;position or &quot;position range&quot;&gt;\r\n
 * &lt;order&gt; = asc | desc
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;order> - 어떤 bkey 정렬 기준으로 position을 적용할 지를 명시</li>
-<li>\&lt;position or "position range"> - 조회할 elements의 하나의 position 또는 position range.
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;order> - 어떤 bkey 정렬 기준으로 position을 적용할 지를 명시</li>
+<li>&lt;position or "position range"> - 조회할 elements의 하나의 position 또는 position range.
                                      Position range는 "position1..position2" 형식으로 표현.</li>
 </ul>
 <p>성공 시의 response string은 아래와 같다.
@@ -1390,7 +1390,7 @@ END\r\n
 <li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
 <li>“SERVER_ERROR out of memory [writing get response]” - 메모리 부족</li>
 </ul>
-<h3 id="bop-pwg-btree-find-position-with-get-version-180">bop pwg - B+Tree Find Position with Get (version 1.8.0)<a class="headerlink" href="#bop-pwg-btree-find-position-with-get-version-180" title="Permanent link">#</a></h3>
+<h3 id="bop-pwg-btree-find-position-with-get-version-180">bop pwg - B+Tree Find Position with Get (version 1.8.0)</h3>
 <p>B+tree collection에서 특정 bkey의 position을 조회하면서,
 그 bkey를 가진 element를 포함하여 앞뒤에(양방향) 위치한 element N개 씩을 한번에 조회한다.</p>
 <pre><code>bop pwg &lt;key&gt; &lt;bkey&gt; &lt;order&gt; [&lt;count&gt;]\r\n
@@ -1398,10 +1398,10 @@ END\r\n
 </code></pre>
 
 <ul>
-<li>\&lt;key> - 대상 item의 key string</li>
-<li>\&lt;bkey> - 대상 element의 bkey</li>
-<li>\&lt;order> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시</li>
-<li>\&lt;count> - 조회한 position의 앞뒤에서 각각 몇 개의 element를 조회할 것인지를 명시 (<strong>최대 값은 100으로 제한</strong>)</li>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bkey> - 대상 element의 bkey</li>
+<li>&lt;order> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시</li>
+<li>&lt;count> - 조회한 position의 앞뒤에서 각각 몇 개의 element를 조회할 것인지를 명시 (<strong>최대 값은 100으로 제한</strong>)</li>
 <li>0이면, 조회한 position의 element만 조회</li>
 <li>양수이면, 조회한 position의 element 외에 그 position의 앞뒤에서 각각 그 수만큼 element 조회</li>
 </ul>
@@ -1416,10 +1416,10 @@ END\r\n
 <p>위의 VALUE 라인에서 각 값의 의미는 다음과 같다.
 그 아래 라인들에서 element 값의 표현은 bop get 경우와 동일하다.</p>
 <ul>
-<li>\&lt;position> : 주어진 bkey의 position</li>
-<li>\&lt;flags> : b+tree item의 flags 속성값</li>
-<li>\&lt;count> : 조회한 전체 element 개수</li>
-<li>\&lt;index> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)</li>
+<li>&lt;position> : 주어진 bkey의 position</li>
+<li>&lt;flags> : b+tree item의 flags 속성값</li>
+<li>&lt;count> : 조회한 전체 element 개수</li>
+<li>&lt;index> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)</li>
 <li>주어진 bkey의 position과 element만 조회하면, count는 1이 되고, index는 0이 된다.</li>
 <li>주어진 bkey의 position과 element 외에 양방향 10개 element 조회에서,
     그 position 앞에 5개 element가 존재하고 뒤에 10개 element가 존재한다면
@@ -1456,7 +1456,7 @@ END\r\n
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../Chapter-5.-Map-Collection-Command/" title="Chapter 5. Map Collection Command" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1465,19 +1465,19 @@ END\r\n
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Chapter 5. Map Collection Command
+                5. Map Collection Command
               </span>
             </div>
           </a>
         
         
-          <a href="../Chapter-7.-Collection-Command-Pipelining/" title="Chapter 7. Collection Command Pipelining" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Chapter 7. Collection Command Pipelining
+                7. Collection Command Pipelining
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
