@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>3. List Collection Command - ARCUS Documentation</title>
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../..">ARCUS Documentation</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../../../..">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Arcus server <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">1. ARCUS Server Ascii Protocol</a>
+    <ul class="dropdown-menu">
+            
+  <li class="dropdown-submenu">
+    <a href="#">1.11 (latest)</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../1.-ARCUS-Basic-Concept/">1. ARCUS Basic Concept</a>
+</li>
+            
+<li >
+    <a href="../2.-Simple-Key-Value-Command/">2. Simple Key Value Command</a>
+</li>
+            
+<li class="active">
+    <a href="./">3. List Collection Command</a>
+</li>
+            
+<li >
+    <a href="../4.-Set-Collection-Command/">4. Set Collection Command</a>
+</li>
+            
+<li >
+    <a href="../5.-Map-Collection-Command/">5. Map Collection Command</a>
+</li>
+            
+<li >
+    <a href="../6.-B+tree-Collection-Command/">6. B+tree Collection Command</a>
+</li>
+            
+<li >
+    <a href="../7.-Collection-Command-Pipelining/">7. Collection Command Pipelining</a>
+</li>
+            
+<li >
+    <a href="../8.-Item-Attribute-Command/">8. Item Attribute Command</a>
+</li>
+            
+<li >
+    <a href="../9.-Administration-Command/">9. Administration Command</a>
+</li>
+            
+<li >
+    <a href="../10.-test-markdown/">10. test markdown</a>
+</li>
+            
+<li >
+    <a href="../11.-test-markdown/">11. test markdown</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#">2. ARCUS telnet interface</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../../2.-ARCUS-telnet-interface/1.11-(latest)/">1.11 (latest)</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../2.-Simple-Key-Value-Command/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../4.-Set-Collection-Command/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/naver/arcus">naver/arcus</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#3-1-list-collection">3-1. List collection 명령</a></li>
+            <li><a href="#lop-create-list-collection">lop create - List Collection 생성</a></li>
+            <li><a href="#delete-list-collection">delete - List Collection 삭제</a></li>
+        <li class="main "><a href="#3-2-list-element">3-2. List element 명령</a></li>
+            <li><a href="#lop-insert-list-element">lop insert - List Element 삽입</a></li>
+            <li><a href="#lop-delete-list-element">lop delete - List Element 삭제</a></li>
+            <li><a href="#lop-get-list-element">lop get - List Element 조회</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="3-1-list-collection">3-1. List collection 명령</h2>
+<h3 id="lop-create-list-collection">lop create - List Collection 생성</h3>
+<p>List collection을 empty 상태로 생성한다.</p>
+<pre><code>lop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
+* attributes: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;attributes> - 설정할 item attributes. <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>noreply - 명시하면, response string을 전달받지 않는다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"CREATED" - 성공</li>
+<li>"EXISTS" - 동일 key string을 가진 item이 이미 존재</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="delete-list-collection">delete - List Collection 삭제</h3>
+<p>기존 <a href="../2.-Simple-Key-Value-Command/#2-3-deletion">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
+<h2 id="3-2-list-element">3-2. List element 명령</h2>
+<h3 id="lop-insert-list-element">lop insert - List Element 삽입</h3>
+<p>List collection에 하나의 element를 삽입한다.
+List collection을 생성하면서 하나의 element를 삽입할 수도 있다.</p>
+<pre><code>lop insert &lt;key&gt; &lt;index&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
+* attributes: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;index> - 삽입 위치를 0-based index로 지정.</li>
+<li>0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄</li>
+<li>-1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄</li>
+<li>&lt;bytes> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)</li>
+<li>create &lt;attributes> - list collection 없을 시에 list 생성 요청.
+                    <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>)을 참조 바란다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+<li>&lt;data> - 삽입할 데이터 (최대 4KB)</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"STROED" - 성공 (element만 삽입)</li>
+<li>“CREATED_STORED” - 성공 (collection 생성하고 element 삽입)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“TYPE_MISMATCH” - 해당 item이 list collection이 아님</li>
+<li>“OVERFLOWED” - overflow 발생</li>
+<li>“OUT_OF_RANGE” - 삽입 위치가 list의 현재 element index 범위를 넘어섬,
+                   예를 들어, 10개 element가 있는 상태에서 삽입 위치가 20인 경우임</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 &lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="lop-delete-list-element">lop delete - List Element 삭제</h3>
+<p>List collection에 하나의 index 또는 index range에 해당하는 elements를 삭제한다.</p>
+<pre><code>lop delete &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [drop] [noreply|pipe]\r\n
+lop delete 명령에서 각 인자의 설명은 아래와 같다.
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;index or "index range"> - 삭제할 element의 index or index range.
+  Element index는 "lop insert" 명령에서 소개한 바와 같이 0-based index 형태로 지정하며,
+  index range는 index1..index2 형태로 표현하여, 그 예는 다음과 같다.</li>
+<li>0..-1: 첫째 element부터 마지막 element까지 (forward 순서)</li>
+<li>2..-2: 앞의 3번째 element부터 뒤의 2번째 element까지 (forward 순서)</li>
+<li>-3..-1: 뒤의 3번째 element부터 뒤의 1번째 element까지 (forward 순서)</li>
+<li>4..2 : 앞의 5번째 element 부터 앞의 3번째 element까지 (backward 순서)</li>
+<li>-1..0: 마지막 element 부터 첫째 element 까지 (backward 순서)</li>
+<li>drop - element 삭제로 인해 empty list가 될 경우, 그 list를 drop할 것인지를 지정한다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"DELETED" - 성공 (element만 삭제)</li>
+<li>“DELETED_DROPPED” - 성공 (element 삭제하고 list를 drop한 상태)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“NOT_FOUND_ELEMENT” - element miss (single index or index range에 해당하는 element가 없음)</li>
+<li>“TYPE_MISMATCH” - 해당 item이 list collection이 아님</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+</ul>
+<h3 id="lop-get-list-element">lop get - List Element 조회</h3>
+<p>List collection에 하나의 index 또는 index range에 해당하는 elements를 조회한다.</p>
+<pre><code>lop get &lt;key&gt; &lt;index or &quot;index range&quot;&gt; [delete|drop]\r\n
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;index or "index range"> - 조회할 element의 index or index range. "lop delete" 명령의 인자 참조</li>
+<li>delete or drop - element 조회하면서 그 element를 delete할 것인지
+                   그리고 delete로 인해 empty list가 될 경우 그 list를 drop할 것인지를 지정한다.</li>
+</ul>
+<p>성공 시의 response string은 아래와 같다.
+VALUE 라인의 &lt;count>는 조회된 element 개수를 의미한다.
+마지막 라인은 END, DELETED, DELETED_DROPPED 중의 하나를 가지며,
+각각 element 조회만 수행한 상태, element 조회하고 삭제한 상태,
+element 조회 및 삭제하고 list를 drop한 상태를 의미한다.</p>
+<pre><code>VALUE &lt;flags&gt; &lt;count&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+...
+END|DELETED|DELETED_DROPPED\r\n
+</code></pre>
+
+<p>실패 시의 response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>“NOT_FOUND”   - key miss</li>
+<li>“NOT_FOUND_ELEMENT”   - element miss (index or index range에 해당하는 element가 없음)</li>
+<li>“TYPE_MISMATCH”   - 해당 item이 list collection이 아님</li>
+<li>“UNREADABLE” - 해당 item이 unreadable item임</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>"SERVER_ERROR out of memory [writing get response]”   - 메모리 부족</li>
+</ul>
+<!-- reference list --></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../js/base.js" defer></script>
+        <script src="../../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
