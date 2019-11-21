@@ -1,0 +1,7 @@
+arrange:
+    - admin
+    - arcus-c-client
+    - arcus-java-client
+    - arcus-server
+    - assets
+    - search

@@ -1,0 +1,1284 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+      
+        <title>Deploying arcus to multiple servers - ARCUS Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#deploying-arcus-to-multiple-servers" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="ARCUS Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              ARCUS Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Deploying arcus to multiple servers
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../arcus-admin-script-usage/" class="md-tabs__link md-tabs__link--active">
+          Admin
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../arcus-c-client/1.-arcus-c-client/" class="md-tabs__link">
+          Arcus c client
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../arcus-java-client/1.-getting-started/" class="md-tabs__link">
+          Arcus java client
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" class="md-tabs__link">
+          Arcus server
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="ARCUS Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/logo.png" width="48" height="48">
+      
+    </a>
+    ARCUS Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Admin
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Admin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-admin-script-usage/" title="Arcus admin script usage" class="md-nav__link">
+      Arcus admin script usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-cloud-configuration-file/" title="Arcus cloud configuration file" class="md-nav__link">
+      Arcus cloud configuration file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-cloud-in-multiple-servers/" title="Arcus cloud in multiple servers" class="md-nav__link">
+      Arcus cloud in multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arcus-directory-structure/" title="Arcus directory structure" class="md-nav__link">
+      Arcus directory structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deploy-ssh-public-key/" title="Deploy ssh public key" class="md-nav__link">
+      Deploy ssh public key
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Deploying arcus to multiple servers
+      </label>
+    
+    <a href="./" title="Deploying arcus to multiple servers" class="md-nav__link md-nav__link--active">
+      Deploying arcus to multiple servers
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    배경 지식
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-public-key" class="md-nav__link">
+    SSH public key 배포
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zookeeper" class="md-nav__link">
+    ZooKeeper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    아커스 클러스터 구성
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    주키퍼와 아커스를 같은 서버에서 실행
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    기존에 운영하던 주키퍼를 사용하고 아커스만 설치
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq-ko/" title="Faq ko" class="md-nav__link">
+      Faq ko
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../howto-install-dependencies/" title="Howto install dependencies" class="md-nav__link">
+      Howto install dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../howto-manage-submodules/" title="Howto manage submodules" class="md-nav__link">
+      Howto manage submodules
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Arcus c client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Arcus c client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/1.-arcus-c-client/" title="1. arcus c client" class="md-nav__link">
+      1. arcus c client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/2.-key-value-API/" title="2. key value API" class="md-nav__link">
+      2. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/3.-list-API/" title="3. list API" class="md-nav__link">
+      3. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/4.-set-API/" title="4. set API" class="md-nav__link">
+      4. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/5.-map-API/" title="5. map API" class="md-nav__link">
+      5. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/6.-btree-API/" title="6. btree API" class="md-nav__link">
+      6. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/7.-attribute-API/" title="7. attribute API" class="md-nav__link">
+      7. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/8.-other-API/" title="8. other API" class="md-nav__link">
+      8. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-c-client/9.-appendix/" title="9. appendix" class="md-nav__link">
+      9. appendix
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Arcus java client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Arcus java client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/1.-getting-started/" title="1. getting started" class="md-nav__link">
+      1. getting started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/2.-arcus-java-client/" title="2. arcus java client" class="md-nav__link">
+      2. arcus java client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/3.-key-value-API/" title="3. key value API" class="md-nav__link">
+      3. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/4.-list-API/" title="4. list API" class="md-nav__link">
+      4. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/5.-set-API/" title="5. set API" class="md-nav__link">
+      5. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/6.-map-API/" title="6. map API" class="md-nav__link">
+      6. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/7.-btree-API/" title="7. btree API" class="md-nav__link">
+      7. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/8.-attribute-API/" title="8. attribute API" class="md-nav__link">
+      8. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/9.-other-API/" title="9. other API" class="md-nav__link">
+      9. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/10.-log-message/" title="10. log message" class="md-nav__link">
+      10. log message
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-java-client/11.-client-notes/" title="11. client notes" class="md-nav__link">
+      11. client notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Arcus server
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Arcus server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      ARCUS Server Ascill Protocol
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        ARCUS Server Ascill Protocol
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-1" type="checkbox" id="nav-4-1-1">
+    
+    <label class="md-nav__link" for="nav-4-1-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/ARCUS-Server-Ascill-Protocol/1.11-(latest)/9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Arcus telnet interface
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Arcus telnet interface
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../arcus-server/arcus-telnet-interface/1.11-(latest)/" title="1.11 (latest)" class="md-nav__link">
+      1.11 (latest)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    배경 지식
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-public-key" class="md-nav__link">
+    SSH public key 배포
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zookeeper" class="md-nav__link">
+    ZooKeeper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    아커스 클러스터 구성
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    주키퍼와 아커스를 같은 서버에서 실행
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    기존에 운영하던 주키퍼를 사용하고 아커스만 설치
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="deploying-arcus-to-multiple-servers">Deploying Arcus To Multiple Servers</h1>
+<p>아커스는 한 대의 서버에 설치하여 서비스할 수 있지만
+실제 운영 환경에서는 여러 대의 서버에 아커스를 분산 배치하여
+보다 많은 요청을 받으면서도 장애에도 대비할 수 있도록 구성해야 합니다.</p>
+<p>이 문서에서는 여러 대의 서버에 아커스를 배포하고 관리하고자 하는 사용자를 위해
+아커스를 분산 배치하는 몇 가지 예제를 보이고,
+어플리케이션 배포 및 시스템 관리를 쉽게 해주는 <a href="https://www.fabfile.org/index.html">Fabric</a>을 이용하여
+아커스 클러스터를 관리하는 방법을 알려드립니다.</p>
+<p>만약 README의 <a href="https://github.com/naver/arcus/blob/master/README.md">Quick Start</a>단계를 아직 진행해보지 않으셨다면
+먼저 해보는 것을 추천합니다.</p>
+<h2 id="_1">배경 지식</h2>
+<p>여러 대의 서버를 다루는 것은 쉽지 않은 일입니다.
+서버 설정을 동일하게 유지하거나 역할 별로 소프트웨어를 설치하고 실행하는 관리작업은
+일일히 수작업으로 하기에는 너무 비효율적이고 실수를 유발할 수 있으므로 가능한한 자동화 해야 합니다.</p>
+<p>경험 많은 사용자라면 <a href="https://puppet.com/">Puppet</a>, <a href="https://www.chef.io/">Chef</a>, <a href="https://www.ansible.com/">Ansible</a>, <a href="https://www.saltstack.com">SaltStack</a>,  등의
+도구를 이용한 자동화된 설치/배포 인프라를 이미 구축해두었을 것입니다.</p>
+<p>만약 이러한 환경이 준비되어 있지 않다면 아래 내용을 참고하시기 바랍니다.</p>
+<h3 id="ssh-public-key">SSH public key 배포</h3>
+<p>SSH를 통해 다른 서버로 접속하기 위해서는 패스워드 입력을 하거나 SSH public key 인증을 사용할 수 있습니다.
+일반적으로 캐시 서버는 외부(인터넷)에 노출되지 않고 내부망에서 동작하기 때문에
+신뢰할 수 있는 서버를 하나 지정하여 암호 없는 public key를 생성한 뒤 해당 key를 각 서버에 배포하여
+이 서버를 게이트웨이로 사용할 수 있습니다.</p>
+<p>자세한 내용은 아래 링크를 참고하시기 바라며 이 문서에서는 간단한 절차만 소개합니다.
+https://help.ubuntu.com/community/SSH/OpenSSH/Keys (영문)</p>
+<ol>
+<li>
+<p>다른 서버를 관리할 용도의 신뢰할 수 있는 서버를 한 대 결정합니다. 이 서버에 접속하여 SSH key를 생성합니다.
+  <code>$ mkdir -p ~/.ssh
+  $ chmod 700 ~/.ssh
+  $ ssh-keygen -t rsa</code></p>
+</li>
+<li>
+<p>각 서버에 public key를 전송합니다.
+  <code># SSH 암호를 입력해야 함. 자신의 환경에 맞게 &lt;username&gt;, &lt;hostname&gt; 변경
+  $ ssh-copy-id &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+<li>
+<p>패스워드 없이 접속이 잘 되는지 확인합니다. 잘 안될 경우 <a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys/">링크</a>를 참조 바랍니다.
+  <code>$ ssh &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+</ol>
+<h3 id="fabric">Fabric</h3>
+<p><a href="https://www.fabfile.org/index.html">Fabric</a>은 시스템 관리와 어플리케이션 설치를 자동화 하기 위한 파이썬 라이브러리이며
+<a href="https://www.ansible.com/">Ansible</a>과 같이 별도의 에이전트 프로세스 없이 SSH 접속만으로 동작합니다.</p>
+<p>아커스 패키지에는 Fabric과 Fabric이 사용하는 스크립트(fabfile)가 포함되어 있습니다.</p>
+<h3 id="zookeeper">ZooKeeper</h3>
+<p><a href="https://zookeeper.apache.org">ZooKeeper</a>는 분산 작업을 제어하기 위한 트리 형태의 신뢰도 높은 저장소입니다.
+아커스는 분산된 각 캐시 서버의 설정을 저장하고 유효한 캐시 서버의 리스트를 클라이언트에게 제공하기 위해
+ZooKeeper를 사용하고 있습니다.</p>
+<p>ZooKeeper에 대한 자세한 내용은 아래 문서를 참고하시기 바랍니다.</p>
+<ul>
+<li><a href="https://www.google.co.kr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=2&amp;ved=0CDQQFjAB&amp;url=http%3A%2F%2Fhelloworld.naver.com%2Fhelloworld%2F583580&amp;ei=2e1xU5izDse2lQXnxIDYDA&amp;usg=AFQjCNEBkwOjoEc_eLpdE9q1rCp_U4IcxA&amp;sig2=dTYLKAVJded2Ur_QwPDYHw&amp;bvm=bv.66330100,d.dGI&amp;cad=rjt">손쉽게 사용하는 ZooKeeper 스토리지, Zoopiter!</a></li>
+</ul>
+<h2 id="_2">아커스 클러스터 구성</h2>
+<p>아커스 클러스터는 다양한 방식으로 구성할 수 있지만 일반적으로 권장되는 구성을 예제로 보여드립니다.</p>
+<h3 id="_3">주키퍼와 아커스를 같은 서버에서 실행</h3>
+<p>사용할 수 있는 서버가 많지 않다면 다음과 같이
+한 서버에서 주키퍼 서버와 아커스 서버를 함께 실행시킬 수 있습니다.</p>
+<pre><code>+--------------------+   +--------------------+   +--------------------+
+| cache001.arcus     |   | cache002.arcus     |   | cache003.arcus     |
++--------------------+   +--------------------+   +--------------------+
+|                    |   |                    |   |                    |
+| ZooKeeper1:2181    |   | ZooKeeper2:2181    |   | ZooKeeper3:2181    |
+|                    |   |                    |   |                    |
+| Memcached1-1:11211 |   | Memcached2-1:11211 |   | Memcached3-1:11211 |
+| Memcached1-2:11212 |   | Memcached2-2:11212 |   | Memcached3-2:11212 |
+|                    |   |                    |   |                    |
++--------------------+   +--------------------+   +--------------------+
+</code></pre>
+
+<h3 id="_4">기존에 운영하던 주키퍼를 사용하고 아커스만 설치</h3>
+<!-- Reference Links -->
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../deploy-ssh-public-key/" title="Deploy ssh public key" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Deploy ssh public key
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../faq-ko/" title="Faq ko" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Faq ko
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
