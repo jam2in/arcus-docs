@@ -7,21 +7,11 @@ Deploying Arcus To Multiple Servers
 
 이 문서에서는 여러 대의 서버에 아커스를 배포하고 관리하고자 하는 사용자를 위해
 아커스를 분산 배치하는 몇 가지 예제를 보이고,
-어플리케이션 배포 및 시스템 관리를 쉽게 해주는 [Fabric][fabric]을 이용하여
+어플리케이션 배포 및 시스템 관리를 쉽게 해주는 [Fabric](https://www.fabfile.org/index.html)을 이용하여
 아커스 클러스터를 관리하는 방법을 알려드립니다.
 
-만약 README의 [Quick Start][readme-quick-start] 단계를 아직 진행해보지 않으셨다면
+만약 README의 [Quick Start](https://github.com/naver/arcus/blob/master/README.md)단계를 아직 진행해보지 않으셨다면
 먼저 해보는 것을 추천합니다.
-
-**Table of Contents**
-
-- [배경 지식](#배경-지식)
-  - [SSH public key 배포](#ssh-public-key-배포)
-  - [Fabric](#fabric)
-  - [ZooKeeper](#zookeeper)
-- [아커스 클러스터 구성](#아커스-클러스터-구성)
-  - [주키퍼와 아커스를 같은 서버에서 실행](#주키퍼와-아커스를-같은-서버에서-실행)
-  - [기존에 운영하던 주키퍼를 사용하고 아커스만 설치](#기존에-운영하던-주키퍼를-사용하고-아커스만-설치)
 
 
 ## 배경 지식
@@ -30,7 +20,7 @@ Deploying Arcus To Multiple Servers
 서버 설정을 동일하게 유지하거나 역할 별로 소프트웨어를 설치하고 실행하는 관리작업은
 일일히 수작업으로 하기에는 너무 비효율적이고 실수를 유발할 수 있으므로 가능한한 자동화 해야 합니다.
 
-경험 많은 사용자라면 [Puppet][puppet], [Chef][chef], [Ansible][ansible], [SaltStack][saltstack] 등의
+경험 많은 사용자라면 [Puppet](https://puppet.com/), [Chef](https://www.chef.io/), [Ansible](https://www.ansible.com/), [SaltStack](https://www.saltstack.com),  등의
 도구를 이용한 자동화된 설치/배포 인프라를 이미 구축해두었을 것입니다.
 
 만약 이러한 환경이 준비되어 있지 않다면 아래 내용을 참고하시기 바랍니다.
@@ -65,18 +55,19 @@ https://help.ubuntu.com/community/SSH/OpenSSH/Keys (영문)
 
 ### Fabric
 
-[Fabric][fabric]은 시스템 관리와 어플리케이션 설치를 자동화 하기 위한 파이썬 라이브러리이며
-[Ansible][ansible]과 같이 별도의 에이전트 프로세스 없이 SSH 접속만으로 동작합니다.
+[Fabric](https://www.fabfile.org/index.html)은 시스템 관리와 어플리케이션 설치를 자동화 하기 위한 파이썬 라이브러리이며
+[Ansible](https://www.ansible.com/)과 같이 별도의 에이전트 프로세스 없이 SSH 접속만으로 동작합니다.
 
 아커스 패키지에는 Fabric과 Fabric이 사용하는 스크립트(fabfile)가 포함되어 있습니다.
 
 ### ZooKeeper
 
-[ZooKeeper][zookeeper]는 분산 작업을 제어하기 위한 트리 형태의 신뢰도 높은 저장소입니다.
+[ZooKeeper](https://zookeeper.apache.org)는 분산 작업을 제어하기 위한 트리 형태의 신뢰도 높은 저장소입니다.
 아커스는 분산된 각 캐시 서버의 설정을 저장하고 유효한 캐시 서버의 리스트를 클라이언트에게 제공하기 위해
 ZooKeeper를 사용하고 있습니다.
 
 ZooKeeper에 대한 자세한 내용은 아래 문서를 참고하시기 바랍니다.
+
 - [손쉽게 사용하는 ZooKeeper 스토리지, Zoopiter!][helloworld-zookeeper]
 
 ## 아커스 클러스터 구성

@@ -8,11 +8,8 @@ Arcus Cache Cloud Setup in Multiple Servers
 이 문서에서는 Arcus 관리 스크립트인 `scripts/arcus.sh`를 이용하여
 여러 대의 서버에 Arcus cache cloud를 생성하여 관리하는 방법을 가이드한다.
 이 작업을 진행하기 전에,
-README의 [Quick Start][readme-quick-start] 단계를 먼저 진행해 보고
+README의 [Quick Start](https://github.com/naver/arcus/blob/master/README.md) 단계를 먼저 진행해 보고
 아래의 Arcus cloud 관리에 필요한 기본 사항을 먼저 읽어보길 권한다.
-
-* [Arucs cloud configuraiton file](arcus-cloud-configuration-file.md)
-* [Arcus cloud admin script usage](arcus-admin-script-usage.md)
 
 본 가이드는 아래와 같이 cache001.arcus, cache002.arcus, cache003.arcus의 3대 서버를 사용하여
 "test-cloud'란 service code(or cloud name)을 가진 Arcus cache cloud를 구성한다.
@@ -34,7 +31,7 @@ service code: test-cloud
 +--------------------+   +--------------------+   +--------------------+
 ```
 
-README의 [Quick Start][readme-quick-start]에서 처럼 `quicksetup` 방식을 사용할 수 있지만,
+README의 [Quick Start](https://github.com/naver/arcus/blob/master/README.md)에서 처럼 `quicksetup` 방식을 사용할 수 있지만,
 본 가이드에서는 Arcus admin script의 개별 명령을 이용하는 방식으로 소개한다.
 Arcus cache cloud를 구성하는 작업은 아래 기술된 순서대로 진행하면 된다.
 
@@ -102,7 +99,7 @@ Arcus cache cloud 설정파일을 이용해 ZooKeeper에 해당 Arcus cloud 정�
 ```
 
 위의 명령을 모두 수행하면, 
-README의 [Quick Start][readme-quick-start]에서 소개한 `quicksetup` 명령을 수행한 상태와
+README의 [Quick Start](https://github.com/naver/arcus/blob/master/README.md)에서 소개한 `quicksetup` 명령을 수행한 상태와
 동일하게 Arcus cache cloud가 구동된 상태가 된다.
 
 작업이 완료되면 `listall`, `list` 명령을 이용하여 캐시 서버가 잘 구동되었는지 확인할 수 있다.
@@ -138,3 +135,5 @@ Zookeeper에 이미 등록된 Arcus cache cloud를 다시 구동하고 싶다면
 <!-- Reference Links -->
 
 [readme-quick-start]: ../README.md#quick-start
+
+[https://github.com/naver/arcus/blob/master/README.md]: 
