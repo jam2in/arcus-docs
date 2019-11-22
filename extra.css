@@ -1,0 +1,16 @@
+@media only screen and (min-width: 76.25em) {
+  .wm-content-pane {
+    max-width: none;
+  }
+
+  .wm-toc-pane {
+    right: 0;
+    margin-left: 0;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .wm-toc-repo {
+      left:0
+  }
+}

@@ -1,0 +1,1603 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../custom/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#5-1-map-item" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="ARCUS Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              ARCUS Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                5. map API
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" class="md-tabs__link">
+          Arcus server
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../1.-arcus-c-client/" class="md-tabs__link md-tabs__link--active">
+          Arcus c client
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-java-client/1.-getting-started/" class="md-tabs__link">
+          Arcus java client
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../admin/arcus-admin-script-usage/" class="md-tabs__link">
+          Admin
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="ARCUS Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.png" width="48" height="48">
+      
+    </a>
+    ARCUS Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Arcus server
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Arcus server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      ARCUS Server Ascii Protocol
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        ARCUS Server Ascii Protocol
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Arcus telnet interface
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Arcus telnet interface
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/arcus-telnet-interface/1.11-(latest)/" title="1.11 (latest)" class="md-nav__link">
+      1.11 (latest)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Arcus c client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Arcus c client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      1.10 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        1.10 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.-arcus-c-client/" title="1. arcus c client" class="md-nav__link">
+      1. arcus c client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.-key-value-API/" title="2. key value API" class="md-nav__link">
+      2. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.-list-API/" title="3. list API" class="md-nav__link">
+      3. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.-set-API/" title="4. set API" class="md-nav__link">
+      4. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        5. map API
+      </label>
+    
+    <a href="./" title="5. map API" class="md-nav__link md-nav__link--active">
+      5. map API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#5-1-map-item" class="md-nav__link">
+    5-1. Map Item 생성
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-2-map-element" class="md-nav__link">
+    5-2. Map Element 삽입
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-3-map-element" class="md-nav__link">
+    5-3. Map Element 변경
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-4-map-element" class="md-nav__link">
+    5-4. Map Element 삭제
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-5-map-element" class="md-nav__link">
+    5-5. Map Element 조회
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-6-map-element" class="md-nav__link">
+    5-6. Map Element 일괄 삽입
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.-btree-API/" title="6. btree API" class="md-nav__link">
+      6. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.-attribute-API/" title="7. attribute API" class="md-nav__link">
+      7. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8.-other-API/" title="8. other API" class="md-nav__link">
+      8. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.-appendix/" title="9. appendix" class="md-nav__link">
+      9. appendix
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Arcus java client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Arcus java client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/1.-getting-started/" title="1. getting started" class="md-nav__link">
+      1. getting started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/2.-arcus-java-client/" title="2. arcus java client" class="md-nav__link">
+      2. arcus java client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/3.-key-value-API/" title="3. key value API" class="md-nav__link">
+      3. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/4.-list-API/" title="4. list API" class="md-nav__link">
+      4. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/5.-set-API/" title="5. set API" class="md-nav__link">
+      5. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/6.-map-API/" title="6. map API" class="md-nav__link">
+      6. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/7.-btree-API/" title="7. btree API" class="md-nav__link">
+      7. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/8.-attribute-API/" title="8. attribute API" class="md-nav__link">
+      8. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/9.-other-API/" title="9. other API" class="md-nav__link">
+      9. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/10.-log-message/" title="10. log message" class="md-nav__link">
+      10. log message
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/11.-client-notes/" title="11. client notes" class="md-nav__link">
+      11. client notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Admin
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Admin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-admin-script-usage/" title="Arcus admin script usage" class="md-nav__link">
+      Arcus admin script usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-cloud-configuration-file/" title="Arcus cloud configuration file" class="md-nav__link">
+      Arcus cloud configuration file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-cloud-in-multiple-servers/" title="Arcus cloud in multiple servers" class="md-nav__link">
+      Arcus cloud in multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-directory-structure/" title="Arcus directory structure" class="md-nav__link">
+      Arcus directory structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/deploy-ssh-public-key/" title="Deploy ssh public key" class="md-nav__link">
+      Deploy ssh public key
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/deploying-arcus-to-multiple-servers/" title="Deploying arcus to multiple servers" class="md-nav__link">
+      Deploying arcus to multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/faq-ko/" title="Faq ko" class="md-nav__link">
+      Faq ko
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/howto-install-dependencies/" title="Howto install dependencies" class="md-nav__link">
+      Howto install dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/howto-manage-submodules/" title="Howto manage submodules" class="md-nav__link">
+      Howto manage submodules
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#5-1-map-item" class="md-nav__link">
+    5-1. Map Item 생성
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-2-map-element" class="md-nav__link">
+    5-2. Map Element 삽입
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-3-map-element" class="md-nav__link">
+    5-3. Map Element 변경
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-4-map-element" class="md-nav__link">
+    5-4. Map Element 삭제
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-5-map-element" class="md-nav__link">
+    5-5. Map Element 조회
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-6-map-element" class="md-nav__link">
+    5-6. Map Element 일괄 삽입
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>5. map API</h1>
+                
+                <p>Map item은 하나의 key에 대해 hash 구조 기반으로 mkey &amp; value 쌍을 data 집합으로 가진다.</p>
+<p><strong>제약 조건</strong>
+- 저장 가능한 최대 element 개수: 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)
+- 각 element에서 value 최대 크기 : 4KB
+- mkey 최대 길이는 250 바이트 이고, 하나의 map에 중복된 mkey는 허용하지 않는다.</p>
+<h2 id="5-1-map-item">5-1. Map Item 생성</h2>
+<p>새로운 empty map item을 생성한다.</p>
+<pre><code class="c">emcached_return_t memcached_mop_create(memcached_st *ptr, const char *key, size_t key_length,
+                                       memcached_coll_create_attrs_st *attributes);
+</code></pre>
+
+<ul>
+<li>key: map item의 key</li>
+<li>attributes: map item의 속성 정보</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_CREATED: Map이 생성됨.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_EXISTS: 동일한 key를 가진 Map이 이미 존재함.</li>
+</ul>
+<p>Item 생성 시, item 속성 정보를 가지는 attributes 구조체가 필요하다.
+Item 속성 정보를 가지는 attributes 구조체는 아래와 같이 초기화한다.
+Attributes 구조체의 초기화 시에는 필수 속성 정보인 flags, exptime, maxcount 만을 설정할 수 있다.</p>
+<pre><code class="c">memcached_return_t memcached_coll_create_attrs_init(memcached_coll_create_attrs_st *attributes,
+                                                    uint32_t flags, uint32_t exptime, uint32_t maxcount)
+</code></pre>
+
+<p>그 외에, 선택적 속성들은 attributes 구조체를 초기화한 이후,
+아래의 함수를 이용하여 개별적으로 지정할 수 있다.</p>
+<pre><code class="c">memcached_return_t memcached_coll_create_attrs_set_flags(memcached_coll_create_attrs_st *attributes, uint32_t flags)
+memcached_return_t memcached_coll_create_attrs_set_expiretime(memcached_coll_create_attrs_st *attributes,
+                                                              uint32_t expiretime)
+memcached_return_t memcached_coll_create_attrs_set_maxcount(memcached_coll_create_attrs_st *attributes,
+                                                            uint32_t maxcount)
+memcached_return_t memcached_coll_create_attrs_set_overflowaction(memcached_coll_create_attrs_st *attributes,
+                                                                  memcached_coll_overflowaction_t overflowaction)
+memcached_return_t memcached_coll_create_set_unreadable(memcached_coll_create_attrs_st *attributes)
+</code></pre>
+
+<ul>
+<li>memcached_coll_create_attrs_set_flags : attributes에 flags 값을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_expiretime : attributes에 expire time을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_maxcount : attributes에 maxcount 값을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_overflowaction : Map의 Element 개수가 maxcount를 넘어 섰을 때(overflow)의 동작을 설정한다.</li>
+<li>OVERFLOWACTION_ERROR: overflow가 발생하면 오류(MEMCACHED_OVERFLOWED)를 반환하도록 한다.</li>
+<li>OVERFLOWACTION_HEAD_TRIM: Map은 지원하지 않는다.</li>
+<li>OVERFLOWACTION_TAIL_TRIM: Map은 지원하지 않는다.</li>
+<li>memcached_coll_create_set_unreadable : 생성 시 unreadable 상태로 만들 것인지 설정한다.
+  Unreadable 상태로 생성된 Map은 readable 상태가 되기 전까지 조회할 수 없다.
+  이렇게 unreadable 상태로 생성된 Map을 readable 상태로 만들기 위해서는 memcached_set_attrs를 사용해야 한다.</li>
+</ul>
+<p>Map item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_item_create(memcached_st *memc)
+{
+    memcached_return_t rc;
+
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= 1000;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    // 비어있는 맵을 생성한다.
+    rc= memcached_mop_create(memc, &quot;map:an_empty_map&quot;, strlen(&quot;map:an_empty_map&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED == memcached_get_last_response_code(memc));
+
+    // 맵이 이미 존재한다면 실패한다.
+    rc= memcached_mop_create(memc, &quot;map:an_empty_map&quot;, strlen(&quot;map:an_empty_map&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_EXISTS == memcached_get_last_response_code(memc));
+}
+</code></pre>
+
+<h2 id="5-2-map-element">5-2. Map Element 삽입</h2>
+<p>Map에 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_insert(memcached_st *ptr, const char *key, size_t key_length,
+                                        const char *mkey, size_t mkey_length,
+                                        const char *value, size_t value_length,
+                                        memcached_coll_create_attrs_st *attributes)
+</code></pre>
+
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 삽입할 element의 mkey</li>
+<li>value, value_lenth: 삽입할 element의 value</li>
+<li>attributes: Map 없을 시에 attributes에 따라 empty map을 생성 후에 element 삽입한다.</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_STORED: 기존에 존재하던 Map에 element가 삽입됨.</li>
+<li>MEMCACHED_CREATED_STORED: Map이 새롭게 생성되고 element가 삽입됨.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_NOTFOUND: Map이 존재하지 않음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+<li>MEMCACHED_OVERFLOWED: Overflow 상태임. (overflowaction=error)</li>
+<li>MEMCACHED_ELEMENT_EXISTS: 동일한 mkey를 가진 element가 이미 존재하고 있음</li>
+</ul>
+<p>Map element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_element_insert(memcached_st *memc)
+{
+    memcached_return_t rc;
+
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= 1000;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    // 1. CREATED_STORED
+    rc= memcached_mop_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), &quot;mkey&quot;, strlen(&quot;mkey&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    // 2. STORED
+    rc= memcached_mop_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), &quot;mkey1&quot;, strlne(&quot;mkey1&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_STORED == memcached_get_last_response_code(memc));
+
+    // 3. ELEMENT_EXIST
+    rc= memcached_mop_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), &quot;mkey1&quot;, strlen(&quot;mkey1&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_ELEMENT_EXIST == rc);
+}
+</code></pre>
+
+<h2 id="5-3-map-element">5-3. Map Element 변경</h2>
+<p>Map에 하나의 element를 변경하는 함수이다. 주어진 mkey를 가진 element의 value를 변경한다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_update(memcached_st *ptr, const char *key, size_t key_length,
+                                        const char *mkey, size_t mkey_length,
+                                        const char *value, size_t value_length)
+</code></pre>
+
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 변경할 element의 mkey</li>
+<li>value, value_lenth: element의 new value</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_UPDATED: 주어진 mkey를 가진 element를 업데이트함.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_NOTFOUND: Map이 존재하지 않음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+</ul>
+<p>Map element를 변경하는 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_element_update(memcached_st *memc)
+{
+    memcached_return_t rc;
+
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= 1000;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    // 1. CREATED_STORED
+    rc= memcached_mop_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), &quot;mkey&quot;, strlen(&quot;mkey&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    // 2. UPDATED
+    rc= memcached_mop_update(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), &quot;mkey&quot;, strlne(&quot;mkey&quot;), &quot;new_value&quot;, strlen(&quot;new_value&quot;));
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_UPDATED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+
+<h2 id="5-4-map-element">5-4. Map Element 삭제</h2>
+<p>Map element를 삭제하는 함수는 두 가지가 있다.</p>
+<p>첫째, map에서 하나의 mkey로 하나의 element만 삭제하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_delete(memcached_st *ptr, const char *key, size_t key_length,
+                                        const char *mkey, size_t mkey_length, bool drop_if_empty)
+</code></pre>
+
+<p>둘째, map의 element 전체를 삭제하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_delete_all(memcached_st *ptr, const char *key, size_t key_length,
+                                            bool drop_if_empty)
+</code></pre>
+
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 삭제할 element의 mkey</li>
+<li>drop_if_empty: element 삭제로 empty map이 될 경우, 그 map도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_DELETED: 주어진 mkey에 해당하는 element 혹은 전체 element를 삭제함.</li>
+<li>MEMCACHED_DELETED_DROPPED: 주어진 mkey에 해당하는 element 혹은 전체 element를 삭제하고, empty 상태가 된 Map도 삭제함.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Map이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 mkey에 해당하는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+</ul>
+<p>Map element를 삭제하는 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_element_delete(memcached_st *memc)
+{
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= 1000;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    memcached_return_t rc;
+
+    // 테스트 데이터를 삽입한다.
+    rc= memcached_mop_insert(memc, &quot;map:a_map&quot;, strlen(&quot;map:a_map&quot;), &quot;mkey0&quot;, strlen(&quot;mkey0&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+
+    rc= memcached_mop_insert(memc, &quot;map:a_map&quot;, strlen(&quot;map:a_map&quot;), &quot;mkey1&quot;, strlen(&quot;mkey1&quot;), &quot;value&quot;, strlen(&quot;value&quot;), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+
+    // mkey0에 해당하는 element를 삭제한다.
+    rc= memcached_mop_delete(memc, &quot;map:a_map&quot;, strlen(&quot;map:a_map&quot;), &quot;mkey0&quot;, strlen(&quot;mkey0&quot;), true);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED == memcached_get_last_response_code(memc));
+
+    // 전체 map element를 삭제하고, empty 상태가 된 맵을 삭제한다.
+    rc= memcached_mop_delete_all(memc, &quot;map:a_map&quot;, strlen(&quot;map:a_map&quot;), true);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+
+<h2 id="5-5-map-element">5-5. Map Element 조회</h2>
+<p>Map element를 조회하는 함수는 세 가지가 있다.</p>
+<p>첫째, 하나의 map mkey로 하나의 element만 조회하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_get(memcached_st *ptr, const char *key, size_t key_length,
+                                     const char *mkey, size_t mkey_length,
+                                     bool with_delete, bool drop_if_empty,
+                                     memcached_coll_result_st *result)
+</code></pre>
+
+<p>둘째, map의 전체 element를 조회하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_get_all(memcached_st *ptr, const char *key, size_t key_length,
+                                         bool with_delete, bool drop_if_empty,
+                                         memcached_coll_result_st *result)
+</code></pre>
+
+<p>셋째, mkey list에 해당하는 element들을 조회하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_get_by_list(memcached_st *ptr, const char *key, size_t key_length,
+                                             const char * const *mkeys, const size_t *mkeys_length,
+                                             bool with_delete, bool drop_if_empty,
+                                             memcached_coll_result_st *result)
+</code></pre>
+
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 조회할 mkey</li>
+<li>mkeys, mkeys_length: 조회할 mkey list</li>
+<li>with_delete: 조회와 함께 삭제도 수행할 것인지를 지정</li>
+<li>drop_if_empty: element 삭제로 empty list가 될 경우, 그 list도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_END: Map에서 정상적으로 element를 조회하였음.</li>
+<li>MEMCACHED_DELETED: Map에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.</li>
+<li>
+<p>MEMCACHED_DELETED_DROPPED: Map에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.</p>
+</li>
+<li>
+<p>not MEMCACHED_SUCCESS</p>
+</li>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Map이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 mkey 또는 mkeys(mkey list)에 해당하는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+<li>MEMCACHED_UNREADABLE: 주어진 key에 해당하는 Map이 unreadable 상태임.</li>
+</ul>
+<p>조회 결과는 memcached_coll_result_t 구조체에 저장된다.
+조회 결과에 접근하기 위한 API는 다음과 같다.</p>
+<pre><code class="c">memcached_coll_result_st *memcached_coll_result_create(const memcached_st *ptr, memcached_coll_result_st *result)
+void                      memcached_coll_result_free(memcached_coll_result_st *result)
+
+memcached_coll_type_t     memcached_coll_result_get_type(memcached_coll_result_st *result)
+size_t                    memcached_coll_result_get_count(memcached_coll_result_st *result)
+uint32_t                  memcached_coll_result_get_flags(memcached_coll_result_st *result)
+const char *              memcached_coll_result_get_mkey(memcached_coll_result_st *result, size_t index)
+size_t                    memcached_coll_result_get_mkey_length(memcached_coll_result_st *result, size_t index)
+const char *              memcached_coll_result_get_value(memcached_coll_result_st *result, size_t index)
+size_t                    memcached_coll_result_get_value_length(memcached_coll_result_st *result, size_t index)
+</code></pre>
+
+<p>Map element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_element_get(memcached_st *memc)
+{
+    uint32_t flags= 10;
+    uint32_t exptime= 600; 
+    uint32_t maxcount= 1000;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+    memcached_return_t rc;
+    memcached_coll_result_st *result;
+
+    for (uint32_t i=0; i&lt;maxcount; i++)    { 
+        char mkey[15];
+        char buffer[15];
+        size_t mkey_len = snprintf(mkey, 15, &quot;mkey%d&quot;, i);
+        size_t buffer_len= snprintf(buffer, 15, &quot;value%d&quot;, i);
+        rc= memcached_mop_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), mkey, mkey_len, buffer, buffer_len, &amp;attributes);
+        assert(MEMCACHED_SUCCESS == rc);
+    }
+
+    // 조회 범위에 아무런 element가 없는 경우
+    const char *not_mkeys[]= { &quot;mkey1001&quot;, &quot;mkey1010&quot;, &quot;mkey1100&quot; };
+    size_t not_mkeys_length[]= { 8, 8, 8 };
+    result = memcached_coll_result_create(memc, NULL);
+
+    rc= memcached_mop_get_by_list(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), not_mkeys, not_mkeys_length, 3, false, false, result);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_NOTFOUND_ELEMENT == memcached_get_last_response_code(memc));
+
+    memcached_coll_result_free(result);
+
+    // 조회와 동시에 조회된 element를 삭제한다.
+    const char *mkeys[]= { &quot;mkey0&quot;, &quot;mkey1&quot;, &quot;mkey2&quot;, &quot;mkey3&quot;, &quot;mkey4&quot;, &quot;mkey5&quot;};
+    size_t mkeys_length[]= { 5, 5, 5, 5, 5, 5 };
+    result = memcached_coll_result_create(memc, NULL);
+
+    rc= memcached_mop_get_by_list(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), mkeys, mkeys_length, 6, true, true, result);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED == memcached_get_last_response_code(memc));
+
+    // 조회 결과를 확인한다.
+    for (size_t i=0; i&lt;memcached_coll_result_get_count(result); i++)
+    {
+        char mkey[15];
+        char buffer[15];
+        snprintf(mkey, 15, &quot;mkey%u&quot;, (int)i);
+        snprintf(buffer, 15, &quot;value%u&quot;, (int)i);
+        assert(0 == strcmp(mkey, memcached_coll_result_get_mkey(result, i)));
+        assert(0 == strcmp(buffer, memcached_coll_result_get_value(result, i)));
+    }
+
+    // 전체 map element를 조회하고, 조회와 동시에 삭제한다. empty 상태가 된 맵을 삭제한다.
+    result = memcached_coll_result_create(memc, NULL);
+
+    rc= memcached_mop_get_all(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;), true, true, result);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+
+    // 조회 결과를 삭제한다.
+    memcached_coll_result_free(result);
+}
+</code></pre>
+
+<h2 id="5-6-map-element">5-6. Map Element 일괄 삽입</h2>
+<p>Map에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.</p>
+<p>첫째, 하나의 key가 가리키는 map에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_mop_piped_insert(memcached_st *ptr, const char *key, const size_t key_length,
+                                              const size_t numr_of_piped_items,
+                                              const char * const *mkeys, const size_t *mkeys_length,
+                                              const char * const *values, const size_t *values_length,
+                                              memcached_coll_create_attrs_st *attributes,
+                                              memcached_return_t *results, memcached_return_t *piped_rc)
+</code></pre>
+
+<ul>
+<li>key, key_length: 하나의 key를 지정</li>
+<li>numr_of_piped_items: 한번에 삽입할 element 개수</li>
+<li>mkeys, mkeys_length: 다수 element 각각의 mkey와 그 길이</li>
+<li>values, values_length: 다수 element 각각의 value와 그 길이</li>
+<li>attributes: 해당 map이 없을 시에, attrbiutes에 따라 map을 생성 후에 삽입한다.</li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 map들에 각각 하나의 element를 삽입하는 함수이다. </p>
+<pre><code class="c">memcached_return_t memcached_mop_piped_insert_bulk(memcached_st *ptr, const char * const *keys, const size_t *keylengths,
+                                                   const size_t numr_of_keys,
+                                                   const char *mkey, size_t mkey_length,
+                                                   const char *value, size_t value_length,
+                                                   memcached_coll_create_attrs_st *attributes,
+                                                   memcached_return_t *results, memcached_return_t *piped_rc)
+</code></pre>
+
+<ul>
+<li>keys, keys_length: 다수 key들을 지정</li>
+<li>numr_of_keys: key들의 수</li>
+<li>mkey, mkey_length: element의 mkey</li>
+<li>value, value_length: element의 value</li>
+<li>attributes: 해당 map이 없을 시에, attrbiutes에 따라 map을 생성 후에 삽입한다.</li>
+</ul>
+<p>Map element 일괄 삽입의 결과는 아래의 인자를 통해 받는다.</p>
+<ul>
+<li>results: 일괄 삽입 결과가 주어진 key 또는 (key, element) 순서대로 저장된다.</li>
+<li>STORED: element만 삽입</li>
+<li>CREATE_STORED: map item 생성 후에, element 삽입</li>
+<li>piped_rc: 일괄 저장의 전체 결과를 담고 있다</li>
+<li>MEMCACHED_ALL_SUCCESS: 모든 element가 저장됨.</li>
+<li>MEMCACHED_SOME_SUCCESS: 일부 element가 저장됨.</li>
+<li>MEMCACHED_ALL_FAILURE: 전체 element가 저장되지 않음.</li>
+</ul>
+<p>Map element 일괄 삽입의 예제는 아래와 같다.</p>
+<pre><code class="c">void arcus_map_element_piped_insert(memcached_st *memc)
+{
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= MEMCACHED_COLL_MAX_PIPED_CMD_SIZE;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    memcached_return_t rc;
+    memcached_return_t piped_rc; // pipe operation의 전체 성공 여부
+    memcached_return_t results[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE]; // 각 key에 대한 응답 코드
+
+    // 테스트 데이터
+    char **mkeys = (char **)malloc(sizeof(char *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    size_t mkeylengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+    char **values = (char **)malloc(sizeof(char *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    size_t valuelengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+
+    for (uint32_t i=0; i&lt;maxcount; i++)
+    {
+        mkeys[i]= (char *)malloc(sizeof(char) * 15);
+        mkeylengths[i]= snprintf(values[i], 15, &quot;mkey%d&quot;, i);
+        values[i]= (char *)malloc(sizeof(char) * 15);
+        valuelengths[i]= snprintf(values[i], 15, &quot;value%d&quot;, i);
+    }
+
+
+    // piped insert를 요청한다.
+    rc= memcached_mop_piped_insert(memc, &quot;a_map&quot;, strlen(&quot;a_map&quot;),
+            MEMCACHED_COLL_MAX_PIPED_CMD_SIZE,
+            mkeys, mkeylengths,
+            values, valuelengths,
+            &amp;attributes, results, &amp;piped_rc);
+
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_ALL_SUCCESS == piped_rc);
+
+    // 각 key에 대한 결과를 확인한다.
+    for (size_t i=0; i&lt;maxcount; i++)&lt;/nowiki&gt;
+    {
+        assert(MEMCACHED_STORED == results[i] or MEMCACHED_CREATED_STORED == results[i]);
+    }
+
+    for (uint32_t i=0; i&lt;maxcount; i++)
+    {
+        free((void *)mkeys[i]);
+        free((void *)values[i]);    
+    }
+    free((void *)mkeys);
+    free((void *)values);
+}
+</code></pre>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+    </div>
+    
+      <script src="../../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

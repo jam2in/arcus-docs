@@ -1,0 +1,1177 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../custom/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#7-1-attribute" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="ARCUS Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              ARCUS Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                7. attribute API
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" class="md-tabs__link">
+          Arcus server
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../1.-arcus-c-client/" class="md-tabs__link md-tabs__link--active">
+          Arcus c client
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-java-client/1.-getting-started/" class="md-tabs__link">
+          Arcus java client
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../admin/arcus-admin-script-usage/" class="md-tabs__link">
+          Admin
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="ARCUS Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.png" width="48" height="48">
+      
+    </a>
+    ARCUS Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Arcus server
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Arcus server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      ARCUS Server Ascii Protocol
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        ARCUS Server Ascii Protocol
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Arcus telnet interface
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Arcus telnet interface
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/arcus-telnet-interface/1.11-(latest)/" title="1.11 (latest)" class="md-nav__link">
+      1.11 (latest)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Arcus c client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Arcus c client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      1.10 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        1.10 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.-arcus-c-client/" title="1. arcus c client" class="md-nav__link">
+      1. arcus c client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.-key-value-API/" title="2. key value API" class="md-nav__link">
+      2. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.-list-API/" title="3. list API" class="md-nav__link">
+      3. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.-set-API/" title="4. set API" class="md-nav__link">
+      4. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.-map-API/" title="5. map API" class="md-nav__link">
+      5. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.-btree-API/" title="6. btree API" class="md-nav__link">
+      6. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        7. attribute API
+      </label>
+    
+    <a href="./" title="7. attribute API" class="md-nav__link md-nav__link--active">
+      7. attribute API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-1-attribute" class="md-nav__link">
+    7-1. Attribute 변경
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-2-attribute" class="md-nav__link">
+    7-2. Attribute 조회
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8.-other-API/" title="8. other API" class="md-nav__link">
+      8. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.-appendix/" title="9. appendix" class="md-nav__link">
+      9. appendix
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Arcus java client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Arcus java client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/1.-getting-started/" title="1. getting started" class="md-nav__link">
+      1. getting started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/2.-arcus-java-client/" title="2. arcus java client" class="md-nav__link">
+      2. arcus java client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/3.-key-value-API/" title="3. key value API" class="md-nav__link">
+      3. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/4.-list-API/" title="4. list API" class="md-nav__link">
+      4. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/5.-set-API/" title="5. set API" class="md-nav__link">
+      5. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/6.-map-API/" title="6. map API" class="md-nav__link">
+      6. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/7.-btree-API/" title="7. btree API" class="md-nav__link">
+      7. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/8.-attribute-API/" title="8. attribute API" class="md-nav__link">
+      8. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/9.-other-API/" title="9. other API" class="md-nav__link">
+      9. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/10.-log-message/" title="10. log message" class="md-nav__link">
+      10. log message
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-java-client/11.-client-notes/" title="11. client notes" class="md-nav__link">
+      11. client notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Admin
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Admin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-admin-script-usage/" title="Arcus admin script usage" class="md-nav__link">
+      Arcus admin script usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-cloud-configuration-file/" title="Arcus cloud configuration file" class="md-nav__link">
+      Arcus cloud configuration file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-cloud-in-multiple-servers/" title="Arcus cloud in multiple servers" class="md-nav__link">
+      Arcus cloud in multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/arcus-directory-structure/" title="Arcus directory structure" class="md-nav__link">
+      Arcus directory structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/deploy-ssh-public-key/" title="Deploy ssh public key" class="md-nav__link">
+      Deploy ssh public key
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/deploying-arcus-to-multiple-servers/" title="Deploying arcus to multiple servers" class="md-nav__link">
+      Deploying arcus to multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/faq-ko/" title="Faq ko" class="md-nav__link">
+      Faq ko
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/howto-install-dependencies/" title="Howto install dependencies" class="md-nav__link">
+      Howto install dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/howto-manage-submodules/" title="Howto manage submodules" class="md-nav__link">
+      Howto manage submodules
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-1-attribute" class="md-nav__link">
+    7-1. Attribute 변경
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-2-attribute" class="md-nav__link">
+    7-2. Attribute 조회
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>7. attribute API</h1>
+                
+                <p>Item attributes는 각 cache item의 메타데이터를 의미한다.
+Item attributes의 기본 설명은 <a href="/arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/8.-Item-Attribute-Command">Arcus cache server의 item attributes 부분</a>을 참고하길 바란다.</p>
+<p>Item attributes를 변경하거나 조회하는 함수들을 설명한다.</p>
+<h2 id="7-1-attribute">7-1. Attribute 변경</h2>
+<p>주어진 key의 attributes를 변경하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_set_attrs(memcached_st *ptr, const char *key, size_t key_length,
+const memcached_coll_attrs_st *attrs);
+</code></pre>
+
+<p>Return codes는 다음과 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_END: Attribute 정보를 성공적으로 변경함.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 item이 존재하지 않음.</li>
+<li>MEMCACHED_ATTR_ERROR_BAD_VALUE: 잘못된 설정값을 지정하였음.</li>
+</ul>
+<p>변경할 attributes 정보를 가지는 memcached_coll_attrs_st 구조체는 아래 API를 통해 초기화하고 설정할 수 있다.</p>
+<pre><code class="c">memcached_return_t memcached_coll_attrs_init(memcached_coll_attrs_st *attrs);
+memcached_return_t memcached_coll_attrs_set_flags(memcached_coll_attrs_st *attrs, uint32_t flags);
+memcached_return_t memcached_coll_attrs_set_expiretime(memcached_coll_attrs_st *attrs, uint32_t expiretime);
+memcached_return_t memcached_coll_attrs_set_overflowaction(memcached_coll_attrs_st *attrs,
+                                            memcached_coll_overflowaction_t overflowaction);
+memcached_return_t memcached_coll_attrs_set_maxcount(memcached_coll_attrs_st *attrs, uint32_t maxcount);
+memcached_return_t memcached_coll_attrs_set_maxbkeyrange(memcached_coll_attrs_st *attrs, uint32_t maxbkeyrange);
+memcached_return_t memcached_coll_attrs_set_maxbkeyrange_by_byte(memcached_coll_attrs_st *attrs,
+                                            unsigned char *maxbkeyrange, size_t maxbkeyrange_size);
+memcached_return_t memcached_coll_attrs_set_readable(memcached_coll_attrs_st *attrs);
+</code></pre>
+
+<ul>
+<li>memcached_coll_attrs_init : memcached_coll_sttrs_st 구초체를 초기화한다.</li>
+<li>memcached_coll_attrs_set_flags : 변경할 Flag 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_expiretime : 변경할 Expire time 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_overflowaction : 변경할 Overflowaction을 설정한다.</li>
+<li>memcached_coll_attrs_set_maxcount : 변경할 maxcount 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_maxbkeyrange : 변경할 maxbkeyrange를 설정한다. (B+tree에만 적용 가능)</li>
+<li>memcached_coll_attrs_set_maxbkeyrange_by_byte : 변경할 maxbkeyrange를 설정한다. (B+tree에만 적용 가능)</li>
+<li>memcached_coll_attrs_set_readable : Attribute를 Readable 상태로 변경하도록 설정한다.</li>
+</ul>
+<h2 id="7-2-attribute">7-2. Attribute 조회</h2>
+<p>주어진 key의 attributes를 조회하는 함수이다.</p>
+<pre><code class="c">memcached_return_t memcached_get_attrs(memcached_st *ptr, const char *key, size_t key_length, memcached_coll_attrs_st *attrs);
+</code></pre>
+
+<p>Response codes는 다음과 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_END: Attribute 정보를 성공적으로 조회함.</li>
+<li>not MEMCACHED_SUCCESS</li>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 item이 존재하지 않음.</li>
+</ul>
+<p>조회한 attributes에서 아래의 함수들을 사용하여 각 attribute를 확인할 수 있다.</p>
+<pre><code class="c">uint32_t                        memcached_coll_attrs_get_flags(memcached_coll_attrs_st *attrs);
+uint32_t                        memcached_coll_attrs_get_expiretime(memcached_coll_attrs_st *attrs);
+memcached_coll_overflowaction_t memcached_coll_attrs_get_overflowaction(memcached_coll_attrs_st *attrs);
+uint32_t                        memcached_coll_attrs_get_maxcount(memcached_coll_attrs_st *attrs);
+bool                            memcached_cool_attrs_is_readable(memcached_coll_attrs_st *attrs);
+uint32_t                        memcached_coll_attrs_get_maxbkeyrange(memcached_coll_attrs_st *attrs);
+memcached_return_t              memcached_coll_attrs_get_maxbkeyrange_by_byte(memcached_coll_attrs_st *attrs,
+                                                         unsigned char **maxbkeyrange, size_t maxbkeyrange_size);
+uint32_t                        memcached_coll_attrs_get_minbkey(memcached_coll_attrs_st *attrs);
+memcached_return_t              memcached_coll_attrs_get_minbkey_by_byte(memcached_coll_attrs_st *attrs,
+                                                         unsigned char **bkey, size_t *size);
+uint32_t                        memcached_coll_attrs_get_maxbkey(memcached_coll_attrs_st *attrs);
+memcached_return_t              memcached_coll_attrs_get_maxbkey_by_byte(memcached_coll_attrs_st *attrs,
+                                                         unsigned char **bkey, size_t *size);
+uint32_t                        memcached_coll_attrs_get_trimmed(memcached_coll_attrs_st *attrs);
+</code></pre>
+
+<ul>
+<li>memcached_coll_attrs_get_flags : Flag 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_expiretime : Expire time 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_overflowaction : Overflowaction을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxcount : Maxcount 값을 얻는다.</li>
+<li>memcached_cool_attrs_is_readable : Attribute가 readable 상태인지 아닌지를 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkeyrange : Maxbkeyrange 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkeyrange_by_byte : Maxbkeyrange 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_minbkey : Min bkey 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_minbkey_by_byte : Min bkey 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_maxbkey : Max bkey 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkey_by_byte : Max bkey 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_trimmed : btree의 trimmed 여부를 얻는다.</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+    </div>
+    
+      <script src="../../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
