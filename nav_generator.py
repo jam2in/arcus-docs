@@ -18,8 +18,8 @@ def human_sort_key(s):
 docs_dir = os.path.dirname(os.path.abspath(__file__))
 print(docs_dir)
 
-hidden_files=['.pages', '.version', 'nav_generator.py']
-hidden_dirs=['images', ]
+hidden_files=['.pages', '.version', 'nav_generator.py', 'index.md']
+hidden_dirs=['images', 'admin', 'arcus-c-client', 'arcus-java-client', 'arcus-server']
 
 for cur, sub_dirs, files in os.walk(docs_dir):
 
@@ -37,12 +37,16 @@ for cur, sub_dirs, files in os.walk(docs_dir):
         if hidden_file in docs:
             docs.remove(hidden_file)
 
+# latest verson come first
     version_dir = '.version' in files
     dirs=sorted(deepcopy(sub_dirs), reverse=version_dir)
 
     for hidden_dir in hidden_dirs:
         if hidden_dir in dirs:
             dirs.remove(hidden_dir)
+
+    if not dirs and not docs:
+        continue
 
     page_file = open(cur + '/.pages', mode='wt', encoding='utf-8')
     print(cur+'/.pages')
