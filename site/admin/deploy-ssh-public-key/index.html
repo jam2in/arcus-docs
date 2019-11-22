@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Deploy ssh public key - ARCUS Documentation</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <link href="../../custom/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Deploy SSH Public Key", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="deploy-ssh-public-key">Deploy SSH Public Key</h1>
+<p>SSH를 통해 다른 서버로 접속하기 위해서는 패스워드 입력을 하거나 SSH public key 인증을 사용할 수 있다.
+Arcus cache cloud는 일반적으로 외부(인터넷)에 노출되지 않고 내부망에서 동작하기 때문에
+신뢰할 수 있는 서버를 하나 지정하여 암호 없는 public key를 생성한 뒤 해당 public key를
+접근할 각 서버에 배포해 두고, 현재 서버를 게이트웨이로 사용할 수 있다.</p>
+<p>자세한 내용은 아래 링크를 참고하길 바라며 이 문서에서는 간단한 절차만 소개한다.
+https://help.ubuntu.com/community/SSH/OpenSSH/Keys (영문)</p>
+<ol>
+<li>
+<p>다른 서버를 관리할 용도의 신뢰할 수 있는 서버를 한 대 결정하고 해당 서버에 접속하여 SSH key를 생성한다.
+  <code>$ mkdir -p ~/.ssh
+  $ chmod 700 ~/.ssh
+  $ ssh-keygen -t rsa</code></p>
+</li>
+<li>
+<p>각 서버에 public key를 전송한다.
+  <code># SSH 암호를 입력해야 함. 자신의 환경에 맞게 &lt;username&gt;, &lt;hostname&gt; 변경
+  $ ssh-copy-id &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+<li>
+<p>패스워드 없이 접속이 잘 되는지 확인. 잘 안될 경우 <a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys/">sshkey 매뉴얼</a>을 참조.
+  <code>$ ssh &lt;username&gt;@&lt;hostname&gt;</code></p>
+</li>
+</ol>
+<!-- Reference Links -->
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+
+</footer>
+
+</body>
+</html>

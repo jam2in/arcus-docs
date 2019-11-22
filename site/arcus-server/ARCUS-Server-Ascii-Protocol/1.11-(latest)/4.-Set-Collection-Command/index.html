@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>4. Set Collection Command - ARCUS Documentation</title>
+    <link href="../../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link href="../../../../custom/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "4-1. set collection \uba85\ub839", url: "#_top", children: [
+              {title: "sop create - Set Collection \uc0dd\uc131", url: "#sop-create-set-collection" },
+              {title: "delete - Set Collection \uc0ad\uc81c", url: "#delete-set-collection" },
+          ]},
+          {title: "4-2. set element \uba85\ub839", url: "#4-2-set-element", children: [
+              {title: "sop insert - Set Element \uc0bd\uc785", url: "#sop-insert-set-element" },
+              {title: "sop delete - Set Element \uc0ad\uc81c", url: "#sop-delete-set-element" },
+              {title: "sop get - Set Element \uc870\ud68c", url: "#sop-get-set-element" },
+              {title: "sop exist - Set Element \uc874\uc7ac\uc720\ubb34 \uac80\uc0ac", url: "#sop-exist-set-element" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h2 id="4-1-set-collection">4-1. set collection 명령</h2>
+<h3 id="sop-create-set-collection">sop create - Set Collection 생성</h3>
+<p>Set collection을 empty 상태로 생성한다.</p>
+<pre><code>sop create &lt;key&gt; &lt;attributes&gt; [noreply]\r\n
+* &lt;attributes&gt;: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;attributes> - 설정할 item attributes. <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>을 참조 바란다.</li>
+<li>noreply - 명시하면, response string을 전달받지 않는다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"CREATED" - 성공</li>
+<li>"EXISTS" - 동일 key string을 가진 item이 이미 존재</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="delete-set-collection">delete - Set Collection 삭제</h3>
+<p>기존 <a href="../2.-Simple-Key-Value-Command/#2-3-deletion">key-value item의 삭제 명령</a>을 그대로 사용한다. </p>
+<h2 id="4-2-set-element">4-2. set element 명령</h2>
+<h3 id="sop-insert-set-element">sop insert - Set Element 삽입</h3>
+<p>Set collection에 하나의 element를 삽입한다.
+Set collection을 생성하면서 하나의 element를 삽입할 수도 있다.</p>
+<pre><code>sop insert &lt;key&gt; &lt;bytes&gt; [create &lt;attributes&gt;] [noreply|pipe]\r\n&lt;data&gt;\r\n
+* &lt;attributes&gt;: &lt;flags&gt; &lt;exptime&gt; &lt;maxcount&gt; [&lt;ovflaction&gt;] [unreadable]
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bytes> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)</li>
+<li>create &lt;attributes> - set collection 없을 시에 set 생성 요청.
+                    <a href="../1.-ARCUS-Basic-Concept/#1-3-item-attributes">Item Attribute 설명</a>)을 참조 바란다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+<li>&lt;data> - 삽입할 데이터 (최대 4KB)</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"STROED" - 성공 (element만 삽입)</li>
+<li>“CREATED_STORED” - 성공 (collection 생성하고 element 삽입)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“TYPE_MISMATCH” - 해당 item이 set collection이 아님</li>
+<li>“OVERFLOWED” - overflow 발생</li>
+<li>"ELEMENT_EXISTS" - 동일 데이터를 가진 element가 존재. set uniqueness 위배</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” - 삽입할 데이터 길이가 &lt;bytes>와 다르거나 "\r\n"으로 끝나지 않음</li>
+<li>“SERVER_ERROR out of memory” - 메모리 부족</li>
+</ul>
+<h3 id="sop-delete-set-element">sop delete - Set Element 삭제</h3>
+<p>Set collection에서 하나의 element를 삭제한다.</p>
+<pre><code>sop delete &lt;key&gt; &lt;bytes&gt; [drop] [noreply|pipe]\r\n&lt;data&gt;\r\n
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bytes> - 삭제할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)</li>
+<li>drop - element 삭제로 인해 empty set이 될 경우, 그 set을 drop할 것인지를 지정한다.</li>
+<li>noreply or pipe - 명시하면, response string을 전달받지 않는다. 
+                    pipe 사용은 <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+<li>&lt;data> - 삭제할 데이터 (최대 4KB)</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>"DELETED" - 성공 (element만 삭제)</li>
+<li>“DELETED_DROPPED” - 성공 (element 삭제하고 collection을 drop한 상태)</li>
+<li>“NOT_FOUND” - key miss</li>
+<li>“NOT_FOUND_ELEMENT” - element miss (삭제할 element가 없음)</li>
+<li>“TYPE_MISMATCH” - 해당 item이 set collection이 아님</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” - 삭제할 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” - 삭제할 데이터의 길이가 &lt;bytes>와 다르거나 “\r\n”으로 끝나지 않음</li>
+</ul>
+<h3 id="sop-get-set-element">sop get - Set Element 조회</h3>
+<p>Set collection에서 N 개의 elements를 조회한다.</p>
+<pre><code>sop get &lt;key&gt; &lt;count&gt; [delete|drop]\r\n
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;count> - 조회할 elements 개수를 지정. 0이면 전체 elements를 의미한다.</li>
+<li>delete or drop - element 조회하면서 그 element를 delete할 것인지
+                   그리고 delete로 인해 empty set이 될 경우 그 set을 drop할 것인지를 지정한다.</li>
+</ul>
+<p>성공 시의 response string은 아래와 같다.
+VALUE 라인의 &lt;count>는 조회된 element 개수를 의미한다. 
+마지막 라인은 END, DELETED, DELETED_DROPPED 중의 하나를 가지며
+각각 element 조회만 수행한 상태, element 조회하고 삭제한 상태,
+element 조회 및 삭제하고 set을 drop한 상태를 의미한다.</p>
+<pre><code>VALUE &lt;flags&gt; &lt;count&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+&lt;bytes&gt; &lt;data&gt;\r\n
+...
+END|DELETED|DELETED_DROPPED\r\n
+</code></pre>
+
+<p>실패 시의 response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>“NOT_FOUND”   - key miss</li>
+<li>“NOT_FOUND_ELEMENT”   - element miss (element가 존재하지 않는 상태임)</li>
+<li>“TYPE_MISMATCH”   - 해당 item이 set collection이 아님</li>
+<li>“UNREADABLE” - 해당 item이 unreadable item임</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>"SERVER_ERROR out of memory [writing get response]”   - 메모리 부족</li>
+</ul>
+<h3 id="sop-exist-set-element">sop exist - Set Element 존재유무 검사</h3>
+<p>Set collection에 특정 element의 존재 유무를 검사한다.</p>
+<pre><code>sop exist &lt;key&gt; &lt;bytes&gt; [pipe]\r\n&lt;data&gt;\r\n
+</code></pre>
+
+<ul>
+<li>&lt;key> - 대상 item의 key string</li>
+<li>&lt;bytes>와 &lt;data> - 존재 유무를 검사할 데이터의 길이와 데이터 그 자체 (최대 4KB)</li>
+<li>pipe - 명시하면, response string을 전달받지 않는다. 
+         <a href="../7.-Collection-Command-Pipelining/">Command Pipelining</a>을 참조 바란다.</li>
+</ul>
+<p>Response string과 그 의미는 아래와 같다.</p>
+<ul>
+<li>“EXIST" - 성공 (주어진 데이터가 set에 존재)</li>
+<li>"NOT_EXIST" - 성공 (주어진 데이터가 set에 존재하지 않음)</li>
+<li>“NOT_FOUND”   - key miss</li>
+<li>“TYPE_MISMATCH”   - 해당 item이 set collection이 아님</li>
+<li>“UNREADABLE” - 해당 item이 unreadable item임</li>
+<li>"NOT_SUPPORTED" - 지원하지 않음</li>
+<li>“CLIENT_ERROR bad command line format” - protocol syntax 틀림</li>
+<li>“CLIENT_ERROR too large value” : 주어진 데이터가 4KB 보다 큼</li>
+<li>“CLIENT_ERROR bad data chunk” : 주어진 데이터의 길이가 &lt;bytes>와 다르거나 “\r\n”으로 끝나지 않음</li>
+</ul>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+
+</footer>
+
+</body>
+</html>

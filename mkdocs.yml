@@ -1,16 +1,22 @@
 site_name: 'ARCUS Documentation'
-theme: 
+theme:
    name: 'material'
+   custom_dir: 'custom'
    logo: 'images/logo.png'
    feature:
       tabs: true
-   
-docs_dir: docs
-site_dir: site
+
+docs_dir: 'docs'
+site_dir: 'site'
+extra_css:
+    - custom/extra.css
 repo_name: 'naver/arcus'
 repo_url: 'https://github.com/naver/arcus'
 edit_uri: ''
 
 plugins:
-   - awesome-pages
-   - search
+    - awesome-pages
+    - search
+      #extra:
+    #article_nav_top: false
+    #article_nav_bottom: false

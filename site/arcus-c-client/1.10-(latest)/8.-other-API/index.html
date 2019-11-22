@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>8. other API - ARCUS Documentation</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../custom/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Flush", url: "#_top", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h2 id="flush">Flush</h2>
+<p>Arcus는 cache server에 있는 모든 items 또는 특정 prefix의 items을 flush(or delete)하는 기능을 제공한다.
+전자의 함수는 모든 items을 flush하고 후자의 함수는 특정 prefix의 items을 flush한다.</p>
+<pre><code class="C">memcached_return_t memcached_flush(memcached_st *ptr, time_t expiration);
+memcached_return_t memcached_flush_by_prefix(memcached_st *ptr,
+                                             const char *prefix, size_t prefix_length,
+                                             time_t expiration);
+
+</code></pre>
+
+<ul>
+<li>prefix, prefix_length: flush할 prefix 정보</li>
+<li>expiration: delayed flush할 시에 지연할 시간(단위: 초)를 나타낸다.</li>
+</ul>
+<p><strong>특정 prefix의 모든 items을 삭제하므로 그 사용에 주의하여야 한다.</strong>
+<strong>특히, prefix를 명시하지 않는 flush 함수는 cache node의 모든 items을 삭제하므로 공용으로 사용하는 cloud에선 각별히 주의해야 한다.</strong></p>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+
+</footer>
+
+</body>
+</html>

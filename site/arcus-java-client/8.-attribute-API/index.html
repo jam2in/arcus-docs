@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>8. attribute API - ARCUS Documentation</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <link href="../../custom/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "8-1. Attribute \ubcc0\uacbd", url: "#_top", children: [
+          ]},
+          {title: "8-2. Attribute \uc870\ud68c", url: "#8-2-attribute", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>Item attributes는 각 cache item의 메타데이터를 의미한다.
+Item attributes의 기본 설명은 <a href="/arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/8.-Item-Attribute-Command">Arcus cache server의 item attributes 부분</a>을 참고 하길 바란다.</p>
+<p>Item attributes를 변경하거나 조회하는 함수들을 설명한다.</p>
+<h2 id="8-1-attribute">8-1. Attribute 변경</h2>
+<p>주어진 key의 attributes를 변경하는 함수이다.</p>
+<pre><code class="java">CollectionFuture &lt;Boolean&gt; asyncSetAttr(String key, Attributes attr)
+</code></pre>
+
+<p>어떤 collection에 모든 element를 삽입하기 전 까지는 다른 여러 thread에서 
+그 collection의 element를 조회하여서는 안된다.
+이를 위해, READABLE 속성을 false로 설정해 해당 collection을 읽을 수 없는 상태로 만들어두고
+모든 element를 삽입한 후에 다시 readable 속성을 true하는 예제이다.</p>
+<pre><code class="java">// Unreadable list를 생성한다.
+CollectionAttributes attribute = new CollectionAttributes();
+attribute.setReadable(false);
+
+CollectionFuture&lt;Boolean&gt; createFuture = mc.asyncLopCreate(KEY, ElementValueType.STRING, attribute);
+
+try {
+    createFuture.get(300L, TimeUnit.MILLISECONDS);
+} catch (Exception e) {
+    createFuture.cancel(true);
+    // throw an exception or logging.
+}
+
+// 여기에서 List를 갱신한다. 이 상태에서는 collection을 읽을 수 없다. 쓰기, 수정, 삭제만 가능하다.
+
+// List를 Readable상태로 만든다.
+CollectionAttributes attrs = new CollectionAttributes();
+attrs.setReadable(true);
+
+CollectionFuture&lt;Boolean&gt; setAttrFuture = mc.asyncSetAttr(KEY, attrs);
+try {
+    setAttrFuture.get(300L, TimeUnit.MILLISECONDS);
+} catch (Exception e) {
+    setAttrFuture.cancel(true);
+    // throw an exception or logging.
+}
+
+// 이제 collection을 읽을 수 있다.
+</code></pre>
+
+<p>두번째 예제는 expiretime 속성을 변경한다.</p>
+<pre><code class="java">String key = &quot;Sample:Object&quot;;
+
+CollectionFuture&lt;Boolean&gt; future = null;
+
+try {
+    Attributes attrs = new Attributes(); // (1)
+    attrs.setExpireTime(1);
+    future = client.asyncSetAttr(key, attrs); // (2)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    Boolean result = future.get(1000L, TimeUnit.MILLISECONDS); // (3)
+    System.out.println(result);
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>Attribute객체를 생성하여 expire time을 1초로 지정했다. 지정한 시간에 결과가 넘어 오지 않거나
+   JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다</li>
+<li>asyncSetAttr메소드를 사용해 key의 attribute를 변경한다.
+   이렇게 하면 key의 expire time이 attribute에 지정된 1초 이후로 재설정 된다.
+   결론적으로 key의 expire time은 asyncSetAttr메소드를 통해 Attribute가 적용된 1초 후로 설정되는 것이다.</li>
+<li>Attribute가 key에 정상적으로 반영되면 true를 반환한다.</li>
+</ol>
+<h2 id="8-2-attribute">8-2. Attribute 조회</h2>
+<p>주어진 key의 attributes를 조회하는 함수이다.</p>
+<pre><code class="java">CollectionFuture &lt;CollectionAttributes&gt; asyncGetAttr(String key)
+</code></pre>
+
+<p>Colleciton에 저장된 element 개수를 조회하는 예제이다.</p>
+<pre><code class="java">String key = &quot;Sample:List&quot;;
+CollectionFuture&lt;CollectionAttributes&gt; future = null;
+
+try {
+    future = client.asyncGetAttr(key); // (1)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null) {
+    return;
+}
+
+try {
+    CollectionAttributes result = future.get(1000L, TimeUnit.MILLISECONDS); // (2)
+
+    if (result == null) { // (3)
+        System.out.println(&quot;Key가 없습니다.&quot;);
+        return;
+    }
+
+    long totalItemCountOfBTree = result.getCount(); // (4)
+    System.out.println(&quot;Item count=&quot; + totalItemCountOfBTree);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>Key의 Attribute를 조회한다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 삭제 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>Key가 없으면 null이 반환된다.</li>
+<li>조회된 Attribute객체에서 count값을 조회한다. 이 값이 key에 저장된 Collection이 가지고 있는 엘리먼트의 총 개수이다.</li>
+</ol>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>1.11 (latest) - ARCUS Documentation</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../custom/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Arcus Telnet Interface", url: "#_top", children: [
+              {title: "Telnet \uc0ac\uc6a9\ubc95", url: "#telnet" },
+              {title: "Telnet \uc5f0\uacb0", url: "#telnet_1" },
+              {title: "\uc608\uc81c 1 - get/set", url: "#1-getset" },
+              {title: "\uc608\uc81c 2 - b+tree", url: "#2-btree" },
+              {title: "Telnet \uc885\ub8cc", url: "#telnet_2" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h2 id="arcus-telnet-interface">Arcus Telnet Interface</h2>
+<p>Arcus cache server의 동작을 간단히 확인하는 방법으로, telnet interface를 이용할 수 있다.</p>
+<h3 id="telnet">Telnet 사용법</h3>
+<p>OS prompt 상에서 아래와 같이 telnet 명령을 실행시킨다.
+telnet 명령의 인자로는 연결하고자 하는 Arcus cache server인 memcached의 IP와 port number를 준다.</p>
+<pre><code>$ telnet {memcached-ip} {memcached-port}
+</code></pre>
+
+<h3 id="telnet_1">Telnet 연결</h3>
+<p>Localhost에 11211 포트 번호로 memcached가 구동되어 있다고 가정한다.
+telnet 명령으로 해당 memcached에 연결하기 위해, 
+OS prompt 상에서 아래의 명령을 수행한다.</p>
+<pre><code>$ telnet localhost 11211
+Trying 127.0.0.1...
+Connected to localhost.localdomain (127.0.0.1).
+Escape character is '^]'.
+</code></pre>
+
+<p>telnet 명령으로 memcached에 연결한 이후에는 Arcus ASCII 명령을 직접 수행해 볼 수 있다.
+아래에서 그 예들을 든다. Arcus ASCII 명령의 자세한 설명은 <a href="./../ARCUS-Server-Ascill-Protocol/1.11-(latest)/Chapter-1.-ARCUS-Basic-Concept.md">Arcus cache server ascii protocol</a>을 참고하기 바란다.</p>
+<h3 id="1-getset">예제 1 - get/set</h3>
+<p>하나의 key-value item으로 &lt;"foo", "fooval"&gt;을 저장하기 위해, set 명령을 입력한다.</p>
+<pre><code>set foo 0 0 6
+fooval
+</code></pre>
+
+<p>set 명령의 수행 결과로 정상적으로 key-value item이 저장되었다는 string이 리턴된다.</p>
+<pre><code>STORED
+</code></pre>
+
+<p>저장된 foo item을 조회하기 위해, get 명령을 입력한다.</p>
+<pre><code>get foo
+</code></pre>
+
+<p>get 명령으로 조회한 foo item 결과는 아래와 같다.</p>
+<pre><code>VALUE foo 0 6
+fooval
+END
+</code></pre>
+
+<h3 id="2-btree">예제 2 - b+tree</h3>
+<p>하나의 b+tree item을 생성하면서 5개의 elements를 추가하기 위해,
+아래의 5개 bop insert 명령을 차례로 수행한다.</p>
+<pre><code>bop insert bkey1 90 6 create 11 0 0
+datum9
+bop insert bkey1 70 6
+datum7
+bop insert bkey1 50 6
+datum5
+bop insert bkey1 30 6
+datum3
+bop insert bkey1 10 6
+datum1
+</code></pre>
+
+<p>5개 bop insert 명령의 수행 결과는 아래와 같다.</p>
+<pre><code>CREATED_STORED
+STORED
+STORED
+STORED
+STORED
+</code></pre>
+
+<p>b+tree에서 30부터 80까지의 bkey(b+tree key) range에 속하는 elements를 조회하기 위하여,
+bop get 명령을 입력한다.</p>
+<pre><code>bop get bkey1 30..80
+</code></pre>
+
+<p>bop get 명령으로 조회한 결과는 아래와 같다.</p>
+<pre><code>VALUE 11 3
+30 6 datum3
+50 6 datum5
+70 6 datum7
+END
+</code></pre>
+
+<h3 id="telnet_2">Telnet 종료</h3>
+<p>현재의 telnet 연결을 종료하려면, quit 명령을 입력한다.</p>
+<pre><code>quit
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="col-md-12 wm-page-content">
+
+</footer>
+
+</body>
+</html>
