@@ -1,0 +1,1685 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.0">
+    
+    
+
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../custom/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#4-1-list-item" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="ARCUS Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../../images/logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              ARCUS Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                4. list API
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" class="md-tabs__link">
+          Arcus server
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../arcus-c-client/1.10-(latest)/1.-arcus-c-client/" class="md-tabs__link">
+          Arcus c client
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../1.-getting-started/" class="md-tabs__link md-tabs__link--active">
+          Arcus java client
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../admin/1.11-(latest)/arcus-admin-script-usage/" class="md-tabs__link">
+          Admin
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="ARCUS Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../../images/logo.png" width="48" height="48">
+      
+    </a>
+    ARCUS Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/naver/arcus" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    naver/arcus
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Arcus server
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Arcus server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      ARCUS Server Ascii Protocol
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        ARCUS Server Ascii Protocol
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/1.-ARCUS-Basic-Concept/" title="1. ARCUS Basic Concept" class="md-nav__link">
+      1. ARCUS Basic Concept
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/2.-Simple-Key-Value-Command/" title="2. Simple Key Value Command" class="md-nav__link">
+      2. Simple Key Value Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/3.-List-Collection-Command/" title="3. List Collection Command" class="md-nav__link">
+      3. List Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/4.-Set-Collection-Command/" title="4. Set Collection Command" class="md-nav__link">
+      4. Set Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/5.-Map-Collection-Command/" title="5. Map Collection Command" class="md-nav__link">
+      5. Map Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/6.-B+tree-Collection-Command/" title="6. B+tree Collection Command" class="md-nav__link">
+      6. B+tree Collection Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/7.-Collection-Command-Pipelining/" title="7. Collection Command Pipelining" class="md-nav__link">
+      7. Collection Command Pipelining
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/8.-Item-Attribute-Command/" title="8. Item Attribute Command" class="md-nav__link">
+      8. Item Attribute Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/9.-Administration-Command/" title="9. Administration Command" class="md-nav__link">
+      9. Administration Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/ARCUS-Server-Ascii-Protocol/1.11-(latest)/10.-List-Sample/" title="10. List Sample" class="md-nav__link">
+      10. List Sample
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Arcus telnet interface
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Arcus telnet interface
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-server/arcus-telnet-interface/1.11-(latest)/" title="1.11 (latest)" class="md-nav__link">
+      1.11 (latest)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Arcus c client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Arcus c client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      1.10 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        1.10 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/1.-arcus-c-client/" title="1. arcus c client" class="md-nav__link">
+      1. arcus c client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/2.-key-value-API/" title="2. key value API" class="md-nav__link">
+      2. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/3.-list-API/" title="3. list API" class="md-nav__link">
+      3. list API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/4.-set-API/" title="4. set API" class="md-nav__link">
+      4. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/5.-map-API/" title="5. map API" class="md-nav__link">
+      5. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/6.-btree-API/" title="6. btree API" class="md-nav__link">
+      6. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/7.-attribute-API/" title="7. attribute API" class="md-nav__link">
+      7. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/8.-other-API/" title="8. other API" class="md-nav__link">
+      8. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../arcus-c-client/1.10-(latest)/9.-appendix/" title="9. appendix" class="md-nav__link">
+      9. appendix
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Arcus java client
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Arcus java client
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.-getting-started/" title="1. getting started" class="md-nav__link">
+      1. getting started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.-arcus-java-client/" title="2. arcus java client" class="md-nav__link">
+      2. arcus java client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.-key-value-API/" title="3. key value API" class="md-nav__link">
+      3. key value API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        4. list API
+      </label>
+    
+    <a href="./" title="4. list API" class="md-nav__link md-nav__link--active">
+      4. list API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-1-list-item" class="md-nav__link">
+    4-1. List Item 생성
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-list-element" class="md-nav__link">
+    4-2. List Element 삽입
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3-list-element" class="md-nav__link">
+    4-3. List Element 삭제
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4-list-element" class="md-nav__link">
+    4-4. List Element 조회
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-list-element" class="md-nav__link">
+    4-5. List Element 일괄 삽입
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.-set-API/" title="5. set API" class="md-nav__link">
+      5. set API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6.-map-API/" title="6. map API" class="md-nav__link">
+      6. map API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7.-btree-API/" title="7. btree API" class="md-nav__link">
+      7. btree API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8.-attribute-API/" title="8. attribute API" class="md-nav__link">
+      8. attribute API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9.-other-API/" title="9. other API" class="md-nav__link">
+      9. other API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10.-log-message/" title="10. log message" class="md-nav__link">
+      10. log message
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../11.-client-notes/" title="11. client notes" class="md-nav__link">
+      11. client notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Admin
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Admin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      1.11 (latest)
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        1.11 (latest)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/arcus-admin-script-usage/" title="Arcus admin script usage" class="md-nav__link">
+      Arcus admin script usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/arcus-cloud-configuration-file/" title="Arcus cloud configuration file" class="md-nav__link">
+      Arcus cloud configuration file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/arcus-cloud-in-multiple-servers/" title="Arcus cloud in multiple servers" class="md-nav__link">
+      Arcus cloud in multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/arcus-directory-structure/" title="Arcus directory structure" class="md-nav__link">
+      Arcus directory structure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/deploy-ssh-public-key/" title="Deploy ssh public key" class="md-nav__link">
+      Deploy ssh public key
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/deploying-arcus-to-multiple-servers/" title="Deploying arcus to multiple servers" class="md-nav__link">
+      Deploying arcus to multiple servers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/faq-ko/" title="Faq ko" class="md-nav__link">
+      Faq ko
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/howto-install-dependencies/" title="Howto install dependencies" class="md-nav__link">
+      Howto install dependencies
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../admin/1.11-(latest)/howto-manage-submodules/" title="Howto manage submodules" class="md-nav__link">
+      Howto manage submodules
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-1-list-item" class="md-nav__link">
+    4-1. List Item 생성
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-list-element" class="md-nav__link">
+    4-2. List Element 삽입
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3-list-element" class="md-nav__link">
+    4-3. List Element 삭제
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4-list-element" class="md-nav__link">
+    4-4. List Element 조회
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-list-element" class="md-nav__link">
+    4-5. List Element 일괄 삽입
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>4. list API</h1>
+                
+                <p>List collection은 하나의 key에 대해 여러 value들을 double linked list 구조로 유지한다.</p>
+<p><strong>제약 조건</strong></p>
+<ul>
+<li>저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)</li>
+<li>각 element에서 value 최대 크기 : 4KB</li>
+<li>List의 앞, 뒤에서 element를 삽입/삭제하기를 권한다. 임의의 index 위치에서 element 삽입/삭제가 가능하지만,
+  임의의 index 위치를 신속히 찾아가기 위한 자료구조가 현재 없는 상태라서 비용이 많이 든다.</li>
+</ul>
+<h2 id="4-1-list-item">4-1. List Item 생성</h2>
+<p>새로운 empty list item을 생성한다.</p>
+<pre><code class="java">CollectionFuture&lt;Boolean&gt; asyncLopCreate(String key, ElementValueType valueType, CollectionAttributes attributes)
+</code></pre>
+
+<ul>
+<li>key: 생성할 list의 key</li>
+<li>valueType: list에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.</li>
+<li>ElementValueType.STRING - String</li>
+<li>ElementValueType.LONG - Long</li>
+<li>ElementValueType.INTEGER - Integer</li>
+<li>ElementValueType.BOOLEAN - Boolean</li>
+<li>ElementValueType.DATE - Date</li>
+<li>ElementValueType.BYTE - Byte</li>
+<li>ElementValueType.FLOAT - Float</li>
+<li>ElementValueType.DOUBLE - Double</li>
+<li>ElementValueType.BYTEARRAY - Byte array</li>
+<li>ElementValueType.OTHERS - 위에 나열한 타입을 제외한 모든 타입</li>
+<li>attributes: list item의 속성들을 지정한다.</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr>
+<th>future.get()</th>
+<th>future.operationStatus().getResponse()</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>CollectionResponse.CREATED</td>
+<td>생성 성공</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.EXISTS</td>
+<td>동일 key 가 이미 존재함</td>
+</tr>
+</tbody>
+</table>
+<p>List item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="java">String key = &quot;Sample:EmptyList&quot;;
+
+CollectionFuture&lt;Boolean&gt; future = null;
+CollectionAttributes attribute = new CollectionAttributes();
+
+try {
+    future = client.asyncLopCreate(key, ElementValueType.OTHERS, attribute); // (1)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    Boolean result = future.get(1000L, TimeUnit.MILLISECONDS); // (2)
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); // (3)
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>Empty list를 생성할 때에는 list안에 어떤 타입의 element를 저장할 것인지를 미리 지정해 두어야 한다.
+   예제에서는 ElementValueType을 통해 지정할 수 있는 타입을 제외한 나머지들을 저장할 수 있는 empty list를 생성한다.</li>
+<li>timeout은 1초로 지정했다. 생성에 성공하면 future는 true를 반환한다.
+   지정한 시간에 생성 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+   TimeoutException이 발생한다.</li>
+<li>생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.  </li>
+</ol>
+<h2 id="4-2-list-element">4-2. List Element 삽입</h2>
+<p>List에 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="java">CollectionFuture&lt;Boolean&gt; asyncLopInsert(String key, int index, Object value, CollectionAttributes attributesForCreate)
+</code></pre>
+
+<p>List에 새로운 element를 삽입한다.</p>
+<ul>
+<li>key: 삽입 대상 list의 key</li>
+<li>index: 삽입 위치로 0-based index로 지정</li>
+<li>0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄</li>
+<li>-1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄 </li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.</li>
+<li>null: element 삽입하지 않는다. </li>
+<li>attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr>
+<th>future.get()</th>
+<th>future.operationStatus().getResponse()</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>CollectionResponse.STORED</td>
+<td>List collection이 존재하여 element 만 삽입됨</td>
+</tr>
+<tr>
+<td>True</td>
+<td>CollectionResponse.CREATED_STORED</td>
+<td>List collection이 create되고 element가 삽입됨</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.NOT_FOUND</td>
+<td>Key miss (주어진 key에 해당하는 item이 없음)</td>
+</tr>
+<tr>
+<td>Fasle</td>
+<td>CollectionResponse.TYPE_MISMATCH</td>
+<td>해당 key가 list가 아님</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.OVERFLOWED</td>
+<td>Overflow 상태임</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.OUT_OF_RANGE</td>
+<td>삽입 위치가 list의 element index 범위를 넘어섬</td>
+</tr>
+</tbody>
+</table>
+<p>List element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="java">String key = &quot;Sample:List&quot;;
+int index = -1;
+String value = &quot;This is a value.&quot;;
+CollectionAttributes attributesForCreate = new CollectionAttributes();
+CollectionFuture&lt;Boolean&gt; future = null;
+
+try {
+    future = client.asyncLopInsert(key, index, value, attributesForCreate); // (1)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    Boolean result = future.get(1000L, TimeUnit.MILLISECONDS); // (2)
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); // (3)
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>attributesForCreate값이 null이 아니면 key가 존재하지 않을 때
+   attributesForCreate 속성을 가지는 list를 새로 생성한 다음 element를 삽입한다.
+   만약 attributesForCreate값이 null이고 key가 존재하지 않는다면 element는 insert되지 않는다.</li>
+<li>이 예제는 특별한 설정을 하지 않은 CollectionAttributes를 사용하며 기본 expire time은 0으로 만료되지 않음을 뜻한다.</li>
+<li>참고로 이미 key가 존재하는 상태에서 value를 저장한다 하더라도 key에 설정된 expire time은 변하지 않는다.
+     다시 말해 value가 추가되어도 expire time은 변경되거나 연장되지 않는다.</li>
+<li>timeout은 1초로 지정했다. 삽입에 성공하면 future는 true를 반환한다.
+   지정한 시간에 삽입 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+   TimeoutException이 발생한다.</li>
+<li>삽입 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</li>
+</ol>
+<h2 id="4-3-list-element">4-3. List Element 삭제</h2>
+<p>List에서 index 위치에 있는 하나의 element 또는 index range에 포함되는 다수 element를 삭제하는 함수는 아래와 같다.</p>
+<pre><code class="java">CollectionFuture&lt;Boolean&gt; asyncLopDelete(String key, int index, Boolean dropIfEmpty)
+CollectionFuture&lt;Boolean&gt; asyncLopDelete(String key, int from, int to, boolean dropIfEmpty)
+</code></pre>
+
+<ul>
+<li>key: 삭제 대상 list의 key</li>
+<li>index or index range(from, to): 삭제 위치로 0-based index로 지정</li>
+<li>0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄</li>
+<li>-1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄</li>
+<li>dropIfEmpty: element 삭제로 인해 empty list가 될 경우, 그 list도 삭제할 것인지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr>
+<th>future.get()</th>
+<th>future.operationStatus().getResponse()</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>CollectionResponse.DELETED</td>
+<td>List에서 element만 삭제됨</td>
+</tr>
+<tr>
+<td>True</td>
+<td>CollectionResponse.DELETED_DROPPED</td>
+<td>List에서 element 삭제 후, empty list가 되어서 그 list도 삭제함</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.NOT_FOUND</td>
+<td>Key miss (주어진 key에 해당하는 item이 없음)</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.TYPE_MISMATCH</td>
+<td>해당 key가 list가 아님</td>
+</tr>
+<tr>
+<td>False</td>
+<td>CollectionResponse.NOT_FOUND_ELEMENT</td>
+<td>List 는 있지만 조건에 맞는 element가 없음</td>
+</tr>
+</tbody>
+</table>
+<p>List에서 index가 0부터 10까지의 element를 삭제하는 예제이다.</p>
+<pre><code class="java">String key = &quot;Sample:List&quot;;
+int from = 0;
+int to = 10;
+boolean dropIfEmpty = false;
+CollectionFuture&lt;Boolean&gt; future = null;
+
+try {
+    future = client.asyncLopDelete(key, from, to, dropIfEmpty); // (1)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    boolean result = future.get(1000L, TimeUnit.MILLISECONDS); // (2)
+    System.out.println(result);
+
+    CollectionResponse response = future.getOperationStatus().getResponse(); // (3)
+    System.out.println(response);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>List에서 index가 from부터 to사이에 있는 element를 삭제한다.
+   dropIfEmpty값이 true이면 element가 삭제된 다음 List가 비어있게 되면 List도 함께 삭제한다.</li>
+<li>timeout은 1초로 지정했다.
+   지정한 시간에 삭제 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우,
+   TimeoutException이 발생한다.</li>
+<li>정상적으로 삭제되면 true를 반환한다.
+   삭제 결과에 따른 반환 값은 future.operationStatus().getResponse()로 확인한다.</li>
+</ol>
+<h2 id="4-4-list-element">4-4. List Element 조회</h2>
+<p>List 에서 하나의 index 또는 index range에 해당하는 element를 조회한다.
+만약, 해당 element가 존재하지 않으면 null이 반환된다.</p>
+<pre><code class="java">CollectionFuture&lt;List&lt;Object&gt;&gt; asyncLopGet(String key, int index, boolean withDelete, boolean dropIfEmpty)
+CollectionFuture&lt;List&lt;Object&gt;&gt; asyncLopGet(String key, int from, int to, boolean withDelete, boolean dropIfEmpty)
+</code></pre>
+
+<ul>
+<li>key: 조회 대상 list의 key</li>
+<li>index or index range(from, to): 조회 위치로 0-based index로 지정</li>
+<li>0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄</li>
+<li>-1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄</li>
+<li>withDelete: element 조회와 함께 그 element를 삭제할 것인지를 지정</li>
+<li>dropIfEmpty: element 삭제로 인해 empty list가 될 경우, 그 list도 삭제할 것인지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr>
+<th>future.get()</th>
+<th>future.operationStatus().getResponse()</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not null</td>
+<td>CollectionResponse.END</td>
+<td>Element를 조회만 한 상태</td>
+</tr>
+<tr>
+<td>not null</td>
+<td>CollectionResponse.DELETED</td>
+<td>Element를 조회하고 삭제한 상태</td>
+</tr>
+<tr>
+<td>not null</td>
+<td>CollectionResponse.DELETED_DROPPED</td>
+<td>Element를 조회하고 삭제한 다음 list를 drop(delete)한 상태</td>
+</tr>
+<tr>
+<td>null</td>
+<td>CollectionResponse.NOT_FOUND</td>
+<td>Key miss (주어진 key에 해당하는 item이 없음)</td>
+</tr>
+<tr>
+<td>null</td>
+<td>CollectionResponse.TYPE_MISMATCH</td>
+<td>해당 key가 list가 아님</td>
+</tr>
+<tr>
+<td>null</td>
+<td>CollectionResponse.UNREADABLE</td>
+<td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td>
+</tr>
+<tr>
+<td>null</td>
+<td>CollectionResponse.OUT_OF_RANGE</td>
+<td>Index가 list의 element index범위를 벗어남</td>
+</tr>
+</tbody>
+</table>
+<p>List element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="java">String key = &quot;Sample:List&quot;;
+int from = 0;
+int to = 5;
+boolean withDelete = false;
+boolean dropIfEmpty = false;
+CollectionFuture&lt;List&lt;Object&gt;&gt; future = null;
+
+try {
+    future = client.asyncLopGet(key, from, to, withDelete, dropIfEmpty); // (1)
+} catch (IllegalStateException e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    List&lt;Object&gt; result = future.get(1000L, TimeUnit.MILLISECONDS); // (2)
+    System.out.println(result);
+    CollectionResponse response = future.getOperationStatus().getResponse();  // (3)
+    System.out.println(response);
+
+    if (response.equals(CollectionResponse.NOT_FOUND)) {
+        System.out.println(&quot;Key가 없습니다.(Key에 저장된 List가 없습니다.&quot;);
+    } else if (response.equals(CollectionResponse.NOT_FOUND_ELEMENT)) {
+        System.out.println(&quot;Key는 존재하지만 List에 저장된 값 중 조건에 맞는 것이 없습니다.&quot;);
+    }
+
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>index가 0부터 5사이에 있는 element들을 조회한다.</li>
+<li>withDelete값이 true이면 조회와 동시에 list collection에서 element를 삭제한다.</li>
+<li>dropIfEmpty값이 true이면 element를 삭제한 다음 list collection이 비어있게 되면 list도 함께 삭제한다.</li>
+<li>timeout은 1초로 지정했다. 
+   지정한 시간에 조회 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우,
+   TimeoutException이 발생한다.
+   future.get()의 반환 결과는 다음과 같다.</li>
+<li>key가 없는 경우, null을 반환한다.</li>
+<li>key는 있지만 조건(index)에 맞는 element가 없는 경우, empty list를 반환</li>
+<li>key가 존재하고 일부 element만 조건을 만족하는 경우, 조건에 맞는 element만 반환</li>
+<li>조회 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.</li>
+</ol>
+<h2 id="4-5-list-element">4-5. List Element 일괄 삽입</h2>
+<p>두 유형의 bulk 삽입 기능을 제공한다.</p>
+<p>첫째, 하나의 key가 가리키는 list에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="java">CollectionFuture &lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncLopPipedInsertBulk(String key, int index, List&lt;Object&gt; valueList, CollectionAttributes attributesForCreate)
+</code></pre>
+
+<ul>
+<li>key: 삽입 대상 list의 key </li>
+<li>index: 삽입 위치로 0-based index로 지정</li>
+<li>-1이면 list의 제일 뒤에</li>
+<li>0이면 list의 제일 앞에 삽입한다.</li>
+<li>valueList: 삽입할 element들의 value list </li>
+<li>attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.</li>
+<li>null: element 삽입하지 않는다. </li>
+<li>attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.</li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 list들에 각각 동일한 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="java">Future &lt;Map&lt;String, CollectionOperationStatus&gt;&gt;
+asyncLopInsertBulk(List&lt;String&gt; keyList, int index, Object value, CollectionAttributes attributesForCreate)
+</code></pre>
+
+<p>keyList로 지정된 모든 key에 대해 하나의 element를 삽입니다.</p>
+<ul>
+<li>key: 삽입 대상 list들의 key list</li>
+<li>index: 삽입 위치로 0-based index로 지정</li>
+<li>-1이면 list의 제일 뒤에</li>
+<li>0이면 list의 제일 앞에 삽입한다.</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.</li>
+<li>null: element 삽입하지 않는다. </li>
+<li>attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.</li>
+</ul>
+<p>아래는 하나의 List에 여러 element를 bulk insert하고 각각의 item에 대해 insert 결과를 확인하는 코드이다.</p>
+<pre><code class="java">String key = &quot;Sample:ListBulk&quot;;
+List&lt;Object&gt; bulkData = getBulkData();
+int index = -1; // List의 제일 뒤에 insert한다.
+CollectionAttributes attributesForCreate = new CollectionAttributes();
+if (bulkData.size() &gt; client.getMaxPipedItemCount()) { // (1)
+    System.out.println(&quot;insert 할 아이템 개수는 client.getMaxPipedItemCount개를 초과할 수 없다.&quot;);
+    return;
+}
+
+CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt; future = null;
+
+try {
+    future = client.asyncLopPipedInsertBulk(key, index, bulkData, attributesForCreate); // (2)
+} catch (Exception e) {
+    // handle exception
+}
+
+if (future == null)
+    return;
+
+try {
+    Map&lt;Integer, CollectionOperationStatus&gt; result = future.get(1000L, TimeUnit.MILLISECONDS); // (3)
+    if (!result.isEmpty()) { // (4)
+        System.out.println(&quot;일부 item이 insert 실패 하였음.&quot;);
+        for (Entry&lt;Integer, CollectionOperationStatus&gt; entry : result.entrySet()) { // (5)
+            System.out.print(&quot;실패한 아이템=&quot; + bulkData.get(entry.getKey()));
+            System.out.println(&quot;, 실패원인=&quot; + entry.getValue().getResponse()); // (6)
+        }
+    } else {
+        System.out.println(&quot;모두 insert 성공함.&quot;);
+    }
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
+}
+</code></pre>
+
+<ol>
+<li>한꺼번에 insert할 아이템은 client.getMaxPipedItemCount()개를 초과할 수 없다. (기본값은 500개 이다.)
+   만약 개수를 초과하면 IllegalArguementException이 발생한다.</li>
+<li>Key에 저장된 List에 bulkData를 한꺼번에 insert하고 그 결과를 담은 future객체를 반환한다.
+   이 future로부터 각 아이템의 insert성공 실패 여부를 조회할 수 있다.
+   여기에서는 attributesForCreate값을 지정하여 bulk insert하기 전에 key가 없으면 생성하고 element를 insert되도록 하였다.</li>
+<li>delete timeout은 1초로 지정했다.
+   지정한 시간에 모든 아이템의 insert 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+   TimeoutException이 발생한다.</li>
+<li>모든 아이템이 insert에 성공하면 empty map이 반환된다.</li>
+<li>반환된 Map의 Key= insert한 값(bulkData)를 iteration했을 때의 index값.</li>
+<li>반환된 Map의 Value= insert 실패사유</li>
+<li>일부 실패한 아이템의 실패 원인을 조회하려면 insert할 때 사용된 값(bulkData)의 iteration 순서에 따라 결과
+   Map을 조회하면 된다.</li>
+<li>Future로부터 얻은 Map의 Key가 입력된 값(bulkData)의 index이기 때문에 위와 같은 방법으로 실패 원인을 조회하면 된다.</li>
+</ol>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+    </div>
+    
+      <script src="../../../assets/javascripts/application.a8b5e56f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
