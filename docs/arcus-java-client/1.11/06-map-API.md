@@ -10,7 +10,7 @@ Map을 Java의 Map 자료형을 저장하는 용도로 사용하길 권장한다
 
 Map item에 대해 수행가능한 기본 연산은 다음과 같다.
 
-- [Map Item 생성](06-map-API.md#map-item-생성)
+- [Map Item 생성](#map-item-생성)
 - [Map Element 삽입](06-map-API.md#map-element-삽입)
 - [Map Element 변경](06-map-API.md#map-element-변경)
 - [Map Element 삭제](06-map-API.md#map-element-삭제)

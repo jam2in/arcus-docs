@@ -23,7 +23,7 @@ mop create <key> <attributes> [noreply]\r\n
 ```
 
 - \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](/doc/arcus-item-attribute.md)을 참조 바란다.
+- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -48,9 +48,9 @@ mop insert <key> <field> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\
 - \<field\> - 삽입할 element의 field string
 - \<bytes\> - 삽입할 element의 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
 - create \<attributes\> - 해당 map collection 없을 시에 map 생성 요청.
-                    [Item Attribute 설명](/doc/arcus-item-attribute.md)을 참조 바란다.
+                    [Item Attribute 설명](/arcus-item-attribute.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](/command-pipelining.md)을 참조 바란다.
 - \<data\> - 삽입할 데이터 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
@@ -81,7 +81,7 @@ mop update <key> <field> <bytes> [noreply|pipe]\r\n<data>\r\n
 - \<field\> - 대상 element의 field string
 - \<bytes\> - 변경할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 - \<data\> - 변경할 데이터 자체 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
@@ -111,7 +111,7 @@ mop delete <key> <lenfields> <numfields> [drop] [noreply|pipe]\r\n
 - \<lenfields>\과 \<numfields>\ - field list 문자열의 길이와 field 개수를 나타낸다. 0이면 전체 field, element를 의미한다.
 - drop - field, element 삭제로 인해 empty map이 될 경우, 그 map을 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 

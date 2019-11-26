@@ -10,7 +10,7 @@ Map item은 하나의 key에 대해 hash 구조 기반으로 mkey & value 쌍을
 Map item에 대해 수행 가능한 기본 연산들은 아래와 같다.
 
 - [Map Item 생성](06-map-API.md#map-item-생성) (Map Item 삭제는 key-value item 삭제 함수로 수행한다)
-- [Map Element 삽입](06-map-API.md#map-element-삽입)
+- [Map Element 삽입](06-map-API.md#map-element-삽입) 
 - [Map Element 변경](06-map-API.md#map-element-변경)
 - [Map Element 삭제](06-map-API.md#map-element-삭제)
 - [Map Element 조회](06-map-API.md#map-element-조회)

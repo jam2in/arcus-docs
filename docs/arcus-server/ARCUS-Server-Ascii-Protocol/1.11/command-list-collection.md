@@ -22,7 +22,7 @@ lop create <key> <attributes> [noreply]\r\n
 ```
 
 - \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](/doc/arcus-item-attribute.md)을 참조 바란다.
+- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -49,11 +49,11 @@ lop insert <key> <index> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\
   - -1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄
 - \<bytes\> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
 - create \<attributes\> - list collection 없을 시에 list 생성 요청.
-                    [Item Attribute 설명](/doc/arcus-item-attribute.md)을 참조 바란다.
+                    [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 - \<data\> - 삽입할 데이터 (최대 4KB)
- 
+
 Response string과 그 의미는 아래와 같다.
 
 - "STROED" - 성공 (element만 삽입)
@@ -88,7 +88,7 @@ lop delete 명령에서 각 인자의 설명은 아래와 같다.
   - -1..0: 마지막 element 부터 첫째 element 까지 (backward 순서)
 - drop - element 삭제로 인해 empty list가 될 경우, 그 list를 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
+                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
