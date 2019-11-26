@@ -22,7 +22,7 @@ mop create <key> <attributes> [noreply]\r\n
 * <attributes>: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
+- \< key \> - 대상 item의 key string
 - \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 

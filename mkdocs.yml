@@ -15,7 +15,6 @@ repo_url: 'https://github.com/naver/arcus'
 edit_uri: ''
 
 plugins:
-    - awesome-pages
     - search
       #extra:
     #article_nav_top: false
