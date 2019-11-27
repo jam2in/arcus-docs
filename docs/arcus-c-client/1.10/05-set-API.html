@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-c-client/1.10/05-set-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Set Item"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-c-client/1.10/05-set-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Set Item"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-c-client/1.10/05-set-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="set-item"></a><a href="#set-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Item</h2>
+<p>Set item은 하나의 key에 대해 unique value의 집합을 저장한다. 주로 membership checking에 유용하게 사용할 수 있다.</p>
+<p><strong>제약 조건</strong></p>
+<ul>
+<li>저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)</li>
+<li>각 element에서 value 최대 크기 : 4KB</li>
+<li>Element 값의 중복을 허용하지 않는다.</li>
+</ul>
+<p>Set item에 수행 가능한 기본 연산들은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-item-%EC%83%9D%EC%84%B1">Set Item 생성</a> (Set item 삭제는 key-value item 삭제 함수로 수행한다)</li>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-%EC%82%BD%EC%9E%85">Set Element 삽입</a></li>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-%EC%82%AD%EC%A0%9C">Set Element 삭제</a></li>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-존재-여부-확인">Set Element 존재 여부 확인</a></li>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-%EC%A1%B0%ED%9A%8C">Set Element 조회</a></li>
+</ul>
+<p>여러 set element들에 대해 한번에 일괄 수행하는 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-%EC%9D%BC%EA%B4%84-%EC%82%BD%EC%9E%85">Set Element 일괄 삽입</a></li>
+<li><a href="/docs/arcus-c-client/1.10/05-set-API.html#set-element-일괄-존재-여부-확인">Set Element 일괄 존재 여부 확인</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="set-item-생성"></a><a href="#set-item-생성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Item 생성</h3>
+<p>새로운 empty set item을 생성한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">emcached_return_t</span> memcached_sop_create(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                       memcached_coll_create_attrs_st *attributes)
+</code></pre>
+<ul>
+<li>key: set item의 key</li>
+<li>attributes: set item의 속성 정보</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_CREATED: set이 생성됨.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_EXISTS: 동일한 key를 가진 set이 이미 존재함.</li>
+</ul></li>
+</ul>
+<p>Item 생성 시, item 속성 정보를 가지는 attributes 구조체가 필요하다.
+Item 속성 정보를 가지는 attributes 구조체는 아래와 같이 초기화한다.
+Attributes 구조체의 초기화 시에는 필수 속성 정보인 flags, exptime, maxcount 만을 설정할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_init(memcached_coll_create_attrs_st *attributes,
+                                               <span class="hljs-keyword">uint32_t</span> flags, <span class="hljs-keyword">uint32_t</span> exptime, <span class="hljs-keyword">uint32_t</span> maxcount)
+</code></pre>
+<p>그 외에, 선택적 속성들은 attributes 구조체를 초기화한 이후,
+아래의 함수를 이용하여 개별적으로 지정할 수 있다.</p>
+<pre><code class="hljs css language-C"><span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_flags(memcached_coll_create_attrs_st *attributes, <span class="hljs-keyword">uint32_t</span> flags)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_expiretime(memcached_coll_create_attrs_st *attributes, <span class="hljs-keyword">uint32_t</span> expiretime)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_maxcount(memcached_coll_create_attrs_st *attributes,
+                                                            <span class="hljs-keyword">uint32_t</span> maxcount)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_overflowaction(memcached_coll_create_attrs_st *attributes,
+                                                            <span class="hljs-keyword">memcached_coll_overflowaction_t</span> overflowaction)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_set_unreadable(memcached_coll_create_attrs_st *attributes)
+</code></pre>
+<p>Set item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_item_create</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-comment">// 비어 있는 Set을 생성한다.</span>
+    rc= memcached_sop_create(memc, <span class="hljs-string">"set:an_empty_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:an_empty_set"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 이미 존재하는 key를 이용하여 Set을 생성하면 오류가 발생한다.</span>
+    rc= memcached_sop_create(memc, <span class="hljs-string">"set:an_empty_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:an_empty_set"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_EXISTS == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-삽입"></a><a href="#set-element-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 삽입</h3>
+<p>Set에 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_insert(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length,
+                                        memcached_coll_create_attrs_st *attributes)
+</code></pre>
+<ul>
+<li>key, key_length: set item의 key</li>
+<li>value, value_lenth: 삽입할 element의 value</li>
+<li>attributes: Set 없을 시에 attributes에 따라 empty set을 생성 후에 element 삽입한다.</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_STORED: element만 삽입</li>
+<li>MEMCACHED_CREATED_STORED: Set 생성 후에 element 삽입</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: Set이 존재하지 않음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key의 자료구조가 set이 아님.</li>
+<li>MEMCACHED_OVERFLOWED: Overflow 상태임. (overflowaction=error, maxcount=count)</li>
+<li>MEMCACHED_ELEMENT_EXISTS: 동일한 value를 가진 element가 이미 존재하고 있음</li>
+</ul></li>
+</ul>
+<p>Set에 하나의 element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_insert</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-comment">// 입력할 때 Set이 존재하지 않으면 새로 생성한 뒤 입력한다.</span>
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 이미 존재하는 값을 입력하려 하면 오류가 발생한다.</span>
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), <span class="hljs-literal">NULL</span>);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_ELEMENT_EXISTS == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// Set의 element 개수가 maxcount에 다다를 때까지 입력한다.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">1</span>; i&lt;maxcount; i++)
+    {
+        <span class="hljs-keyword">char</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">15</span>];
+        <span class="hljs-keyword">size_t</span> buffer_len= <span class="hljs-built_in">snprintf</span>(<span class="hljs-built_in">buffer</span>, <span class="hljs-number">15</span>, <span class="hljs-string">"value%d"</span>, i);
+        rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-built_in">buffer</span>, buffer_len, &amp;attributes);
+        assert(MEMCACHED_SUCCESS == rc);
+        assert(MEMCACHED_STORED == memcached_get_last_response_code(memc));
+    }
+
+    <span class="hljs-comment">// Set의 element 개수가 maxcount에 다다른 상태에서 새로운 값을 입력하면 오류가 발생한다.</span>
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"last_value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"last_value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_OVERFLOWED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-삭제"></a><a href="#set-element-삭제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 삭제</h3>
+<p>Set에서 주어진 value를 가진 element를 삭제하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_delete(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">bool</span> drop_if_empty)
+</code></pre>
+<ul>
+<li>value, value_length: 삭제할 element의 value</li>
+<li>drop_if_empty: element 삭제로 empty list가 될 경우, 그 list도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_DELETED: 주어진 value를 가지는 element를 삭제함.</li>
+<li>MEMCACHED_DELETED_DROPPED: 주어진 value를 가지는 element를 삭제하고, empty 상태가 된 Set도 삭제함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Set이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 value를 가지는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Set이 아님.</li>
+</ul></li>
+</ul>
+<p>Set에서 하나의 element를 삭제하는 예제이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_delete</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-comment">// 테스트 데이터를 입력한다.</span>
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value1"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value1"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value2"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value2"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 삭제를 요청한 값이 Set에 존재하지 않으면 오류가 발생한다.</span>
+    rc= memcached_sop_delete(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"no value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"no value"</span>), <span class="hljs-literal">true</span>);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_NOTFOUND_ELEMENT == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 값 하나를 삭제한다.</span>
+    rc= memcached_sop_delete(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value1"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value1"</span>), <span class="hljs-literal">true</span>);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 값 하나를 삭제한다. 삭제 후 empty 상태가 된 Set은 삭제된다.</span>
+    rc= memcached_sop_delete(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value2"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value2"</span>), <span class="hljs-literal">true</span>);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-존재-여부-확인"></a><a href="#set-element-존재-여부-확인" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 존재 여부 확인</h3>
+<p>Set에서 주어진 value를 가진 element의 존재 여부를 확인한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_exist(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                       <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length)
+</code></pre>
+<ul>
+<li>value, value_length: 존재 여부를 확인할 element의 value</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_EXIST: 주어진 value를 가지는 element가 존재함.</li>
+<li>MEMCACHED_NOT_EXIST: 주어진 value를 가지는 element가 존재하지 않음.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Set이 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Set이 아님.</li>
+<li>MEMCACHED_UNREADABLE: 주어진 key에 해당하는 Set이 unreadable 상태임.</li>
+</ul></li>
+</ul>
+<p>Set element의 존재 여부를 확인하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_exist</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-comment">// 테스트 데이터를 입력한다.</span>
+    rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 요청한 데이터가 존재하는 않는 경우</span>
+    rc= memcached_sop_exist(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"no value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"no value"</span>));
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_NOT_EXIST == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 요청한 데이터가 존재하는 경우</span>
+    rc= memcached_sop_exist(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>));
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_EXIST == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-조회"></a><a href="#set-element-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 조회</h3>
+<p>Set element를 조회하는 함수이다. 이 함수는 임의의 count 개 element를 조회한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_get(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                     <span class="hljs-keyword">size_t</span> count, <span class="hljs-keyword">bool</span> with_delete, <span class="hljs-keyword">bool</span> drop_if_empty,
+                                     memcached_coll_result_st *result)
+</code></pre>
+<ul>
+<li>count: 조회할 element 개수</li>
+<li>with_delete: 조회와 함께 삭제도 수행할 것인지를 지정</li>
+<li>drop_if_empty: element 삭제로 empty set이 될 경우, 그 set도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_END: Set에서 정상적으로 element를 조회하였음.</li>
+<li>MEMCACHED_DELETED: Set에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.</li>
+<li>MEMCACHED_DELETED_DROPPED: Set에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.
+이 결과 empty 상태가 된 Set을 삭제함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Set이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 value를 가지는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Set이 아님.</li>
+<li>MEMCACHED_UNREADABLE: 주어진 key에 해당하는 Set이 unreadable 상태임.</li>
+</ul></li>
+</ul>
+<p>조회 결과는 memcached_coll_result_t 구조체에 저장된다.
+조회 결과에 접근하기 위한 API는 다음과 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function">memcached_coll_result_st *<span class="hljs-title">memcached_coll_result_create</span><span class="hljs-params">(<span class="hljs-keyword">const</span> memcached_st *ptr, memcached_coll_result_st *result)</span>
+<span class="hljs-keyword">void</span>                      <span class="hljs-title">memcached_coll_result_free</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+
+memcached_coll_type_t     <span class="hljs-title">memcached_coll_result_get_type</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+size_t                    <span class="hljs-title">memcached_coll_result_get_count</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+uint32_t                  <span class="hljs-title">memcached_coll_result_get_flags</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *              <span class="hljs-title">memcached_coll_result_get_value</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+size_t                    <span class="hljs-title">memcached_coll_result_get_value_length</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+</span></code></pre>
+<p>Set element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_get</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+    {
+        <span class="hljs-keyword">char</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">15</span>];
+        <span class="hljs-keyword">size_t</span> buffer_len= <span class="hljs-built_in">snprintf</span>(<span class="hljs-built_in">buffer</span>, <span class="hljs-number">15</span>, <span class="hljs-string">"value%d"</span>, i);
+        rc= memcached_sop_insert(memc, <span class="hljs-string">"a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_set"</span>), <span class="hljs-built_in">buffer</span>, buffer_len, &amp;attributes);
+        assert(MEMCACHED_SUCCESS == rc);
+    }
+
+    <span class="hljs-comment">// 조회 범위에 아무런 element가 없는 경우</span>
+    rc= memcached_sop_create(memc, <span class="hljs-string">"an_empty_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"an_empty_set"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+
+    result = memcached_coll_result_create(memc, <span class="hljs-literal">NULL</span>);
+
+    rc= memcached_sop_get(memc, <span class="hljs-string">"an_empty_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"an_empty_set"</span>), maxcount, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, result);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_NOTFOUND_ELEMENT == memcached_get_last_response_code(memc));
+
+    memcached_coll_result_free(result);
+
+    <span class="hljs-comment">// 조회와 동시에 조회된 element를 삭제한다. Empty 상태가 된 Set은 삭제된다.</span>
+    result = memcached_coll_result_create(memc, <span class="hljs-literal">NULL</span>);
+
+    rc= memcached_sop_get(memc, <span class="hljs-string">"a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_set"</span>), maxcount, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, result);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+    assert(maxcount == memcached_coll_result_get_count(result));
+
+    <span class="hljs-comment">// 조회 결과를 삭제한다.</span>
+    memcached_coll_result_free(result);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-일괄-삽입"></a><a href="#set-element-일괄-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 일괄 삽입</h3>
+<p>Set에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.</p>
+<p>첫째, 하나의 key가 가리키는 set에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_piped_insert(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> key_length,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> num_of_piped_items,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *values, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *values_length,
+                                              memcached_coll_create_attrs_st *attributes,
+                                              <span class="hljs-keyword">memcached_return_t</span> *results, <span class="hljs-keyword">memcached_return_t</span> *piped_rc) 
+</code></pre>
+<ul>
+<li>key, key_length: 하나의 key를 지정</li>
+<li>numr_of_piped_items: 한번에 삽입할 element 개수</li>
+<li>values, values_length: 다수 element 각각의 value와 그 길이</li>
+<li>attributes: 해당 set이 없을 시에, attributes에 따라 set을 생성 후에 삽입한다.</li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_piped_insert_bulk(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *keys, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *keylengths,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> num_of_keys,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *values, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *values_length,
+                                              memcached_coll_create_attrs_st *attributes,
+                                              <span class="hljs-keyword">memcached_return_t</span> *results, <span class="hljs-keyword">memcached_return_t</span> *piped_rc)
+</code></pre>
+<ul>
+<li>keys, keys_length: 다수 key들을 지정</li>
+<li>numr_of_keys: key들의 수</li>
+<li>values, values_length: 각 set에 삽입할 element의 value와 그 길이</li>
+<li>attributes: 해당 set이 없을 시에, attrbiutes에 따라 set을 생성 후에 삽입한다.</li>
+</ul>
+<p>Set element 일괄 삽입의 결과는 아래의 인자를 통해 받는다.</p>
+<ul>
+<li>results: 일괄 삽입 결과가 주어진 key 또는 (key, element) 순서대로 저장된다.
+<ul>
+<li>STORED: element만 삽입</li>
+<li>CREATE_STORED: set item 생성 후에, element 삽입</li>
+</ul></li>
+<li>piped_rc: 일괄 저장의 전체 결과를 담고 있다
+<ul>
+<li>MEMCACHED_ALL_SUCCESS: 모든 element가 저장됨.</li>
+<li>MEMCACHED_SOME_SUCCESS: 일부 element가 저장됨.</li>
+<li>MEMCACHED_ALL_FAILURE: 전체 element가 저장되지 않음.</li>
+</ul></li>
+</ul>
+<p>Set element 일괄 삽입의 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_piped_insert</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= MEMCACHED_COLL_MAX_PIPED_CMD_SIZE;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+    <span class="hljs-keyword">memcached_return_t</span> piped_rc; <span class="hljs-comment">// pipe operation의 전체 성공 여부</span>
+    <span class="hljs-keyword">memcached_return_t</span> results[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE]; <span class="hljs-comment">// 각 key에 대한 응답코드</span>
+
+    <span class="hljs-comment">// 테스트 데이터</span>
+    <span class="hljs-keyword">int32_t</span> indexes[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+    <span class="hljs-keyword">char</span> **values = (<span class="hljs-keyword">char</span> **)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span> *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    <span class="hljs-keyword">size_t</span> valuelengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+    {
+        values[i]= (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span>) * <span class="hljs-number">15</span>);
+        valuelengths[i]= <span class="hljs-built_in">snprintf</span>(values[i], <span class="hljs-number">15</span>, <span class="hljs-string">"value%d"</span>, i);
+    }
+
+    <span class="hljs-comment">// piped insert를 요청한다.</span>
+    rc= memcached_sop_piped_insert(memc, <span class="hljs-string">"a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_set"</span>), MEMCACHED_COLL_MAX_PIPED_CMD_SIZE, values,
+                                   valuelengths, &amp;attributes, results, &amp;piped_rc);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_ALL_SUCCESS == piped_rc);
+
+    <span class="hljs-comment">// 각 key에 대한 결과를 확인한다.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+    {
+        assert(MEMCACHED_STORED == results[i] <span class="hljs-keyword">or</span>
+                MEMCACHED_CREATED_STORED == results[i]);
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+        <span class="hljs-built_in">free</span>((<span class="hljs-keyword">void</span>*)values[i]);
+    <span class="hljs-built_in">free</span>((<span class="hljs-keyword">void</span>*)values);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="set-element-일괄-존재-여부-확인"></a><a href="#set-element-일괄-존재-여부-확인" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Element 일괄 존재 여부 확인</h3>
+<p>Set에서 여러 element의 존재 여부를 한번에 확인하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_sop_piped_exist(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                             <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> number_of_piped_items,
+                                             <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *values, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *values_length,
+                                             <span class="hljs-keyword">memcached_return_t</span> *results, <span class="hljs-keyword">memcached_return_t</span> *piped_rc)
+</code></pre>
+<ul>
+<li>key, key_length: 하나의 key를 지정</li>
+<li>numr_of_piped_items: 한번에 확인할 element 개수</li>
+<li>values, values_length: 각 element의 value와 길이</li>
+</ul>
+<p>Set element 일괄 존재 여부 확인의 결과는 아래의 인자를 통해 받는다.</p>
+<ul>
+<li>results: 각 value에 대한 element 존재 여부 결과를 순서대로 저장한다.
+<ul>
+<li>MEMCACHED_EXIST</li>
+<li>MEMCACHED_NOT_EXIST</li>
+</ul></li>
+<li>piped_rc: 일괄 존재 여부 확인 결과를 담고 있다.
+<ul>
+<li>MEMCACHED_ALL_EXIST: 모든 element가 존재함.</li>
+<li>MEMCACHED_SOME_EXIST: 일부 element가 존재함.</li>
+<li>MEMCACHED_ALL_NOT_EXIST: 모든 element가 존재하지 않음.</li>
+</ul></li>
+</ul>
+<p>Set element 일괄 존재 여부 확인의 예는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_set_element_piped_exist</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= MEMCACHED_COLL_MAX_PIPED_CMD_SIZE;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+    <span class="hljs-keyword">char</span> **values = (<span class="hljs-keyword">char</span> **)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span> *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    <span class="hljs-keyword">size_t</span> valuelengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+
+    <span class="hljs-comment">// 비어 있는 Set을 하나 생성한다.</span>
+    memcached_sop_create(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 테스트 데이터를 입력한다.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+    {
+        values[i]= (<span class="hljs-keyword">char</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">char</span>) * <span class="hljs-number">15</span>);
+        valuelengths[i]= <span class="hljs-built_in">snprintf</span>(values[i], <span class="hljs-number">15</span>, <span class="hljs-string">"value%d"</span>, i);
+
+        <span class="hljs-comment">// 일부 데이터를 의도적으로 입력하지 않도록 한다.</span>
+        <span class="hljs-keyword">if</span> ((i % <span class="hljs-number">10</span>) == <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">continue</span>;
+
+        rc= memcached_sop_insert(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), values[i], valuelengths[i], &amp;attributes);
+        assert(MEMCACHED_SUCCESS == rc);
+        assert(MEMCACHED_STORED == memcached_get_last_response_code(memc));
+
+    }
+
+    <span class="hljs-comment">// Piped exist 명령을 수행한다.</span>
+    <span class="hljs-keyword">memcached_return_t</span> piped_rc; <span class="hljs-comment">// 전체 데이터 존재 여부</span>
+    <span class="hljs-keyword">memcached_return_t</span> responses[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE]; <span class="hljs-comment">// 각 데이터에 대한 존재 여부</span>
+
+    rc= memcached_sop_piped_exist(memc, <span class="hljs-string">"set:a_set"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"set:a_set"</span>), maxcount,
+                                  values, valuelengths, responses, &amp;piped_rc);
+
+    <span class="hljs-comment">// 일부 데이터가 존재한다는 결과가 나왔다.</span>
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_SOME_EXIST == piped_rc);
+
+    <span class="hljs-comment">// 실제 결과가 맞는지 검증해보자.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+    {
+        <span class="hljs-keyword">if</span> ((i % <span class="hljs-number">10</span>) == <span class="hljs-number">0</span>)
+            assert(MEMCACHED_NOT_EXIST == responses[i]);
+        <span class="hljs-keyword">else</span>
+            assert(MEMCACHED_EXIST == responses[i]);
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)
+        <span class="hljs-built_in">free</span>(values[i]);
+    <span class="hljs-built_in">free</span>(values);
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#set-item">Set Item</a><ul class="toc-headings"><li><a href="#set-item-생성">Set Item 생성</a></li><li><a href="#set-element-삽입">Set Element 삽입</a></li><li><a href="#set-element-삭제">Set Element 삭제</a></li><li><a href="#set-element-존재-여부-확인">Set Element 존재 여부 확인</a></li><li><a href="#set-element-조회">Set Element 조회</a></li><li><a href="#set-element-일괄-삽입">Set Element 일괄 삽입</a></li><li><a href="#set-element-일괄-존재-여부-확인">Set Element 일괄 존재 여부 확인</a></li></ul></li></ul></nav></div></div></body></html>

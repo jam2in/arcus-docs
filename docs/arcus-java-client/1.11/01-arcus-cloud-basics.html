@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-java-client/1.11/01-arcus-cloud-basics · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Arcus Cloud 기본 사항"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-java-client/1.11/01-arcus-cloud-basics · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Arcus Cloud 기본 사항"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-java-client/1.11/01-arcus-cloud-basics</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="arcus-cloud-기본-사항"></a><a href="#arcus-cloud-기본-사항" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus Cloud 기본 사항</h2>
+<p>Arcus는 확장된 key-value 데이터 모델을 제공한다.
+하나의 key는 하나의 데이터만을 가지는 simple key-value 유형 외에도
+하나의 key가 여러 데이터를 구조화된 형태로 저장하는 collection 유형을 제공한다.</p>
+<p>Arcus cache server의 key-value 모델은 아래의 기본 제약 사항을 가진다.</p>
+<ul>
+<li>기존 key-value 모델의 제약 사항
+<ul>
+<li>Key의 최대 크기는 250 character이다.</li>
+<li>Value의 최대 크기는 1MB이다.</li>
+</ul></li>
+<li>Collection 제약 사항
+<ul>
+<li>하나의 collection이 가지는 최대 element 개수는 50,000개이다.</li>
+<li>Collection element가 저장하는 value의 최대 크기는 4KB이다.</li>
+</ul></li>
+</ul>
+<p>아래에서 Arcus cloud를 이해하는 데 있어 기본 사항들을 기술한다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/01-arcus-cloud-basics.html#%EC%84%9C%EB%B9%84%EC%8A%A4%EC%BD%94%EB%93%9C">서비스코드</a></li>
+<li><a href="/docs/arcus-java-client/1.11/01-arcus-cloud-basics.html#arcus-admin">Arcus Admin</a></li>
+<li><a href="/docs/arcus-java-client/1.11/01-arcus-cloud-basics.html#cache-key">Cache Key</a></li>
+<li><a href="/docs/arcus-java-client/1.11/01-arcus-cloud-basics.html#cache-item">Cache Item</a></li>
+<li><a href="/docs/arcus-java-client/1.11/01-arcus-cloud-basics.html#expiration-eviction-and-sticky-item">Expiration, Eviction, and Sticky Item</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="서비스코드"></a><a href="#서비스코드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>서비스코드</h3>
+<p>서비스코드(service code)는 Arcus에서 cache cloud를 구분하는 코드이다.
+Arcus cache cloud 서비스를 응용들에게 제공한다는 의미에서 &quot;서비스코드&quot;라는 용어를 사용하게 되었다.</p>
+<p>하나의 응용에서 하나 이상의 Arcus cache cloud를 구축하여 사용할 수 있다.
+Arcus java client 객체는 하나의 Arcus 서비스코드만을 가지며, 하나의 Arcus cache cloud에만 접근할 수 있다.
+해당 응용이 둘 이상의 Arcus cache cloud를 접근해야 한다면,
+각 Arcus cache cloud의 서비스코드를 가지는 Arcus java client 객체를 따로 생성하여 사용하여야 한다.</p>
+<h3><a class="anchor" aria-hidden="true" id="arcus-admin"></a><a href="#arcus-admin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus Admin</h3>
+<p>Arcus admin은 ZooKeeper를 이용하여 각 서비스 코드에 해당하는 Arcus cache cloud를 관리한다.
+특정 서비스 코드에 대한 cache server list를 관리하며,
+cache server 추가 및 삭제에 대해 cache server list를 최신 상태로 유지하며,
+서비스 코드에 대한 cache server list 정보를 arcus client에게 전달한다.
+Arcus admin은 highly available하여야 하므로,
+여러 ZooKeeper 서버들을 하나의 ZeeKeeper ensemble로 구성하여 사용한다.</p>
+<h3><a class="anchor" aria-hidden="true" id="cache-key"></a><a href="#cache-key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cache Key</h3>
+<p>Cache key는 Arcus cache에 저장하는 cache item을 유일하게 식별한다. Cache key 형식은 아래와 같다.</p>
+<pre><code class="hljs">  Cache Key : [<span class="hljs-tag">&lt;<span class="hljs-name">prefix</span>&gt;</span>:]<span class="hljs-tag">&lt;<span class="hljs-name">subkey</span>&gt;</span>
+</code></pre>
+<ul>
+<li>&lt;prefix&gt; - Cache key의 앞에 붙는 namespace이다.
+<ul>
+<li>Prefix 단위로 cache server에 저장된 key들을 그룹화하여 flush하거나 통계 정보를 볼 수 있다.</li>
+<li>Prefix를 생략할 수 있지만, 가급적 사용하길 권한다.</li>
+</ul></li>
+<li>delimiter - Prefix와 subkey를 구분하는 문자로 default delimiter는 콜론(‘:’)이다.</li>
+<li>&lt;subkey&gt; - 일반적으로 응용에서 사용하는 Key이다.</li>
+</ul>
+<p>Prefix와 subkey는 아래의 명명 규칙을 가진다.</p>
+<ul>
+<li>Prefix는 영문 대소문자, 숫자, 언더바(_), 하이픈(-), 플러스(+), 점(.) 문자만으로 구성될 수 있으며,
+이 중에 하이픈(-)은 prefix 명의 첫번째 문자로 올 수 없다.</li>
+<li>Subkey는 공백을 포함할 수 없으며, 기본적으로 alphanumeric만을 사용하길 권장한다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="cache-item"></a><a href="#cache-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cache Item</h3>
+<p>Arcus cache는 simple key-value item 외에 다양한 collection item 유형을 가진다.</p>
+<ul>
+<li>simple key-value item - 기존 key-value item</li>
+<li>collection item
+<ul>
+<li>list item - 데이터들의 linked list을 가지는 item</li>
+<li>set item - 유일한 데이터들의 집합을 가지는 item</li>
+<li>map item - &lt;mkey, value&gt;쌍으로 구성된 데이터 집합을 가지는 item</li>
+<li>b+tree item - b+tree key 기반으로 정렬된 데이터 집합을 가지는 item</li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="expiration-eviction-and-sticky-item"></a><a href="#expiration-eviction-and-sticky-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expiration, Eviction, and Sticky Item</h3>
+<p>각 cache item은 expiration time 속성을 가진다.
+이 값의 설정으로 자동 expiration을 지정하거나 expire되지 않도록 지정할 수 있다.</p>
+<p>Arcus cache는 memory cache이며, 한정된 메모리 공간을 사용하여 데이터를 caching한다.
+메모리 공간이 모두 사용된 상태에서 새로운 cache item 저장 요청이 들어오면,
+Arcus cache는 &quot;out of memory&quot; 오류를 내거나
+LRU(least recently used) 기반으로 오랫동안 접근되지 않은 cache item을 evict시켜
+available 메모리 공간을 확보한 후에 새로운 cache item을 저장한다.</p>
+<p>특정 응용은 어떤 cache item이 expire &amp; evict 대상이 되지 않기를 원하는 경우도 있다.
+이러한 cache item을 sticky item이라 하며, expiration time을 -1로 설정하면 된다.
+Sticky item의 삭제는 전적으로 응용에 의해 관리되어야 함을 주의해야 한다.
+그리고, sticky item 역시 메모리에 저장되기 때문에 server가 restart되면 사라지게 된다.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#arcus-cloud-기본-사항">Arcus Cloud 기본 사항</a><ul class="toc-headings"><li><a href="#서비스코드">서비스코드</a></li><li><a href="#arcus-admin">Arcus Admin</a></li><li><a href="#cache-key">Cache Key</a></li><li><a href="#cache-item">Cache Item</a></li><li><a href="#expiration-eviction-and-sticky-item">Expiration, Eviction, and Sticky Item</a></li></ul></li></ul></nav></div></div></body></html>

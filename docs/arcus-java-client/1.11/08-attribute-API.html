@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-java-client/1.11/08-attribute-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Item Attributes"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-java-client/1.11/08-attribute-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Item Attributes"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-java-client/1.11/08-attribute-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="item-attributes"></a><a href="#item-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Item Attributes</h2>
+<p>Item attributes는 각 cache item의 메타데이터를 의미한다.
+Item attributes의 기본 설명은 <a href="https://github.com/naver/arcus-memcached/blob/master/doc/arcus-item-attribute.md">Arcus cache server의 item attributes 부분</a>을 참고 하길 바란다.</p>
+<p>Item attributes를 변경하거나 조회하는 함수들을 설명한다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/08-attribute-API.html#attribute-%EB%B3%80%EA%B2%BD">Attribute 변경</a></li>
+<li><a href="/docs/arcus-java-client/1.11/08-attribute-API.html#attribute-%EC%A1%B0%ED%9A%8C">Attribute 조회</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="attribute-변경"></a><a href="#attribute-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attribute 변경</h3>
+<p>주어진 key의 attributes를 변경하는 함수이다.</p>
+<pre><code class="hljs css language-java">CollectionFuture &lt;Boolean&gt; asyncSetAttr(String key, Attributes attr)
+</code></pre>
+<p>어떤 collection에 모든 element를 삽입하기 전 까지는 다른 여러 thread에서
+그 collection의 element를 조회하여서는 안된다.
+이를 위해, READABLE 속성을 false로 설정해 해당 collection을 읽을 수 없는 상태로 만들어두고
+모든 element를 삽입한 후에 다시 readable 속성을 true하는 예제이다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-comment">// Unreadable list를 생성한다.</span>
+CollectionAttributes attribute = <span class="hljs-keyword">new</span> CollectionAttributes();
+attribute.setReadable(<span class="hljs-keyword">false</span>);
+
+CollectionFuture&lt;Boolean&gt; createFuture = mc.asyncLopCreate(KEY, ElementValueType.STRING, attribute);
+
+<span class="hljs-keyword">try</span> {
+    createFuture.get(<span class="hljs-number">300L</span>, TimeUnit.MILLISECONDS);
+} <span class="hljs-keyword">catch</span> (Exception e) {
+    createFuture.cancel(<span class="hljs-keyword">true</span>);
+    <span class="hljs-comment">// throw an exception or logging.</span>
+}
+
+<span class="hljs-comment">// 여기에서 List를 갱신한다. 이 상태에서는 collection을 읽을 수 없다. 쓰기, 수정, 삭제만 가능하다.</span>
+
+<span class="hljs-comment">// List를 Readable상태로 만든다.</span>
+CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+attrs.setReadable(<span class="hljs-keyword">true</span>);
+
+CollectionFuture&lt;Boolean&gt; setAttrFuture = mc.asyncSetAttr(KEY, attrs);
+<span class="hljs-keyword">try</span> {
+    setAttrFuture.get(<span class="hljs-number">300L</span>, TimeUnit.MILLISECONDS);
+} <span class="hljs-keyword">catch</span> (Exception e) {
+    setAttrFuture.cancel(<span class="hljs-keyword">true</span>);
+    <span class="hljs-comment">// throw an exception or logging.</span>
+}
+
+<span class="hljs-comment">// 이제 collection을 읽을 수 있다.</span>
+</code></pre>
+<p>두번째 예제는 expiretime 속성을 변경한다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:Object"</span>;
+
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    Attributes attrs = <span class="hljs-keyword">new</span> Attributes(); <span class="hljs-comment">// (1)</span>
+    attrs.setExpireTime(<span class="hljs-number">1</span>);
+    future = client.asyncSetAttr(key, attrs); <span class="hljs-comment">// (2)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+    System.out.println(result);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>Attribute객체를 생성하여 expire time을 1초로 지정했다. 지정한 시간에 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다</li>
+<li>asyncSetAttr메소드를 사용해 key의 attribute를 변경한다.
+이렇게 하면 key의 expire time이 attribute에 지정된 1초 이후로 재설정 된다.
+결론적으로 key의 expire time은 asyncSetAttr메소드를 통해 Attribute가 적용된 1초 후로 설정되는 것이다.</li>
+<li>Attribute가 key에 정상적으로 반영되면 true를 반환한다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="attribute-조회"></a><a href="#attribute-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attribute 조회</h3>
+<p>주어진 key의 attributes를 조회하는 함수이다.</p>
+<pre><code class="hljs css language-java">CollectionFuture &lt;CollectionAttributes&gt; asyncGetAttr(String key)
+</code></pre>
+<p>Colleciton에 저장된 element 개수를 조회하는 예제이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:List"</span>;
+CollectionFuture&lt;CollectionAttributes&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncGetAttr(key); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>) {
+    <span class="hljs-keyword">return</span>;
+}
+
+<span class="hljs-keyword">try</span> {
+    CollectionAttributes result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+
+    <span class="hljs-keyword">if</span> (result == <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// (3)</span>
+        System.out.println(<span class="hljs-string">"Key가 없습니다."</span>);
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">long</span> totalItemCountOfBTree = result.getCount(); <span class="hljs-comment">// (4)</span>
+    System.out.println(<span class="hljs-string">"Item count="</span> + totalItemCountOfBTree);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>Key의 Attribute를 조회한다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 삭제 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>Key가 없으면 null이 반환된다.</li>
+<li>조회된 Attribute객체에서 count값을 조회한다. 이 값이 key에 저장된 Collection이 가지고 있는 엘리먼트의 총 개수이다.</li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#item-attributes">Item Attributes</a><ul class="toc-headings"><li><a href="#attribute-변경">Attribute 변경</a></li><li><a href="#attribute-조회">Attribute 조회</a></li></ul></li></ul></nav></div></div></body></html>

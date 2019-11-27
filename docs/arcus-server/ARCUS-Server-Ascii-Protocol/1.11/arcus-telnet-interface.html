@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-telnet-interface · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Arcus Telnet Interface"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-telnet-interface · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="Arcus Telnet Interface"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-telnet-interface</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="arcus-telnet-interface"></a><a href="#arcus-telnet-interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus Telnet Interface</h2>
+<p>Arcus cache server의 동작을 간단히 확인하는 방법으로, telnet interface를 이용할 수 있다.</p>
+<h3><a class="anchor" aria-hidden="true" id="telnet-사용법"></a><a href="#telnet-사용법" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Telnet 사용법</h3>
+<p>OS prompt 상에서 아래와 같이 telnet 명령을 실행시킨다.
+telnet 명령의 인자로는 연결하고자 하는 Arcus cache server인 memcached의 IP와 port number를 준다.</p>
+<pre><code class="hljs"><span class="xml">$ telnet </span><span class="hljs-template-variable">{memcached-ip}</span><span class="xml"> </span><span class="hljs-template-variable">{memcached-port}</span><span class="xml">
+</span></code></pre>
+<h3><a class="anchor" aria-hidden="true" id="telnet-연결"></a><a href="#telnet-연결" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Telnet 연결</h3>
+<p>Localhost에 11211 포트 번호로 memcached가 구동되어 있다고 가정한다.
+telnet 명령으로 해당 memcached에 연결하기 위해,
+OS prompt 상에서 아래의 명령을 수행한다.</p>
+<pre><code class="hljs">$ telnet localhost <span class="hljs-number">11211</span>
+Trying <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>...
+Connected to localhost.localdomain (<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>).
+Escape character <span class="hljs-keyword">is</span> <span class="hljs-string">'^]'</span>.
+</code></pre>
+<p>telnet 명령으로 memcached에 연결한 이후에는 Arcus ASCII 명령을 직접 수행해 볼 수 있다.
+아래에서 그 예들을 든다. Arcus ASCII 명령의 자세한 설명은 <a href="/docs/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-ascii-protocol.html">Arcus cache server ascii protocol</a>을 참고하기 바란다.</p>
+<h3><a class="anchor" aria-hidden="true" id="예제-1---getset"></a><a href="#예제-1---getset" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>예제 1 - get/set</h3>
+<p>하나의 key-value item으로 &lt;&quot;foo&quot;, &quot;fooval&quot;&gt;을 저장하기 위해, set 명령을 입력한다.</p>
+<pre><code class="hljs"><span class="hljs-keyword">set</span> foo <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">6</span>
+fooval
+</code></pre>
+<p>set 명령의 수행 결과로 정상적으로 key-value item이 저장되었다는 string이 리턴된다.</p>
+<pre><code class="hljs"><span class="hljs-keyword">STORED</span>
+</code></pre>
+<p>저장된 foo item을 조회하기 위해, get 명령을 입력한다.</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">get</span> foo
+</code></pre>
+<p>get 명령으로 조회한 foo item 결과는 아래와 같다.</p>
+<pre><code class="hljs">VALUE foo <span class="hljs-number">0</span> <span class="hljs-number">6</span>
+fooval
+END
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="예제-2---btree"></a><a href="#예제-2---btree" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>예제 2 - b+tree</h3>
+<p>하나의 b+tree item을 생성하면서 5개의 elements를 추가하기 위해,
+아래의 5개 bop insert 명령을 차례로 수행한다.</p>
+<pre><code class="hljs"><span class="hljs-keyword">bop </span><span class="hljs-keyword">insert </span><span class="hljs-keyword">bkey1 </span><span class="hljs-number">90</span> <span class="hljs-number">6</span> create <span class="hljs-number">11</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
+datum9
+<span class="hljs-keyword">bop </span><span class="hljs-keyword">insert </span><span class="hljs-keyword">bkey1 </span><span class="hljs-number">70</span> <span class="hljs-number">6</span>
+datum7
+<span class="hljs-keyword">bop </span><span class="hljs-keyword">insert </span><span class="hljs-keyword">bkey1 </span><span class="hljs-number">50</span> <span class="hljs-number">6</span>
+datum5
+<span class="hljs-keyword">bop </span><span class="hljs-keyword">insert </span><span class="hljs-keyword">bkey1 </span><span class="hljs-number">30</span> <span class="hljs-number">6</span>
+datum3
+<span class="hljs-keyword">bop </span><span class="hljs-keyword">insert </span><span class="hljs-keyword">bkey1 </span><span class="hljs-number">10</span> <span class="hljs-number">6</span>
+datum1
+</code></pre>
+<p>5개 bop insert 명령의 수행 결과는 아래와 같다.</p>
+<pre><code class="hljs">CREATED_STORED
+<span class="hljs-keyword">STORED</span>
+<span class="hljs-keyword">STORED</span>
+<span class="hljs-keyword">STORED</span>
+<span class="hljs-keyword">STORED</span>
+</code></pre>
+<p>b+tree에서 30부터 80까지의 bkey(b+tree key) range에 속하는 elements를 조회하기 위하여,
+bop get 명령을 입력한다.</p>
+<pre><code class="hljs"><span class="hljs-keyword">bop </span><span class="hljs-meta">get</span> <span class="hljs-keyword">bkey1 </span><span class="hljs-number">30</span>..<span class="hljs-number">80</span>
+</code></pre>
+<p>bop get 명령으로 조회한 결과는 아래와 같다.</p>
+<pre><code class="hljs">VALUE <span class="hljs-number">11</span> <span class="hljs-number">3</span>
+<span class="hljs-number">30</span> <span class="hljs-number">6</span> datum3
+<span class="hljs-number">50</span> <span class="hljs-number">6</span> datum5
+<span class="hljs-number">70</span> <span class="hljs-number">6</span> datum7
+END
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="telnet-종료"></a><a href="#telnet-종료" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Telnet 종료</h3>
+<p>현재의 telnet 연결을 종료하려면, quit 명령을 입력한다.</p>
+<pre><code class="hljs"><span class="hljs-keyword">quit</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#arcus-telnet-interface">Arcus Telnet Interface</a><ul class="toc-headings"><li><a href="#telnet-사용법">Telnet 사용법</a></li><li><a href="#telnet-연결">Telnet 연결</a></li><li><a href="#예제-1---getset">예제 1 - get/set</a></li><li><a href="#예제-2---btree">예제 2 - b+tree</a></li><li><a href="#telnet-종료">Telnet 종료</a></li></ul></li></ul></nav></div></div></body></html>

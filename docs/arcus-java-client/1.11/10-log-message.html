@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-java-client/1.11/10-log-message · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### Java Client Log Messages"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-java-client/1.11/10-log-message · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="### Java Client Log Messages"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-java-client/1.11/10-log-message</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="java-client-log-messages"></a><a href="#java-client-log-messages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Java Client Log Messages</h3>
+<p>Java client에서 남기는 로그들과 그것들이 의미하는 바는 아래와 같다. 로그는 서비스에서 설정한 위치에 남게 된다. 로그 레벨 변경과 logger 설정은 <a href="/docs/arcus-java-client/1.11/02-arcus-java-client.html#arcus-client-설정">arcus client 설정</a>을 참고하기 바란다.</p>
+<h4><a class="anchor" aria-hidden="true" id="arcus-client가-정상적으로-초기화-되었을-때"></a><a href="#arcus-client가-정상적으로-초기화-되었을-때" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus client가 정상적으로 초기화 되었을 때</h4>
+<p>Arcus client가 정상적으로 초기화 되면 다음과 같은 로그를 남긴다.</p>
+<pre><code class="hljs css language-java">INFO net.spy.memcached.CacheManager: CacheManager started. ([mailto:dev@dev.arcuscloud.nhncorp.com:17288 dev@dev.arcuscloud.nhncorp.com:17288])
+
+WARN net.spy.memcached.CacheMonitor: Cache list has been changed : From=null, To=[127.0.0.1:11211-hostname, xxx.xxx.xxx.xxx:xxxx-hostname] : [serviceCode=dev]
+
+INFO net.spy.memcached.MemcachedConnection: new memcached node added {QA sa=/127.0.0.1:11211, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+
+INFO net.spy.memcached.MemcachedConnection: new memcached node added {QA sa=/127.0.0.1:11211, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+
+INFO net.spy.memcached.MemcachedConnection: Connection state changed for sun.nio.ch.SelectionKeyImpl@388ee016
+
+INFO net.spy.memcached.MemcachedConnection: Connection state changed for sun.nio.ch.SelectionKeyImpl@2e5bbd6
+
+2011-09-21 10:44:54.055 WARN net.spy.memcached.CacheManager: All arcus connections are established.
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="arcus-admin-address가-잘못-되었을-때"></a><a href="#arcus-admin-address가-잘못-되었을-때" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus admin address가 잘못 되었을 때</h4>
+<p>Arcus admin address를 잘못 지정했거나 server가 응답이 없을 때 아래와 같은 로그를 남긴다.</p>
+<pre><code class="hljs css language-java">FATAL net.spy.memcached.CacheManager: Unexpected exception. contact to arcus administrator
+
+INFO net.spy.memcached.CacheManager: Close ZooKeeper client.
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="arcus-admin과-연결이-단절-되었을-때"></a><a href="#arcus-admin과-연결이-단절-되었을-때" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus admin과 연결이 단절 되었을 때</h4>
+<p>Arcus admin과의 네트웍 문제로 연결이 단절되면 아래 로그를 남기고 Arcus admin으로 접속을 재시도한다.</p>
+<pre><code class="hljs css language-java">WARN net.spy.memcached.CacheMonitor: Disconnected from the Arcus admin. Trying to reconnect : [serviceCode=dev]
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="arcus-admin-세션이-만료되었을-때"></a><a href="#arcus-admin-세션이-만료되었을-때" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Arcus admin 세션이 만료되었을 때</h4>
+<p>세션이 만료되는 경우는 admin과의 연결문제로 heart beat이 제대로 되지 않아 만료된 경우이다.</p>
+<pre><code class="hljs css language-java">WARN net.spy.memcached.CacheMonitor: Session expired. Trying to reconnect to the Arcus admin : [serviceCode=dev]
+</code></pre>
+<p>세션이 만료되면 Arcus client는 reconnect를 시도한다.</p>
+<pre><code class="hljs css language-java">INFO net.spy.memcached.CacheMonitor: Shutting down the CacheMonitor : [serviceCode=dev]
+
+WARN net.spy.memcached.CacheManager: Unexpected disconnection from Arcus admin. Trying to reconnect to Arcus admin.
+
+INFO net.spy.memcached.CacheManager: Close ZooKeeper client.
+</code></pre>
+<p>Reconnect에 성공하면 아래와 같은 로그가 남는다.</p>
+<pre><code class="hljs css language-java">WARN net.spy.memcached.CacheMonitor: Reconnected to the Arcus admin : [serviceCode=dev]
+
+ERROR net.spy.memcached.CacheMonitor: Cache list has been changed : From=<span class="hljs-keyword">null</span>, To=[<span class="hljs-number">10.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">11211</span>-arcus01.companyname.com, <span class="hljs-number">10.0</span><span class="hljs-number">.0</span><span class="hljs-number">.2</span>:<span class="hljs-number">11211</span>-arcus02.companyname.com] : [serviceCode=dev]
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="object-serialization-문제"></a><a href="#object-serialization-문제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object serialization 문제</h4>
+<p>저장하는 값이 serializable하지 않거나 null일 경우 아래와 같은 오류 메시지를 남긴다.</p>
+<p>Null을 저장하려 하는 경우</p>
+<pre><code class="hljs css language-java">Can’t serialize <span class="hljs-keyword">null</span>
+</code></pre>
+<p>저장하려는 값이 serializable하지 않은 경우</p>
+<pre><code class="hljs css language-java">java.lang.IllegalArgumentException: Non-serializable object, cause=원인
+</code></pre>
+<p>이 때 <code>원인</code>에 serialize 실패 원인이 되는 클래스이름이 보여진다.</p>
+<h4><a class="anchor" aria-hidden="true" id="out-of-memory-storing-object"></a><a href="#out-of-memory-storing-object" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>out of memory storing object</h4>
+<p>Expire time을 -1로 지정하여 아이템을 저장할 때 “out of memory storing object”에러가 발생할 수 있다. 이유는 Arcus서버를 실행할 때 백분율로 지정한 sticky item 저장 영역이 가득 찼기 때문이다. Sticky item으로 사용 가능한 비율을 지정하지 않았을 때에도 동일한 오류메시지가 나타난다.</p>
+<pre><code class="hljs css language-java">[ERROR](StoreOperationImpl :? ) Error: SERVER_ERROR out of memory storing object
+[INFO ](MemcachedConnection :? ) Reconnection due to exception handling a memcached operation on {QA sa=/ 127.0.0.1:11211, #Rops=2, #Wops=0, #iq=0, topRop=net.spy.memcached.protocol.ascii.StoreOperationImpl@250d593e, topWop=null, toWrite=0, interested=1}. This may be due to an authentication failure.
+OperationException: SERVER: SERVER_ERROR out of memory storing object
+at net.spy.memcached.protocol.BaseOperationImpl.handleError(BaseOperationImpl.java:127)
+at net.spy.memcached.protocol.ascii.OperationImpl.readFromBuffer(OperationImpl.java:131)
+at net.spy.memcached.MemcachedConnection.handleReads(MemcachedConnection.java:457)
+at net.spy.memcached.MemcachedConnection.handleIO(MemcachedConnection.java:389)
+at net.spy.memcached.MemcachedConnection.handleIO(MemcachedConnection.java:182)
+at net.spy.memcached.MemcachedClient.run(MemcachedClient.java:1630)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="operation-timeout"></a><a href="#operation-timeout" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Operation Timeout</h4>
+<p>timeout시간 내에 사용자가 요청한 결과 값을 반환해 줄 수 없으면 아래 로그를 남기고 TimeoutException을 던진다.</p>
+<pre><code class="hljs css language-java">net.spy.memcached.internal.CheckedOperationTimeoutException: Timed out waiting for operation. &gt; 300 - failing node: /127.0.0.1:11211 [WRITING] [#iq=13 #Wops=7 #Rops=10 #CT=13]
+</code></pre>
+<p>로그의 의미는 다음과 같다.</p>
+<table>
+<thead>
+<tr><th>메세지</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>Timed out waiting for operation. &gt; 300 MILLISECONDS</td><td>Timeout 값이 300ms로 지정되어있고 요청의 결과를 받기까지300ms이상 걸려서 timeout되었다.</td></tr>
+<tr><td>Failing node: /127.0.0.1:11211</td><td>해당 요청은 127.0.0.1:11211 에서 수행한다.</td></tr>
+<tr><td>[WRITING]</td><td>해당 요청은 socket write를 위해 대기 중이다.</td></tr>
+<tr><td>[READING]</td><td>해당 요청은 서버로 전달되었고 결과가 돌아오기를 기다리거나, 결과 값을 읽어 들이는 중이다.</td></tr>
+<tr><td>#iq</td><td>해당 Arcus node Input queue에서 대기중인 요청 수</td></tr>
+<tr><td>#Wops</td><td>Writing 상태에 있는 요청 수</td></tr>
+<tr><td>#Rops</td><td>Reading 상태에 있는 요청 수</td></tr>
+<tr><td>#CT</td><td>Continuous timeout, 해당 arcus node에서 연속적으로 발생한 timeout 횟수, 이 값이 connection factory builder로 지정되는 timeout threshold값을 넘어서면 클라이언트는 해당 서버와의 연결을 끊고 다시 연결한다.</td></tr>
+</tbody>
+</table>
+<p>즉, 해석해 보자면 Arcus node 127.0.0.1:11211에 대해 요청을 보냈는데 300ms이내에 결과값을 돌려줄 수 없어 실패했다는 의미이다.
+가장 많이 발생할 수 있는 메시지로 원인 또한 매우 다양하다. 원인을 나열해 보자면 다음과 같다.</p>
+<ul>
+<li><p>JVM Full GC time값이 operation timeout값 보다 클 때.</p>
+<p>WAS의 full GC 시간을 측정하여 timeout 값을 그보다 크게 설정한다. Operation timeout으로 매우 작은 값이 설정되지 않았는지 살펴본다. (대부분의 원인이 이것이다.)</p></li>
+<li><p>Client와 Arcus server간의 네트워크 문제</p></li>
+</ul>
+<p>서비스와 Arcus server간의 네트워크 (switch, AS, DS등)에 문제는 없었는지 확인한다.</p>
+<p>서비스와 연결되는 외부 서버와의 연결에도 문제가 있었는지 살펴본다. 만약 외부와 연결되는 서버가 없다면 Arcus admin서버와 연결에 문제는 없었는지 로그를 살펴본다. 네트워크 관련 문제가 있었더라도 Arcus timeout만 발생할 수도 있다. 예를 들어 Arcus timeout이 1초이고, DB와의 timeout이 2초라고 할 때. network단절이 1.5초간 있었다 하면 Arcus timeout메시지만 남게 될 것이다. 네트워크 단절이 3초간 발생했다고 하면 Arcus |- timeout이 먼저 발생하고 뒤따라서 DB timeout이 발생하는 것처럼 보일 것이다. 대부분 이와 같은 문제가 발생하면 WAS의 thread가 증가하는 현상을 보인다. Request process thread가 timeout내에 응답을 주지 못하게 되면 추가로 들어오는 요청을 받기 위한 thread가 추가로 생성되기 때문이다.</p>
+<ul>
+<li><p>Arcus server</p>
+<p>Arcus 서버의 하드웨어 및hubble 모니터 결과를 살펴보고 원인을 찾는다.</p>
+<p>Timeout이 발생한 Arcus host가 한 개인지 여러 개인지 살펴본다.</p></li>
+<li><p>한계</p>
+<p>Client 한 개로 처리하는데 한계이다. pool사용을 고려해본다.</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div></div></body></html>

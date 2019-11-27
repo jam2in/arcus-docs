@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-c-client/1.10/03-key-value-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Key-Value Item"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-c-client/1.10/03-key-value-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Key-Value Item"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-c-client/1.10/03-key-value-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="key-value-item"></a><a href="#key-value-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Key-Value Item</h2>
+<p>Key-value item은 하나의 key에 대해 하나의 value만을 저장하는 item이다.</p>
+<p><strong>제약조건</strong></p>
+<ul>
+<li>Key의 최대 크기는 250 character이다.</li>
+<li>Value는 최대 1Mb까지 저장할 수 있다.</li>
+</ul>
+<p>Key-value item에 대해 수행 가능한 연산들은 아래와 같다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/03-key-value-API.html#key-value-item-%EC%A0%80%EC%9E%A5">Key-Value Item 저장</a></li>
+<li><a href="/docs/arcus-c-client/1.10/03-key-value-API.html#key-value-item-%EC%A1%B0%ED%9A%8C">Key-Value Item 조회</a></li>
+<li><a href="/docs/arcus-c-client/1.10/03-key-value-API.html#key-value-item-%EA%B0%92%EC%9D%98-%EC%A6%9D%EA%B0%90">Key-Value Item 값의 증감</a></li>
+<li><a href="/docs/arcus-c-client/1.10/03-key-value-API.html#key-value-item-%EC%82%AD%EC%A0%9C">Key-Value Item 삭제</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="key-value-item-저장"></a><a href="#key-value-item-저장" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Key-Value Item 저장</h3>
+<p>key-value item을 저장하는 API로 set, add, replace, prepend/append가 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_set(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, 
+                                 <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint32_t</span> flags);
+<span class="hljs-keyword">memcached_return_t</span> memcached_add(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                 <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint32_t</span> flags);
+<span class="hljs-keyword">memcached_return_t</span> memcached_replace(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                 <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint32_t</span> flags);
+</code></pre>
+<ul>
+<li>memcached_set: 주어진 key에 value를 저장한다.</li>
+<li>memcached_add: 주어진 key가 존재하지 않을 경우에만 value를 저장한다.</li>
+<li>memcached_replace: 주어진 key가 존재하는 경우에만 value를 저장한다.</li>
+</ul>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_prepend(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, 
+                                     <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint32_t</span> flags);
+<span class="hljs-keyword">memcached_return_t</span> memcached_append(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length, <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint32_t</span> flags);
+</code></pre>
+<ul>
+<li>memcached_prepend: 주어진 key의 value에 새로운 데이터를 prepend한다.</li>
+<li>memcached_append: 주어진 key의 value에 새로운 데이터를 append한다.</li>
+</ul>
+<p>Key-value item 저장 연산에서 주요 파라미터는 아래와 같다.</p>
+<ul>
+<li>expiration: key가 현재 시간부터 expire 될 때까지의 시간(초 단위). 시간이 30일을 초과하는 경우 expire 될 unix time을 입력한다.
+<ul>
+<li>0: key가 expire 되지 않도록 설정한다.
+하지만 Arcus cache server의 메모리가 부족한 경우 LRU에 의해 언제든지 삭제될 수 있다.</li>
+<li>-1: key를 sticky item으로 만든다. Sticky item은 expire 되지 않으며 LRU에 의해 삭제되지도 않는다.</li>
+</ul></li>
+<li>flags: value와는 별도로 저장할 수 있는 값으로서 Java client 등에서 내부적으로 사용하는 경우가 많으므로 사용하지 않기를 권한다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="key-value-item-조회"></a><a href="#key-value-item-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Key-Value Item 조회</h3>
+<p>Key-value item을 조회하는 API는 두 가지가 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">char</span> *             <span class="hljs-title">memcached_get</span><span class="hljs-params">(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, <span class="hljs-keyword">size_t</span> *value_length,
+                                 <span class="hljs-keyword">uint32_t</span> *flags, <span class="hljs-keyword">memcached_return_t</span> *error)</span></span>;
+</code></pre>
+<p>주어진 key에 대한 value를 조회한다. 반환된 결과는 NULL이 아닌 경우 반드시 free 해주어야 한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mget(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *keys,  <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *key_length,
+                                  <span class="hljs-keyword">size_t</span> number_of_keys);
+<span class="hljs-function"><span class="hljs-keyword">char</span> *             <span class="hljs-title">memcached_fetch</span><span class="hljs-params">(memcached_st *ptr, <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> *key_length, <span class="hljs-keyword">size_t</span> *value_length,
+                                  <span class="hljs-keyword">uint32_t</span> *flags, <span class="hljs-keyword">memcached_return_t</span> *error)</span></span>;
+</code></pre>
+<p><code>memcached_mget</code>은 주어진 key 배열에 대한 value들을 조회하는 요청을 보낸다.
+keys 인자는 key pointer array이고, key_length 인자는 key length array이다.</p>
+<p><code>memcached_fetch</code>는 mget 요청에 대한 결과를 하나씩 꺼내온다.
+error 값이 MEMCACHED_END가 될 때까지 실행하면 되며, 그 이후에 fetch를 수행하면 MEMCACHED_NOTFOUND가 반환된다.</p>
+<h3><a class="anchor" aria-hidden="true" id="key-value-item-값의-증감"></a><a href="#key-value-item-값의-증감" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Key-Value Item 값의 증감</h3>
+<p>Key-value item에서 숫자형 value 값에 대해서만 아래 증감 연산을 수행할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_increment(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, 
+                                       <span class="hljs-keyword">uint32_t</span> offset, <span class="hljs-keyword">uint64_t</span> *value)
+<span class="hljs-keyword">memcached_return_t</span> memcached_decrement(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                       <span class="hljs-keyword">uint32_t</span> offset, <span class="hljs-keyword">uint64_t</span> *value)
+</code></pre>
+<p>주어진 key의 value를 offset 만큼 증가/감소 시킨다.
+주어진 key가 존재하지 않으면, 오류를 낸다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_increment_with_initial(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, 
+                                                    <span class="hljs-keyword">uint64_t</span> offset, <span class="hljs-keyword">uint64_t</span> initial, <span class="hljs-keyword">uint32_t</span> flags,
+                                                    <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint64_t</span> *value)
+<span class="hljs-keyword">memcached_return_t</span> memcached_decrement_with_initial(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                                    <span class="hljs-keyword">uint64_t</span> offset, <span class="hljs-keyword">uint64_t</span> initial, <span class="hljs-keyword">uint32_t</span> flags,
+                                                    <span class="hljs-keyword">time_t</span> expiration, <span class="hljs-keyword">uint64_t</span> *value)
+</code></pre>
+<p>주어진 key의 value를 offset 만큼 증가/감소 시킨다.
+주어진 key가 존재하지 않으면, initial 값으로 저장한다.</p>
+<h3><a class="anchor" aria-hidden="true" id="key-value-item-삭제"></a><a href="#key-value-item-삭제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Key-Value Item 삭제</h3>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_delete(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, <span class="hljs-keyword">time_t</span> expiration);
+</code></pre>
+<p>주어진 key를 삭제한다.
+expiration 값이 0 이상으로 지정되면 key는 expiration 초 이후에 삭제된다.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#key-value-item">Key-Value Item</a><ul class="toc-headings"><li><a href="#key-value-item-저장">Key-Value Item 저장</a></li><li><a href="#key-value-item-조회">Key-Value Item 조회</a></li><li><a href="#key-value-item-값의-증감">Key-Value Item 값의 증감</a></li><li><a href="#key-value-item-삭제">Key-Value Item 삭제</a></li></ul></li></ul></nav></div></div></body></html>

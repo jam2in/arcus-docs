@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-c-client/1.10/08-attribute-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Item Attributes"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-c-client/1.10/08-attribute-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Item Attributes"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-c-client/1.10/08-attribute-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="item-attributes"></a><a href="#item-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Item Attributes</h2>
+<p>Item attributes는 각 cache item의 메타데이터를 의미한다.
+Item attributes의 기본 설명은 <a href="https://github.com/naver/arcus-memcached/blob/master/doc/arcus-item-attribute.md">Arcus cache server의 item attributes 부분</a>을 참고하길 바란다.</p>
+<p>Item attributes를 변경하거나 조회하는 함수들을 설명한다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/08-attribute-API.html#attribute-%EB%B3%80%EA%B2%BD">Attribute 변경</a></li>
+<li><a href="/docs/arcus-c-client/1.10/08-attribute-API.html#attribute-%EC%A1%B0%ED%9A%8C">Attribute 조회</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="attribute-변경"></a><a href="#attribute-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attribute 변경</h3>
+<p>주어진 key의 attributes를 변경하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_set_attrs(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+<span class="hljs-keyword">const</span> memcached_coll_attrs_st *attrs);
+</code></pre>
+<p>Return codes는 다음과 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_END: Attribute 정보를 성공적으로 변경함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 item이 존재하지 않음.</li>
+<li>MEMCACHED_ATTR_ERROR_BAD_VALUE: 잘못된 설정값을 지정하였음.</li>
+</ul></li>
+</ul>
+<p>변경할 attributes 정보를 가지는 memcached_coll_attrs_st 구조체는 아래 API를 통해 초기화하고 설정할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_init(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_flags(memcached_coll_attrs_st *attrs, <span class="hljs-keyword">uint32_t</span> flags);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_expiretime(memcached_coll_attrs_st *attrs, <span class="hljs-keyword">uint32_t</span> expiretime);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_overflowaction(memcached_coll_attrs_st *attrs,
+                                            <span class="hljs-keyword">memcached_coll_overflowaction_t</span> overflowaction);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_maxcount(memcached_coll_attrs_st *attrs, <span class="hljs-keyword">uint32_t</span> maxcount);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_maxbkeyrange(memcached_coll_attrs_st *attrs, <span class="hljs-keyword">uint32_t</span> maxbkeyrange);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_maxbkeyrange_by_byte(memcached_coll_attrs_st *attrs,
+                                            <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *maxbkeyrange, <span class="hljs-keyword">size_t</span> maxbkeyrange_size);
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_attrs_set_readable(memcached_coll_attrs_st *attrs);
+</code></pre>
+<ul>
+<li>memcached_coll_attrs_init : memcached_coll_sttrs_st 구초체를 초기화한다.</li>
+<li>memcached_coll_attrs_set_flags : 변경할 Flag 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_expiretime : 변경할 Expire time 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_overflowaction : 변경할 Overflowaction을 설정한다.</li>
+<li>memcached_coll_attrs_set_maxcount : 변경할 maxcount 값을 설정한다.</li>
+<li>memcached_coll_attrs_set_maxbkeyrange : 변경할 maxbkeyrange를 설정한다. (B+tree에만 적용 가능)</li>
+<li>memcached_coll_attrs_set_maxbkeyrange_by_byte : 변경할 maxbkeyrange를 설정한다. (B+tree에만 적용 가능)</li>
+<li>memcached_coll_attrs_set_readable : Attribute를 Readable 상태로 변경하도록 설정한다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="attribute-조회"></a><a href="#attribute-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attribute 조회</h3>
+<p>주어진 key의 attributes를 조회하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_get_attrs(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length, memcached_coll_attrs_st *attrs);
+</code></pre>
+<p>Response codes는 다음과 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_END: Attribute 정보를 성공적으로 조회함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 item이 존재하지 않음.</li>
+</ul></li>
+</ul>
+<p>조회한 attributes에서 아래의 함수들을 사용하여 각 attribute를 확인할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_flags(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_expiretime(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">memcached_coll_overflowaction_t</span> memcached_coll_attrs_get_overflowaction(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_maxcount(memcached_coll_attrs_st *attrs);
+<span class="hljs-function"><span class="hljs-keyword">bool</span>                            <span class="hljs-title">memcached_cool_attrs_is_readable</span><span class="hljs-params">(memcached_coll_attrs_st *attrs)</span></span>;
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_maxbkeyrange(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">memcached_return_t</span>              memcached_coll_attrs_get_maxbkeyrange_by_byte(memcached_coll_attrs_st *attrs,
+                                                         <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> **maxbkeyrange, <span class="hljs-keyword">size_t</span> maxbkeyrange_size);
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_minbkey(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">memcached_return_t</span>              memcached_coll_attrs_get_minbkey_by_byte(memcached_coll_attrs_st *attrs,
+                                                         <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> **bkey, <span class="hljs-keyword">size_t</span> *<span class="hljs-built_in">size</span>);
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_maxbkey(memcached_coll_attrs_st *attrs);
+<span class="hljs-keyword">memcached_return_t</span>              memcached_coll_attrs_get_maxbkey_by_byte(memcached_coll_attrs_st *attrs,
+                                                         <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> **bkey, <span class="hljs-keyword">size_t</span> *<span class="hljs-built_in">size</span>);
+<span class="hljs-keyword">uint32_t</span>                        memcached_coll_attrs_get_trimmed(memcached_coll_attrs_st *attrs);
+</code></pre>
+<ul>
+<li>memcached_coll_attrs_get_flags : Flag 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_expiretime : Expire time 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_overflowaction : Overflowaction을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxcount : Maxcount 값을 얻는다.</li>
+<li>memcached_cool_attrs_is_readable : Attribute가 readable 상태인지 아닌지를 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkeyrange : Maxbkeyrange 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkeyrange_by_byte : Maxbkeyrange 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_minbkey : Min bkey 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_minbkey_by_byte : Min bkey 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_maxbkey : Max bkey 값을 얻는다.</li>
+<li>memcached_coll_attrs_get_maxbkey_by_byte : Max bkey 값을 얻는다. (byte 타입)</li>
+<li>memcached_coll_attrs_get_trimmed : btree의 trimmed 여부를 얻는다.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#item-attributes">Item Attributes</a><ul class="toc-headings"><li><a href="#attribute-변경">Attribute 변경</a></li><li><a href="#attribute-조회">Attribute 조회</a></li></ul></li></ul></nav></div></div></body></html>

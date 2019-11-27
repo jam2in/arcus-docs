@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-item-attribute · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Item Attribute 설명"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-item-attribute · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="Item Attribute 설명"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-item-attribute</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="item-attribute-설명"></a><a href="#item-attribute-설명" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Item Attribute 설명</h2>
+<p>Arcus cache server는 collection 기능 지원으로 인해,
+기존 key-value item 유형 외에 list, set, map, b+tree item 유형을 가진다.
+각 item 유형에 따라 설정/조회 가능한 속성들(attributes)이 구분되며, 이들의 개요는 아래 표와 같다.
+아래 표는 각 속성이 적용되는 item 유형, 속성의 간단한 설명, 허용가능한 값들과 디폴트 값을 나타낸다.</p>
+<pre><code class="hljs">|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> Attribute Name </span>|<span class="hljs-string"> Item Type   </span>|<span class="hljs-string"> Description           </span>|<span class="hljs-string"> Allowed Values                 </span>|<span class="hljs-string"> Default Value           </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> flags          </span>|<span class="hljs-string"> all         </span>|<span class="hljs-string"> data specific flags   </span>|<span class="hljs-string"> 4 bytes unsigned integer       </span>|<span class="hljs-string"> 0                       </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> expiretime     </span>|<span class="hljs-string"> all         </span>|<span class="hljs-string"> item expiration time  </span>|<span class="hljs-string"> 4 bytes singed integer         </span>|<span class="hljs-string"> 0                       </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">  -1: sticky                    </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">   0: never expired             </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string">  &gt;0: expired in the future     </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> type           </span>|<span class="hljs-string"> all         </span>|<span class="hljs-string"> item type             </span>|<span class="hljs-string"> "kv", "list", "set", "map",    </span>|<span class="hljs-string"> N/A                     </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> "b+tree"                       </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> count          </span>|<span class="hljs-string"> collection  </span>|<span class="hljs-string"> current # of elements </span>|<span class="hljs-string"> 4 bytes unsigned integer       </span>|<span class="hljs-string"> N/A                     </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> maxcount       </span>|<span class="hljs-string"> collection  </span>|<span class="hljs-string"> maximum # of elements </span>|<span class="hljs-string"> 4 bytes unsigned integer       </span>|<span class="hljs-string"> 4000                    </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> overflowaction </span>|<span class="hljs-string"> collection  </span>|<span class="hljs-string"> overflow action       </span>|<span class="hljs-string"> “error”: all collections       </span>|<span class="hljs-string"> list: "tail_trim"       </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “head_trim”: list              </span>|<span class="hljs-string"> set: "error"            </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “tail_trim”: list              </span>|<span class="hljs-string"> map: "error"            </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “smallest_trim”: b+tree        </span>|<span class="hljs-string"> b+tree: "smallest_trim" </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “largest_trim”: b+tree         </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “smallest_silent_trim”: b+tree </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> “largest_silent_trim”: b+tree  </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> readable       </span>|<span class="hljs-string"> collection  </span>|<span class="hljs-string"> readable/unreable     </span>|<span class="hljs-string"> “on”, “off”                    </span>|<span class="hljs-string"> "on"                    </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+|<span class="hljs-string"> maxbkeyrange   </span>|<span class="hljs-string"> b+tree only </span>|<span class="hljs-string"> maximum bkey range    </span>|<span class="hljs-string"> 8 bytes unsigned integer or    </span>|<span class="hljs-string"> 0                       </span>|
+|<span class="hljs-string">                </span>|<span class="hljs-string">             </span>|<span class="hljs-string">                       </span>|<span class="hljs-string"> hexadecimal (max 31 bytes)     </span>|<span class="hljs-string">                         </span>|
+|<span class="hljs-string">-----------------------------------------------------------------------------------------------------------------</span>|
+</code></pre>
+<p>Arcus cache server는 item 속성들을 조회하거나 변경하는 용도의 getattr 명령과 setattr 명령을 제공한다.
+이들 명령에 대한 자세한 설명은 <a href="/docs/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/command-item-attribute.html">Item Attribute 명령</a>을 참고 바란다.</p>
+<p>Item 속성들 중 정확한 이해를 돕기 위해 추가 설명이 필요한 속성들에 대해 아래에서 자세히 설명한다.</p>
+<h3><a class="anchor" aria-hidden="true" id="flags-속성"></a><a href="#flags-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>flags 속성</h3>
+<p>Flags는 item의 data-specific 정보를 저장하기 위한 목적으로 사용된다.
+예를 들어, Arcus java client는 어떤 java object를 cache server에 저장할 경우,
+그 java object의 type에 따라 serialization(or marshalling)하여 저장할 data를 만들고,
+그 java object의 type 정보를 flags 값으로 하여 Arcus cache server에 요청하여 저장한다.
+Data 조회 시에는 Arcus cache server로 부터 data와 함께 flags 정보를 함께 얻어와서,
+해당 java object의 type에 따라 그 data를 de-serialization(or de-marshalling)하여 java object를 생성한다.</p>
+<h3><a class="anchor" aria-hidden="true" id="expiretime-속성"></a><a href="#expiretime-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>expiretime 속성</h3>
+<p>Item의 expiretime 속성으로 그 item의 expiration time을 초(second) 단위로 설정한다.</p>
+<p>Arcus cache server는 expire 되지 않고 메모리 부족 상황에서도 evict 되지 않는 sticky item 기능을 제공한다.
+Sticky item 또한 expiretime 속성으로 지정한다.</p>
+<ul>
+<li>-1 : sticky item으로 설정</li>
+<li>0 : never expired item으로 설정, 그러나 메모리 부족 시에 evict될 수 있다.</li>
+<li>X &lt;= (60 * 60 * 24 * 30) : 30일 이하의 값이면, 실제 expiration time은 &quot;현재 시간 + X(초)&quot;로 결정된다.
+-2 이하이면, 그 즉시 expire 된다.</li>
+<li>X &gt; (60 * 60 * 24 * 30) : 30일 초과의 값이면, 실제 expiration time은 &quot;X&quot;로 결정된다.
+이 경우, X를 unix time으로 인식하여 expiration time으로 설정하는 것이며,
+X가 현재 시간보다 작으면 그 즉시 expire 된다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="maxcount-속성"></a><a href="#maxcount-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>maxcount 속성</h3>
+<p>Collection item에만 유효한 속성으로, 하나의 collection에 저장할 수 있는 최대 element 수를 규정한다.</p>
+<p>Maxcount 속성의 hard limit과 default(설정 생략 또는 0을 값으로 주는 경우) 값은 아래와 같다.</p>
+<ul>
+<li>hard limit : 50000</li>
+<li>default value : 4000</li>
+</ul>
+<p>Maxcount 속성의 hard limit을 작게 규정한 이유는 O(small N)의 수행 비용을 가지도록 하기 위한 것이다.
+Event-driven processing 모델에 따라
+하나의 worker thread가 비동기 방식으로 여러 client requests를 처리해야 하는 상황에서,
+한 request의 처리 비용이 가급적 작아야만 다른 request의 execution latency에 주는 영향을 최소화할 수 있다.</p>
+<h3><a class="anchor" aria-hidden="true" id="overflowaction-속성"></a><a href="#overflowaction-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>overflowaction 속성</h3>
+<p>Collection의 maxcount를 초과하여 element 추가하면 overflow가 발생하며, 이 경우 취할 action을 지정한다.</p>
+<ul>
+<li>&quot;error&quot;
+<ul>
+<li>모든 collection 유형에 설정 가능한 속성이다.</li>
+<li>set과 map collection의 default overflow action이다.</li>
+<li>새로운 element 추가를 허용하지 않고 overflow 오류를 리턴한다.</li>
+</ul></li>
+<li>&quot;head_trim&quot;, &quot;tail_trim&quot;
+<ul>
+<li>list collection에만 설정 가능한 overflow action이다.</li>
+<li>list collection의 default overflow action은 &quot;tail_trim&quot;이다.</li>
+<li>새로운 element 추가를 허용하는 대신 list의 head 또는 tail에 위치한 기존 element를 제거한다.</li>
+<li>Overflow trim 발생 시, trim 발생 여부를 나타내는 trim flag를 내부적으로 유지하지 않는다.</li>
+</ul></li>
+<li>&quot;smallest_trim&quot;, &quot;largest_trim&quot;
+<ul>
+<li>b+tree collecton에만 설정 가능한 overflow action이다.</li>
+<li>b+tree collecton의 default overflow action은 &quot;smallest_trim&quot;이다.</li>
+<li>새로운 element 추가를 허용하는 대신 smallest bkey 또는largest bkey를 가진 기존 element를 제거한다.</li>
+<li>Overflow trim 발생 시, trim 발생 여부를 나타내는 trim flag를 내부적으로 유지하며,
+trim 발생한 bkey 영역을 조회할 경우 응답 결과에 trim 발생 여부를 포함시킨다.</li>
+</ul></li>
+<li>&quot;smallest_silent_trim&quot;, &quot;largest_silent_trim&quot;
+<ul>
+<li>&quot;samllest_trim&quot;, &quot;largest_trim&quot;과 동일하게 동작하는 overflow action이다.</li>
+<li>차이점은 overflow trim이 발생하더라도 trim flag를 내부적으로 유지하지 않으며,
+trim 발생한 bkey 영역을 조회하더라도 조회 결과에 trim 발생 여부를 포함시키지 않는다.</li>
+<li>응용에서 주의할 사항은 trim 여부나 trim된 데이터에 대한 검사를 직접 수행하여야 한다.</li>
+</ul></li>
+</ul>
+<p>참고로, 아래에 기술하는 maxbkeyrange 속성에 따라 element를 제거하는 경우에도
+overflow action이 참조된다.</p>
+<h3><a class="anchor" aria-hidden="true" id="readable-속성"></a><a href="#readable-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>readable 속성</h3>
+<p>Arcus cache server는 다수 element를 가진 collection을 atomic하게 생성하는 명령을 제공하지 않는다.
+대신, 하나의 element를 추가하는 명령을 반복 수행함으로써 원하는 collection을 만들 수 있다.
+이 경우, 하나의 collection이 완성되기 전의 incomplete collection이 응용에게 노출될 수 있는 문제가 있다.
+예를 들어, 어떤 사용자의 SNS 친구 정보를 set collection 형태로 cache에 저장한다고 가정한다.
+일부 친구 정보만 set collection에 저장된 상태에서 그 사용자의 전체 친구 정보를 조회하는 요청이 들어온다면,
+incomplete 친구 정보가 응용에게 노출되게 된다.
+이러한 문제를 방지하기 위해 collection 생성에 대해 read atomicity를 제공하는 기능이 필요하며,
+이 기능의 구현을 위해 readable 속성을 제공한다.</p>
+<p>처음 empty collection 생성 시에 readable 속성을 off 상태로 설정해서
+그 collection에 대한 조회 요청은 UNREADABLE 오류를 발생시키게 하고,
+그 collection에 모든 element들을 추가한 후에 마지막으로 readable 속성을 다시 on 상태로 변경함으로써
+complete collection이 응용에 의해 조회될 수 있게 할 수 있다.</p>
+<h3><a class="anchor" aria-hidden="true" id="maxbkeyrange-속성"></a><a href="#maxbkeyrange-속성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>maxbkeyrange 속성</h3>
+<p>B+tree only 속성으로 smallest bkey와 largest bkey의 최대 범위를 규정한다.
+B+tree에 설정된 maxbkeyrange를 위배시키는 새로운 bkey를 가진 element를 삽입하는 경우,
+b+tree의 overflow action 정책에 따라 오류를 내거나
+smallest/largest bkey를 가진 elements를 제거함으로써 항상 maxbkeyrange 특성을 준수하게 한다.</p>
+<p>Maxbkeyrange 속성에 의한 element 제거는 응용 요청에 의한 명시적인 element 제거와 동일하므로,
+trim으로 처리하지 않는다. 결국, maxcount 속성에 의한 overflow trim 만을 trim으로 처리한다.</p>
+<p>maxbkeyrange의 사용 예로,
+어떤 응용이 data 생성 시간을 bkey로 하여 그 data를 b+tree에 저장하고
+최근 2일치 data 만을 b+tree에 유지하길 원한다고 가정한다.
+초 단위의 시간 값을 bkey 값으로 사용한다면,
+maxbkeyrange는 2일치에 해당하는 값인 172880(2 * 24 * 60 * 60)으로 지정하고,
+최근 data만을 보관하기 위해 overflowaction은 &quot;smallest_trim&quot;으로 지정하면 된다.
+이러한 지정으로, 새로운 data가 추가될 때마다 b+tree에서 2일치가 지난 data는
+maxbkeyrange와 overflowaction에 의해 자동으로 제거된다.
+만약, 이런 기능이 없다면, 응용에서 오래된(2일이 지난) data를 직접 제거하는 작업을 수행해야 한다.</p>
+<p>maxbkeyrange 설정은 bkey의 데이터 유형에 맞게 설정하여야 하며,
+maxbkeyrange 설정이 생략되거나 명시적으로 0을 줄 경우의 default 값은
+bkey 데이터 유형에 무관하게 unlimited maxbkeyrange를 의미한다.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#item-attribute-설명">Item Attribute 설명</a><ul class="toc-headings"><li><a href="#flags-속성">flags 속성</a></li><li><a href="#expiretime-속성">expiretime 속성</a></li><li><a href="#maxcount-속성">maxcount 속성</a></li><li><a href="#overflowaction-속성">overflowaction 속성</a></li><li><a href="#readable-속성">readable 속성</a></li><li><a href="#maxbkeyrange-속성">maxbkeyrange 속성</a></li></ul></li></ul></nav></div></div></body></html>

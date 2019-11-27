@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-java-client/1.11/06-map-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Map Item"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-java-client/1.11/06-map-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Map Item"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-java-client/1.11/06-map-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="map-item"></a><a href="#map-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Item</h2>
+<p>Map item은 하나의 key에 대해 hash 구조 기반으로 mkey &amp; value 쌍을 data 집합으로 가진다.
+Map을 Java의 Map 자료형을 저장하는 용도로 사용하길 권장한다.</p>
+<p><strong>제약 조건</strong></p>
+<ul>
+<li>저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)</li>
+<li>각 element에서 value 최대 크기 : 4KB</li>
+<li>mkey의 입력, Java map type에서 key는 string type만 가능하다. mkey 최대 길이는 250 바이트 이고, 하나의 map에 중복된 mkey는 허용하지 않는다.</li>
+</ul>
+<p>Map item에 대해 수행가능한 기본 연산은 다음과 같다.</p>
+<ul>
+<li><a href="#map-item-생성">Map Item 생성</a></li>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-삽입">Map Element 삽입</a></li>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-변경">Map Element 변경</a></li>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-삭제">Map Element 삭제</a></li>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-조회">Map Element 조회</a></li>
+</ul>
+<p>여러 map element들에 대해 한번에 일괄 수행하는 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-일괄-삽입">Map Element 일괄 삽입</a></li>
+<li><a href="/docs/arcus-java-client/1.11/06-map-API.html#map-element-일괄-변경">Map Element 일괄 변경</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="map-item-생성"></a><a href="#map-item-생성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Item 생성</h3>
+<p>새로운 empty map item을 생성한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncMopCreate</span><span class="hljs-params">(String key, ElementValueType valueType, CollectionAttributes attributes)</span>
+</span></code></pre>
+<ul>
+<li>key: 생성할 map item의 key</li>
+<li>valueType: map에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.
+<ul>
+<li>ElementValueType.STRING</li>
+<li>ElementValueType.LONG</li>
+<li>ElementValueType.INTEGER</li>
+<li>ElementValueType.BOOLEAN</li>
+<li>ElementValueType.DATE</li>
+<li>ElementValueType.BYTE</li>
+<li>ElementValueType.FLOAT</li>
+<li>ElementValueType.DOUBLE</li>
+<li>ElementValueType.BYTEARRAY</li>
+<li>ElementValueType.OTHERS : for example, user defined class</li>
+</ul></li>
+<li>attributes: map item의 속성들을 지정한다.</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.CREATED</td><td>생성 성공</td></tr>
+<tr><td>False</td><td>CollectionResponse.EXISTS</td><td>동일 key가 이미 존재함</td></tr>
+</tbody>
+</table>
+<p>Map item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:EmptyMap"</span>;
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+CollectionAttributes attribute = <span class="hljs-keyword">new</span> CollectionAttributes(); <span class="hljs-comment">// (1)</span>
+attribute.setExpireTime(<span class="hljs-number">60</span>); <span class="hljs-comment">// (1)</span>
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncMopCreate(key, ElementValueType.STRING, attribute); <span class="hljs-comment">// (2)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (4)</span>
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>Map의 expire time을 60초로 지정하였다.
+CollectionAttributes의 자세한 사용방법은 <a href="/docs/arcus-java-client/1.11/08-attribute-API.html">Manual:Attribute_사용</a> 장에서 자세히 다룬다.</li>
+<li>Empty map을 생성할 때에는 map에 어떤 타입의 element를 저장할 것인지를 미리 지정해 두어야 한다.
+이렇게 해야 하는 이유는 Java client에서 value를 encoding/decoding하는 메커니즘 때문이다.
+위 예제는 String 타입을 저장할 수 있는 empty map을 생성한다.
+만약에 empty map을 생성할 때 지정한 element type과 일치하지 않는 값을 map에 저장한다면
+저장은 성공하겠지만 조회할 때 엉뚱한 값이 조회된다.</li>
+<li>timeout은 1초로 지정했다. 생성에 성공하면 future는 true를 반환한다.
+지정한 시간에 생성 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+TimeoutException이 발생한다.</li>
+<li>생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="map-element-삽입"></a><a href="#map-element-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 삽입</h3>
+<p>Map에 하나의 element를 삽입한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncMopInsert</span><span class="hljs-params">(String key, String mkey, Object value, CollectionAttributes attributesForCreate)</span>
+</span></code></pre>
+<ul>
+<li>key: 삽입 대상 map의 key</li>
+<li>mkey: 삽입할 element의 mkey</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.STORED</td><td>Map collection이 존재하여 element만 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.CREATED_STORED</td><td>Map collection 생성하고 element를 삽입함</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 map이 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.ELEMENT_EXISTS</td><td>주어진 mkey를 가진 element가 이미 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OVERFLOWED</td><td>최대 저장가능한 개수만큼 element들이 존재함</td></tr>
+</tbody>
+</table>
+<p>Map element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:MapKey"</span>;
+String mkey = <span class="hljs-string">"mkey"</span>;
+String value = <span class="hljs-string">"This is a value."</span>;
+
+CollectionAttributes attributesForCreate = <span class="hljs-keyword">new</span> CollectionAttributes();
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncMopInsert(key, mkey, value, attributesForCreate); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (3)</span>
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>attributesForCreate값이 null이 아니면 map이 존재하지 않을 때
+attributesForCreate속성을 가진 map을 새로 생성한 다음 element를 저장한다.
+만약 key가 존재하지 않는 상황에서 attributesForCreate값이 null이면 insert에 실패한다.
+<ul>
+<li>위 예제는 디폴트 CollectionAttributes를 사용하며, 기본 expire time은 0으로 만료되지 않음을 뜻한다.</li>
+</ul></li>
+<li>timeout은 1초로 지정했다. Insert가 성공하면 future는 true를 반환한다.
+지정한 시간에 insert 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+TimeoutException이 발생한다.</li>
+<li>Insert결과에 대한 자세한 결과 코드를 확인하려면 future.getOperationStatus().getResponse()를 사용한다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="map-element-변경"></a><a href="#map-element-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 변경</h3>
+<p>Map에서 하나의 element를 변경하는 함수이다. Element의 value를 변경한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncMopUpdate</span><span class="hljs-params">(String key, String mkey, Object value)</span>
+</span></code></pre>
+<ul>
+<li>key: 변경 대상 map의 key</li>
+<li>mkey: 변경 대상 element의 mkey</li>
+<li>value: element의 new value</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.UPDATED</td><td>Element가 변경됨</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>주어진 mkey를 가진 element가 없음</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 map이 아님</td></tr>
+</tbody>
+</table>
+<p>특정 element의 value를 변경한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Boolean&gt; future = mc.asyncMopUpdate(key, mkey, value);
+</code></pre>
+<p>Element 수정에 대한 자세한 수행 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</p>
+<h3><a class="anchor" aria-hidden="true" id="map-element-삭제"></a><a href="#map-element-삭제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 삭제</h3>
+<p>Map에서 element를 삭제하는 함수들은 두 가지가 있다.</p>
+<p>첫째, 해당 Map의 모든 element를 삭제한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncMopDelete</span><span class="hljs-params">(String key, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+</span></code></pre>
+<p>둘째, Map에서 주어진 mkey의 element를 삭제한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncMopDelete</span><span class="hljs-params">(String key, String mkey, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+</span></code></pre>
+<ul>
+<li>key: 삭제 대상 map의 key</li>
+<li>dropIfEmpty: element 삭제로 empty map이 되면, 그 map 자체를 삭제할 지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.DELETED</td><td>Element만 삭제함</td></tr>
+<tr><td>True</td><td>CollectionResponse.DELETED_DROPPED</td><td>Element 삭제하고 Map 자체도 삭제함</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>주어진 mkey를 가진 element가 없음</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 map이 아님</td></tr>
+</tbody>
+</table>
+<p>다음은 map에서 mkey가 mkey1인 element를 삭제하는 예제이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:MapKey"</span>;
+String mkey1 = <span class="hljs-string">"mkey1"</span>;
+<span class="hljs-keyword">boolean</span> dropIfEmpty = <span class="hljs-keyword">true</span>;
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncMopDelete(key, mkey1, dropIfEmpty); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">boolean</span> result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+    CollectionResponse response = future.getOperationStatus().getResponse(); <span class="hljs-comment">// (3)</span>
+    System.out.println(response);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>Map에서 mkey1에 해당하는 element 를 삭제한다.
+dropIfEmpty값이 true이면 element를 삭제하고 map이 비어있게 되었을 때 map도 함께 삭제한다.</li>
+<li>delete timeout은 1초로 지정했다. 지정한 시간에 삭제 결과가 넘어 오지 않거나 JVM의 과부하로
+operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다</li>
+<li>삭제 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="map-element-조회"></a><a href="#map-element-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 조회</h2>
+<p>Map element를 조회하는 함수는 세 유형이 있다.</p>
+<p>첫째, 해당 Map의 모든 element를 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;String, Object&gt;&gt;
+asyncMopGet(String key, <span class="hljs-keyword">boolean</span> withDelete, <span class="hljs-keyword">boolean</span> dropIfEmpty)
+</code></pre>
+<p>둘째, 해당 Map에서 주어진 mkey 하나의 element를 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;String, Object&gt;&gt;
+asyncMopGet(String key, String mkey, <span class="hljs-keyword">boolean</span> withDelete, <span class="hljs-keyword">boolean</span> dropIfEmpty)
+</code></pre>
+<p>셋째, Map에서 주어진 mkeyList의 element를 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;String, Object&gt;&gt;
+asyncMopGet(String key, List&lt;String&gt; mkeyList, <span class="hljs-keyword">boolean</span> withDelete, <span class="hljs-keyword">boolean</span> dropIfEmpty)
+</code></pre>
+<ul>
+<li>key: map item의 key</li>
+<li>mkey: 조회할 element의 mkey</li>
+<li>mkeyList: 조회할 element의 mkeyLists</li>
+<li>withDelete: element 조회와 함께 그 element를 삭제할 것인지를 지정</li>
+<li>dropIfEmpty: element 삭제로 empty map이 되면, 그 map 자체도 삭제할 것인지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.END</td><td>Element만 조회</td></tr>
+<tr><td>not null</td><td>CollectionResponse.DELETED</td><td>Element를 조회하고 삭제한 상태</td></tr>
+<tr><td>not null</td><td>CollectionResponse.DELETED_DROPPED</td><td>Element를 조회하고 삭제한 다음 map을 drop한 상태</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>조회된 element가 없음, 조회 범위에 map 영역 없음</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 key가 map이 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td></tr>
+</tbody>
+</table>
+<p>Map element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:MapKey"</span>;
+List&lt;String&gt; mkeyList = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
+mkeyList.add(<span class="hljs-string">"mkey1"</span>);
+mkeyList.add(<span class="hljs-string">"mkey2"</span>);
+<span class="hljs-keyword">boolean</span> withDelete = <span class="hljs-keyword">false</span>;
+<span class="hljs-keyword">boolean</span> dropIfEmpty = <span class="hljs-keyword">false</span>;
+CollectionFuture&lt;Map&lt;String, Object&gt;&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncMopGet(key, mkeyList, withDelete, dropIfEmpty); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Map&lt;String, Object&gt; result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+
+    CollectionResponse response = future.getOperationStatus().getResponse(); <span class="hljs-comment">// (3)</span>
+    <span class="hljs-keyword">if</span> (response.equals(CollectionResponse.NOT_FOUND)) {
+        System.out.println(<span class="hljs-string">"Key가 없습니다.(Key에 저장된 Map이 없음."</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (response.equals(CollectionResponse.NOT_FOUND_ELEMENT)) {
+        System.out.println(<span class="hljs-string">"Key에 map은 존재하지만 저장된 값 중 조건에 맞는 것이 없음."</span>);
+    }
+
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>map에서 mkey1, mkey2를 한번에 조회하기 위해 List에 add하고 mkeyList를 조회했다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.
+반환되는 Map 인터페이스의 구현체는 HashMap이며, 그 결과는 다음 중의 하나이다.
+<ul>
+<li>key 존재하지 않음 : null 반환</li>
+<li>key 존재하지만 조회 조건을 만족하는 elements 없음: empty map 반환</li>
+<li>key 존재하고 조회 조건을 만족하는 elements 있음: non-empty map 반환</li>
+</ul></li>
+<li>조회 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()으로 확인한다.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="map-element-일괄-삽입"></a><a href="#map-element-일괄-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 일괄 삽입</h2>
+<p>Map에 여러 element를 한번에 삽입하는 함수는 두 유형이 있다.</p>
+<p>첫째, 하나의 key가 가리키는 Map에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncMopPipedInsertBulk(String key, Map&lt;String, Object&gt; elements, CollectionAttributes attributesForCreate)
+</code></pre>
+<ul>
+<li>key: 삽입 대상 map의 key</li>
+<li>elements: 삽입할 element들
+<ul>
+<li>Map&lt;String, Object&gt; 유형</li>
+</ul></li>
+<li>attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 map들에 각각 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-java">Future&lt;Map&lt;String, CollectionOperationStatus&gt;&gt;
+asyncMopInsertBulk(List&lt;String&gt; keyList, String mkey, Object value, CollectionAttributes attributesForCreate)
+</code></pre>
+<ul>
+<li>keyList: 삽입 대상 map들의 key list</li>
+<li>mkey: 삽입할 element의 mkey</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>하나의 map에 여러 개의 elements을 bulk insert하고 각각의 element에 대해 insert 결과를 확인하는 코드이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:MapBulk"</span>;
+Map&lt;String, Object&gt; elements = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+
+elements.put(<span class="hljs-string">"mkey1"</span>, <span class="hljs-string">"value1"</span>);
+elements.put(<span class="hljs-string">"mkey2"</span>, <span class="hljs-string">"value2"</span>);
+elements.put(<span class="hljs-string">"mkey3"</span>, <span class="hljs-string">"value3"</span>);
+
+<span class="hljs-keyword">boolean</span> createKeyIfNotExists = <span class="hljs-keyword">true</span>;
+
+<span class="hljs-keyword">if</span> (elements.size() &gt; mc.getMaxPipedItemCount()) { <span class="hljs-comment">// (1)</span>
+    System.out.println(<span class="hljs-string">"insert 할 아이템 개수는 mc.getMaxPipedItemCount개를 초과할 수 없다."</span>);
+    <span class="hljs-keyword">return</span>;
+}
+
+CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncMopPipedInsertBulk(key, elements, <span class="hljs-keyword">new</span> CollectionAttributes()); <span class="hljs-comment">// (2)</span>
+
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Map&lt;Integer, CollectionOperationStatus&gt; result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+
+    <span class="hljs-keyword">if</span> (!result.isEmpty()) { <span class="hljs-comment">// (4)</span>
+        System.out.println(<span class="hljs-string">"일부 item이 insert 실패 하였음."</span>);
+        
+        <span class="hljs-keyword">for</span> (Map.Entry&lt;Integer, CollectionOperationStatus&gt; entry : result.entrySet()) {
+            System.out.print(<span class="hljs-string">"실패한 아이템="</span> + elements.get(entry.getKey()));
+            System.out.println(<span class="hljs-string">", 실패원인="</span> + entry.getValue().getResponse());
+        }
+    } <span class="hljs-keyword">else</span> {
+        System.out.println(<span class="hljs-string">"모두 insert 성공함."</span>);
+    }
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>한꺼번에 insert할 아이템은 client.getMaxPipedItemCount()개를 초과할 수 없다. (기본값은 500개 이다.)
+만약 개수를 초과하면 IllegalArguementException이 발생한다.</li>
+<li>Key에 저장된 map에 bulkData를 한꺼번에 insert하고 그 결과를 담은 future객체를 반환한다.
+이 future로부터 각 아이템의 insert성공 실패 여부를 조회할 수 있다.
+여기에서는 attributesForCreate값을 지정하여 bulk insert하기 전에 key가 없으면 생성하고 element를 insert되도록 하였다.</li>
+<li>delete timeout은 1초로 지정했다. 지정한 시간에 모든 아이템의 insert 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>모든 아이템이 insert에 성공하면 empty map이 반환된다.
+<ul>
+<li>반환된 Map의 Key= insert한 값(bulkData)를 iteration했을 때의 index값.</li>
+<li>반환된 Map의 Value= insert실패사유</li>
+</ul></li>
+<li>일부 실패한 아이템의 실패 원인을 조회하려면 insert할 때 사용된 값(bulkData)의 iteration 순서에 따라
+결과 Map을 조회하면 된다.</li>
+<li>Future로부터 얻은 Map의 Key가 입력된 값(bulkData)의 mapKey이기 때문에 위와 같은 방법으로 실패 원인을 조회하면 된다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="map-element-일괄-변경"></a><a href="#map-element-일괄-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 일괄 변경</h3>
+<p>Map에서 주어진 elements에 해당하는 모든 element의 value를 일괄 변경한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncMopPipedUpdateBulk(String key, Map&lt;String, Object&gt;&gt; elements)
+</code></pre>
+<ul>
+<li>key: 변경 대상 map의 key</li>
+<li>elements: 변경 대상 map에 대해 mkey, new value를 가진다.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#map-item">Map Item</a><ul class="toc-headings"><li><a href="#map-item-생성">Map Item 생성</a></li><li><a href="#map-element-삽입">Map Element 삽입</a></li><li><a href="#map-element-변경">Map Element 변경</a></li><li><a href="#map-element-삭제">Map Element 삭제</a></li></ul></li><li><a href="#map-element-조회">Map Element 조회</a></li><li><a href="#map-element-일괄-삽입">Map Element 일괄 삽입</a><ul class="toc-headings"><li><a href="#map-element-일괄-변경">Map Element 일괄 변경</a></li></ul></li></ul></nav></div></div></body></html>

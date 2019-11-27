@@ -1,0 +1,474 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-c-client/1.10/06-map-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Map Item"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-c-client/1.10/06-map-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## Map Item"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-c-client/1.10/06-map-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="map-item"></a><a href="#map-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Item</h2>
+<p>Map item은 하나의 key에 대해 hash 구조 기반으로 mkey &amp; value 쌍을 data 집합으로 가진다.</p>
+<p><strong>제약 조건</strong></p>
+<ul>
+<li>저장 가능한 최대 element 개수: 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)</li>
+<li>각 element에서 value 최대 크기 : 4KB</li>
+<li>mkey 최대 길이는 250 바이트 이고, 하나의 map에 중복된 mkey는 허용하지 않는다.</li>
+</ul>
+<p>Map item에 대해 수행 가능한 기본 연산들은 아래와 같다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-item-생성">Map Item 생성</a> (Map Item 삭제는 key-value item 삭제 함수로 수행한다)</li>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-element-삽입">Map Element 삽입</a></li>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-element-변경">Map Element 변경</a></li>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-element-삭제">Map Element 삭제</a></li>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-element-조회">Map Element 조회</a></li>
+</ul>
+<p>여러 map element들에 대해 한번에 일괄 수행하는 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-c-client/1.10/06-map-API.html#map-element-일괄-삽입">Map Element 일괄 삽입</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="map-item-생성"></a><a href="#map-item-생성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Item 생성</h3>
+<p>새로운 empty map item을 생성한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">emcached_return_t</span> memcached_mop_create(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                       memcached_coll_create_attrs_st *attributes);
+</code></pre>
+<ul>
+<li>key: map item의 key</li>
+<li>attributes: map item의 속성 정보</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_CREATED: Map이 생성됨.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_EXISTS: 동일한 key를 가진 Map이 이미 존재함.</li>
+</ul></li>
+</ul>
+<p>Item 생성 시, item 속성 정보를 가지는 attributes 구조체가 필요하다.
+Item 속성 정보를 가지는 attributes 구조체는 아래와 같이 초기화한다.
+Attributes 구조체의 초기화 시에는 필수 속성 정보인 flags, exptime, maxcount 만을 설정할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_init(memcached_coll_create_attrs_st *attributes,
+                                                    <span class="hljs-keyword">uint32_t</span> flags, <span class="hljs-keyword">uint32_t</span> exptime, <span class="hljs-keyword">uint32_t</span> maxcount)
+</code></pre>
+<p>그 외에, 선택적 속성들은 attributes 구조체를 초기화한 이후,
+아래의 함수를 이용하여 개별적으로 지정할 수 있다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_flags(memcached_coll_create_attrs_st *attributes, <span class="hljs-keyword">uint32_t</span> flags)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_expiretime(memcached_coll_create_attrs_st *attributes,
+                                                              <span class="hljs-keyword">uint32_t</span> expiretime)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_maxcount(memcached_coll_create_attrs_st *attributes,
+                                                            <span class="hljs-keyword">uint32_t</span> maxcount)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_attrs_set_overflowaction(memcached_coll_create_attrs_st *attributes,
+                                                                  <span class="hljs-keyword">memcached_coll_overflowaction_t</span> overflowaction)
+<span class="hljs-keyword">memcached_return_t</span> memcached_coll_create_set_unreadable(memcached_coll_create_attrs_st *attributes)
+</code></pre>
+<ul>
+<li>memcached_coll_create_attrs_set_flags : attributes에 flags 값을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_expiretime : attributes에 expire time을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_maxcount : attributes에 maxcount 값을 설정한다.</li>
+<li>memcached_coll_create_attrs_set_overflowaction : Map의 Element 개수가 maxcount를 넘어 섰을 때(overflow)의 동작을 설정한다.
+<ul>
+<li>OVERFLOWACTION_ERROR: overflow가 발생하면 오류(MEMCACHED_OVERFLOWED)를 반환하도록 한다.</li>
+<li>OVERFLOWACTION_HEAD_TRIM: Map은 지원하지 않는다.</li>
+<li>OVERFLOWACTION_TAIL_TRIM: Map은 지원하지 않는다.</li>
+</ul></li>
+<li>memcached_coll_create_set_unreadable : 생성 시 unreadable 상태로 만들 것인지 설정한다.
+Unreadable 상태로 생성된 Map은 readable 상태가 되기 전까지 조회할 수 없다.
+이렇게 unreadable 상태로 생성된 Map을 readable 상태로 만들기 위해서는 memcached_set_attrs를 사용해야 한다.</li>
+</ul>
+<p>Map item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_map_item_create</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-comment">// 비어있는 맵을 생성한다.</span>
+    rc= memcached_mop_create(memc, <span class="hljs-string">"map:an_empty_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:an_empty_map"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 맵이 이미 존재한다면 실패한다.</span>
+    rc= memcached_mop_create(memc, <span class="hljs-string">"map:an_empty_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:an_empty_map"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_EXISTS == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="map-element-삽입"></a><a href="#map-element-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 삽입</h3>
+<p>Map에 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_insert(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkey, <span class="hljs-keyword">size_t</span> mkey_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length,
+                                        memcached_coll_create_attrs_st *attributes)
+</code></pre>
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 삽입할 element의 mkey</li>
+<li>value, value_lenth: 삽입할 element의 value</li>
+<li>attributes: Map 없을 시에 attributes에 따라 empty map을 생성 후에 element 삽입한다.</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_STORED: 기존에 존재하던 Map에 element가 삽입됨.</li>
+<li>MEMCACHED_CREATED_STORED: Map이 새롭게 생성되고 element가 삽입됨.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: Map이 존재하지 않음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+<li>MEMCACHED_OVERFLOWED: Overflow 상태임. (overflowaction=error)</li>
+<li>MEMCACHED_ELEMENT_EXISTS: 동일한 mkey를 가진 element가 이미 존재하고 있음</li>
+</ul></li>
+</ul>
+<p>Map element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_map_element_insert</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-comment">// 1. CREATED_STORED</span>
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-string">"mkey"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 2. STORED</span>
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-string">"mkey1"</span>, strlne(<span class="hljs-string">"mkey1"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 3. ELEMENT_EXIST</span>
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-string">"mkey1"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey1"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_ELEMENT_EXIST == rc);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="map-element-변경"></a><a href="#map-element-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 변경</h3>
+<p>Map에 하나의 element를 변경하는 함수이다. 주어진 mkey를 가진 element의 value를 변경한다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_update(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkey, <span class="hljs-keyword">size_t</span> mkey_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length)
+</code></pre>
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 변경할 element의 mkey</li>
+<li>value, value_lenth: element의 new value</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_UPDATED: 주어진 mkey를 가진 element를 업데이트함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: Map이 존재하지 않음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+</ul></li>
+</ul>
+<p>Map element를 변경하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_map_element_update</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-comment">// 1. CREATED_STORED</span>
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-string">"mkey"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_CREATED_STORED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 2. UPDATED</span>
+    rc= memcached_mop_update(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-string">"mkey"</span>, strlne(<span class="hljs-string">"mkey"</span>), <span class="hljs-string">"new_value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"new_value"</span>));
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_UPDATED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="map-element-삭제"></a><a href="#map-element-삭제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 삭제</h3>
+<p>Map element를 삭제하는 함수는 두 가지가 있다.</p>
+<p>첫째, map에서 하나의 mkey로 하나의 element만 삭제하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_delete(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkey, <span class="hljs-keyword">size_t</span> mkey_length, <span class="hljs-keyword">bool</span> drop_if_empty)
+</code></pre>
+<p>둘째, map의 element 전체를 삭제하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_delete_all(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                            <span class="hljs-keyword">bool</span> drop_if_empty)
+</code></pre>
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 삭제할 element의 mkey</li>
+<li>drop_if_empty: element 삭제로 empty map이 될 경우, 그 map도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li>MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_DELETED: 주어진 mkey에 해당하는 element 혹은 전체 element를 삭제함.</li>
+<li>MEMCACHED_DELETED_DROPPED: 주어진 mkey에 해당하는 element 혹은 전체 element를 삭제하고, empty 상태가 된 Map도 삭제함.</li>
+</ul></li>
+<li>not MEMCACHED_SUCCESS
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Map이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 mkey에 해당하는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+</ul></li>
+</ul>
+<p>Map element를 삭제하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_map_element_delete</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>;
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+
+    <span class="hljs-comment">// 테스트 데이터를 삽입한다.</span>
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"map:a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:a_map"</span>), <span class="hljs-string">"mkey0"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey0"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+
+    rc= memcached_mop_insert(memc, <span class="hljs-string">"map:a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:a_map"</span>), <span class="hljs-string">"mkey1"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey1"</span>), <span class="hljs-string">"value"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"value"</span>), &amp;attributes);
+    assert(MEMCACHED_SUCCESS == rc);
+
+    <span class="hljs-comment">// mkey0에 해당하는 element를 삭제한다.</span>
+    rc= memcached_mop_delete(memc, <span class="hljs-string">"map:a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:a_map"</span>), <span class="hljs-string">"mkey0"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"mkey0"</span>), <span class="hljs-literal">true</span>);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 전체 map element를 삭제하고, empty 상태가 된 맵을 삭제한다.</span>
+    rc= memcached_mop_delete_all(memc, <span class="hljs-string">"map:a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"map:a_map"</span>), <span class="hljs-literal">true</span>);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="map-element-조회"></a><a href="#map-element-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 조회</h3>
+<p>Map element를 조회하는 함수는 세 가지가 있다.</p>
+<p>첫째, 하나의 map mkey로 하나의 element만 조회하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_get(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                     <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkey, <span class="hljs-keyword">size_t</span> mkey_length,
+                                     <span class="hljs-keyword">bool</span> with_delete, <span class="hljs-keyword">bool</span> drop_if_empty,
+                                     memcached_coll_result_st *result)
+</code></pre>
+<p>둘째, map의 전체 element를 조회하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_get_all(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                         <span class="hljs-keyword">bool</span> with_delete, <span class="hljs-keyword">bool</span> drop_if_empty,
+                                         memcached_coll_result_st *result)
+</code></pre>
+<p>셋째, mkey list에 해당하는 element들을 조회하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_get_by_list(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">size_t</span> key_length,
+                                             <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *mkeys, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *mkeys_length,
+                                             <span class="hljs-keyword">bool</span> with_delete, <span class="hljs-keyword">bool</span> drop_if_empty,
+                                             memcached_coll_result_st *result)
+</code></pre>
+<ul>
+<li>key, key_length: map item의 key</li>
+<li>mkey, mkey_length: 조회할 mkey</li>
+<li>mkeys, mkeys_length: 조회할 mkey list</li>
+<li>with_delete: 조회와 함께 삭제도 수행할 것인지를 지정</li>
+<li>drop_if_empty: element 삭제로 empty list가 될 경우, 그 list도 삭제할 것인지를 지정</li>
+</ul>
+<p>Response code는 아래와 같다.</p>
+<ul>
+<li><p>MEMCACHED_SUCCESS</p>
+<ul>
+<li>MEMCACHED_END: Map에서 정상적으로 element를 조회하였음.</li>
+<li>MEMCACHED_DELETED: Map에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.</li>
+<li>MEMCACHED_DELETED_DROPPED: Map에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.</li>
+</ul></li>
+<li><p>not MEMCACHED_SUCCESS</p>
+<ul>
+<li>MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Map이 없음.</li>
+<li>MEMCACHED_NOTFOUND_ELEMENT: 주어진 mkey 또는 mkeys(mkey list)에 해당하는 element가 없음.</li>
+<li>MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 Map이 아님.</li>
+<li>MEMCACHED_UNREADABLE: 주어진 key에 해당하는 Map이 unreadable 상태임.</li>
+</ul></li>
+</ul>
+<p>조회 결과는 memcached_coll_result_t 구조체에 저장된다.
+조회 결과에 접근하기 위한 API는 다음과 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function">memcached_coll_result_st *<span class="hljs-title">memcached_coll_result_create</span><span class="hljs-params">(<span class="hljs-keyword">const</span> memcached_st *ptr, memcached_coll_result_st *result)</span>
+<span class="hljs-keyword">void</span>                      <span class="hljs-title">memcached_coll_result_free</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+
+memcached_coll_type_t     <span class="hljs-title">memcached_coll_result_get_type</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+size_t                    <span class="hljs-title">memcached_coll_result_get_count</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+uint32_t                  <span class="hljs-title">memcached_coll_result_get_flags</span><span class="hljs-params">(memcached_coll_result_st *result)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *              <span class="hljs-title">memcached_coll_result_get_mkey</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+size_t                    <span class="hljs-title">memcached_coll_result_get_mkey_length</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *              <span class="hljs-title">memcached_coll_result_get_value</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+size_t                    <span class="hljs-title">memcached_coll_result_get_value_length</span><span class="hljs-params">(memcached_coll_result_st *result, <span class="hljs-keyword">size_t</span> index)</span>
+</span></code></pre>
+<p>Map element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">arcus_map_element_get</span><span class="hljs-params">(memcached_st *memc)</span>
+</span>{
+    <span class="hljs-keyword">uint32_t</span> flags= <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">uint32_t</span> exptime= <span class="hljs-number">600</span>; 
+    <span class="hljs-keyword">uint32_t</span> maxcount= <span class="hljs-number">1000</span>;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+    <span class="hljs-keyword">memcached_return_t</span> rc;
+    memcached_coll_result_st *result;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint32_t</span> i=<span class="hljs-number">0</span>; i&lt;maxcount; i++)    { 
+        <span class="hljs-keyword">char</span> mkey[<span class="hljs-number">15</span>];
+        <span class="hljs-keyword">char</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">15</span>];
+        <span class="hljs-keyword">size_t</span> mkey_len = <span class="hljs-built_in">snprintf</span>(mkey, <span class="hljs-number">15</span>, <span class="hljs-string">"mkey%d"</span>, i);
+        <span class="hljs-keyword">size_t</span> buffer_len= <span class="hljs-built_in">snprintf</span>(<span class="hljs-built_in">buffer</span>, <span class="hljs-number">15</span>, <span class="hljs-string">"value%d"</span>, i);
+        rc= memcached_mop_insert(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), mkey, mkey_len, <span class="hljs-built_in">buffer</span>, buffer_len, &amp;attributes);
+        assert(MEMCACHED_SUCCESS == rc);
+    }
+
+    <span class="hljs-comment">// 조회 범위에 아무런 element가 없는 경우</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *not_mkeys[]= { <span class="hljs-string">"mkey1001"</span>, <span class="hljs-string">"mkey1010"</span>, <span class="hljs-string">"mkey1100"</span> };
+    <span class="hljs-keyword">size_t</span> not_mkeys_length[]= { <span class="hljs-number">8</span>, <span class="hljs-number">8</span>, <span class="hljs-number">8</span> };
+    result = memcached_coll_result_create(memc, <span class="hljs-literal">NULL</span>);
+
+    rc= memcached_mop_get_by_list(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), not_mkeys, not_mkeys_length, <span class="hljs-number">3</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, result);
+    assert(MEMCACHED_SUCCESS != rc);
+    assert(MEMCACHED_NOTFOUND_ELEMENT == memcached_get_last_response_code(memc));
+
+    memcached_coll_result_free(result);
+
+    <span class="hljs-comment">// 조회와 동시에 조회된 element를 삭제한다.</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkeys[]= { <span class="hljs-string">"mkey0"</span>, <span class="hljs-string">"mkey1"</span>, <span class="hljs-string">"mkey2"</span>, <span class="hljs-string">"mkey3"</span>, <span class="hljs-string">"mkey4"</span>, <span class="hljs-string">"mkey5"</span>};
+    <span class="hljs-keyword">size_t</span> mkeys_length[]= { <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span> };
+    result = memcached_coll_result_create(memc, <span class="hljs-literal">NULL</span>);
+
+    rc= memcached_mop_get_by_list(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), mkeys, mkeys_length, <span class="hljs-number">6</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, result);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 조회 결과를 확인한다.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i=<span class="hljs-number">0</span>; i&lt;memcached_coll_result_get_count(result); i++)
+    {
+        <span class="hljs-keyword">char</span> mkey[<span class="hljs-number">15</span>];
+        <span class="hljs-keyword">char</span> <span class="hljs-built_in">buffer</span>[<span class="hljs-number">15</span>];
+        <span class="hljs-built_in">snprintf</span>(mkey, <span class="hljs-number">15</span>, <span class="hljs-string">"mkey%u"</span>, (<span class="hljs-keyword">int</span>)i);
+        <span class="hljs-built_in">snprintf</span>(<span class="hljs-built_in">buffer</span>, <span class="hljs-number">15</span>, <span class="hljs-string">"value%u"</span>, (<span class="hljs-keyword">int</span>)i);
+        assert(<span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(mkey, memcached_coll_result_get_mkey(result, i)));
+        assert(<span class="hljs-number">0</span> == <span class="hljs-built_in">strcmp</span>(<span class="hljs-built_in">buffer</span>, memcached_coll_result_get_value(result, i)));
+    }
+
+    <span class="hljs-comment">// 전체 map element를 조회하고, 조회와 동시에 삭제한다. empty 상태가 된 맵을 삭제한다.</span>
+    result = memcached_coll_result_create(memc, <span class="hljs-literal">NULL</span>);
+
+    rc= memcached_mop_get_all(memc, <span class="hljs-string">"a_map"</span>, <span class="hljs-built_in">strlen</span>(<span class="hljs-string">"a_map"</span>), <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, result);
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_DELETED_DROPPED == memcached_get_last_response_code(memc));
+
+    <span class="hljs-comment">// 조회 결과를 삭제한다.</span>
+    memcached_coll_result_free(result);
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="map-element-일괄-삽입"></a><a href="#map-element-일괄-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Map Element 일괄 삽입</h3>
+<p>Map에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.</p>
+<p>첫째, 하나의 key가 가리키는 map에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_piped_insert(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> key_length,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> numr_of_piped_items,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *mkeys, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *mkeys_length,
+                                              <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *values, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *values_length,
+                                              memcached_coll_create_attrs_st *attributes,
+                                              <span class="hljs-keyword">memcached_return_t</span> *results, <span class="hljs-keyword">memcached_return_t</span> *piped_rc)
+</code></pre>
+<ul>
+<li>key, key_length: 하나의 key를 지정</li>
+<li>numr_of_piped_items: 한번에 삽입할 element 개수</li>
+<li>mkeys, mkeys_length: 다수 element 각각의 mkey와 그 길이</li>
+<li>values, values_length: 다수 element 각각의 value와 그 길이</li>
+<li>attributes: 해당 map이 없을 시에, attrbiutes에 따라 map을 생성 후에 삽입한다.</li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 map들에 각각 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-c"><span class="hljs-keyword">memcached_return_t</span> memcached_mop_piped_insert_bulk(memcached_st *ptr, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * <span class="hljs-keyword">const</span> *keys, <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> *keylengths,
+                                                   <span class="hljs-keyword">const</span> <span class="hljs-keyword">size_t</span> numr_of_keys,
+                                                   <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *mkey, <span class="hljs-keyword">size_t</span> mkey_length,
+                                                   <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *value, <span class="hljs-keyword">size_t</span> value_length,
+                                                   memcached_coll_create_attrs_st *attributes,
+                                                   <span class="hljs-keyword">memcached_return_t</span> *results, <span class="hljs-keyword">memcached_return_t</span> *piped_rc)
+</code></pre>
+<ul>
+<li>keys, keys_length: 다수 key들을 지정</li>
+<li>numr_of_keys: key들의 수</li>
+<li>mkey, mkey_length: element의 mkey</li>
+<li>value, value_length: element의 value</li>
+<li>attributes: 해당 map이 없을 시에, attrbiutes에 따라 map을 생성 후에 삽입한다.</li>
+</ul>
+<p>Map element 일괄 삽입의 결과는 아래의 인자를 통해 받는다.</p>
+<ul>
+<li>results: 일괄 삽입 결과가 주어진 key 또는 (key, element) 순서대로 저장된다.
+<ul>
+<li>STORED: element만 삽입</li>
+<li>CREATE_STORED: map item 생성 후에, element 삽입</li>
+</ul></li>
+<li>piped_rc: 일괄 저장의 전체 결과를 담고 있다
+<ul>
+<li>MEMCACHED_ALL_SUCCESS: 모든 element가 저장됨.</li>
+<li>MEMCACHED_SOME_SUCCESS: 일부 element가 저장됨.</li>
+<li>MEMCACHED_ALL_FAILURE: 전체 element가 저장되지 않음.</li>
+</ul></li>
+</ul>
+<p>Map element 일괄 삽입의 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-c">void arcus_map_element_piped_insert(memcached_st *memc)
+{
+    uint32_t flags= 10;
+    uint32_t exptime= 600;
+    uint32_t maxcount= MEMCACHED_COLL_MAX_PIPED_CMD_SIZE;
+
+    memcached_coll_create_attrs_st attributes;
+    memcached_coll_create_attrs_init(&amp;attributes, flags, exptime, maxcount);
+
+    memcached_return_t rc;
+    memcached_return_t piped_rc; // pipe operation의 전체 성공 여부
+    memcached_return_t results[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE]; // 각 key에 대한 응답 코드
+
+    // 테스트 데이터
+    char **mkeys = (char **)malloc(sizeof(char *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    size_t mkeylengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+    char **values = (char **)malloc(sizeof(char *) * MEMCACHED_COLL_MAX_PIPED_CMD_SIZE);
+    size_t valuelengths[MEMCACHED_COLL_MAX_PIPED_CMD_SIZE];
+
+    for (uint32_t i=0; i&lt;maxcount; i++)
+    {
+        mkeys[i]= (char *)malloc(sizeof(char) * 15);
+        mkeylengths[i]= snprintf(values[i], 15, "mkey%d", i);
+        values[i]= (char *)malloc(sizeof(char) * 15);
+        valuelengths[i]= snprintf(values[i], 15, "value%d", i);
+    }
+
+
+    // piped insert를 요청한다.
+    rc= memcached_mop_piped_insert(memc, "a_map", strlen("a_map"),
+            MEMCACHED_COLL_MAX_PIPED_CMD_SIZE,
+            mkeys, mkeylengths,
+            values, valuelengths,
+            &amp;attributes, results, &amp;piped_rc);
+
+    assert(MEMCACHED_SUCCESS == rc);
+    assert(MEMCACHED_ALL_SUCCESS == piped_rc);
+
+    // 각 key에 대한 결과를 확인한다.
+    for (size_t i=0; i&lt;maxcount; i++)&lt;/nowiki&gt;
+    {
+        assert(MEMCACHED_STORED == results[i] or MEMCACHED_CREATED_STORED == results[i]);
+    }
+
+    for (uint32_t i=0; i&lt;maxcount; i++)
+    {
+        free((void *)mkeys[i]);
+        free((void *)values[i]);    
+    }
+    free((void *)mkeys);
+    free((void *)values);
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#map-item">Map Item</a><ul class="toc-headings"><li><a href="#map-item-생성">Map Item 생성</a></li><li><a href="#map-element-삽입">Map Element 삽입</a></li><li><a href="#map-element-변경">Map Element 변경</a></li><li><a href="#map-element-삭제">Map Element 삭제</a></li><li><a href="#map-element-조회">Map Element 조회</a></li><li><a href="#map-element-일괄-삽입">Map Element 일괄 삽입</a></li></ul></li></ul></nav></div></div></body></html>

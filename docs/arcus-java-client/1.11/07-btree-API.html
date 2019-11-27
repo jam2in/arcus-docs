@@ -1,0 +1,1473 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>arcus-java-client/1.11/07-btree-API · ARCUS DOCUMENT</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## B+tree Item"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="arcus-java-client/1.11/07-btree-API · ARCUS DOCUMENT"/><meta property="og:type" content="website"/><meta property="og:url" content="https://wwww.jam2in.com/index.html"/><meta property="og:description" content="## B+tree Item"/><meta property="og:image" content="https://wwww.jam2in.com/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://wwww.jam2in.com/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="ARCUS DOCUMENT"/><h2 class="headerTitleWithLogo">ARCUS DOCUMENT</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"></ul></nav></div></header></div></div><div class="navPusher singleRowMobileNav"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">arcus-java-client/1.11/07-btree-API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="btree-item"></a><a href="#btree-item" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+tree Item</h2>
+<p>B+tree item은 하나의 key에 대해 b+tree 구조 기반으로 b+tree key(bkey)로 정렬된 data의 집합을 가진다.</p>
+<p><strong>제약 조건</strong></p>
+<ul>
+<li>저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)</li>
+<li>각 element에서 value 최대 크기 : 4KB</li>
+<li>하나의 b+tree 내에서 모든 element는 동일한 bkey 유형을 가져야 한다.
+즉, long bkey 유형과 byte array bkey 유형이 혼재할 수 없다.</li>
+</ul>
+<p>B+tree item 구조와 기본 특징은 <strong><a href="https://github.com/naver/arcus-memcached/blob/master/doc/arcus-collection-concept.md">Arcus Server Ascii Protocol 문서의 내용</a></strong>을
+먼저 참고하기 바란다.</p>
+<p>B+tree item 연산의 설명에 앞서, b+tree 조회 및 변경에 사용하는 객체들을 설명한다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#bkeybtree-key%EC%99%80-eflagelement-flag">Bkey(B+Tree Key)와 EFlag(Element Flag)</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#element-flag-filter-%EA%B0%9D%EC%B2%B4">Element Flag Filter 객체</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#element-flag-update-%EA%B0%9D%EC%B2%B4">Element Flag Update 객체</a></li>
+</ul>
+<p>B+tree item에 대해 수행가능한 기본 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-item-%EC%83%9D%EC%84%B1">B+Tree Item 생성</a> (B+tree item 삭제는 key-value item 삭제 함수로 수행한다)</li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%82%BD%EC%9E%85">B+Tree Element 삽입</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-upsert">B+Tree Element Upsert</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EB%B3%80%EA%B2%BD">B+Tree Element 변경</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%82%AD%EC%A0%9C">B+Tree Element 삭제</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EA%B0%92%EC%9D%98-%EC%A6%9D%EA%B0%90">B+Tree Element 값의 증감</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EA%B0%9C%EC%88%98-%EA%B3%84%EC%82%B0">B+Tree Element 개수 계산</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%A1%B0%ED%9A%8C">B+Tree Element 조회</a></li>
+</ul>
+<p>여러 b+tree element들에 대해 한번에 일괄 수행하는 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%9D%BC%EA%B4%84-%EC%82%BD%EC%9E%85">B+Tree Element 일괄 삽입</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%9D%BC%EA%B4%84-%EB%B3%80%EA%B2%BD">B+Tree Element 일괄 변경</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-%EC%9D%BC%EA%B4%84-%EC%A1%B0%ED%9A%8C">B+Tree Element 일괄 조회</a></li>
+</ul>
+<p>여러 b+tree element들에 대해 sort-merge 조회 연산은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-element-sort-merge-%EC%A1%B0%ED%9A%8C">B+Tree Element Sort-Merge 조회</a></li>
+</ul>
+<p>B+tree position 관련 연산들은 다음과 같다.</p>
+<ul>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-position-%EC%A1%B0%ED%9A%8C">B+Tree Position 조회</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-position-%EA%B8%B0%EB%B0%98%EC%9D%98-element-%EC%A1%B0%ED%9A%8C">B+Tree Position 기반의 Element 조회</a></li>
+<li><a href="/docs/arcus-java-client/1.11/07-btree-API.html#btree-position%EA%B3%BC-element-%EB%8F%99%EC%8B%9C-%EC%A1%B0%ED%9A%8C">B+Tree Position과 Element 동시 조회</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="bkeybtree-key와-eflagelement-flag"></a><a href="#bkeybtree-key와-eflagelement-flag" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BKey(B+Tree Key)와 EFlag(Element Flag)</h3>
+<p>B+tree item에서 사용가능한 bkey 데이터 타입은 아래 두 가지이다.</p>
+<ul>
+<li>long 타입</li>
+<li>byte[1~31] 타입 : byte array크기가 1부터 31까지 어느 것을 사용해도 된다.</li>
+</ul>
+<p>byte array 타입의 bkey를 만드는 예는 아래와 같다.
+만약, byte array의 크기가 31을 초과하면 IllegalArgumentException이 발생한다.</p>
+<pre><code class="hljs"><span class="hljs-comment">// Bkey로 0x00000001을 사용한다.</span>
+byte[] bkey = new byte[] { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> }
+</code></pre>
+<p>eflag는 현재 b+tree element에만 존재하는 필드이다.
+eflag 데이터 타입은 byte[1~31] 타입만 가능하며, bkey의 byte array 사용 방식과 동일하다.</p>
+<h3><a class="anchor" aria-hidden="true" id="element-flag-filter-객체"></a><a href="#element-flag-filter-객체" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Element Flag Filter 객체</h3>
+<p>Element를 조회, 수정, 삭제 시에 eflag(element flag)에 대한 filter 조건을 사용할 수 있다.
+eflag filter 조건은 아래와 같이 표현한다.</p>
+<ul>
+<li>기본적으로, eflag의 전체/부분 값을 <strong>compare 값</strong>과 <strong>compare 연산</strong>을 수행한다.
+<ul>
+<li><strong>compare 값</strong>은 eflag 값에 대해 compare 연산을 취한 operand로 eflag filter에 명시된다.</li>
+</ul></li>
+<li>선택적으로, compare 연산의 수행 전에 eflag의 전체/부분 값에 대해 <strong>bitwise 값</strong>으로 <strong>bitwise 연산</strong>을 먼저 취할 수 있다.
+<ul>
+<li><strong>bitwise 값</strong>은 eflag 값에 대해 bitwise 연산을 취한 operand로 eflag filter에 명시된다.</li>
+<li><strong>현재, bitwise 값의 길이는 compare 값의 길이와 동일해야 하는 제약이 있다.</strong></li>
+</ul></li>
+</ul>
+<p>eflag filter 조건에서 compare/bitwise 연산이 수행될 eflag의 전체/부분 값은 아래와 같이 선택한다.</p>
+<ul>
+<li>eflag 전체 값에서 compare 연산의 대상 값은 <strong>compare offset</strong>과 <strong>compare length</strong>로 지정한다.
+<ul>
+<li><strong>compare offset</strong>은 디폴트로 0을 가지며, eflag filter에서 수정이 가능하다.</li>
+<li><strong>compare length</strong>는 eflag filter에 명시된 <strong>compare 값</strong>의 길이로 자동 설정된다.</li>
+</ul></li>
+<li>eflag 전체 값에서 bitwise 연산의 대상 값은 <strong>bitwise offset</strong>과 <strong>bitwise length</strong>로 지정한다.
+<ul>
+<li><strong>bitwise offset</strong>은 따로 지정하지 않고, <strong>compare offset</strong>을 그대로 사용한다.</li>
+<li><strong>bitwise length</strong>는 eflag filter에 명시된 <strong>bitwise 값</strong>의 길이로 자동 설정된다.</li>
+</ul></li>
+</ul>
+<p>제공하는 compare 연산자는 다음과 같다.</p>
+<table>
+<thead>
+<tr><th>compare 연산자</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>ElementFlagFilter.CompOperands.Equal</td><td>일치</td></tr>
+<tr><td>ElementFlagFilter.CompOperands.NotEqual</td><td>일치하지 않음</td></tr>
+<tr><td>ElementFlagFilter.CompOperands.LessThan</td><td>작은 것</td></tr>
+<tr><td>ElementFlagFilter.CompOperands.LessOrEqual</td><td>작거나 같은 것</td></tr>
+<tr><td>ElementFlagFilter.CompOperands.GreaterThan</td><td>큰 것</td></tr>
+<tr><td>ElementFlagFilter.CompOperands.GreaterOrEqual</td><td>크거나 같은 것</td></tr>
+</tbody>
+</table>
+<p>제공하는 bitwise 연산자는 다음과 같다.</p>
+<table>
+<thead>
+<tr><th>compare 연산자</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>ElementFlagFilter.BitwiseOperands.AND</td><td>AND 연산</td></tr>
+<tr><td>ElementFlagFilter.BitwiseOperands.OR</td><td>OR 연산</td></tr>
+<tr><td>ElementFlagFilter.BitwiseOperands.XOR</td><td>XOR 연산</td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="elementflagfilter-메소드"></a><a href="#elementflagfilter-메소드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ElementFlagFilter 메소드</h4>
+<p>ElementFlagFilter 클래스의 생성자 함수는 아래와 같다.
+compare 연산자와 compare 값만을 지정하여 ElementFlagFilter 객체를 생성한다.
+compare offset는 디폴트로 0을 값으로 가지면, bitwise 연산의 설정은 없는 상태가 된다.</p>
+<pre><code class="hljs css language-java">ElementFlagFilter(CompOperands compOperand, <span class="hljs-keyword">byte</span>[] compValue)
+</code></pre>
+<p>ElementFlagFilter 객체의 compare offset을 변경하거나
+bitwise 연산 설정을 하고자 한다면, 아래 메소드를 사용할 수 있다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">ElementFlagFilter <span class="hljs-title">setCompareOffset</span><span class="hljs-params">(<span class="hljs-keyword">int</span> offset)</span>
+ElementFlagFilter <span class="hljs-title">setBitOperand</span><span class="hljs-params">(BitWiseOperands bitOp, <span class="hljs-keyword">byte</span>[] bitCompValue)</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="elementflagfilter-사용-예제"></a><a href="#elementflagfilter-사용-예제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ElementFlagFilter 사용 예제</h4>
+<p>첫째 예는 b+tree에 저장된 전체 element들에서 eflag 값이 0x0102와 일치하는 element의 개수를 조회한다.</p>
+<pre><code class="hljs css language-java">ElementFlagFilter filter = <span class="hljs-keyword">new</span> ElementFlagFilter(CompOperands.Equal, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">2</span> }); <span class="hljs-comment">// (1) </span>
+CollectionFuture&lt;Integer&gt; future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
+Integer count = future.get(); 
+</code></pre>
+<ol>
+<li>Eflag가 0x0102와 일치 여부를 판단하는 filter를 생성한다.
+compare offset은 0이 되고, compare length는 2가 된다.</li>
+</ol>
+<p>둘째 예는 b+tree의 모든 element들에서 eflag의 두 번째 바이트를 0x01과 AND 연산한 결과가 0x01인
+element의 개수를 조회하는 예제이다.</p>
+<pre><code class="hljs css language-java">ElementFlagFilter filter = <span class="hljs-keyword">new</span> ElementFlagFilter(CompOperands.Equal, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span> }); <span class="hljs-comment">// (1) </span>
+filter.setBitOperand(BitWiseOperands.AND, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span> }); <span class="hljs-comment">// (2) </span>
+filter.setCompareOffset(<span class="hljs-number">1</span>); <span class="hljs-comment">// (3) </span>
+
+CollectionFuture&lt;Integer&gt; future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
+Integer count = future.get(); 
+</code></pre>
+<ol>
+<li>Eflag가 0x01와 일치 여부를 판단하는 filter를 생성한다.</li>
+<li>Eflag에 대한 compare 연산 수행 전에 0x01과 bitwise AND 연산하기 위해 설정한다.</li>
+<li>Eflag의 두 번째 바이트부터 filtering하기 위해 설정한다.</li>
+</ol>
+<p>참고로, 조회 조건에 filter를 사용하지 않으려면 filter 값으로 ElementFlagFilter.DO_NOT_FILTER를 지정하면 된다.</p>
+<p>셋째 예는 b+tree에서 eflag가 설정되지 않은 모든 element를 조회하는 예제이다.
+Eflag가 지정되지 않은 element를 조회하려면 eflag의 첫 번째 한 바이트를 0x00과 bitwise AND연산을 취하고
+그 결과가 0x00이 아닌 element를 찾으면 된다.
+eflag를 가진 element라면 첫 번재 한 바이트를 0x00과 bitwise AND 연산을 취했을 때 무조건 0x00이 되기 때문에
+bitwise연산 결과가 0x00이 아닌 것을 조회하면 eflag를 갖지 않은 element를 조회할 수 있게 된다.</p>
+<pre><code class="hljs css language-java">ElementFlagFilter filter = <span class="hljs-keyword">new</span> ElementFlagFilter(CompOperands.NotEqual, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">0</span> });  <span class="hljs-comment">// (1)</span>
+filter.setBitOperand(BitWiseOperands.AND, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">0</span> }); <span class="hljs-comment">// (2)</span>
+Map&lt;Long, Object&gt; map = mc.asyncBopGet(KEY, BKEY, BKEY + <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">false</span>, filter).get(); <span class="hljs-comment">// (3)</span>
+</code></pre>
+<ol>
+<li>Eflag가 0x00이 아닌 것들을 조회하는 filter를 생성한다.</li>
+<li>Filter가 비교할 eflag는 element에 설정된 eflag와 0x00를 bitwise AND연산한 것을 사용한다.</li>
+<li>1과 2에서 생성한 filter를 사용하면 eflag가 설정되지 않은 element를 조회할 수 있다.</li>
+</ol>
+<h4><a class="anchor" aria-hidden="true" id="elementmultiflagsfilter"></a><a href="#elementmultiflagsfilter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ElementMultiFlagsFilter</h4>
+<p>Eflag에 대해 아래와 같은 IN 연산과 NOT IN 연산을 수행하기 위한 filter이다.</p>
+<ul>
+<li>IN 연산 : eflag 값이 여러 compare values 중 하나와 동일한 지를 검사</li>
+<li>NOT IN 연산 : eflags 값이 여러 compare values와 모두 다른 지를 검사</li>
+</ul>
+<p>ElementMultiFlagsFilter는 여러 compare value를 지정할 수 있고, 아래 두 개의 compare 연산자를 지원한다.</p>
+<ul>
+<li>ElementFlagFilter.CompOperands.Equal</li>
+<li>ElementFlagFilter.CompOperands.NotEqual</li>
+</ul>
+<p>ElementMultiFlagsFilter 사용 예로,
+아래는 b+tree의 전체 element들 중에 eflag의 값이 0x0102 또는 0x0104에 일치하는 element의 개수를 조회한다.
+즉, IN 연산의 filtering을 수행한다.</p>
+<pre><code class="hljs css language-java">mentMultiFlagsFilter filter = <span class="hljs-keyword">new</span> ElementMultiFlagsFilter(CompOperands.Equal); <span class="hljs-comment">// (1) </span>
+filter.addCompValue(<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">2</span> }); <span class="hljs-comment">// (2)</span>
+filter.addCompValue(<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">4</span> }); <span class="hljs-comment">// (3)</span>
+CollectionFuture&lt;Integer&gt; future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
+Integer count = future.get(); 
+</code></pre>
+<ol>
+<li>filter를 생성한다.</li>
+<li>일치 여부 판단을 위한 값 0x0102 등록</li>
+<li>일치 여부 판단을 위한 값 0x0104 등록</li>
+</ol>
+<p>ElementMultiFlagsFilter로 최대 100개 compare value를 지정할 수 있으며,
+asyncBopGet, asyncBopCount, asyncBopDelete, asyncBopSortMergeGet 에서만 사용이 가능하다.</p>
+<h3><a class="anchor" aria-hidden="true" id="element-flag-update-객체"></a><a href="#element-flag-update-객체" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Element Flag Update 객체</h3>
+<p>Eflag의 전체 또는 부분 값을 변경할 수 있다.
+이를 위한 ElementFlagUpdate 생성자 함수는 아래와 같다.</p>
+<ul>
+<li>ElementFlagUpdate(byte[] elementFlag)
+<ul>
+<li>Eflag의 전체 값을 새로운 elementFlag로 교체한다.</li>
+</ul></li>
+<li>ElementFlagUpdate(int elementFlagOffset, BitWiseOperands bitOp, byte[] elementFlag)
+<ul>
+<li>Eflag의 부분 값을 bitwise 연산을 취한 결과로 교체한다.</li>
+<li>Eflag에서 bitwise 연산을 취할 부분 값의 offset과 length는
+각각 elementFlagOffset과 elementFlag 값의 길이로 결정된다.</li>
+</ul></li>
+</ul>
+<p>Eflag 전체 값을 교체하는 예는 아래와 같다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">byte</span>[] flag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> };
+ElementFlagUpdate eflagUpdate = <span class="hljs-keyword">new</span> ElementFlagUpdate(flag);
+
+CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, eflagUpdate, <span class="hljs-keyword">null</span>);
+</code></pre>
+<p>Eflag 부분 값을 교체하는 예는 아래와 같다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">int</span> eFlagOffset = <span class="hljs-number">1</span>;
+BitWiseOperands bitOp = BitWiseOperands.AND;
+<span class="hljs-keyword">byte</span>[] flag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span> };
+
+ElementFlagUpdate eflagUpdate = <span class="hljs-keyword">new</span> ElementFlagUpdate(eFlagOffset, bitOp, flag);
+CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, eflagUpdate, <span class="hljs-keyword">null</span>);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="btree-item-생성"></a><a href="#btree-item-생성" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Item 생성</h3>
+<p>새로운 empty b+tree item을 생성한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncBopCreate</span><span class="hljs-params">(String key, ElementValueType valueType, CollectionAttributes attributes)</span>
+</span></code></pre>
+<ul>
+<li>key: 생성할 b+tree item의 key</li>
+<li>valueType: b+tree에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.
+<ul>
+<li>ElementValueType.STRING</li>
+<li>ElementValueType.LONG</li>
+<li>ElementValueType.INTEGER</li>
+<li>ElementValueType.BOOLEAN</li>
+<li>ElementValueType.DATE</li>
+<li>ElementValueType.BYTE</li>
+<li>ElementValueType.FLOAT</li>
+<li>ElementValueType.DOUBLE</li>
+<li>ElementValueType.BYTEARRAY</li>
+<li>ElementValueType.OTHERS : for example, user defined class</li>
+</ul></li>
+<li>attributes: b+tree item의 속성들을 지정한다.</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.CREATED</td><td>생성 성공</td></tr>
+<tr><td>False</td><td>CollectionResponse.EXISTS</td><td>동일 key가 이미 존재함</td></tr>
+</tbody>
+</table>
+<p>B+tree item을 생성하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:EmptyBTree"</span>;
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+CollectionAttributes attribute = <span class="hljs-keyword">new</span> CollectionAttributes(); <span class="hljs-comment">// (1)</span>
+attribute.setExpireTime(<span class="hljs-number">60</span>); <span class="hljs-comment">// (1)</span>
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncBopCreate(key, ElementValueType.STRING, attribute); <span class="hljs-comment">// (2)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (4)</span>
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>B+tree의 expire time을 60초로 지정하였다.
+CollectionAttributes의 자세한 사용방법은 [[Manual:Java_Client/Attribute_사용|Attribute_사용]] 장에서 자세히 다룬다.</li>
+<li>Empty b+tree를 생성할 때에는 b+tree에 어떤 타입의 element를 저장할 것인지를 미리 지정해 두어야 한다.
+이렇게 해야 하는 이유는 Java client에서 value를 encoding/decoding하는 메커니즘 때문이다.
+위 예제는 String 타입을 저장할 수 있는 empty b+tree를 생성한다.
+만약에 empty b+tree를 생성할 때 지정한 element type과 일치하지 않는 값을 b+tree에 저장한다면
+저장은 성공하겠지만 조회할 때 엉뚱한 값이 조회된다.</li>
+<li>timeout은 1초로 지정했다. 생성에 성공하면 future는 true를 반환한다.
+지정한 시간에 생성 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+TimeoutException이 발생한다.</li>
+<li>생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-삽입"></a><a href="#btree-element-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 삽입</h3>
+<p>B+Tree에 하나의 element를 삽입한다.
+전자는 long 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopInsert</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopInsert</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+</span></code></pre>
+<ul>
+<li>key: 삽입 대상 b+tree의 key</li>
+<li>bkey: 삽입할 element의 bkey(b+tree key)</li>
+<li>eflag: 삽입할 element의 eflag(element flag), that is optional.</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.STORED</td><td>Element만 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.CREATED_STORED</td><td>B+tree collection 생성하고 element를 삽입함</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>False</td><td>CollectionResponse.ELEMENT_EXISTS</td><td>주어진 bkey를 가진 element가 이미 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OVERFLOWED</td><td>최대 저장가능한 개수만큼 element들이 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OUT_OF_RANGE</td><td>주어진 bkey가 b+tree trimmed 영역에 해당됨</td></tr>
+</tbody>
+</table>
+<p>B+tree element를 삽입하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTreeKey"</span>;
+<span class="hljs-keyword">long</span> bkey = <span class="hljs-number">1L</span>;
+String value = <span class="hljs-string">"This is a value."</span>;
+<span class="hljs-keyword">byte</span>[] eflag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> };
+
+CollectionAttributes attributesForCreate = <span class="hljs-keyword">new</span> CollectionAttributes();
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncBopInsert(key, bkey, eflag, value, attributesForCreate); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (3)</span>
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>attributesForCreate값이 null이 아니면 b+tree가 존재하지 않을 때
+attributesForCreate속성을 가진 b+tree를 새로 생성한 다음 element를 저장한다.
+만약 key가 존재하지 않는 상황에서 attributesForCreate값이 null이면 insert에 실패한다.
+<ul>
+<li>위 예제는 디폴트 CollectionAttributes를 사용하며, 기본 expire time은 0으로 만료되지 않음을 뜻한다.</li>
+</ul></li>
+<li>timeout은 1초로 지정했다. Insert가 성공하면 future는 true를 반환한다.
+지정한 시간에 insert 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+TimeoutException이 발생한다.</li>
+<li>Insert결과에 대한 자세한 결과 코드를 확인하려면 future.getOperationStatus().getResponse()를 사용한다.</li>
+</ol>
+<p>아커스에서 B+tree는 가질 수 있는 최대 엘리먼트 개수가 제한되어 있다. 이 제한 범위 안에서 사용자가 직접 B+tree 크기를 지정할 수도 있는데(maxcount), 이러한 제약조건 때문에 가득 찬 B+tree에 새로운 엘리먼트를 입력하면 설정에 따라 기존의 엘리먼트가 삭제될 수 있다.
+이렇게 암묵적으로 삭제되는 엘리먼트를 입력(insert, upsert)시점에 획득할 수 있는 기능을 제공한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">BTreeStoreAndGetFuture&lt;Boolean, Object&gt;
+<span class="hljs-title">asyncBopInsertAndGetTrimmed</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+
+BTreeStoreAndGetFuture&lt;Boolean, Object&gt;
+<span class="hljs-title">asyncBopInsertAndGetTrimmed</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+</span></code></pre>
+<p>B+tree에 bkey에 해당하는 엘리먼트를 insert 하거나 upsert 할 때 삭제(trim) 되는 엘리먼트가 있을 경우 그 값을 조회한다.</p>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>bkey: 삽입할 element의 bkey(b+tree key)
+<ul>
+<li>bkey는 element의 key로 long또는 byte[1~31] 유형을 사용할 수 있다.</li>
+<li>0이상의 값으로만 지정할 수 있고. key가 존재하는 상태에서 bkey와 value가 저장된다 하더라도
+key에 설정된 expire time은 변하지 않는다.</li>
+</ul></li>
+<li>eflag: 삽입할 element의 eflag(element flag)</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.STORED</td><td>Element만 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.CREATED_STORED</td><td>B+tree collection 생성하고 element를 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.REPLACED</td><td>Element가 교체됨</td></tr>
+<tr><td>True</td><td>CollectionResponse.TRIMMED</td><td>element가 삽입되고, 삽입으로 trimmed element가 조회됨</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>False</td><td>CollectionResponse.ELEMENT_EXISTS</td><td>주어진 bkey를 가진 element가 이미 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OVERFLOWED</td><td>최대 저장가능한 개수만큼 element들이 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OUT_OF_RANGE</td><td>주어진 bkey가 b+tree trimmed 영역에 해당됨</td></tr>
+</tbody>
+</table>
+<p>future.getElement()객체를 통해 삭제(trim) 되는 엘리먼트의 정보를 확인할 수 있다</p>
+<table>
+<thead>
+<tr><th>future.getElement() 객체의 Method</th><th>자료형</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>getValue()</td><td>Object</td><td>element의 값</td></tr>
+<tr><td>getByteArrayBkey()</td><td>byte[]</td><td>element bkey 값(byte[])</td></tr>
+<tr><td>getLongBkey()</td><td>long</td><td>element bkey 값(long)</td></tr>
+<tr><td>isByteArrayBkey()</td><td>boolean</td><td>element bkey byte array 여부</td></tr>
+<tr><td>getFlag()</td><td>byte[]</td><td>element flag값(byte[])</td></tr>
+</tbody>
+</table>
+<p>B+tree에 element 삽입하면서 암묵적으로 trim되는 element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">private</span> String key = <span class="hljs-string">"BopStoreAndGetTest"</span>;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span>[] longBkeys = { <span class="hljs-number">10L</span>, <span class="hljs-number">11L</span>, <span class="hljs-number">12L</span>, <span class="hljs-number">13L</span>, <span class="hljs-number">14L</span>, <span class="hljs-number">15L</span>, <span class="hljs-number">16L</span>, <span class="hljs-number">17L</span>, <span class="hljs-number">18L</span>,
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testInsertAndGetTrimmedLongBKey</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+    <span class="hljs-comment">// insert test data</span>
+    CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+    attrs.setMaxCount(<span class="hljs-number">10</span>);
+    attrs.setOverflowAction(CollectionOverflowAction.smallest_trim);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> each : longBkeys) {
+        mc.asyncBopInsert(key, each, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, attrs).get();
+    }
+
+    <span class="hljs-comment">// cause an overflow</span>
+    assertTrue(mc.asyncBopInsert(key, <span class="hljs-number">1000</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, <span class="hljs-keyword">null</span>).get());
+    
+    <span class="hljs-comment">// expecting that bkey 10 was trimmed out and the first bkey is 11 </span>
+    Map&lt;Integer, Element&lt;Object&gt;&gt; posMap = mc.asyncBopGetByPosition(key, BTreeOrder.ASC, <span class="hljs-number">0</span>).get();
+    assertNotNull(posMap);
+    assertNotNull(posMap.get(<span class="hljs-number">0</span>)); <span class="hljs-comment">// the first element</span>
+    assertEquals(<span class="hljs-number">11L</span>, posMap.get(<span class="hljs-number">0</span>).getLongBkey());
+
+    <span class="hljs-comment">// then cause an overflow again and get a trimmed object</span>
+    <span class="hljs-comment">// it would be a bkey(11)</span>
+    BTreeStoreAndGetFuture&lt;Boolean, Object&gt; f = mc.asyncBopInsertAndGetTrimmed(key, <span class="hljs-number">2000</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, <span class="hljs-keyword">null</span>);
+    <span class="hljs-keyword">boolean</span> succeeded = f.get();
+    Element&lt;Object&gt; element = f.getElement();
+    assertTrue(succeeded);
+    assertNotNull(element);
+    assertEquals(<span class="hljs-number">11L</span>, element.getLongBkey());
+    System.out.println(<span class="hljs-string">"The insertion was succeeded and an element "</span> + f.getElement() + <span class="hljs-string">" was trimmed out"</span>);
+    
+    <span class="hljs-comment">// finally check the first bkey which is expected to be 12 </span>
+    posMap = mc.asyncBopGetByPosition(key, BTreeOrder.ASC, <span class="hljs-number">0</span>).get();
+    assertNotNull(posMap);
+    assertNotNull(posMap.get(<span class="hljs-number">0</span>)); <span class="hljs-comment">// the first element</span>
+    assertEquals(<span class="hljs-number">12L</span>, posMap.get(<span class="hljs-number">0</span>).getLongBkey());
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-upsert"></a><a href="#btree-element-upsert" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element Upsert</h3>
+<p>B+Tree에 하나의 element를 upsert하는 함수들이다.
+Upsert 연산은 해당 element가 없으면 insert하고, 있으면 update하는 연산이다.
+전자는 long bkey를, 후자는 최대 31 크기의 byte array bkey를 사용한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopUpsert</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopUpsert</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)</span>
+</span></code></pre>
+<ul>
+<li>key: upsert 대상 b+tree의 key</li>
+<li>bkey: upsert할 element의 bkey(b+tree key)</li>
+<li>eflag: upsert할 element의 eflag(element flag), that is optional</li>
+<li>value: upsert할 element의 value</li>
+<li>attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
+<ul>
+<li>null: upsert 작업을 수행하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.STORED</td><td>Element만 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.CREATED_STORED</td><td>B+tree collection 생성하고 element를 삽입함</td></tr>
+<tr><td>True</td><td>CollectionResponse.REPLACED</td><td>Element가 교체됨</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>False</td><td>CollectionResponse.OVERFLOWED</td><td>최대 저장가능한 개수만큼 element들이 존재함</td></tr>
+<tr><td>False</td><td>CollectionResponse.OUT_OF_RANGE</td><td>주어진 bkey가 b+tree trimmed 영역에 해당됨</td></tr>
+</tbody>
+</table>
+<p>B+tree element를 upsert하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTreeKey"</span>;
+<span class="hljs-keyword">long</span> bkey = <span class="hljs-number">1L</span>;
+String value = <span class="hljs-string">"This is a value."</span>;
+<span class="hljs-keyword">byte</span>[] eflag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> };
+
+CollectionAttributes attributesForCreate = <span class="hljs-keyword">new</span> CollectionAttributes();
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncBopUpsert(key, bkey, eflag, value, attributesForCreate); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Boolean result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (3)</span>
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>B+tree에 element를 update또는 insert한다.
+attributesForCreate값이 null이 아니면 b+tree가 존재하지 않을 때
+attributesForCreate속성을 가진 b+tree를 새로 생성한 다음 element를 저장한다.
+만약 key가 존재하지 않는 상황에서 attributesForCreate값이 null이면 insert에 실패한다.
+Key가 새로 생성될 때 지정하는 attributesForCreate에 expire time을 지정하지 않으면 기본값인 0으로 설정되며
+이는 b+tree가 만료되지 않음을 뜻한다.</li>
+<li>timeout은 1초로 지정했다. Upsert가 성공하면 future는 true를 반환한다.
+지정한 시간에 upsert 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
+TimeoutException이 발생한다.</li>
+<li>Upsert 결과에 대한 자세한 결과 코드를 확인하려면 future.getOperationStatus().getResponse()를 사용한다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-변경"></a><a href="#btree-element-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 변경</h3>
+<p>B+Tree에서 하나의 element를 변경하는 함수이다. Element의 eflag 그리고/또는 value를 변경한다.
+전자는 long bkey를, 후자는 최대 31 크기의 byte array bkey를 사용한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncBopUpdate</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, ElementFlagUpdate eFlagUpdate, Object value)</span>
+CollectionFuture&lt;Boolean&gt; <span class="hljs-title">asyncBopUpdate</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, ElementFlagUpdate eFlagUpdate, Object value)</span>
+</span></code></pre>
+<ul>
+<li>key: 변경 대상 b+tree의 key</li>
+<li>bkey: 변경 대상 element의 bkey(b+tree key)</li>
+<li>eFlagUpate: element의 eflag 변경할 내용
+<ul>
+<li>eflag를 변경하지 않으려면 null을 지정한다.</li>
+<li>eflag를 삭제하려면 ElementFlagUpdate.RESET_FLAG를 지정한다.</li>
+</ul></li>
+<li>value: element의 new value
+<ul>
+<li>value를 변경하지 않으려면 null을 지정한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.UPDATED</td><td>Element가 변경됨</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>주어진 bkey를 가진 element가 없음</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>False</td><td>CollectionResponse.EFLAG_MISMATCH</td><td>주어진 eFlagUpate가 해당 element의 eflag 데이터와 불일치</td></tr>
+</tbody>
+</table>
+<p>특정 element의 eflag는 그대로 두고 value만 변경한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, <span class="hljs-keyword">null</span>, value);
+</code></pre>
+<p>특정 element의 eflag는 0x01000100로 변경하고 value는 그대로 둔다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">byte</span>[] flag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> };
+ElementFlagUpdate eflagUpdate = <span class="hljs-keyword">new</span> ElementFlagUpdate(flag);
+CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, eflagUpdate, <span class="hljs-keyword">null</span>);
+</code></pre>
+<p>특정 element의 eflag를 삭제하고 value는 그대로 둔다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, ElementFlagUpdate.RESET_FLAG, <span class="hljs-keyword">null</span>);
+</code></pre>
+<p>특정 element의 elfag에서 특정 byte를 bitwise 연산하여 변경하는 예제이다.
+아래 예제는 eflag의 두번째 byte를 0x01과 bitwise AND 연산한 결과로 변경한다.
+만약, 해당 element에 eflag가 존재하지 않거나 offset이 가리키는 byte가 존재하지 않는다면, 변경 연산은 실패한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">int</span> eFlagOffset = <span class="hljs-number">1</span>;
+BitWiseOperands bitOp = BitWiseOperands.AND;
+<span class="hljs-keyword">byte</span>[] flag = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span> };
+
+ElementFlagUpdate eflagUpdate = <span class="hljs-keyword">new</span> ElementFlagUpdate(eFlagOffset, bitOp, flag);
+CollectionFuture&lt;Boolean&gt; future = mc.asyncBopUpdate(KEY, BKEY, eflagUpdate, <span class="hljs-keyword">null</span>);
+</code></pre>
+<p>Element 수정에 대한 자세한 수행 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</p>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-삭제"></a><a href="#btree-element-삭제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 삭제</h3>
+<p>B+tree에서 element를 삭제하는 함수들은 두 유형이 있다.</p>
+<p>첫째, B+tree에서 주어진 bkey를 가지면서 eFlagFilter 조건을 만족하는 element를 삭제한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopDelete</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopDelete</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+</span></code></pre>
+<p>둘째, B+tree에서 from부터 to까지의 bkey를 가진 elements를 탐색하면서 eFlagFilter 조건을 만족하는
+elements를 삭제한다. count가 0이면 bkey range에서 eFlagFilter 조건을 만족하는 모든 element를 삭제하고
+0보다 크면, count 개의 elements만 삭제한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopDelete</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> from, <span class="hljs-keyword">long</span> to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+CollectionFuture&lt;Boolean&gt;
+<span class="hljs-title">asyncBopDelete</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] from, <span class="hljs-keyword">byte</span>[] to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">boolean</span> dropIfEmpty)</span>
+</span></code></pre>
+<ul>
+<li>key: 삭제 대상 b+tree의 key</li>
+<li>bkey 또는 &lt;from, to&gt;: 삭제할 element의 bkey(b+tree key) 또는 bkey range</li>
+<li>eFlagFilter: eflag에 대한 filter 조건</li>
+<li>count: 삭제할 element 개수를 지정, 0이면 조건 만족하는 모든 element 삭제</li>
+<li>dropIfEmpty: element 삭제로 empty b+tree가 되면, 그 b+tree 자체를 삭제할 지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>True</td><td>CollectionResponse.DELETED</td><td>Element만 삭제함</td></tr>
+<tr><td>True</td><td>CollectionResponse.DELETED_DROPPED</td><td>Element 삭제하고 B+tree 자체도 삭제함</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>False</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>주어진 bkey를 가진 element가 없음</td></tr>
+<tr><td>False</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>False</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+</tbody>
+</table>
+<p>다음은 b+tree에서 bkey가 1인 element를 삭제하는 예제이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTreeKey"</span>;
+<span class="hljs-keyword">long</span> bkey = <span class="hljs-number">1L</span>;
+<span class="hljs-keyword">boolean</span> dropIfEmpty = <span class="hljs-keyword">true</span>;
+CollectionFuture&lt;Boolean&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncBopDelete(key, bkey, ElementFlagFilter.DO_NOT_FILTER, dropIfEmpty); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">boolean</span> result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+    CollectionResponse response = future.getOperationStatus().getResponse(); <span class="hljs-comment">// (3)</span>
+    System.out.println(response);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>B+tree에서 bkey에 해당하는 element를 삭제한다.
+dropIfEmpty값이 true이면 element를 삭제하고 b+tree가 비어있게 되었을 때 b+tree도 함께 삭제한다.
+예제에서 filter조건은 “filter하지 않음”으로 지정하였다.</li>
+<li>delete timeout은 1초로 지정했다. 지정한 시간에 삭제 결과가 넘어 오지 않거나 JVM의 과부하로
+operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다</li>
+<li>삭제 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-값의-증감"></a><a href="#btree-element-값의-증감" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+tree Element 값의 증감</h3>
+<p>B+tree element의 값을 증가/감소 시키는 함수는 아래와 같다.
+Element의 값은 String 형의 숫자이어야 한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopIncr</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">int</span> by)</span>
+CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopDecr</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">int</span> by)</span>
+
+CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopIncr</span><span class="hljs-params">(String key, Byte[] bkey, <span class="hljs-keyword">int</span> by)</span>
+CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopDecr</span><span class="hljs-params">(String key, Byte[] bkey, <span class="hljs-keyword">int</span> by)</span>
+
+CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopIncr</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> subkey, <span class="hljs-keyword">int</span> by, <span class="hljs-keyword">long</span> initial, <span class="hljs-keyword">byte</span>[] eFlag)</span></span>;
+<span class="hljs-function">CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopDecr</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> subkey, <span class="hljs-keyword">int</span> by, <span class="hljs-keyword">long</span> initial, <span class="hljs-keyword">byte</span>[] eFlag)</span></span>;
+
+<span class="hljs-function">CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopIncr</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] subkey, <span class="hljs-keyword">int</span> by, <span class="hljs-keyword">long</span> initial, <span class="hljs-keyword">byte</span>[] eFlag)</span></span>;
+<span class="hljs-function">CollectionFuture&lt;Long&gt; <span class="hljs-title">asyncBopDecr</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] subkey, <span class="hljs-keyword">int</span> by, <span class="hljs-keyword">long</span> initial, <span class="hljs-keyword">byte</span>[] eFlag)</span></span>;
+</code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>bkey: 대상 element의 bkey</li>
+<li>by: 증감시킬 값 (1 이상의 값이어야 한다. 만약 감소시킬 값이 element 값보다 크면, 감소 후의 결과값은 0으로 저장된다)</li>
+</ul>
+<p>아래 값들은 대상 element가 존재하지 않을 때 새롭게 삽입되는 값들이다. (optional)</p>
+<ul>
+<li>initial: 삽입할 element의 value (0 이상의 값[64bit unsigned integer]이어야 한다)</li>
+<li>eFlag: 삽입할 element의 eflag(element flag)</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>element 값</td><td>CollectionResponse.END</td><td>증감 정상 수행</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>주어진 bkey를 가진 element가 없음</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td></tr>
+<tr><td>null</td><td>CollectionResponse.OVERFLOWED</td><td>최대 저장가능한 개수만큼 element들이 존재함</td></tr>
+<tr><td>null</td><td>CollectionResponse.OUT_OF_RANGE</td><td>조회된 element가 없음, 조회 범위에 b+tree trim 영역 있음</td></tr>
+</tbody>
+</table>
+<p>B+tree element 값을 증가시키는 예제는 다음과 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTree"</span>;
+<span class="hljs-keyword">long</span> bkey = <span class="hljs-number">0L</span>;
+CollectionFuture&lt;Long&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncBopIncr(key, bkey, (<span class="hljs-keyword">int</span>) <span class="hljs-number">2</span>); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Long result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (3)</span>
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>이 예제는 b+tree에 저장된 element의 값을 2 만큼 increment 한다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>Element increment 후 조회에 대한 자세한 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-개수-계산"></a><a href="#btree-element-개수-계산" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 개수 계산</h3>
+<p>B+tree에서 from부터 to까지의 bkey를 가진 element들 중 eFlagFilter조건을 만족하는 element 개수를 조회한다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Integer&gt;
+<span class="hljs-title">asyncBopGetItemCount</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> from, <span class="hljs-keyword">long</span> to, ElementFlagFilter eFlagFilter)</span>
+CollectionFuture&lt;Integer&gt;
+<span class="hljs-title">asyncBopGetItemCount</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] from, <span class="hljs-keyword">byte</span>[] to, ElementFlagFilter eFlagFilter)</span>
+</span></code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>&lt;from, to&gt;: element 조회 범위를 나타내는 bkey range</li>
+<li>eFlagFilter: eflag에 대한 filter 조건</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>element 개수</td><td>CollectionResponse.END</td><td>Element count를 성공적으로 조회</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 key가 set이 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td></tr>
+</tbody>
+</table>
+<p>B+tree element 개수를 확인하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTree"</span>;
+<span class="hljs-keyword">long</span> bkeyFrom = <span class="hljs-number">0L</span>;
+<span class="hljs-keyword">long</span> bkeyTo = <span class="hljs-number">100L</span>;
+
+CollectionFuture&lt;Integer&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncBopGetItemCount(key, bkeyFrom, bkeyTo, ElementFlagFilter.DO_NOT_FILTER); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Integer result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(future.getOperationStatus().getResponse()); <span class="hljs-comment">// (3)</span>
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>이 예제는 b+ tree에 저장된 element중 bkey가 bkeyFrom부터 bkeyTo까지 인 element의 개수를 조회한다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>element개수 조회에 대한 자세한 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="btree-element-조회"></a><a href="#btree-element-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 조회</h2>
+<p>B+tree element를 조회하는 함수는 두 유형이 있다.</p>
+<p>첫째, B+tree에서 주어진 bkey를 가지고 eFlagFilter조건을 만족하는 element를 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Long, Element&lt;Object&gt;&gt;&gt;
+asyncBopGet(String key, <span class="hljs-keyword">long</span> bkey, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">boolean</span> withDelete, Boolean dropIfEmpty)
+CollectionFuture&lt;Map&lt;ByteArrayBKey, Element&lt;Object&gt;&gt;&gt;
+asyncBopGet(String key, <span class="hljs-keyword">byte</span>[] bkey, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">boolean</span> withDelete, Boolean dropIfEmpty)
+</code></pre>
+<p>둘째, B+tree에서 from부터 to까지의 bkey를 가진 elements를 탐색하면서 eFlagFilter조건을 만족하는 elements 중
+offset 번째 element부터 count개의 element를 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Long, Element&lt;Object&gt;&gt;&gt;
+asyncBopGet(String key, <span class="hljs-keyword">long</span> from, <span class="hljs-keyword">long</span> to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">boolean</span> withDelete, <span class="hljs-keyword">boolean</span> dropIfEmpty)
+CollectionFuture&lt;Map&lt;ByteArrayBKey, Element&lt;Object&gt;&gt;&gt;
+asyncBopGet(String key, <span class="hljs-keyword">byte</span>[] from, <span class="hljs-keyword">byte</span>[] to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> count, <span class="hljs-keyword">boolean</span> withDelete, Boolean dropIfEmpty)
+</code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>bkey 또는 &lt;from, to&gt;: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range</li>
+<li>eFlagFilter: eflag에 대한 filter 조건</li>
+<li>withDelete: element 조회와 함께 그 element를 삭제할 것인지를 지정</li>
+<li>dropIfEmpty: element 삭제로 empty b+tree가 되면, 그 b+tree 자체도 삭제할 것인지를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.END</td><td>Element만 조회, 조회 범위에 b+tree trim 영역 없음</td></tr>
+<tr><td>not null</td><td>CollectionResponse.TRIMMED</td><td>Element만 조회, 조회 범위에 b+tree trim 영역 있음</td></tr>
+<tr><td>not null</td><td>CollectionResponse.DELETED</td><td>Element를 조회하고 삭제한 상태</td></tr>
+<tr><td>not null</td><td>CollectionResponse.DELETED_DROPPED</td><td>Element를 조회하고 삭제한 다음 b+tree를 drop한 상태</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>조회된 element가 없음, 조회 범위에 b+tree 영역 없음</td></tr>
+<tr><td>null</td><td>CollectionResponse.OUT_OF_RANGE</td><td>조회된 element가 없음, 조회 범위에 b+tree trim 영역 있음</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 key가 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td></tr>
+</tbody>
+</table>
+<p>결과로 반환된 result(Map&lt;Long, Element&lt;Object&gt;&gt;) 객체에서 다음과 같은 정보를 확인할 수 있다</p>
+<table>
+<thead>
+<tr><th>result 객체의 Method</th><th>자료형</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>getKey()</td><td>Long</td><td>btree내의 position</td></tr>
+<tr><td>getValue().getValue()</td><td>Object</td><td>element의 값</td></tr>
+<tr><td>getValue().getByteArrayBkey()</td><td>byte[]</td><td>element bkey 값(byte[])</td></tr>
+<tr><td>getValue().getLongBkey()</td><td>long</td><td>element bkey 값long)</td></tr>
+<tr><td>getValue().isByteArrayBkey()</td><td>boolean</td><td>element bkey 값 byte array 여부</td></tr>
+<tr><td>getValue().getFlag()</td><td>byte[]</td><td>element flag 값(byte[])</td></tr>
+</tbody>
+</table>
+<p>B+tree element를 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Prefix:BTreeKey"</span>;
+<span class="hljs-keyword">long</span> from = <span class="hljs-number">1L</span>;
+<span class="hljs-keyword">long</span> to = <span class="hljs-number">6L</span>;
+<span class="hljs-keyword">int</span> offset = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">int</span> count = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">boolean</span> withDelete = <span class="hljs-keyword">false</span>;
+<span class="hljs-keyword">boolean</span> dropIfEmpty = <span class="hljs-keyword">false</span>;
+ElementFlagFilter filter = <span class="hljs-keyword">new</span> ElementFlagFilter(CompOperands.Equal, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span> });
+CollectionFuture&lt;Map&lt;Long, Element&lt;Object&gt;&gt;&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = client.asyncBopGet(key, from, to, filter, offset, count, withDelete, dropIfEmpty); <span class="hljs-comment">// (1)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Map&lt;Long, Element&lt;Object&gt;&gt; result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (2)</span>
+    System.out.println(result);
+
+    CollectionResponse response = future.getOperationStatus().getResponse(); <span class="hljs-comment">// (3)</span>
+    <span class="hljs-keyword">if</span> (response.equals(CollectionResponse.NOT_FOUND)) {
+        System.out.println(<span class="hljs-string">"Key가 없습니다.(Key에 저장된 B+ tree가 없음."</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (response.equals(CollectionResponse.NOT_FOUND_ELEMENT)) {
+        System.out.println(<span class="hljs-string">"Key에 B+ tree는 존재하지만 저장된 값 중 조건에 맞는 것이 없음."</span>);
+    }
+
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>bkey가 1부터 6사이에 있고 filter조건을 만족하는 element들 중에서 3번째 위치하는 값부터 3개를 조회한다.
+이 예제에서 eflag filter 조건은 eflag 값이 0x0101과 같은지를 검사한다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.
+반환되는 Map 인터페이스의 구현체는 TreeMap이며, 그 결과는 다음 중의 하나이다.
+<ul>
+<li>key 존재하지 않음 : null 반환</li>
+<li>key 존재하지만 조회 조건을 만족하는 elements 없음: empty map 반환</li>
+<li>key 존재하고 조회 조건을 만족하는 elements 있음: non-empty map 반환</li>
+</ul></li>
+<li>조회 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()으로 확인한다.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="btree-element-일괄-삽입"></a><a href="#btree-element-일괄-삽입" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 일괄 삽입</h2>
+<p>B+tree에 여러 element를 한번에 삽입하는 함수는 두 유형이 있다.</p>
+<p>첫째, 하나의 key가 가리키는 b+tree에 다수의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncBopPipedInsertBulk(String key, List&lt;Element&lt;Object&gt;&gt; elements, CollectionAttributes attributesForCreate)
+CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncBopPipedInsertBulk(String key, Map&lt;Long, Object&gt; elements, CollectionAttributes attributesForCreate)
+</code></pre>
+<ul>
+<li>key: 삽입 대상 b+tree의 key</li>
+<li>elements: 삽입할 element들
+<ul>
+<li>List&lt;Element&lt;Object&gt;&gt; 유형</li>
+<li>Map&lt;Long, Object&gt; 유형</li>
+</ul></li>
+<li>attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>둘째, 여러 key들이 가리키는 b+tree들에 각각 하나의 element를 삽입하는 함수이다.</p>
+<pre><code class="hljs css language-java">Future&lt;Map&lt;String, CollectionOperationStatus&gt;&gt;
+asyncBopInsertBulk(List&lt;String&gt; keyList, <span class="hljs-keyword">long</span> bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)
+Future&lt;Map&lt;String, CollectionOperationStatus&gt;&gt;
+asyncBopInsertBulk(List&lt;String&gt; keyList, <span class="hljs-keyword">byte</span>[] bkey, <span class="hljs-keyword">byte</span>[] eFlag, Object value, CollectionAttributes attributesForCreate)
+</code></pre>
+<ul>
+<li>keyList: 삽입 대상 b+tree들의 key list</li>
+<li>bkey: 삽입할 element의 bkey(b+tree key)</li>
+<li>eflag: 삽입할 element의 eflag(element flag)</li>
+<li>value: 삽입할 element의 value</li>
+<li>attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
+<ul>
+<li>null: element 삽입하지 않는다.</li>
+<li>attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.</li>
+</ul></li>
+</ul>
+<p>하나의 b+tree에 여러 개의 elements을 bulk insert하고 각각의 element에 대해 insert 결과를 확인하는 코드이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"Sample:BTreeBulk"</span>;
+List&lt;Element&lt;Object&gt;&gt; elements = <span class="hljs-keyword">new</span> ArrayList&lt;Element&lt;Object&gt;&gt;();
+
+elements.add(<span class="hljs-keyword">new</span> Element&lt;Object&gt;(<span class="hljs-number">1L</span>, <span class="hljs-string">"VALUE1"</span>, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span> }));
+elements.add(<span class="hljs-keyword">new</span> Element&lt;Object&gt;(<span class="hljs-number">2L</span>, <span class="hljs-string">"VALUE2"</span>, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span> }));
+elements.add(<span class="hljs-keyword">new</span> Element&lt;Object&gt;(<span class="hljs-number">3L</span>, <span class="hljs-string">"VALUE3"</span>, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">1</span> }));
+
+<span class="hljs-keyword">boolean</span> createKeyIfNotExists = <span class="hljs-keyword">true</span>;
+
+<span class="hljs-keyword">if</span> (elements.size() &gt; mc.getMaxPipedItemCount()) { <span class="hljs-comment">// (1)</span>
+    System.out.println(<span class="hljs-string">"insert 할 아이템 개수는 mc.getMaxPipedItemCount개를 초과할 수 없다."</span>);
+    <span class="hljs-keyword">return</span>;
+}
+
+CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncBopPipedInsertBulk(key, elements, <span class="hljs-keyword">new</span> CollectionAttributes()); <span class="hljs-comment">// (2)</span>
+
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    Map&lt;Integer, CollectionOperationStatus&gt; result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+
+    <span class="hljs-keyword">if</span> (!result.isEmpty()) { <span class="hljs-comment">// (4)</span>
+        System.out.println(<span class="hljs-string">"일부 item이 insert 실패 하였음."</span>);
+        
+        <span class="hljs-keyword">for</span> (Map.Entry&lt;Integer, CollectionOperationStatus&gt; entry : result.entrySet()) {
+            System.out.print(<span class="hljs-string">"실패한 아이템="</span> + elements.get(entry.getKey()));
+            System.out.println(<span class="hljs-string">", 실패원인="</span> + entry.getValue().getResponse());
+        }
+    } <span class="hljs-keyword">else</span> {
+        System.out.println(<span class="hljs-string">"모두 insert 성공함."</span>);
+    }
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>한꺼번에 insert할 아이템은 client.getMaxPipedItemCount()개를 초과할 수 없다. (기본값은 500개 이다.)
+만약 개수를 초과하면 IllegalArguementException이 발생한다.</li>
+<li>Key에 저장된 b+ tree에 bulkData를 한꺼번에 insert하고 그 결과를 담은 future객체를 반환한다.
+이 future로부터 각 아이템의 insert성공 실패 여부를 조회할 수 있다.
+여기에서는 attributesForCreate값을 지정하여 bulk insert하기 전에 key가 없으면 생성하고 element를 insert되도록 하였다.</li>
+<li>delete timeout은 1초로 지정했다. 지정한 시간에 모든 아이템의 insert 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>모든 아이템이 insert에 성공하면 empty map이 반환된다.
+<ul>
+<li>반환된 Map의 Key= insert한 값(bulkData)를 iteration했을 때의 index값.</li>
+<li>반환된 Map의 Value= insert실패사유</li>
+</ul></li>
+<li>일부 실패한 아이템의 실패 원인을 조회하려면 insert할 때 사용된 값(bulkData)의 iteration 순서에 따라
+결과 Map을 조회하면 된다.</li>
+<li>Future로부터 얻은 Map의 Key가 입력된 값(bulkData)의 index이기 때문에 위와 같은 방법으로 실패 원인을 조회하면 된다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-일괄-변경"></a><a href="#btree-element-일괄-변경" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 일괄 변경</h3>
+<p>B+tree에서 주어진 elements에 해당하는 모든 element의 value 그리고/또는 element flag를 일괄 변경한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, CollectionOperationStatus&gt;&gt;
+asyncBopPipedUpdateBulk(String key, List&lt;Element&lt;Object&gt;&gt; elements)
+</code></pre>
+<ul>
+<li>key: 변경 대상 b+tree의 key</li>
+<li>elements: 변경 대상 elements에 대해 bkey와 eFlagUpate, new value를 가진다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="btree-element-일괄-조회"></a><a href="#btree-element-일괄-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element 일괄 조회</h2>
+<p>다수의 b+tree들 각각에 대해 from부터 to까지의 bkey를 가진 elements를 탐색하면서,
+eFlagFilter 조건을 만족하는 elements 중 offset 위치부터 count 개수만큼 조회한다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;String, BTreeGetResult&lt;Long, Object&gt;&gt;&gt;
+asyncBopGetBulk(List&lt;String&gt; keyList, <span class="hljs-keyword">long</span> from, <span class="hljs-keyword">long</span> to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> count)
+CollectionFuture&lt;Map&lt;String, BTreeGetResult&lt;ByteArrayBKey, Object&gt;&gt;&gt;
+asyncBopGetBulk(List&lt;String&gt; keyList, <span class="hljs-keyword">byte</span>[] from, <span class="hljs-keyword">byte</span>[] to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> count)
+</code></pre>
+<ul>
+<li>keyList: b+tree items의 key list</li>
+<li>bkey 또는 &lt;from, to&gt;: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range</li>
+<li>eFlagFilter: eflag에 대한 filter 조건
+<ul>
+<li>eflag filter 조건을 지정하지 않으려면, ElementFlagFilter.DO_NOT_FILTER를 입력한다.</li>
+</ul></li>
+<li>offset, count: bkey range와 eflag filter 조건을 만족하는 elements에서 실제 조회할 element의 offset과 count 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 Map&lt;Stirng, BTreeGetResult&lt;Bkey, Object&gt;&gt;을 얻으며,
+이러한 Map은 개별 b+tree item의 key와 그 b+tree에서 조회한 결과를 담고 있는 BTreeGetResult 객체이다.
+BTreeGetResult 객체를 통해 개별 조회 결과를 아래와 같이 조회할 수 있다.</p>
+<table>
+<thead>
+<tr><th>BTreeGetResult.getElements()</th><th>BtreeGetResult.getCollectionResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.OK</td><td>Element 조회, 조회 범위에 b+tree trim 영역 없음</td></tr>
+<tr><td>not null</td><td>CollectionResponse.TRIMMED</td><td>Element 조회, 조회 범위에 b+tree trim 영역 있음</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>조회된 element 없음, 조회 범위에 b+tree trim 영역 없음</td></tr>
+<tr><td>null</td><td>CollectionResponse.OUT_OF_RANGE</td><td>조회된 element 없음, 조회 범위에 b+tree trim 영역 있음</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 key가 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key를 읽을 수 없는 상태임. (unreadable item상태)</td></tr>
+</tbody>
+</table>
+<p>BTreeGetResult.getElements()로 조회한 BTreeElement 객체로부터 개별 element의 bkey, eflag, value를 조회할 수 있다.</p>
+<table>
+<thead>
+<tr><th>BTreeElement 객체의 Method</th><th>자료형</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>getKey()</td><td>long 또는 byte[]</td><td>element의 bkey</td></tr>
+<tr><td>getEFlag()</td><td>byte[]</td><td>element flag</td></tr>
+<tr><td>getValue()</td><td>Object</td><td>element의 값</td></tr>
+</tbody>
+</table>
+<p>B+tree element 일괄 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-keyword">final</span> List&lt;String&gt; keyList = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;() {
+    {
+        add(<span class="hljs-string">"Prefix:BTree1"</span>);
+        add(<span class="hljs-string">"Prefix:BTree2"</span>);
+        add(<span class="hljs-string">"Prefix:BTree3"</span>);
+    }
+};
+
+ElementFlagFilter filter = ElementFlagFilter.DO_NOT_FILTER;
+<span class="hljs-keyword">long</span> bkeyFrom = <span class="hljs-number">0L</span>;
+<span class="hljs-keyword">long</span> bkeyTo = <span class="hljs-number">100L</span>;
+<span class="hljs-keyword">int</span> queryCount = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> offset = <span class="hljs-number">0</span>;
+
+CollectionGetBulkFuture&lt;Map&lt;String, BTreeGetResult&lt;Long, Object&gt;&gt;&gt; future = <span class="hljs-keyword">null</span>;
+Map&lt;String, BTreeGetResult&lt;Long, Object&gt;&gt; results = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncBopGetBulk(keyList, from, to, filter, offset, count); <span class="hljs-comment">// (1)</span>
+    results = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS);
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+
+<span class="hljs-keyword">if</span> (results == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">for</span>(Entry&lt;String, BTreeGetResult&lt;Long, Object&gt;&gt; entry : results.entrySet()) { <span class="hljs-comment">// (2)</span>
+    System.out.println(<span class="hljs-string">"key="</span> + entry.getKey());
+    System.out.println(<span class="hljs-string">"result code="</span> + entry.getValue().getCollectionResponse().getMessage()); <span class="hljs-comment">// (3)</span>
+
+    <span class="hljs-keyword">if</span> (entry.getValue().getElements() != <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// (4)</span>
+        <span class="hljs-keyword">for</span>(Entry&lt;Long, BTreeElement&lt;Long, Object&gt;&gt; el : entry.getValue().getElements().entrySet()) {
+            System.out.println(<span class="hljs-string">"bkey="</span> + el.getKey());
+            System.out.println(<span class="hljs-string">"eflag="</span> + Arrays.toString(el.getValue().getEflag());
+            System.out.println(<span class="hljs-string">"value="</span> + el.getValue().getValue());
+        }
+    }
+}
+</code></pre>
+<ol>
+<li>keyList로 주어진 b+tree에 저장된 element 중 bkey가 from부터 to사이에 있고 eflag filter를 만족하는 elements 중
+offset 번째부터 count 개 element를 조회한다.</li>
+<li>조회 결과는 Map으로 반환되는데 Key는 b+tree의 key가 되고 Map의 value는 각 key에 저장된 element들이다.</li>
+<li>조회 결과 map에서 key별로 조회한 BTreeGetResult객체는 조회 결과코드와 해당 b+tree에서 조회된 element를 가진다.
+조회 결과코드에 따라 BTreeGetResult.getElements()의 결과는 null일 수 있다.</li>
+<li>BTreeGetResult.getElements()로 조회한 BTreeElement객체로부터 element의 bkey, eflag, value를 조회할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-element-sort-merge-조회"></a><a href="#btree-element-sort-merge-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Element Sort-Merge 조회</h3>
+<p>다수의 B+tree들에 대해 element 조회를 sort-merge 방식으로 수행하는 기능이다.
+물리적으로 여러 b+tree들로 구성되지만, 이들이 논리적으로 하나의 거대한 b+tree라 가정하고,
+이러한 b+tree에 대해 element 조회를 수행하는 기능이다.</p>
+<p>smget 동작은 조회 범위와 어떤 b+tree의 trim 영역과의 겹침에 대한 처리로,
+아래 두 가지 동작 모드가 있다.</p>
+<ol>
+<li><p>기존 Sort-Merge 조회 (1.8.X 이하 버전에서 동작하던 방식)</p>
+<ul>
+<li>smget 조회 조건을 만족하는 첫번째 element가 trim된 b+tree가 하나라도 존재하면 OUT_OF_RANGE 응답을 보낸다.
+이 경우, 응용은 모든 key에 대해 백엔드 저장소인 DB에서 elements 조회한 후에
+응용에서 sort-merge 작업을 수행하여야 한다.</li>
+<li>OUT_OF_RANGE가 없는 상황에서 smget을 수행하면서
+조회 조건을 만족하는 두번째 이후의 element가 trim된 b+tree를 만나게 되면,
+그 지점까지 조회한 elements를 최종 elements 결과로 하고
+smget 수행 상태는 TRIMMED로 하여 응답을 보낸다.
+이 경우, 응용은 모든 key에 대해 백엔드 저장소인 DB에서 trim 영역의 elements를 조회하여
+smget 결과에 반영하여야 한다.</li>
+</ul></li>
+<li><p>신규 Sort-Merge 조회 (1.9.0 이후 버전에서 추가된 방식)</p>
+<ul>
+<li>기존의 OUT_OF_RANGE에 해당하는 b+tree를 missed keys로 분류하고
+나머지 b+tree들에 대해 smget을 계속 수행한다.
+따라서, 응용에서는 missed keys에 한해서만
+백엔드 저장소인 DB에서 elements를 조회하여 최종 smget 결과에 반영할 수 있다.</li>
+<li>smget 조회 조건을 만족하는 두번째 이후의 element가 trim된 b+tree가 존재하더라도,
+그 지점에서 smget을 중지하는 것이 아니라, 그러한 b+tree를 trimmed keys로 분류하고
+원하는 개수의 elements를 찾을 때까지 smget을 계속 진행한다.
+따라서, 응용에서는 trimmed keys에 한하여
+백엔드 저장소인 DB에서 trim된 elements를 조회하여 최종 smget 결과에 반영할 수 있다.</li>
+<li>bkey에 대한 unique 조회 기능을 지원한다.
+중복 bkey를 허용하여 조회하는 duplcate 조회 외에
+중복 bkey를 제거하고 unique bkey만을 조회하는 unique 조회를 지원한다.</li>
+<li>조회 조건에 offset 기능을 제거한다.</li>
+</ul></li>
+</ol>
+<p>기존 smget 연산을 사용하더라도, offset 값은 항상 0으로 사용하길 권고한다.
+양수의 offset을 사용하는 smget에서 missed keys가 존재하고
+missed keys에 대한 DB 조회가 offset으로 skip된 element를 가지는 경우,
+응용에서 정확한 offset 처리가 불가능해지기 때문이다.
+이전의 조회 결과에 이어서 추가로 조회하고자 하는 경우,
+이전에 조회된 bkey 값을 바탕으로 bkey range를 재조정하여 사용할 수 있다.</p>
+<p>여러 b+tree들에 대해 sort-merge get을 수행하는 함수는 아래와 같다.
+여러 b+tree들로 부터 from부터 to까지의 bkey를 가지고 있으면서 eflag filter조건을 만족하는 element를 찾아
+sort merge하면서, count개의 element를 조회한다.</p>
+<pre><code class="hljs css language-java">SMGetFuture&lt;List&lt;SMGetElement&lt;Object&gt;&gt;&gt;
+asyncBopSortMergeGet(List&lt;String&gt; keyList, <span class="hljs-keyword">long</span> from, <span class="hljs-keyword">long</span> to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> count, SMGetMode smgetMode)
+SMGetFuture&lt;List&lt;SMGetElement&lt;Object&gt;&gt;&gt;
+asyncBopSortMergeGet(List&lt;String&gt; keyList, <span class="hljs-keyword">byte</span>[] from, <span class="hljs-keyword">byte</span>[] to, ElementFlagFilter eFlagFilter, <span class="hljs-keyword">int</span> count, SMGetMode smgetMode)
+</code></pre>
+<ul>
+<li>keyList: b+tree items의 key list</li>
+<li>&lt;from, to&gt;: 조회 범위를 나타내는 bkey range</li>
+<li>eFlagFilter: eflag에 대한 filter 조건
+<ul>
+<li>eflag filter 조건을 지정하지 않으려면, ElementFlagFilter.DO_NOT_FILTER를 입력한다.</li>
+</ul></li>
+<li>count: bkey range와 eflag filter 조건을 만족하는 elements에서 실제 조회할 element의 count 지정
+<ul>
+<li><strong>제약 조건으로 1000이하이어야 한다.</strong></li>
+<li>이는 sort-merge get 연산이 부담이 너무 크지 않은 연산으로 제한하기 위한 것이다.</li>
+</ul></li>
+<li>smgetMode: smget에 대해서 mode를 지정하는 flag
+<ul>
+<li>unique 조회 또는 duplicate 조회를 지정한다.</li>
+</ul></li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.END</td><td>Element 조회, No duplicate bkey</td></tr>
+<tr><td>not null</td><td>CollectionResponse.DUPLICATED</td><td>Element 조회, Duplicate bkey 존재</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 key가 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.ATTR_MISMATCH</td><td>sort-merge get에 참여한 b+tree의 속성이 서로 다름, arcus-memcached 1.11.3 이후 속성 제약이 사라짐</td></tr>
+</tbody>
+</table>
+<p>B+tree element sort-merge 조회하는 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">List&lt;String&gt; keyList = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;() {{
+    add(<span class="hljs-string">"Prefix:KeyA"</span>);
+    add(<span class="hljs-string">"Prefix:KeyB"</span>);
+    add(<span class="hljs-string">"Prefix:KeyC"</span>);
+}};
+
+
+<span class="hljs-keyword">long</span> bkeyFrom = <span class="hljs-number">0L</span>; <span class="hljs-comment">// (1)</span>
+<span class="hljs-keyword">long</span> bkeyTo = <span class="hljs-number">100L</span>;
+<span class="hljs-keyword">int</span> queryCount = <span class="hljs-number">10</span>;
+
+SMGetMode smgetMode = SMGetMode.DUPLICATE;
+SMGetFuture&lt;List&lt;SMGetElement&lt;Object&gt;&gt;&gt; future = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-keyword">try</span> {
+    future = mc.asyncBopSortMergeGet(keyList, bkeyFrom, bkeyTo, ElementFlagFilter.DO_NOT_FILTER, queryCount, smgetMode); <span class="hljs-comment">// (2)</span>
+} <span class="hljs-keyword">catch</span> (IllegalStateException e) {
+    <span class="hljs-comment">// handle exception</span>
+}
+
+<span class="hljs-keyword">if</span> (future == <span class="hljs-keyword">null</span>)
+    <span class="hljs-keyword">return</span>;
+
+<span class="hljs-keyword">try</span> {
+    List&lt;SMGetElement&lt;Object&gt;&gt; result = future.get(<span class="hljs-number">1000L</span>, TimeUnit.MILLISECONDS); <span class="hljs-comment">// (3)</span>
+    <span class="hljs-keyword">for</span> (SMGetElement&lt;Object&gt; element : result) { <span class="hljs-comment">// (4)</span>
+        System.out.println(element.getKey());
+        System.out.println(element.getBkey());
+        System.out.println(element.getValue());
+    }
+
+    <span class="hljs-keyword">for</span> (Map.Entry&lt;String, CollectionOperationStatus&gt; m : future.getMissedKeys().entrySet()) {  <span class="hljs-comment">// (5)</span>
+        System.out.print(<span class="hljs-string">"Missed key : "</span> + m.getKey());
+        System.out.println(<span class="hljs-string">", response : "</span> + m.getValue().getResponse());
+    }
+    
+    <span class="hljs-keyword">for</span> (SMGetTrimKey e : future.getTrimmedKeys()) { <span class="hljs-comment">// (6)</span>
+        System.out.println(<span class="hljs-string">"Trimmed key : "</span> + e.getKey() + <span class="hljs-string">", bkey : "</span> + e.getBkey());
+    }
+} <span class="hljs-keyword">catch</span> (InterruptedException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (TimeoutException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+    future.cancel(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<ol>
+<li>예제는 “KeyA”, “KeyB”, “KeyC”에 저장된 element들 중 bkey가 0부터 100까지 해당하는 element들 10개를 조회한다.
+<ul>
+<li>주의할 점은 key로 주어진 b+tree의 attribute설정은 모두 같아야 한다. 그렇지 않으면 오류가 발생한다.</li>
+</ul></li>
+<li>ElementFlagFilter는 bkey에 지정된 eflag가 elementFlagFIlter로 지정된 조건을 만족하는 element들만 조회하는 조건이다<br>
+예제에서는 eflag filter를 사용하지 않음으로 조회하였다.</li>
+<li>timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
+JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.</li>
+<li>조회된 값은 List&lt;SMGetElement&gt;형태로 반환된다. 이로부터 조회된 element를 조회할 수 있다.
+조회 결과에 동일한 bkey가 존재하면 key를 기준으로 정렬되어 반환된다.</li>
+<li>조회할 때 지정한 key들 중에 smget에 참여하지 key들은 future.getMissedKeys()를 통해 Map 형태로 실패 원인과 함께 조회할 수 있다.
+<ul>
+<li>실패원인은 cache miss(NOT_FOUND), unreadable 상태(UNREADABLE), bkey 범위 조회를 만족하는 처음 bkey가 trim된 상태(OUT_OF_RANGE) 중 하나이다.</li>
+<li>응용은 이들 키들에 대해서는 back-end storage인 DB에서 동일 조회 조건으로 elements를 검색하여 sort-merge 결과에 반영하여야 한다.</li>
+</ul></li>
+<li>bkey 조회 범위의 처음 bkey가 존재하지만 bkey 범위의 끝에 다다르기 전에 trim이 발생한 key와 trim 직전에 cache에 있는 마지막 bkey를 조회할 수 있다.
+<ul>
+<li>응용은 이들 키들에 대해 trim 직전 마지막 bkey 이후에 trim된 bkey들을 back-end storage인 DB에서 조회하여 sort-merge 결과에 반영하여야 한다.</li>
+</ul></li>
+<li>Sort merge get의 최종 수 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="btree-position-조회"></a><a href="#btree-position-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Position 조회</h3>
+<p>B+tree의 검색 조건으로 각 엘리먼트의 위치(position) 정보를 사용할 수 있다. 여기서 위치란 B+tree 안에서 bkey를 통해 일렬로 정렬되어 있는 각 엘리먼트의 인덱스를 뜻하며, 0부터 count-1 까지 순서대로 매겨진다. 순서에 대한 기준으로 오름차순(ASC)과 내림차순(DESC)이 지원된다.</p>
+<p>B+tree에서 주어진 bkey에 해당하는 element가 주어진 order에 따라 어떤 위치(position)에 있는지 조회하는 함수는 아래와 같다.</p>
+<pre><code class="hljs css language-java"><span class="hljs-function">CollectionFuture&lt;Integer&gt; <span class="hljs-title">asyncBopFindPosition</span><span class="hljs-params">(String key, <span class="hljs-keyword">long</span> bkey, BTreeOrder order)</span>
+CollectionFuture&lt;Integer&gt; <span class="hljs-title">asyncBopFindPosition</span><span class="hljs-params">(String key, <span class="hljs-keyword">byte</span>[] bkey, BTreeOrder order)</span>
+</span></code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>bkey: 조회할 element의 bkey(b+tree bkey)</li>
+<li>order: 위치(position) 기준을 정의한다. (오름차순 : BTreeOrder.ASC, 내림차순 : BTreeOrder.DESC)</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>element position</td><td>CollectionResponse.OK</td><td>Element 위치를 성공적으로 조회</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>Element miss</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key가 unreadable상태임</td></tr>
+</tbody>
+</table>
+<p>B+tree position 조회 예제는 아래와 같다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"BopFindPositionTest"</span>;
+<span class="hljs-keyword">long</span>[] longBkeys = { <span class="hljs-number">10L</span>, <span class="hljs-number">11L</span>, <span class="hljs-number">12L</span>, <span class="hljs-number">13L</span>, <span class="hljs-number">14L</span>, <span class="hljs-number">15L</span>, <span class="hljs-number">16L</span>, <span class="hljs-number">17L</span>, <span class="hljs-number">18L</span>, <span class="hljs-number">19L</span> };
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLongBKeyAsc</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+    <span class="hljs-comment">// insert</span>
+    CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> each : longBkeys) {
+        arcusClient.asyncBopInsert(key, each, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, attrs).get();
+    }
+    
+    <span class="hljs-comment">// bop position</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;longBkeys.length; i++) {
+        CollectionFuture&lt;Integer&gt; f = arcusClient.asyncBopFindPosition(key, longBkeys[i], BTreeOrder.ASC);
+        Integer position = f.get();
+        assertNotNull(position);
+        assertEquals(CollectionResponse.OK, f.getOperationStatus().getResponse());
+        assertEquals(i, position.intValue());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLongBKeyDesc</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+    <span class="hljs-comment">// insert</span>
+    CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> each : longBkeys) {
+        arcusClient.asyncBopInsert(key, each, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, attrs).get();
+    }
+    
+    <span class="hljs-comment">// bop position</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;longBkeys.length; i++) {
+        CollectionFuture&lt;Integer&gt; f = arcusClient.asyncBopFindPosition(key, longBkeys[i], BTreeOrder.DESC);
+        Integer position = f.get();
+        assertNotNull(position);
+        assertEquals(CollectionResponse.OK, f.getOperationStatus().getResponse());
+        assertEquals(<span class="hljs-string">"invalid position"</span>, longBkeys.length-i-<span class="hljs-number">1</span>, position.intValue());
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="btree-position-기반의-element-조회"></a><a href="#btree-position-기반의-element-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Position 기반의 Element 조회</h3>
+<p>B+tree에서 하나의 position 또는 position range에 해당하는 elements를 조회하는 함수이다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt;
+asyncBopGetByPosition(String key, BTreeOrder order, <span class="hljs-keyword">int</span> pos)
+CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt;
+asyncBopGetByPosition(String key, BTreeOrder order, <span class="hljs-keyword">int</span> from, <span class="hljs-keyword">int</span> to)
+</code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>order: 위치(position) 기준을 정의한다. (오름차순 : BTreeOrder.ASC, 내림차순 : BTreeOrder.DESC)</li>
+<li>pos or &lt;from, to&gt;: 위치(position)를 하나만 지정하거나 범위로 지정할 수 있다.</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.END</td><td>Element를 성공적으로 조회</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>Element miss</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key가 unreadable상태임</td></tr>
+</tbody>
+</table>
+<p>B+tree에서 position 기반의 element 조회 예제이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"BopGetByPositionTest"</span>;
+<span class="hljs-keyword">long</span>[] longBkeys = { <span class="hljs-number">10L</span>, <span class="hljs-number">11L</span>, <span class="hljs-number">12L</span>, <span class="hljs-number">13L</span>, <span class="hljs-number">14L</span>, <span class="hljs-number">15L</span>, <span class="hljs-number">16L</span>, <span class="hljs-number">17L</span>, <span class="hljs-number">18L</span>, <span class="hljs-number">19L</span> };
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLongBKeyMultiple</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+    <span class="hljs-comment">// 10개의 테스트 데이터를 insert 한다.</span>
+    CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> each : longBkeys) {
+        arcusClient.asyncBopInsert(key, each, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, attrs).get();
+    }
+    
+    <span class="hljs-comment">// 테스트 : 5 부터 8 위치의 엘리먼트를 조회한다.</span>
+    <span class="hljs-keyword">int</span> posFrom = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">int</span> posTo = <span class="hljs-number">8</span>;
+    CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt; f = arcusClient
+            .asyncBopGetByPosition(key, BTreeOrder.ASC, posFrom, posTo);
+    Map&lt;Integer, Element&lt;Object&gt;&gt; result = f.get(<span class="hljs-number">1000</span>,
+            TimeUnit.MILLISECONDS);
+
+    assertEquals(<span class="hljs-number">4</span>, result.size());
+    assertEquals(CollectionResponse.END, f.getOperationStatus().getResponse());
+
+    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (Entry&lt;Integer, Element&lt;Object&gt;&gt; each : result.entrySet()) {
+        <span class="hljs-keyword">int</span> currPos = posFrom + count++;
+        assertEquals(<span class="hljs-string">"invalid index"</span>, currPos, each.getKey().intValue());
+        assertEquals(<span class="hljs-string">"invalid bkey"</span>, longBkeys[currPos], each.getValue().getLongBkey());
+        assertEquals(<span class="hljs-string">"invalid value"</span>, <span class="hljs-string">"val"</span>, each.getValue().getValue());
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="btree-position과-element-동시-조회"></a><a href="#btree-position과-element-동시-조회" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B+Tree Position과 Element 동시 조회</h3>
+<p>B+tree의 검색 조건으로 특정 엘리먼트의 위치(position) 를 기준으로 주변(앞/뒤 position) 엘리먼트들을 조회 할 수 있다.  여기서 위치란 B+tree안에서 bkey를 통해 일렬로 정렬되어 있는 각 엘리먼트의 인덱스를 뜻하며, 0부터 count-1까지 순서대로 매겨진다. 순서에 대한 기준으로 오름차순(ASC)과 내림차순(DESC)이 지원된다.</p>
+<p>B+tree에서 bkey에 해당하는 position을 기준으로 count만큼의 element를 주어진 order에 따라서 조회하는 함수는 아래와 같다.</p>
+<pre><code class="hljs css language-java">CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt;
+asyncBopFindPositionWithGet(String key, <span class="hljs-keyword">long</span> longBKey, BTreeOrder order, <span class="hljs-keyword">int</span> count)
+CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt;
+asyncBopFindPositionWithGet(String key, <span class="hljs-keyword">byte</span>[] byteArrayBKey, BTreeOrder order, <span class="hljs-keyword">int</span> count)
+</code></pre>
+<ul>
+<li>key: b+tree item의 key</li>
+<li>longBKey: 조회할 element의 bkey(b+tree bkey)</li>
+<li>order: longBKey에 해당하는 element의 위치(position) 기준으로 결과를 담을 순서를 정의한다. (오름차순: BTreeOrder.ASC, 내림차순: BTreeOrder.DESC)</li>
+<li>count: longBKey에 해당하는 element의 위치(position) 기준으로 조회할 주변(앞/뒤 position) element 개수를 지정</li>
+</ul>
+<p>수행 결과는 future 객체를 통해 얻는다.</p>
+<table>
+<thead>
+<tr><th>future.get()</th><th>future.operationStatus().getResponse()</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>not null</td><td>CollectionResponse.END</td><td>Element를 성공적으로 조회</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND</td><td>Key miss (주어진 key에 해당하는 item이 없음)</td></tr>
+<tr><td>null</td><td>CollectionResponse.NOT_FOUND_ELEMENT</td><td>Element miss</td></tr>
+<tr><td>null</td><td>CollectionResponse.TYPE_MISMATCH</td><td>해당 item이 b+tree가 아님</td></tr>
+<tr><td>null</td><td>CollectionResponse.BKEY_MISMATCH</td><td>주어진 bkey 유형이 기존 bkey 유형과 다름</td></tr>
+<tr><td>null</td><td>CollectionResponse.UNREADABLE</td><td>해당 key가 unreadable상태임</td></tr>
+</tbody>
+</table>
+<p>결과로 반환된 result(Map&lt;Integer, Element&lt;Object&gt;&gt;) 객체에서 다음과 같은 정보를 확인할 수 있다</p>
+<table>
+<thead>
+<tr><th>result 객체의 Method</th><th>자료형</th><th>설명</th></tr>
+</thead>
+<tbody>
+<tr><td>getKey()</td><td>integer</td><td>btree내의 position</td></tr>
+<tr><td>getValue().getValue()</td><td>Object</td><td>element의 값</td></tr>
+<tr><td>getValue().getByteArrayBkey()</td><td>byte[]</td><td>element bkey 값(byte[])</td></tr>
+<tr><td>getValue().getLongBkey()</td><td>long</td><td>element bkey 값(long)</td></tr>
+<tr><td>getValue().isByteArrayBkey()</td><td>boolean</td><td>element bkey 값 byte array 여부</td></tr>
+<tr><td>getValue().getFlag()</td><td>byte[]</td><td>element flag 값(byte[])</td></tr>
+</tbody>
+</table>
+<p>B+tree에서 position과 element 동시 조회 예제이다.</p>
+<pre><code class="hljs css language-java">String key = <span class="hljs-string">"BopFindPositionWithGetTest"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLongBKey</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">long</span> longBkey, resultBkey;
+        <span class="hljs-keyword">int</span>  totCount = <span class="hljs-number">100</span>;
+        <span class="hljs-keyword">int</span>  pwgCount = <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">int</span>  rstCount;
+        <span class="hljs-keyword">int</span>  position, i;
+
+        <span class="hljs-comment">// totCount개의 테스트 데이터를 insert한다.</span>
+        CollectionAttributes attrs = <span class="hljs-keyword">new</span> CollectionAttributes();
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; totCount; i++) {
+                longBkey = (<span class="hljs-keyword">long</span>)i;
+                arcusClient.asyncBopInsert(key, longBkey, <span class="hljs-keyword">null</span>, <span class="hljs-string">"val"</span>, attrs).get();
+        }
+
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; totCount; i++) {
+                <span class="hljs-comment">// longBkey를 bkey로 가지는 element의 position을 기준으로 주변(앞/뒤 position) element들을 pwgCount만큼 조회</span>
+                longBkey = (<span class="hljs-keyword">long</span>)i;
+                CollectionFuture&lt;Map&lt;Integer, Element&lt;Object&gt;&gt;&gt; f = arcusClient
+                                .asyncBopFindPositionWithGet(key, longBkey, BTreeOrder.ASC, pwgCount);
+                Map&lt;Integer, Element&lt;Object&gt;&gt; result = f.get(<span class="hljs-number">1000</span>, TimeUnit.MILLISECONDS);
+
+                <span class="hljs-keyword">if</span> (i &gt;= pwgCount &amp;&amp; i &lt; (totCount-pwgCount)) {
+                        rstCount = pwgCount + <span class="hljs-number">1</span> + pwgCount;
+                } <span class="hljs-keyword">else</span> {
+                        <span class="hljs-keyword">if</span> (i &lt; pwgCount)
+                        rstCount = i + <span class="hljs-number">1</span> + pwgCount;
+                        <span class="hljs-keyword">else</span>
+                        rstCount = pwgCount + <span class="hljs-number">1</span> + ((totCount-<span class="hljs-number">1</span>)-i);
+                }
+                assertEquals(rstCount, result.size());
+                assertEquals(CollectionResponse.END, f.getOperationStatus().getResponse());
+
+                <span class="hljs-keyword">if</span> (i &lt; pwgCount) {
+                        position = <span class="hljs-number">0</span>;
+                } <span class="hljs-keyword">else</span> {
+                        position = i - pwgCount;
+                }
+                resultBkey = position;
+                <span class="hljs-keyword">for</span> (Entry&lt;Integer, Element&lt;Object&gt;&gt; each : result.entrySet()) {
+                        assertEquals(<span class="hljs-string">"invalid position"</span>, position, each.getKey().intValue());
+                        assertEquals(<span class="hljs-string">"invalid bkey"</span>, resultBkey, each.getValue().getLongBkey());
+                        assertEquals(<span class="hljs-string">"invalid value"</span>, <span class="hljs-string">"val"</span>, each.getValue().getValue());
+                        position++; resultBkey++;
+                }
+        }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#btree-item">B+tree Item</a><ul class="toc-headings"><li><a href="#bkeybtree-key와-eflagelement-flag">BKey(B+Tree Key)와 EFlag(Element Flag)</a></li><li><a href="#element-flag-filter-객체">Element Flag Filter 객체</a></li><li><a href="#element-flag-update-객체">Element Flag Update 객체</a></li><li><a href="#btree-item-생성">B+Tree Item 생성</a></li><li><a href="#btree-element-삽입">B+Tree Element 삽입</a></li><li><a href="#btree-element-upsert">B+Tree Element Upsert</a></li><li><a href="#btree-element-변경">B+Tree Element 변경</a></li><li><a href="#btree-element-삭제">B+Tree Element 삭제</a></li><li><a href="#btree-element-값의-증감">B+tree Element 값의 증감</a></li><li><a href="#btree-element-개수-계산">B+Tree Element 개수 계산</a></li></ul></li><li><a href="#btree-element-조회">B+Tree Element 조회</a></li><li><a href="#btree-element-일괄-삽입">B+Tree Element 일괄 삽입</a><ul class="toc-headings"><li><a href="#btree-element-일괄-변경">B+Tree Element 일괄 변경</a></li></ul></li><li><a href="#btree-element-일괄-조회">B+Tree Element 일괄 조회</a><ul class="toc-headings"><li><a href="#btree-element-sort-merge-조회">B+Tree Element Sort-Merge 조회</a></li><li><a href="#btree-position-조회">B+Tree Position 조회</a></li><li><a href="#btree-position-기반의-element-조회">B+Tree Position 기반의 Element 조회</a></li><li><a href="#btree-position과-element-동시-조회">B+Tree Position과 Element 동시 조회</a></li></ul></li></ul></nav></div></div></body></html>
