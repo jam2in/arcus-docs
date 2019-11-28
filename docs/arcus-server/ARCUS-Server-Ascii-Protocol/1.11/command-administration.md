@@ -207,7 +207,7 @@ gas와 sas는 item attribute 연산의 통계이다.
   - pfs, pfh - bop position 수행 횟수와 hit 수
   - pgs, pgh - bop gbp 수행 횟수와 hit 수
 - item attribute 연산 통계
-  - gas - getattr 수행 횟수
+  - fgas - getattr 수행 횟수
   - sas - setattr 수행 횟수
   
 
@@ -238,14 +238,9 @@ stats cachedump <slab_clsid> <limit> [ forward | backward [sticky] ]\r\n
 ```
 
 - \< slab_clsid \>	- dump 대상 LRU를 지정하기 위한 slab class id이다.
-- \< limit \>	- dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다.
-              0이면 default로 50개로 지정되며, 200 초과이면 200개만 dump한다.
-              해당 LRU의 head 또는 tail에서 시작하여 limit 개 item들의 cache key들을 dump한다.
-- forward or backward - LRU의 head 또는 tail 중에 어디에서 dump를 시작할 것인지를 지정한다.
-                        forward이면 head에서 시작하고, backward이면 tail에서 시작한다.
-                        지정하지 않으면, default는 forward이다.
-- sticky - 하나의 slab class에서 non-sticky item들의 LRU 리스트와 sticky item들의 LRU 리스트가 별도로 유지되어 있다.
-           sticky가 지정되면 sticky LRU에서 dump하고, 지정되지 않으면 non-sticky LRU에서 dump한다.
+- \< limit \>	- dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다. 0이면 default로 50개로 지정되며, 200 초과이면 200개만 dump한다. 해당 LRU의 head 또는 tail에서 시작하여 limit 개 item들의 cache key들을 dump한다.
+- forward or backward - LRU의 head 또는 tail 중에 어디에서 dump를 시작할 것인지를 지정한다. forward이면 head에서 시작하고, backward이면 tail에서 시작한다. 지정하지 않으면, default는 forward이다.
+- sticky - 하나의 slab class에서 non-sticky item들의 LRU 리스트와 sticky item들의 LRU 리스트가 별도로 유지되어 있다. sticky가 지정되면 sticky LRU에서 dump하고, 지정되지 않으면 non-sticky LRU에서 dump한다.
 
 Cachedump 결과의 예는 아래와 같다.
 
