@@ -76,12 +76,9 @@ bop upsert <key> <bkey> [<eflag>] <bytes> [create <attributes>] [noreply|pipe|ge
 - \< bkey \> - 삽입할 element의 bkey
 - \< eflag \> - 삽입할 element의 optional flag
 - \< bytes \>와 \< data \> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)
-- create \< attributes \> - b+tree collection 없을 시에 b+tree 생성 요청.
-                    [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
-- noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
-- getrim - 새로운 element 추가로 maxcount 제약에 의한 overflow trim이 발생할 경우,
-           trim된 element 정보를 가져온다.
+- create \< attributes \> - b+tree collection 없을 시에 b+tree 생성 요청. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
+- noreply or pipe - 명시하면, response string을 전달받지 않는다. pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
+- getrim - 새로운 element 추가로 maxcount 제약에 의한 overflow trim이 발생할 경우, trim된 element 정보를 가져온다.
 
 Trimmed element 정보가 리턴되는 경우, 그 response string은 아래와 같다.
 
@@ -100,17 +97,12 @@ END\r\n
 - “TYPE_MISMATCH” - 해당 item이 b+tree colleciton이 아님
 - "BKEY_MISMATCH" - 삽입할 bkey 유형과 대상 b+tree의 bkey 유형이 다름
 - “OVERFLOWED” - overflow 발생
-- “OUT_OF_RANGE” - 새로운 element 삽입이 maxcount 또는 maxbkeyrange 제약을 위배하면서
-                   그 element의 bkey 값이 overflowaction에 의해 자동 삭제되는 경우이어서
-                   삽입이 실패하는 경우이다.
-                   예를 들어, smallest_trim 상황에서
-                   새로 삽입할 element의 bkey 값이 b+tree의 smallest bkey 보다 작으면서
-                   maxcount 개의 elements가 이미 존재하거나 maxbkeyrange를 벗어나는 경우가 이에 해당된다.
+- “OUT_OF_RANGE” - 새로운 element 삽입이 maxcount 또는 maxbkeyrange 제약을 위배하면서,  그 element의 bkey 값이 overflowaction에 의해 자동 삭제되는 경우이어서 삽입이 실패하는 경우이다. 예를 들어, smallest_trim 상황에서 새로 삽입할 element의 bkey 값이 b+tree의 smallest bkey 보다 작으면서 maxcount 개의 elements가 이미 존재하거나 maxbkeyrange를 벗어나는 경우가 이에 해당된다.
 - "ELEMENT_EXISTS" - 동일 bkey를 가진 element가 존재
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼
-- “CLIENT_ERROR bad data chunk” - 삽입할 데이터의 길이가 <bytes>와 다르거나 "\r\n"으로 끝나지 않음
+- “CLIENT_ERROR bad data chunk” - 삽입할 데이터의 길이가 \< bytes \>와 다르거나 "\r\n"으로 끝나지 않음
 - “SERVER_ERROR out of memory” - 메모리 부족
 
 ### bop update - B+Tree Element 변경
@@ -125,12 +117,9 @@ bop update <key> <bkey> [<eflag_update>] <bytes> [noreply|pipe]\r\n[<data>\r\n]
 
 - \< key \> - 대상 item의 key string
 - \< bkey \> - 대상 element의 bkey
-- \< eflag_update \> - eflag update 명시.
-                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag update를 참조 바란다.
-- \< bytes \>와 \< data \> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
-                         데이터 변경을 원치 않으면 \< bytes \>를 -1로 하고 \< data \>를 생략하면 된다.         
-- noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
+- \< eflag_update \> - eflag update 명시. [Collection 기본 개념](arcus-collection-concept.md)에서 eflag update를 참조 바란다.
+- \< bytes \>와 \< data \> - 새로 변경할 데이터의 길이와 데이터 그 자체. (최대 4KB) 데이터 변경을 원치 않으면 \< bytes \>를 -1로 하고 \< data \>를 생략하면 된다.         
+- noreply or pipe - 명시하면, response string을 전달받지 않는다. pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
@@ -139,14 +128,12 @@ Response string과 그 의미는 아래와 같다.
 - "NOT_FOUND_ELEMENT" - element miss (변경할 element가 없음)
 - “TYPE_MISMATCH” - 해당 item이 b+tree colleciton이 아님
 - "BKEY_MISMATCH" - 명령 인자로 주어진 bkey 유형과 대상 b+tree의 bkey 유형이 다름
-- "EFLAG_MISMATCH" - 해당 element의 eflag 값에 대해 \<eflag_update\>를 적용할 수 없음.
-                     예를 들어, 변경하고자 하는 eflag가 존재하지 않거나,
-                     존재하더라도 \<eflag_update\> 조건으로 명시된 부분의 데이터를 가지지 않은 상태이다.
+- "EFLAG_MISMATCH" - 해당 element의 eflag 값에 대해 \<eflag_update\>를 적용할 수 없음. 예를 들어, 변경하고자 하는 eflag가 존재하지 않거나, 존재하더라도 \<eflag_update\> 조건으로 명시된 부분의 데이터를 가지지 않은 상태이다.
 - “NOTHING_TO_UPDATE” - eflag 변경과 data 변경 중 어느 하나도 명시되지 않은 상태
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “CLIENT_ERROR too large value” - 변경할 데이터가 4KB 보다 큼
-- “CLIENT_ERROR bad data chunk” - 변경할 데이터의 길이가 <bytes>와 다르거나 "\r\n"으로 끝나지 않음
+- “CLIENT_ERROR bad data chunk” - 변경할 데이터의 길이가 \< bytes \>와 다르거나 "\r\n"으로 끝나지 않음
 - “SERVER_ERROR out of memory” - 메모리 부족
 
 ### bop delete - B+Tree Element 삭제
@@ -160,14 +147,11 @@ bop delete <key> <bkey or "bkey range"> [<eflag_filter>] [<count>] [drop] [norep
 ```
 
 - \< key \> - 대상 item의 key string
-- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
-                             Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \< eflag_filter \> - eflag filter 조건.
-                    [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건. Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
+- \< eflag_filter \> - eflag filter 조건. Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 - \< count \> - 삭제할 elements 개수 지정
 - drop - element 삭제로 인해 empty b+tree가 될 경우, 그 b+tree를 drop할 것인지를 지정한다.
-- noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
+- noreply or pipe - 명시하면, response string을 전달받지 않는다. pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
@@ -191,13 +175,10 @@ bop get <key> <bkey or "bkey range"> [<eflag_filter>] [[<offset>] <count>] [dele
 ```
 
 - \< key \> - 대상 item의 key string
-- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
-                             Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \< eflag_filter \> - eflag filter 조건.
-                    [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건. Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
+- \< eflag_filter \> - eflag filter 조건. [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 - [\< offset \>] \< count \> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
-- delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우
-                   그 b+tree를 drop할 것인지를 지정한다.
+- delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우 그 b+tree를 drop할 것인지를 지정한다.
 
 성공 시의 response string은 아래와 같다.
 VALUE 라인의 \< count \>는 조회된 element 개수를 나타내며,
@@ -228,9 +209,7 @@ END|TRIMMED|DELETED|DELETED_DROPPED\r\n
 
 - “NOT_FOUND” - key miss
 - “NOT_FOUND_ELEMENT” - element miss (조회 조건을 만족하는 element가 없음)
-- “OUT_OF_RANGE” - 조회 조건을 만족하는 element가 없으며,
-                   또한 주어진 bkey range가 b+tree의 overflowaction에 의해
-                   trim된 bkey 영역과 overlap 되었음을 나타낸다.
+- “OUT_OF_RANGE” - 조회 조건을 만족하는 element가 없으며, 또한 주어진 bkey range가 b+tree의 overflowaction에 의해 trim된 bkey 영역과 overlap 되었음을 나타낸다.
 - “TYPE_MISMATCH” - 해당 item이 b+tree collection이 아님
 - “BKEY_MISMATCH” - 명령 인자로 주어진 bkey 유형과 대상 b+tree의 bkey 유형이 다름
 - “UNREADABLE” - 해당 item이 unreadable item임
@@ -249,10 +228,8 @@ bop count <key> <bkey or "bkey range"> [<eflag_filter>]\r\n
 ```
 
 - \< key \> - 대상 item의 key string
-- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
-                             Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \< eflag_filter \> - eflag filter 조건.
-                    [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건. Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
+- \< eflag_filter \> - eflag filter 조건. Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 
 성공 시의 response string은 아래와 같다.
 
@@ -302,12 +279,7 @@ Increment/decrement 수행 후의 데이터 값이다.
 - “NOT_FOUND_ELEMENT” - element miss
 - “TYPE_MISMATCH” - 해당 item이 b+tree collection이 아님
 - “BKEY_MISMATCH” - 명령 인자로 주언진 bkey 유형과 대상 b+tree의 bkey 유형이 다름
-- “OUT_OF_RANGE” - 새로운 element 삽입이 maxcount 또는 maxbkeyrange 제약을 위배하면서
-                   그 element의 bkey 값이 overflowaction에 의해 자동 삭제되는 경우이어서
-                   삽입이 실패하는 경우이다.
-                   예를 들어, smallest_trim 상황에서
-                   새로 삽입할 element의 bkey 값이 b+tree의 smallest bkey 보다 작으면서
-                   maxcount 개의 elements가 이미 존재하거나 maxbkeyrange를 벗어나는 경우가 이에 해당된다.
+- “OUT_OF_RANGE” - 새로운 element 삽입이 maxcount 또는 maxbkeyrange 제약을 위배하면서 그 element의 bkey 값이 overflowaction에 의해 자동 삭제되는 경우이어서 삽입이 실패하는 경우이다. 예를 들어, smallest_trim 상황에서 새로 삽입할 element의 bkey 값이 b+tree의 smallest bkey 보다 작으면서 maxcount 개의 elements가 이미 존재하거나 maxbkeyrange를 벗어나는 경우가 이에 해당된다.
 - “OVERFLOWED” - overflow 발생
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR cannot increment or decrement non-numeric value” - 해당 element의 데이터가 숫자형이 아님.
@@ -327,12 +299,10 @@ bop mget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] [<offset>] 
 ```
 
 - \< ”space separated keys” \> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
-                             - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
+     - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
 - \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
-- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
-                             Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \< eflag_filter \> - eflag filter 조건.
-                    [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건. Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
+- \< eflag_filter \> - eflag filter 조건. [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 - [\< offset \>] \< count \> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
 
 bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항을 가진다.
@@ -438,12 +408,10 @@ bop smget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] <count> [d
 ```
 
 - \< ”space separated keys” \> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
-                             - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
+     - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
 - \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
-- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
-                             Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \< eflag_filter \> - eflag filter 조건.
-                    [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건. Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
+- \< eflag_filter \> - eflag filter 조건. Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 - \< count \> - 조회할 element 개수
 - [duplicate|unique] - smget 동작 방식을 지정한다.
   - 생략되면, 예전 smget 동작을 수행한다.
@@ -582,8 +550,7 @@ bop gbp <key> <order> <position or "position range">\r\n
 
 - \< key \> - 대상 item의 key string
 - \< order \> - 어떤 bkey 정렬 기준으로 position을 적용할 지를 명시
-- \< position or "position range" \> - 조회할 elements의 하나의 position 또는 position range.
-                                     Position range는 "position1..position2" 형식으로 표현.
+- \< position or "position range" \> - 조회할 elements의 하나의 position 또는 position range. Position range는 "position1..position2" 형식으로 표현.
 
 성공 시의 response string은 아래와 같다.
 bop get 성공 시의 response string을 참조 바란다.
@@ -640,7 +607,7 @@ END\r\n
 - \< position \> : 주어진 bkey의 position
 - \< flags \> : b+tree item의 flags 속성값
 - \< count \> : 조회한 전체 element 개수
-- \< index \> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
+- \<index\> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
   - 주어진 bkey의 position과 element만 조회하면, count는 1이 되고, index는 0이 된다.
   - 주어진 bkey의 position과 element 외에 양방향 10개 element 조회에서,
     그 position 앞에 5개 element가 존재하고 뒤에 10개 element가 존재한다면
