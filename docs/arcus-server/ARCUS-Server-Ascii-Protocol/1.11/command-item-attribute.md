@@ -15,8 +15,8 @@ Item attributes를 조회하는 getattr 명령은 아래와 같다.
 getattr <key> [<name> ...]\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- [\<name\> ...] - 조회할 attribute name을 순차적으로 지정하는 것이며,
+- \< key \> - 대상 item의 key string
+- [\< name \> ...] - 조회할 attribute name을 순차적으로 지정하는 것이며,
   이를 생략하면, item 유형에 따라 조회가능한 모든 attributes 값을 조회한다.
 
 성공 시의 response string은 아래와 같다.
@@ -46,8 +46,8 @@ Item attributes를 변경하는 setattr 명령은 아래와 같다.
 setattr <key> <name>=<value> [<name>=<value> ...]\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<name\>=\<value\> - 변경할 attribute의 name과 value 쌍을 하나 이상 명시하여야 한다.
+- \< key \> - 대상 item의 key string
+- \< name \>=\< value \> - 변경할 attribute의 name과 value 쌍을 하나 이상 명시하여야 한다.
 
 이 명령의 response string과 그 의미는 아래와 같다.
 

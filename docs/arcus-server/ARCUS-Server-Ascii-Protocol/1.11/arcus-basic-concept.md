@@ -25,11 +25,11 @@ Cache key는 Arcus cache server에 저장할 데이터를 대표하는 코드이
   Cache Key : [<prefix>:]<subkey>
 ```
 
-- \<prefix\> - Cache key의 앞에 붙는 namespace이다.
+- \< prefix \> - Cache key의 앞에 붙는 namespace이다.
   - Prefix 단위로 cache server에 저장된 key들을 그룹화하여 flush하거나 통계 정보를 볼 수 있다.
   - Prefix를 생략할 수도 있지만, 가급적 사용하길 권한다.
 - delimiter - Prefix와 subkey를 구분하는 문자로 default delimiter는 콜론(‘:’)이다.
-- \<subkey\> - 일반적으로 응용에서 사용하는 Key이다.
+- \< subkey \> - 일반적으로 응용에서 사용하는 Key이다.
 
 Prefix와 subkey는 명명 규칙을 가지므로 주의하여야 한다.
 Prefix는 영문 대소문자, 숫자, 언더바(_), 하이픈(-), 플러스(+), 점(.) 문자만으로 구성될 수 있으며,
@@ -87,9 +87,9 @@ Slab allocator는 메모리 크기 별로 메모리 공간을 나누어 관리�
 최대 slab 크기는 현재 1MB이다. 최소 slab 크기 즉, 첫 번째 slab class의 slab 크기와
 그 다음 slab class들의 slab 크기는 아래의 Arcus cache server 구동 옵션으로 설정한다.
 
-- \-n \<bytes\> : minimum space allocated from key+value+flags (default: 48)
+- \-n \< bytes \> : minimum space allocated from key+value+flags (default: 48)
   - 최소 크기의 slab 크기를 결정한다.
-- \-f \<factor\> : chunk size growth factor (default: 1.25)
+- \-f \< factor \> : chunk size growth factor (default: 1.25)
   - Slab class 별로 slab 크기의 증가 정도를 지정하며, 1.0보다 큰 값으로 지정해야 한다.
   
 

@@ -21,8 +21,8 @@ lop create <key> <attributes> [noreply]\r\n
 * attributes: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
+- \< key \> - 대상 item의 key string
+- \< attributes \> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -43,16 +43,16 @@ lop insert <key> <index> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\
 * attributes: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<index\> - 삽입 위치를 0-based index로 지정.
+- \< key \> - 대상 item의 key string
+- \< index \> - 삽입 위치를 0-based index로 지정.
   - 0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄
   - -1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄
-- \<bytes\> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
-- create \<attributes\> - list collection 없을 시에 list 생성 요청.
+- \< bytes \> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
+- create \< attributes \> - list collection 없을 시에 list 생성 요청.
                     [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
-- \<data\> - 삽입할 데이터 (최대 4KB)
+- \< data \> - 삽입할 데이터 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
 
@@ -77,8 +77,8 @@ List collection에 하나의 index 또는 index range에 해당하는 elements�
 lop delete <key> <index or "index range"> [drop] [noreply|pipe]\r\n
 lop delete 명령에서 각 인자의 설명은 아래와 같다.
 ```
-- \<key\> - 대상 item의 key string
-- \<index or "index range"\> - 삭제할 element의 index or index range.
+- \< key \> - 대상 item의 key string
+- \< index or "index range" \> - 삭제할 element의 index or index range.
   Element index는 "lop insert" 명령에서 소개한 바와 같이 0-based index 형태로 지정하며,
   index range는 index1..index2 형태로 표현하여, 그 예는 다음과 같다.
   - 0..-1: 첫째 element부터 마지막 element까지 (forward 순서)
@@ -108,13 +108,13 @@ List collection에 하나의 index 또는 index range에 해당하는 elements�
 lop get <key> <index or "index range"> [delete|drop]\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<index or "index range"\> - 조회할 element의 index or index range. "lop delete" 명령의 인자 참조
+- \< key \> - 대상 item의 key string
+- \< index or "index range" \> - 조회할 element의 index or index range. "lop delete" 명령의 인자 참조
 - delete or drop - element 조회하면서 그 element를 delete할 것인지
                    그리고 delete로 인해 empty list가 될 경우 그 list를 drop할 것인지를 지정한다.
 
 성공 시의 response string은 아래와 같다.
-VALUE 라인의 \<count\>는 조회된 element 개수를 의미한다.
+VALUE 라인의 \< count \>는 조회된 element 개수를 의미한다.
 마지막 라인은 END, DELETED, DELETED_DROPPED 중의 하나를 가지며,
 각각 element 조회만 수행한 상태, element 조회하고 삭제한 상태,
 element 조회 및 삭제하고 list를 drop한 상태를 의미한다.

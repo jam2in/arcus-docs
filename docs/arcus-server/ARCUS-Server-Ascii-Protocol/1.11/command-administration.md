@@ -38,8 +38,8 @@ flush_all [<delay>] [noreply]\r\n
 flush_prefix <prefix> [<delay>] [noreply]\r\n
 ```
 
-- \<prefix\> - prefix string. "\<null\>"을 사용하면, prefix string이 없는 item들을 invalidate시킨다.
-- \<delay\> - 지연된 invalidation 요청 시에 명시하며, 그 지연 기간을 초(second) 단위로 지정한다.
+- \< prefix \> - prefix string. "\<null\>"을 사용하면, prefix string이 없는 item들을 invalidate시킨다.
+- \< delay \> - 지연된 invalidation 요청 시에 명시하며, 그 지연 기간을 초(second) 단위로 지정한다.
 - noreply - 명시하면, response string이 생략된다.
 
 Response string과 그 의미는 아래와 같다.
@@ -113,7 +113,7 @@ stats [<args>]\r\n
  scrub              | scrub 수행 상태 조회
  cachedump          | slab class 별 cache key dump
  reset              | 모든 통계 정보를 reset
-``` 
+```
 
 stats 명령은 직접 한번씩 수행해 보기를 권하며, 아래에서는 추가 설명이 필요한 부분들만 기술한다.
 
@@ -125,7 +125,7 @@ stats 명령은 직접 한번씩 수행해 보기를 권하며, 아래에서는 
 통계 정보의 수집 여부를 on 또는 off 할 수 있다.
 
 모든 prefix들의 item 통계 정보의 결과 예는 아래와 같다.
-\<null\> prefix 통계는 prefix를 가지지 않는 items 통계이다.
+\< null \> prefix 통계는 prefix를 가지지 않는 items 통계이다.
 
 ```
 PREFIX <null> itm 2 kitm 1 litm 1 sitm 0 mitm 0 bitm 0 tsz 144 ktsz 64 ltsz 80 stsz 0 mtsz 0 btsz 0 time 20121105152422
@@ -210,6 +210,7 @@ gas와 sas는 item attribute 연산의 통계이다.
   - gas - getattr 수행 횟수
   - sas - setattr 수행 횟수
   
+
 **Scrub 수행 상태**
 
 Scrub 수행 상태를 조회한 결과 예는 다음과 같다.
@@ -236,8 +237,8 @@ slab class 별 LRU에 달려있는 item들의 cache key들을 dump하기 위하�
 stats cachedump <slab_clsid> <limit> [ forward | backward [sticky] ]\r\n
 ```
 
-- \<slab_clsid\>	- dump 대상 LRU를 지정하기 위한 slab class id이다.
-- \<limit\>	- dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다.
+- \< slab_clsid \>	- dump 대상 LRU를 지정하기 위한 slab class id이다.
+- \< limit \>	- dump하고자 하는 item 개수로서 0 ~ 200 범위에서 지정이 가능하다.
               0이면 default로 50개로 지정되며, 200 초과이면 200개만 dump한다.
               해당 LRU의 head 또는 tail에서 시작하여 limit 개 item들의 cache key들을 dump한다.
 - forward or backward - LRU의 head 또는 tail 중에 어디에서 dump를 시작할 것인지를 지정한다.
@@ -277,7 +278,7 @@ Arcus cache server의 verbose log level을 동적으로(restart 없이) 변경/�
 config verbosity [<verbose>]\r\n
 ```
 
-\<verbose\>는 새로 지정할 verbose log level 값으로, 허용가능한 범위는 0 ~ 2이다.
+\< verbose \>는 새로 지정할 verbose log level 값으로, 허용가능한 범위는 0 ~ 2이다.
 이 인자가 생략되면 현재 설정되어 있는 verbose 값을 조회한다.
 
 **config memlimit**
@@ -288,7 +289,7 @@ Arcus cache server 구동 시에 -m 옵션으로 설정된 memory limit을 동�
 config memlimit [<memsize>]\r\n
 ```
 
-\<memsize\>는 새로 지정할 memory limit으로 MB 단위로 설정하며,
+\< memsize \>는 새로 지정할 memory limit으로 MB 단위로 설정하며,
 Arcus cache server가 현재 사용 중인 메모리 크기인 tatal_malloced 보다 큰 크기로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 memory limit 값을 조회한다.
 
@@ -310,7 +311,7 @@ Arcus cache server 구동 시에 -c 옵션으로 설정된 최대 연결 수를 
 config maxconns [<maxconn>]\r\n
 ```
 
-\<maxconn\>는 새로 지정할 최대 연결 수로서, 현재의 연결 수보다 10% 이상의 큰 값으로만 설정이 가능하다.
+\< maxconn \>는 새로 지정할 최대 연결 수로서, 현재의 연결 수보다 10% 이상의 큰 값으로만 설정이 가능하다.
 이 인자가 생략되면 현재 설정되어 있는 최대 연결 수 값을 조회한다.
 
 ### Command Logging 명령
@@ -324,7 +325,7 @@ start 명령을 시작으로 logging이 종료될 때 까지의 모든 command�
 cmdlog [start [<log_file_path>] | stop | stats]\r\n
 ```
 
-\<log_file_path\>는 logging 정보를 저장할 file의 path이다.
+\< log_file_path \>는 logging 정보를 저장할 file의 path이다.
 - path는 생략 가능하며, 생략할 경우 default로 지정된다.
   - default로 자동 지정할 경우 log file은 memcached구동위치/command_log 디렉터리 안에 생성된다.
   - command_log 디렉터리는 자동생성되지 않으며, memcached process가 구동된 위치에 생성해 주어야 한다.
@@ -387,7 +388,7 @@ lqdetect command는 아래와 같다.
 ```
 lqdetect [start [<detect_standard>] | stop | show | stats]\r\n
 ```
-\<detect_standard\>는 long query로 분류하는 기준으로 해당 요청에서 접근하는 elements 수로 나타내며, 어떤 요청에서 detection 기준 이상으로 많은 elements를 접근하는 요청을 long query로 구분한다. 생략 시 default standard는 4000이다.
+\< detect_standard \>는 long query로 분류하는 기준으로 해당 요청에서 접근하는 elements 수로 나타내며, 어떤 요청에서 detection 기준 이상으로 많은 elements를 접근하는 요청을 long query로 구분한다. 생략 시 default standard는 4000이다.
 
 start 명령으로 detection을 시작할 수 있다.
 
@@ -446,11 +447,11 @@ dump start명령.
 - 첫번째 인자는 무조건 "key"이다.
   - 현재는 일단 key string만을 dump한다.
   - 향후에 key or item을 선택할 수 있게 하여, item인 경우 item 전체 내용을 dump할 수 있다.
-- 두번째 인자는 \<prefix\>는 cache key의 prefix를 의미하며, 생략 가능하다.
+- 두번째 인자는 \< prefix \>는 cache key의 prefix를 의미하며, 생략 가능하다.
   - 생략하면, 모든 key string을 dump한다.
-  - "\<null\>"을 주면, prefix가 없는 key string을 dump한다.
+  - "\< null \>"을 주면, prefix가 없는 key string을 dump한다.
   - 어떤 prefix를 주면, 그 prefix의 모든 key string을 dump한다.
-- 세번째 인자는 \<file path\>이다.
+- 세번째 인자는 \< file path \>이다.
   - 반드시 명시해야 한다.
   - 절대 path로 줄 수도 있으며, 상대 path도 가능하다.
   - 상대 path이면 memcached process가 구동된 위치에서의 상대 path이다.
@@ -472,26 +473,26 @@ DUMP SUMMARY: { prefix=<prefix>, count=<count>, total=<total> elapsed=<elapsed> 
 
 위의 결과에서 각 의미는 아래와 같다.
 - key dump 결과 부분
-  - \<type\>은 item type으로 1 character로 표시한다.
+  - \< type \>은 item type으로 1 character로 표시한다.
      - "K" : kv 
      - "L" : list
      - "S" : set
      - "M" : map
      - "B" : b+tree
-  - \<key_string\>은 cache server에 저장되어 있는 key string 이다.
-  - \<exptime\>은 key의 exptime으로 아래 값들 중 하나이다.
+  - \< key_string \>은 cache server에 저장되어 있는 key string 이다.
+  - \< exptime \>은 key의 exptime으로 아래 값들 중 하나이다.
     -  0 (exptime = 0인 경우)
     - -1 : sticky item (exptime = -1인 경우)
     - timestamp (exptime > 0인 경우)으로
       "time since the Epoch (00:00:00 UTC, January 1, 1970), measured in seconds" 이다.
 - DUMP SUMMARY 부분
-  - \<prefix\>는 prefix name이다.
-    - 모든 key dump이면, "\<all\>"이 명시된다.
-    - prefix 없는 key dump이면, "\<null\>"이 명시된다.
+  - \< prefix \>는 prefix name이다.
+    - 모든 key dump이면, "\< all \>"이 명시된다.
+    - prefix 없는 key dump이면, "\< null \>"이 명시된다.
     - 특정 prefix의 key dump이면, 그 prefix name이 명시된다.
-  - \<count\>는 dump한 key 개수이다.
-  - \<total\>은 cache에 있는 전체 key 개수이다.
-  - \<elapsed\>는 dump하는 데 소요된 시간(단위: 초) 이다.
+  - \< count \>는 dump한 key 개수이다.
+  - \< total \>은 cache에 있는 전체 key 개수이다.
+  - \< elapsed \>는 dump하는 데 소요된 시간(단위: 초) 이다.
 
 ### Zkensemble 명령
 
@@ -503,9 +504,9 @@ zkensemble get\r\n
 zkensemble rejoin\r\n
 ```
 
-set 명령은 ZK ensemble 주소를 변경한다. ensemble_list는 \<ip:port\>,...,\<ip:port\>  와 같은 ZK server 들의 list 형태 혹은 ZK ensemble의 도메인 주소 형태로 지정할 수 있다.
+set 명령은 ZK ensemble 주소를 변경한다. ensemble_list는 \< ip:port \>,...,\< ip:port \>  와 같은 ZK server 들의 list 형태 혹은 ZK ensemble의 도메인 주소 형태로 지정할 수 있다.
 
-get 명령은 ZK ensemble 주소를 조회한다. 조회 결과는 \<ip:port\>,...,\<ip:port\> 형식으로 확인할 수 있다.
+get 명령은 ZK ensemble 주소를 조회한다. 조회 결과는 \< ip:port \>,...,\< ip:port \> 형식으로 확인할 수 있다.
 
 rejoin 명령은 ZK ensemble 과의 연결을 끊고 cache cloud에서 빠져 대기하는 cache server를 다시 ZK ensemble에 연결하도록 하는 명령이다. Cache cloud에서 cache server가 빠져나가는 경우는 아래와 같다.
 - Failstop off 상태에서 ZooKeeper session timeout이 일어난 경우
@@ -520,5 +521,5 @@ Arcus cache server의 acsii command syntax를 조회한다.
 help [<subcommand>]\r\n
 ```
 
-\<subcommand\>로는 kv, lop, sop, mop, bop, stats, flush, config, etc가 있으며,
-\<subcommand\>가 생략되면, help 명령에서 사용가능한 subcommand 목록이 출력된다.
+\< subcommand \>로는 kv, lop, sop, mop, bop, stats, flush, config, etc가 있으며,
+\< subcommand \>가 생략되면, help 명령에서 사용가능한 subcommand 목록이 출력된다.

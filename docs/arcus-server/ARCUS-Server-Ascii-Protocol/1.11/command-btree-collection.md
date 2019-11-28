@@ -46,8 +46,8 @@ bop create <key> <attributes> [noreply]\r\n
 * attributes: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
+- \< key \> - 대상 item의 key string
+- \< attributes \> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -72,11 +72,11 @@ bop upsert <key> <bkey> [<eflag>] <bytes> [create <attributes>] [noreply|pipe|ge
 * attributes: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey\> - 삽입할 element의 bkey
-- \<eflag\> - 삽입할 element의 optional flag
-- \<bytes\>와 \<data\> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)
-- create \<attributes\> - b+tree collection 없을 시에 b+tree 생성 요청.
+- \< key \> - 대상 item의 key string
+- \< bkey \> - 삽입할 element의 bkey
+- \< eflag \> - 삽입할 element의 optional flag
+- \< bytes \>와 \< data \> - 삽입할 element의 데이터의 길이와 데이터 그 자체 (최대 4KB)
+- create \< attributes \> - b+tree collection 없을 시에 b+tree 생성 요청.
                     [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
@@ -123,12 +123,12 @@ bop update <key> <bkey> [<eflag_update>] <bytes> [noreply|pipe]\r\n[<data>\r\n]
 * eflag_update : [<fwhere> <bitwop>] <fvalue>
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey\> - 대상 element의 bkey
-- \<eflag_update\> - eflag update 명시.
+- \< key \> - 대상 item의 key string
+- \< bkey \> - 대상 element의 bkey
+- \< eflag_update \> - eflag update 명시.
                      [Collection 기본 개념](arcus-collection-concept.md)에서 eflag update를 참조 바란다.
-- \<bytes\>와 \<data\> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
-                         데이터 변경을 원치 않으면 \<bytes\>를 -1로 하고 \<data\>를 생략하면 된다.         
+- \< bytes \>와 \< data \> - 새로 변경할 데이터의 길이와 데이터 그 자체 (최대 4KB)
+                         데이터 변경을 원치 않으면 \< bytes \>를 -1로 하고 \< data \>를 생략하면 된다.         
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
@@ -159,12 +159,12 @@ bop delete <key> <bkey or "bkey range"> [<eflag_filter>] [<count>] [drop] [norep
 * <eflag_filter> : <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
+- \< key \> - 대상 item의 key string
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \<eflag_filter\> - eflag filter 조건.
+- \< eflag_filter \> - eflag filter 조건.
                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
-- \<count\> - 삭제할 elements 개수 지정
+- \< count \> - 삭제할 elements 개수 지정
 - drop - element 삭제로 인해 empty b+tree가 될 경우, 그 b+tree를 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
@@ -190,17 +190,17 @@ bop get <key> <bkey or "bkey range"> [<eflag_filter>] [[<offset>] <count>] [dele
 * <eflag_filter> : <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
+- \< key \> - 대상 item의 key string
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \<eflag_filter\> - eflag filter 조건.
+- \< eflag_filter \> - eflag filter 조건.
                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
-- [\<offset\>] \<count\> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
+- [\< offset \>] \< count \> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
 - delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty b+tree가 될 경우
                    그 b+tree를 drop할 것인지를 지정한다.
 
 성공 시의 response string은 아래와 같다.
-VALUE 라인의 \<count\>는 조회된 element 개수를 나타내며,
+VALUE 라인의 \< count \>는 조회된 element 개수를 나타내며,
 그 다음 라인 부터 조회된 각 element의 bkey, flag, data가 나타낸다.
 마지막 라인은 조회 상래로서 END, TRIMMED, DELETED, DELETED_DROPPED 중 하나를 가진다.
 END, DELEETED, DELEETD_DROPPED은 각각
@@ -248,10 +248,10 @@ bop count <key> <bkey or "bkey range"> [<eflag_filter>]\r\n
 * <eflag_filter> : <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
+- \< key \> - 대상 item의 key string
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \<eflag_filter\> - eflag filter 조건.
+- \< eflag_filter \> - eflag filter 조건.
                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
 
 성공 시의 response string은 아래와 같다.
@@ -281,13 +281,13 @@ bop incr <key> <bkey> <delta> [<initial> [<eflag>]] [noreply|pipe]\r\n
 bop decr <key> <bkey> <delta> [<initial> [<eflag>]] [noreply|pipe]\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey\> - 대상 element의 bkey
-- \<delta\> - increment/decrement할 delta 값으로서, 0 보다 큰 숫자 값을 가져야 한다.
+- \< key \> - 대상 item의 key string
+- \< bkey \> - 대상 element의 bkey
+- \< delta \> - increment/decrement할 delta 값으로서, 0 보다 큰 숫자 값을 가져야 한다.
   - increment 연산으로 64bit unsigned integer가 overflow되면, wrap around되어 잔여 값으로 설정된다.
   - decrement 연산으로 64bit unsigned integer가 underflow되면, 새로운 값은 무조건 0으로 설정된다.
-- \<initial\> - 대상 element가 없을 경우, 새로운 element를 생성하고 initial 값으로 설정한다.
-  - \<eflag\>는 새로은 element에 eflag 값을 줄 경우에 명시할 수 있다.
+- \< initial \> - 대상 element가 없을 경우, 새로운 element를 생성하고 initial 값으로 설정한다.
+  - \< eflag \>는 새로은 element에 eflag 값을 줄 경우에 명시할 수 있다.
 
 성공 시의 response string은 아래와 같다.
 Increment/decrement 수행 후의 데이터 값이다.
@@ -326,14 +326,14 @@ bop mget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] [<offset>] 
 * <eflag_filter> : <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<”space separated keys”\> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
+- \< ”space separated keys” \> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
                              - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
-- \<lenkeys\>과 \<numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.
-- \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
+- \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \<eflag_filter\> - eflag filter 조건.
+- \< eflag_filter \> - eflag filter 조건.
                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
-- [\<offset\>] \<count\> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
+- [\< offset \>] \< count \> - 조회 조건을 만족하는 elements에서 skip 개수와 실제 조회할 개수
 
 bop mget 명령은 O(small N) 수행 원칙을 위하여 다음의 제약 사항을 가진다.
 - key list에 지정 가능한 최대 key 수는 200이다.
@@ -398,6 +398,7 @@ smget 동작은 조회 범위와 어떤 b+tree의 trim 영역과의 겹침에 �
 아래 두 가지 동작 모드가 있다.
 
 1) 기존 smget 동작 (1.8.X 이하 버전에서 동작하던 방식)
+
    - smget 조회 조건을 만족하는 첫번째 element가 trim된 b+tree가 하나라도 존재하면 OUT_OF_RANGE 응답을 보낸다.
      이 경우, 응용은 모든 key에 대해 백엔드 저장소인 DB에서 elements 조회한 후에 
      응용에서 sort-merge 작업을 수행하여야 한다.
@@ -436,14 +437,14 @@ bop smget <lenkeys> <numkeys> <bkey or "bkey range"> [<eflag_filter>] <count> [d
 * <eflag_filter> : <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<”space separated keys”\> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
+- \< ”space separated keys” \> - 대상 b+tree들의 key list로, 스페이스(' ')로 구분한다.
                              - 하위 호환성(1.10.X 이하 버전)을 위해 콤마(,)도 지원하지만 권장하지 않는다.
-- \<lenkeys\>과 \<numkeys> - key list 문자열의 길이와 key 개수를 나타낸다.
-- \<bkey or "bkey range"\> - 하나의 bkey 또는 bkey range 조회 조건.
+- \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
+- \< bkey or "bkey range" \> - 하나의 bkey 또는 bkey range 조회 조건.
                              Bkey range는 "bkey1..bkey2" 형식으로 표현한다.
-- \<eflag_filter\> - eflag filter 조건.
+- \< eflag_filter \> - eflag filter 조건.
                     [Collection 기본 개념](arcus-collection-concept.md)에서 eflag filter 참조 바란다.
-- \<count\> - 조회할 element 개수
+- \< count \> - 조회할 element 개수
 - [duplicate|unique] - smget 동작 방식을 지정한다.
   - 생략되면, 예전 smget 동작을 수행한다.
   - 지정되면, 신규 smget 동작을 수행한다. duplicate는 중복 bkey를 허용하고, unique는 중복 bkey를 제거한다.
@@ -475,7 +476,7 @@ END|DUPLICATED|TRIMMED|DUPLICATRED_TRIMMED\r\n
   - Element 정보는 bkey 기준으로 정렬되며,
     동일 bkey를 가진 elements는 key string 기준으로 정렬된다.
 - MISSED_KEYS 부분: smget 조회에 참여하지 못한 key list와 그 원인을 나타낸다.
-  - \<key\>는 smget에 참여하지 못한 key string이다.
+  - \< key \>는 smget에 참여하지 못한 key string이다.
 - 마지막 라인은 smget response string의 마지막을 나타낸다.
   - END: 조회 결과에 중복 bkey가 없음 
   - DUPLICATED: 조회 결과에 중복 bkey가 있음.
@@ -511,14 +512,14 @@ END|DUPLICATED\r\n
   - Element 정보는 bkey 기준으로 정렬되며,
     동일 bkey를 가진 elements는 key string 기준으로 정렬된다.
 - MISSED_KEYS 부분: smget 조회에 참여하지 못한 key list와 그 원인을 나타낸다.
-  - \<key\>는 smget에 참여하지 못한 key string이다.
-  - \<cause\>는 smget에 참여하지 못한 원인을 나타낸다.
+  - \< key \>는 smget에 참여하지 못한 key string이다.
+  - \< cause \>는 smget에 참여하지 못한 원인을 나타낸다.
     - NOT_FOUND: 그 key가 cache에 존재하지 않음
     - UNREADABLE: 그 key가 unreadable 상태에 있음
     - OUT_OF_RANGE: bkey range의 시작 부분이 그 key의 trim 영역과 겹쳐 있음
 - TRIMMED_KEYS 부분: smget 조회 범위의 뒷 부분에서 trim이 발생한 key list이다.
-  - \<key\>는 trim이 발생한 key string이다.
-  - \<bkey\>는 trim 직전에 있던 마지막 bkey 이다.
+  - \< key \>는 trim이 발생한 key string이다.
+  - \< bkey \>는 trim 직전에 있던 마지막 bkey 이다.
   - Timmed keys 정보는 bkey 기준으로 정렬된다.
 - 마지막 라인은 smget response string의 마지막을 나타낸다.
   - END: 조회 결과에 중복 bkey가 없음 
@@ -550,9 +551,9 @@ bop position <key> <bkey> <order>\r\n
 * <order> = asc | desc
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey\> - 대상 element의 bkey
-- \<order\> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시
+- \< key \> - 대상 item의 key string
+- \< bkey \> - 대상 element의 bkey
+- \< order \> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시
 
 성공 시의 response string은 아래와 같다.
 
@@ -579,9 +580,9 @@ bop gbp <key> <order> <position or "position range">\r\n
 * <order> = asc | desc
 ```
 
-- \<key\> - 대상 item의 key string
-- \<order\> - 어떤 bkey 정렬 기준으로 position을 적용할 지를 명시
-- \<position or "position range"\> - 조회할 elements의 하나의 position 또는 position range.
+- \< key \> - 대상 item의 key string
+- \< order \> - 어떤 bkey 정렬 기준으로 position을 적용할 지를 명시
+- \< position or "position range" \> - 조회할 elements의 하나의 position 또는 position range.
                                      Position range는 "position1..position2" 형식으로 표현.
 
 성공 시의 response string은 아래와 같다.
@@ -616,10 +617,10 @@ bop pwg <key> <bkey> <order> [<count>]\r\n
 * <order> = asc | desc
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bkey\> - 대상 element의 bkey
-- \<order\> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시
-- \<count\> - 조회한 position의 앞뒤에서 각각 몇 개의 element를 조회할 것인지를 명시 (**최대 값은 100으로 제한**)
+- \< key \> - 대상 item의 key string
+- \< bkey \> - 대상 element의 bkey
+- \< order \> - 어떤 bkey 정렬 기준으로 position을 얻을 것인지 명시
+- \< count \> - 조회한 position의 앞뒤에서 각각 몇 개의 element를 조회할 것인지를 명시 (**최대 값은 100으로 제한**)
   - 0이면, 조회한 position의 element만 조회
   - 양수이면, 조회한 position의 element 외에 그 position의 앞뒤에서 각각 그 수만큼 element 조회
 
@@ -636,10 +637,10 @@ END\r\n
 위의 VALUE 라인에서 각 값의 의미는 다음과 같다.
 그 아래 라인들에서 element 값의 표현은 bop get 경우와 동일하다.
 
-- \<position\> : 주어진 bkey의 position
-- \<flags\> : b+tree item의 flags 속성값
-- \<count\> : 조회한 전체 element 개수
-- \<index\> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
+- \< position \> : 주어진 bkey의 position
+- \< flags \> : b+tree item의 flags 속성값
+- \< count \> : 조회한 전체 element 개수
+- \< index \> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
   - 주어진 bkey의 position과 element만 조회하면, count는 1이 되고, index는 0이 된다.
   - 주어진 bkey의 position과 element 외에 양방향 10개 element 조회에서,
     그 position 앞에 5개 element가 존재하고 뒤에 10개 element가 존재한다면

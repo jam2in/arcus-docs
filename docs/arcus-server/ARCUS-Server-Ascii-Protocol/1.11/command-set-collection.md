@@ -22,8 +22,8 @@ sop create <key> <attributes> [noreply]\r\n
 * <attributes>: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<attributes\> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
+- \< key \> - 대상 item의 key string
+- \< attributes \> - 설정할 item attributes. [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply - 명시하면, response string을 전달받지 않는다.
 
 Response string과 그 의미는 아래와 같다.
@@ -44,13 +44,13 @@ sop insert <key> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\r\n
 * <attributes>: <flags> <exptime> <maxcount> [<ovflaction>] [unreadable]
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bytes\> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
-- create \<attributes\> - set collection 없을 시에 set 생성 요청.
+- \< key \> - 대상 item의 key string
+- \< bytes \> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
+- create \< attributes \> - set collection 없을 시에 set 생성 요청.
                     [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
-- \<data\> - 삽입할 데이터 (최대 4KB)
+- \< data \> - 삽입할 데이터 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
 
@@ -74,12 +74,12 @@ Set collection에서 하나의 element를 삭제한다.
 sop delete <key> <bytes> [drop] [noreply|pipe]\r\n<data>\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bytes\> - 삭제할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
+- \< key \> - 대상 item의 key string
+- \< bytes \> - 삭제할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
 - drop - element 삭제로 인해 empty set이 될 경우, 그 set을 drop할 것인지를 지정한다.
 - noreply or pipe - 명시하면, response string을 전달받지 않는다. 
                     pipe 사용은 [Command Pipelining](/doc/command-pipelining.md)을 참조 바란다.
-- \<data\> - 삭제할 데이터 (최대 4KB)
+- \< data \> - 삭제할 데이터 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
 
@@ -101,8 +101,8 @@ Set collection에서 N 개의 elements를 조회한다.
 sop get <key> <count> [delete|drop]\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<count\> - 조회할 elements 개수를 지정. 0이면 전체 elements를 의미한다.
+- \< key \> - 대상 item의 key string
+- \< count \> - 조회할 elements 개수를 지정. 0이면 전체 elements를 의미한다.
 - delete or drop - element 조회하면서 그 element를 delete할 것인지
                    그리고 delete로 인해 empty set이 될 경우 그 set을 drop할 것인지를 지정한다.
 
@@ -139,8 +139,8 @@ Set collection에 특정 element의 존재 유무를 검사한다.
 sop exist <key> <bytes> [pipe]\r\n<data>\r\n
 ```
 
-- \<key\> - 대상 item의 key string
-- \<bytes\>와 \<data\> - 존재 유무를 검사할 데이터의 길이와 데이터 그 자체 (최대 4KB)
+- \< key \> - 대상 item의 key string
+- \< bytes \>와 \< data \> - 존재 유무를 검사할 데이터의 길이와 데이터 그 자체 (최대 4KB)
 - pipe - 명시하면, response string을 전달받지 않는다. 
          [Command Pipelining](scommand-pipelining.md)을 참조 바란다.
 

@@ -23,10 +23,10 @@ Future<Boolean> set(String key, int exp, Object obj)
 Future<Boolean> add(String key, int exp, Object obj)
 ```
 
-- \<key, obj\>의 key-value item을 저장한다.
+- \< key, obj \>의 key-value item을 저장한다.
 - 해당 key가 cache에 이미 존재할 경우,
   - set은 value 부분만 obj로 변경한다.
-  - add는 \<key, obj\> item을 추가하지 않는다.
+  - add는 \< key, obj \> item을 추가하지 않는다.
 - 저장된 key-value item은 exp 초 이후에 삭제된다.
 
 
@@ -36,7 +36,7 @@ Future<Boolean> replace(String key, int exp, Object obj)
 
 - 주어진 key의 value 부분만을 obj로 교체한다. 해당 key가 cache에 존재하지 않으면, 교체 작업은 수행되지 않는다.
 - 교체된 key-value item은 exp 초 이후에 삭제된다.
- 
+
 
 ```java
 Future<Boolean> prepend(long cas, String key, Object val)
@@ -59,7 +59,6 @@ Future<Map<String, CollectionOperationStatus>> asyncSetBulk(Map<String, Object> 
 - 전자는 key list의 모든 key에 대해 동일한 obj로 set 연산을 한번에 수행하며, 
   후자는 map에 있는 모든 \<key, obj\>에 대해 set 연산을 한번에 수행한다.
 - 저장된 key-value item들은 모두 exp 초 이후에 삭제된다.
-
 
 expiration은 key가 현재 시간부터 expire 될 때까지의 시간(초 단위)을 입력한다.
 시간이 30일을 초과하는 경우 expire 될 unix time을 입력한다.
@@ -112,7 +111,7 @@ Future<Long> asyncDecr(String key, int by, long def, int exp)
 ```
 
 - key에 저장된 정수형 데이터의 값을 by 만큼 증가/감소시킨다.
-  key가 cache에 존재하지 않으면 \<key, def\> item을 추가하며, exp 초 이후에 삭제된다.
+  key가 cache에 존재하지 않으면 \< key, def \> item을 추가하며, exp 초 이후에 삭제된다.
 - 반환되는 값은 증감 후의 값이다.
 
 
@@ -123,4 +122,4 @@ Future<Boolean> delete(String key)
 ```
 
 - 주어진 key를 가진 item을 cache에서 삭제한다.
- 
+
