@@ -79,6 +79,8 @@ B+tree collection에서 사용가능한 bkey 데이터 유형은 아래 두 가�
   
   hexadecimal 표현이 올바른 경우의 저장 바이트 수와 잘못된 경우의 이유는 아래와 같다.
 
+  
+  
   hexadecimal value | storage bytes | incorrect reason
   ----------------- | ------------- | ----------------
   0x34F40056        | 4 bytes       |
@@ -112,16 +114,16 @@ eflag_filter: <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 
 - \< fwhere \> 
   - eflag 값에서 bitwise/compare 연산을 취할 시작 offset을 바이트 단위로 나타낸다.
-    bitwise/compare 연산을 취할 데이터의 length는 \<fvalue\>의 length로 한다.
-    예를 들어, eflag 전체 데이터를 선택한다면, \<fwhere\>는 0이어야 하고
-    \<fvalue\>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.
+    bitwise/compare 연산을 취할 데이터의 length는 \< fvalue \>의 length로 한다.
+    예를 들어, eflag 전체 데이터를 선택한다면, \< fwhere \>는 0이어야 하고
+    \< fvalue \>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.
 - [\< bitwop \> \< foperand \>]
   - 생략 가능하며, eflag에 대한 bitwise 연산을 지정한다.
   - bitwise 연산이 지정되면 이 연산의 결과가 compare 연산의 대상이 되며,
     생략된다면 eflag 값 자체가 compare 연산의 대상이 된다.
-  - \<bitwop\>는 “&”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.
-  - \<foperand\>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
-    \<foperand\>의 길이는 compare 연산을 취한 \<fvalue\>의 길이와 동일하여야 한다.
+  - \< bitwop \>는 “&”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.
+  - \< foperand \>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
+    \< foperand \>의 길이는 compare 연산을 취한 \<fvalue\>의 길이와 동일하여야 한다.
 - \< compop \> \< fvalue \>  
   - eflag에 대한 compare 연산을 지정한다.
   - \< compop \>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,

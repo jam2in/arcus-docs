@@ -544,9 +544,7 @@ Response code는 아래와 같다.
   - MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 B+tree가 아님.
   - MEMCACHED_BKEY_MISMATCH: 주어진 bkey 유형과 해당 B+tree의 bkey 유형이 다름.
   - MEMCACHED_UNREADABLE: 주어진 key에 해당하는 B+tree가 unreadable 상태임.
-  - MEMCACHED_OUT_OF_RANGE : 주어진 조회 범위에 해당하는 element가 없으나, 조회 범위가 overflow 정책에 의해
-                             삭제되는 영역에 걸쳐 있음. 즉, B+tree 크기 제한으로 인해 삭제되어 조회되지 않은
-                             element가 어딘가(DB)에 존재할 수도 있음을 뜻함.
+  - MEMCACHED_OUT_OF_RANGE : 주어진 조회 범위에 해당하는 element가 없으나, 조회 범위가 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음. 즉, B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 어딘가(DB)에 존재할 수도 있음을 뜻함.
 
 B+tree element 값의 증감을 수행하는 예제는 아래와 같다.
 

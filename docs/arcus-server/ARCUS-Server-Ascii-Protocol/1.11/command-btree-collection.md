@@ -501,8 +501,7 @@ smget 수행의 실패 시의 response string은 다음과 같다.
 - “OUT_OF_RANGE” - 기존 smget 동작에서만 발생할 수 있는 실패 response string이다.
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
-- “CLIENT_ERROR bad data chunk”	- 주어진 key 리스트에 중복 key가 존재하거나
-              주어진 key 리스트의 길이가 \<lenkeys\> 길이와 다르거나 “\r\n”으로 끝나지 않음.
+- “CLIENT_ERROR bad data chunk”	- 주어진 key 리스트에 중복 key가 존재하거나 주어진 key 리스트의 길이가 \<lenkeys\> 길이와 다르거나 “\r\n”으로 끝나지 않음.
 - “CLIENT_ERROR bad value” - 앞서 기술한 smget 연산의 제약 조건을 위배
 - “SERVER_ERROR out of memory [writing get response]” - 메모리 부족
 
@@ -607,7 +606,7 @@ END\r\n
 - \< position \> : 주어진 bkey의 position
 - \< flags \> : b+tree item의 flags 속성값
 - \< count \> : 조회한 전체 element 개수
-- \<index\> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
+- \< index \> : 전체 element list에서 주어진 bkey를 가진 element 위치 (0-based index)
   - 주어진 bkey의 position과 element만 조회하면, count는 1이 되고, index는 0이 된다.
   - 주어진 bkey의 position과 element 외에 양방향 10개 element 조회에서,
     그 position 앞에 5개 element가 존재하고 뒤에 10개 element가 존재한다면

@@ -59,8 +59,7 @@ Response string과 그 의미는 아래와 같다.
 - “NOT_FOUND” - key miss
 - “TYPE_MISMATCH” - 해당 item이 list collection이 아님
 - “OVERFLOWED” - overflow 발생
-- “OUT_OF_RANGE” - 삽입 위치가 list의 현재 element index 범위를 넘어섬,
-                   예를 들어, 10개 element가 있는 상태에서 삽입 위치가 20인 경우임
+- “OUT_OF_RANGE” - 삽입 위치가 list의 현재 element index 범위를 넘어섬, 예를 들어, 10개 element가 있는 상태에서 삽입 위치가 20인 경우임
 - "NOT_SUPPORTED" - 지원하지 않음
 - “CLIENT_ERROR bad command line format” - protocol syntax 틀림
 - “CLIENT_ERROR too large value” - 삽입할 데이터가 4KB 보다 큼

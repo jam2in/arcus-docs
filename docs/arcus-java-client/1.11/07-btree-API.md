@@ -789,7 +789,7 @@ asyncBopGetItemCount(String key, byte[] from, byte[] to, ElementFlagFilter eFlag
 ```
 
 - key: b+tree item의 key
-- \<from, to\>: element 조회 범위를 나타내는 bkey range 
+- \< from, to \>: element 조회 범위를 나타내는 bkey range 
 - eFlagFilter: eflag에 대한 filter 조건
 
 
@@ -965,8 +965,8 @@ asyncBopPipedInsertBulk(String key, Map<Long, Object> elements, CollectionAttrib
 
 - key: 삽입 대상 b+tree의 key 
 - elements: 삽입할 element들
-  - List\<Element\<Object\>\> 유형
-  - Map\<Long, Object\> 유형
+  - List \< Element \< Object \> \> 유형
+  - Map\< Long, Object \> 유형
 - attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
   - null: element 삽입하지 않는다. 
   - attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.
@@ -1219,7 +1219,7 @@ asyncBopSortMergeGet(List<String> keyList, byte[] from, byte[] to, ElementFlagFi
 ```
 
 - keyList: b+tree items의 key list
-- \<from, to\>: 조회 범위를 나타내는 bkey range 
+- \< from, to \>: 조회 범위를 나타내는 bkey range 
 - eFlagFilter: eflag에 대한 filter 조건
   - eflag filter 조건을 지정하지 않으려면, ElementFlagFilter.DO_NOT_FILTER를 입력한다.
 - count: bkey range와 eflag filter 조건을 만족하는 elements에서 실제 조회할 element의 count 지정
