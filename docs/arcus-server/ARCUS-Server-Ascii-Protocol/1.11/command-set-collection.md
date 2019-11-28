@@ -8,10 +8,10 @@ Set collection에 관한 명령은 아래와 같다.
 
 Set element에 관한 명령은 아래와 같다. 
 
-- [Set element 삽입: sop insert](command-set-collection.md#sop-insert---set-element-%EC%82%BD%EC%9E%85)
-- [Set element 삭제: sop delete](command-set-collection.md#sop-delete---set-element-%EC%82%AD%EC%A0%9C)
-- [Set element 조회: sop get](command-set-collection.md#sop-get---set-element-%EC%A1%B0%ED%9A%8C)
-- [Set element 존재유무 검사: sop exist](command-set-collection.md#sop-exist---set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%EA%B2%80%EC%82%AC)
+- [Set element 삽입: sop insert](command-set-collection.md#sop-insert-set-element-%EC%82%BD%EC%9E%85)
+- [Set element 삭제: sop delete](command-set-collection.md#sop-delete-set-element-%EC%82%AD%EC%A0%9C)
+- [Set element 조회: sop get](command-set-collection.md#sop-get-set-element-%EC%A1%B0%ED%9A%8C)
+- [Set element 존재유무 검사: sop exist](command-set-collection.md#sop-exist-set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%EA%B2%80%EC%82%AC)
 
 ### sop create - Set Collection 생성
 

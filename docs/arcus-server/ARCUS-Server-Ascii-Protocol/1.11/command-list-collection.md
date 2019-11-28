@@ -3,14 +3,14 @@ LIST 명령
 
 List collection에 관한 명령은 아래와 같다.
 
-- [List collection 생성: lop create](command-list-collection.md#lop-create---list-collection-%EC%83%9D%EC%84%B1)
+- [List collection 생성: lop create](command-list-collection.md#lop-create-list-collection-%EC%83%9D%EC%84%B1)
 - List collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
 
 List element에 관한 명령은 아래와 같다.
 
-- [List element 삽입: lop insert](command-list-collection.md#lop-insert---list-element-%EC%82%BD%EC%9E%85)
-- [List element 삭제: lop delete](command-list-collection.md#lop-delete---list-element-%EC%82%AD%EC%A0%9C)
-- [List element 조회: lop get](command-list-collection.md#lop-get---list-element-%EC%A1%B0%ED%9A%8C)
+- [List element 삽입: lop insert](command-list-collection.md#lop-insert-list-element-%EC%82%BD%EC%9E%85)
+- [List element 삭제: lop delete](command-list-collection.md#lop-delete-list-element-삭제)
+- [List element 조회: lop get](command-list-collection.md#lop-get-list-element-조회)
 
 ### lop create - List Collection 생성
 
@@ -48,10 +48,8 @@ lop insert <key> <index> <bytes> [create <attributes>] [noreply|pipe]\r\n<data>\
   - 0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄
   - -1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄
 - \< bytes \> - 삽입할 데이터 길이 (trailing 문자인 "\r\n"을 제외한 길이)
-- create \< attributes \> - list collection 없을 시에 list 생성 요청.
-                    [Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
-- noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
+- create \< attributes \> - list collection 없을 시에 list 생성 요청. Item Attribute 설명](arcus-item-attribute.md)을 참조 바란다.
+- noreply or pipe - 명시하면, response string을 전달받지 않는다.  pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 - \< data \> - 삽입할 데이터 (최대 4KB)
 
 Response string과 그 의미는 아래와 같다.
@@ -87,8 +85,7 @@ lop delete 명령에서 각 인자의 설명은 아래와 같다.
   - 4..2 : 앞의 5번째 element 부터 앞의 3번째 element까지 (backward 순서)
   - -1..0: 마지막 element 부터 첫째 element 까지 (backward 순서)
 - drop - element 삭제로 인해 empty list가 될 경우, 그 list를 drop할 것인지를 지정한다.
-- noreply or pipe - 명시하면, response string을 전달받지 않는다. 
-                    pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
+- noreply or pipe - 명시하면, response string을 전달받지 않는다. pipe 사용은 [Command Pipelining](command-pipelining.md)을 참조 바란다.
 
 Response string과 그 의미는 아래와 같다.
 
@@ -110,8 +107,7 @@ lop get <key> <index or "index range"> [delete|drop]\r\n
 
 - \< key \> - 대상 item의 key string
 - \< index or "index range" \> - 조회할 element의 index or index range. "lop delete" 명령의 인자 참조
-- delete or drop - element 조회하면서 그 element를 delete할 것인지
-                   그리고 delete로 인해 empty list가 될 경우 그 list를 drop할 것인지를 지정한다.
+- delete or drop - element 조회하면서 그 element를 delete할 것인지 그리고 delete로 인해 empty list가 될 경우 그 list를 drop할 것인지를 지정한다.
 
 성공 시의 response string은 아래와 같다.
 VALUE 라인의 \< count \>는 조회된 element 개수를 의미한다.

@@ -10,7 +10,7 @@ Set item은 하나의 key에 대해 unique value의 집합을 저장한다.
 
 Set item에 수행가능한 기본 연산들은 다음과 같다.
 
-- [Set Item 생성](05-set-API.md#set-item-%EC%83%9D%EC%84%B1) (Set item 삭제는 key-value item 삭제 함수로 수행한다) 
+- [Set Item 생성](05-set-API.md#set-item-생성) (Set item 삭제는 key-value item 삭제 함수로 수행한다) 
 - [Set Element 삽입](05-set-API.md#set-element-%EC%82%BD%EC%9E%85)
 - [Set Element 삭제](05-set-API.md#set-element-%EC%82%AD%EC%A0%9C)
 - [Set Element 존재유무 확인](05-set-API.md#set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%ED%99%95%EC%9D%B8)
@@ -112,7 +112,7 @@ False        | CollectionResponse.NOT_FOUND           | Key miss (주어진 key�
 False        | CollectionResponse.TYPE_MISMATCH       | 해당 item이 set이 아님
 False        | CollectionResponse.OVERFLOWED          | Overflow 상태임
 False        | CollectionResponse.ELEMENT_EXISTS      | 동일한 값을 가진 element가 set에 존재함
-             
+
 
 Set에 하나의 element를 삽입하는 예제는 아래와 같다.
 
