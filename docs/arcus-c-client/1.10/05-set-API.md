@@ -26,7 +26,7 @@ Set item에 수행 가능한 기본 연산들은 다음과 같다.
 새로운 empty set item을 생성한다.
 
 ``` c
-emcached_return_t memcached_sop_create(memcached_st *ptr, const char *key, size_t key_length,
+memcached_return_t memcached_sop_create(memcached_st *ptr, const char *key, size_t key_length,
                                        memcached_coll_create_attrs_st *attributes)
 ```
 

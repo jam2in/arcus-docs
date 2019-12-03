@@ -447,7 +447,7 @@ memcached_return_t memcached_bop_ext_delete_by_range(memcached_st *ptr, const ch
 ```
 
 - key, key_length: b+tree item의 key
-- bkeuy 또는 \<from, to\>:  삭제할 element의 bkey(b+tree key) 또는 bkey range 
+- bkey 또는 \<from, to\>:  삭제할 element의 bkey(b+tree key) 또는 bkey range 
 - eflag_filter: element의 eflag에 대한 filter 조건
 - count: 삭제할 element 개수, 0이면 bkey range의 모든 element가 삭제 대상이 된다.
 - drop_if_empty: element 삭제로 empty b+tree가 될 경우, 그 b+tree도 삭제할 것인지를 지정

@@ -13,7 +13,7 @@ B+tree element에 관한 기본 명령은 아래와 같다.
 - [B+tree element 삭제: bop delete](command-btree-collection.md#bop-delete-btree-element-%EC%82%AD%EC%A0%9C)
 - [B+tree element 조회: bop get](command-btree-collection.md#bop-get-btree-element-%EC%A1%B0%ED%9A%8C)
 - [B+tree element 개수 계산: bop count](command-btree-collection.md#bop-count-btree-element-%EA%B0%9C%EC%88%98-%EA%B3%84%EC%82%B0)
-  - [B+tree element 값의 증감: bop incr/decr](command-btree-collection.md#bop-incr-decr-btree-elment-값의-증감)
+- [B+tree element 값의 증감: bop incr/decr](command-btree-collection.md#bop-incr-decr-btree-elment-값의-증감)
 
 Arcus cache server는 다수의 b+tree들에 대한 조회 기능을 특별히 제공하며, 이들은 아래와 같다.
 
@@ -90,7 +90,7 @@ END\r\n
 
 그 외의 response string과 의미는 아래와 같다.
 
-- "STROED" - 성공 (element만 삽입)
+- "STORED" - 성공 (element만 삽입)
 - “CREATED_STORED” - 성공 (collection 생성하고 element 삽입)
 - "REPLACED" : 성공 (element를 대체)
 - “NOT_FOUND” - key miss
