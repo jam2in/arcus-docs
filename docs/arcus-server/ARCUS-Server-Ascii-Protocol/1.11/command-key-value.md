@@ -7,7 +7,7 @@ Arcus cache server는 memcached 1.4의 key-value 명령을 그대로 지원하�
 Simple key-value 명령들의 요약은 아래와 같다.
 이들 명령들의 자세한 정보는 [memcached 1.4의 기존 ascii protocol](/doc/protocol.txt)를 참고하기 바란다.
 
-**storage 명령**
+### storage 명령
 
 set, add, replace, append, prepend, cas 명령이 있으며 syntax는 다음과 같다.
 
@@ -16,7 +16,7 @@ set, add, replace, append, prepend, cas 명령이 있으며 syntax는 다음과 
 cas <key> <flags> <exptime> <bytes> <cas unique> [noreply]\r\n<data>\r\n
 ```
 
-**retrieval 명령**
+### retrieval 명령
 
 하나의 cache item을 조회하는 get, gets 명령이 있으며, syntax는 다음과 같다.
 get 명령은 value만 조회하는 반면 gets 명령은 value와 함께 cas value도 조회한다.
@@ -36,7 +36,7 @@ mget <lenkeys> <numkeys>\r\n
 - \< ”space separated keys” \> - key list로, 스페이스(' ')로 구분한다.
 - \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
 
-**deletion 명령**
+### deletion 명령
 
 delete 명령이 있으며 syntax는 다음과 같다.
 
@@ -44,7 +44,7 @@ delete 명령이 있으며 syntax는 다음과 같다.
 delete <key> [<time>] [noreply]\r\n
 ```
 
-**Increment/Decrement 명령**
+### Increment/Decrement 명령
 
 incr, decr 명령이 있으며, syntax는 아래와 같다.
 Arcus cache server는 이 명령을 확장하여,
