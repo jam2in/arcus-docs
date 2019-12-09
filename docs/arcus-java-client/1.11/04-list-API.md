@@ -164,7 +164,7 @@ try {
 3. 삽입 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.
 
 
-## List Element 삭제
+### List Element 삭제
 
 List에서 index 위치에 있는 하나의 element 또는 index range에 포함되는 다수 element를 삭제하는 함수는 아래와 같다.
 
@@ -231,7 +231,7 @@ try {
 3. 정상적으로 삭제되면 true를 반환한다.
    삭제 결과에 따른 반환 값은 future.operationStatus().getResponse()로 확인한다.
 
-## List Element 조회
+### List Element 조회
 
 List 에서 하나의 index 또는 index range에 해당하는 element를 조회한다.
 만약, 해당 element가 존재하지 않으면 null이 반환된다.
