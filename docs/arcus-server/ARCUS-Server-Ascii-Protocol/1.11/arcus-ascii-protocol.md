@@ -4,7 +4,7 @@ Arcus Memcached User Guide
 
 - [Chapter 1. ARCUS Basic Concept](arcus-basic-concept.md)
   - [Basic Terms](arcus-basic-concept.md#기본-제약-사항)
-  - [Collection Concept]((arcus-basic-concept.md#Collection Concept))
+  - [Collection Concept](arcus-basic-concept.md#Collection-Concept)
   - [Item Attributes](arcus-basic-concept.md#Item-Attribute-설명)
 - [Chapter 2. Simple Key-Value Command](command-key-value.md)
   - [storage 명령](command-key-value.md#storage-명령)
