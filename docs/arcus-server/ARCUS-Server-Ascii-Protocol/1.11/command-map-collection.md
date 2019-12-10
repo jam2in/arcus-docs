@@ -3,7 +3,7 @@ Chapter 5. MAP 명령
 
 Map collection에 관한 명령은 아래와 같다.
 
-- [Map collection 생성: mop create](command-map-collection.md#mop-create---map-collection-생성)
+- [Map collection 생성: mop create](command-map-collection.md#mop-create-map-collection-생성)
 - Map collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
 
 Map element에 관한 명령은 아래와 같다. 
