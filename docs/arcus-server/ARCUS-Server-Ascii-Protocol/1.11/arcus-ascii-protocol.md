@@ -22,7 +22,7 @@ Arcus Memcached User Guide
   - [Set element 삭제: sop delete](command-set-collection.md#sop-delete-set-element-%EC%82%AD%EC%A0%9C)
   - [Set element 조회: sop get](command-set-collection.md#sop-get-set-element-%EC%A1%B0%ED%9A%8C)
   - [Set element 존재유무 검사: sop exist](command-set-collection.md#sop-exist-set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%EA%B2%80%EC%82%AC)
-- [Chapter 5. Map Collection Command](command-map-collection,md)
+- [Chapter 5. Map Collection Command](command-map-collection.md)
   - [Map collection 생성: mop create](command-map-collection.md#mop-create-map-collection-생성)
   - [Map element 삽입: mop insert](command-map-collection.md#mop-insert-map-element-삽입)
   - [Map element 변경: mop update](command-map-collection.md#mop-update-map-element-변경)

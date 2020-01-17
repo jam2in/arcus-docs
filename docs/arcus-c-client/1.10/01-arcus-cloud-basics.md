@@ -50,11 +50,11 @@ Cache key는 Arcus cache에 저장하는 cache item을 유일하게 식별한다
   Cache Key : [<prefix>:]<subkey>
 ```
 
-- \< prefix \> - Cache key의 앞에 붙는 namespace이다.
+- \<prefix\> - Cache key의 앞에 붙는 namespace이다.
   - Prefix 단위로 cache server에 저장된 key들을 그룹화하여 flush하거나 통계 정보를 볼 수 있다.
   - Prefix를 생략할 수 있지만, 가급적 사용하길 권한다.
 - delimiter - Prefix와 subkey를 구분하는 문자로 default delimiter는 콜론(‘:’)이다.
-- \< subkey \> - 일반적으로 응용에서 사용하는 Key이다.
+- \<subkey\> - 일반적으로 응용에서 사용하는 Key이다.
 
 Prefix와 subkey는 아래의 명명 규칙을 가진다.
 

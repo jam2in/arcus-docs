@@ -23,10 +23,10 @@ Future<Boolean> set(String key, int exp, Object obj)
 Future<Boolean> add(String key, int exp, Object obj)
 ```
 
-- \< key, obj \>의 key-value item을 저장한다.
+- \<key, obj\>의 key-value item을 저장한다.
 - 해당 key가 cache에 이미 존재할 경우,
   - set은 value 부분만 obj로 변경한다.
-  - add는 \< key, obj \> item을 추가하지 않는다.
+  - add는 \<key, obj\> item을 추가하지 않는다.
 - 저장된 key-value item은 exp 초 이후에 삭제된다.
 
 

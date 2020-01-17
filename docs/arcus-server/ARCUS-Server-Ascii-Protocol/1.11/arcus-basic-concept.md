@@ -24,11 +24,11 @@ Cache key는 Arcus cache server에 저장할 데이터를 대표하는 코드이
   Cache Key : [<prefix>:]<subkey>
 ```
 
-- \< prefix \> - Cache key의 앞에 붙는 namespace이다.
+- \<prefix\> - Cache key의 앞에 붙는 namespace이다.
   - Prefix 단위로 cache server에 저장된 key들을 그룹화하여 flush하거나 통계 정보를 볼 수 있다.
   - Prefix를 생략할 수도 있지만, 가급적 사용하길 권한다.
 - delimiter - Prefix와 subkey를 구분하는 문자로 default delimiter는 콜론(‘:’)이다.
-- \< subkey \> - 일반적으로 응용에서 사용하는 Key이다.
+- \<subkey\> - 일반적으로 응용에서 사용하는 Key이다.
 
 Prefix와 subkey는 명명 규칙을 가지므로 주의하여야 한다.
 Prefix는 영문 대소문자, 숫자, 언더바(_), 하이픈(-), 플러스(+), 점(.) 문자만으로 구성될 수 있으며,
@@ -86,9 +86,9 @@ Slab allocator는 메모리 크기 별로 메모리 공간을 나누어 관리�
 최대 slab 크기는 현재 1MB이다. 최소 slab 크기 즉, 첫 번째 slab class의 slab 크기와
 그 다음 slab class들의 slab 크기는 아래의 Arcus cache server 구동 옵션으로 설정한다.
 
-- \-n \< bytes \> : minimum space allocated from key+value+flags (default: 48)
+- \-n \<bytes\> : minimum space allocated from key+value+flags (default: 48)
   - 최소 크기의 slab 크기를 결정한다.
-- \-f \< factor \> : chunk size growth factor (default: 1.25)
+- \-f \<factor\> : chunk size growth factor (default: 1.25)
   - Slab class 별로 slab 크기의 증가 정도를 지정하며, 1.0보다 큰 값으로 지정해야 한다.
   
 
@@ -161,16 +161,16 @@ map의 최상위 hash table 구조, b+tree의 root node 주소가 이에 해당�
 
 Collection 유형에 따른 element 구조는 아래와 같다.
 
-- list/set element : \< data \>
+- list/set element : \<data\>
 
   각 element는 하나의 데이터 만을 가진다.
 
-- map element : \< field(map element key), data \>
+- map element : \<field(map element key), data\>
 
   map에서 각 element를 구분하기 위한 field를 필수적으로 가지며,
   field는 중복을 허용하지 않는다.
 
-- b+tree element : \< bkey(b+tree key), eflag(element flag), data \>
+- b+tree element : \<bkey(b+tree key), eflag(element flag), data\>
 
   b+tree에서 elements를 어떤 기준으로 정렬하기 위한 bkey를 필수적으로 가지며,
   옵션 사항으로 bkey 기반의 scan 시에 특정 element를 filtering하기 위한 eflag를 가질 수 있으며,
@@ -227,22 +227,22 @@ eflag에 대한 filter 조건은 아래와 같이 표현하며,
 eflag_filter: <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \< fwhere \> 
+- \<fwhere\> 
   - eflag 값에서 bitwise/compare 연산을 취할 시작 offset을 바이트 단위로 나타낸다.
     bitwise/compare 연산을 취할 데이터의 length는 \< fvalue \>의 length로 한다.
     예를 들어, eflag 전체 데이터를 선택한다면, \< fwhere \>는 0이어야 하고
-    \< fvalue \>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.
-- [\< bitwop \> \< foperand \>]
+    \<fvalue\>의 length는 eflag 전체 데이터의 length와 동일하여야 한다.
+- [\<bitwop\> \<foperand\>]
   - 생략 가능하며, eflag에 대한 bitwise 연산을 지정한다.
   - bitwise 연산이 지정되면 이 연산의 결과가 compare 연산의 대상이 되며,
     생략된다면 eflag 값 자체가 compare 연산의 대상이 된다.
   - \< bitwop \>는 “&”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.
   - \< foperand \>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
     \< foperand \>의 길이는 compare 연산을 취한 \<fvalue\>의 길이와 동일하여야 한다.
-- \< compop \> \< fvalue \>  
+- \<compop\> \<fvalue\>  
   - eflag에 대한 compare 연산을 지정한다.
-  - \< compop \>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,
-    \< fvalue \>는 compare 연산을 취할 대상 값으로 마찬가지로 hexadecimal로 표현한다.
+  - \<compop\>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,
+    \<fvalue\>는 compare 연산을 취할 대상 값으로 마찬가지로 hexadecimal로 표현한다.
   - IN 또는 NOT IN 조건을 명시할 수도 있다. 
     IN 조건은 "EQ" 연산과 comma separated hexadecimal values로 명시하면 되고,
     NOT IN 조건은 "NE" 연산과 comma separated hexadecimal values로 명시하면 된다.
@@ -270,21 +270,21 @@ Eflag 전체 변경은 새로운 eflag 값으로 교체하는 것이며,
 eflag_update: [<fwhere> <bitwop>] <fvalue>
 ```
 
-- [\< fwhere \> \< bitwop \>]
+- [\<fwhere\> \<bitwop\>]
   - eflag를 부분 변경할 경우만 지정한다.
-  - \< fwhere >은 eflag에서 부분 변경할 데이터의 시작 offset을 바이트 단위로 나타내며,
+  - \<fwhere>은 eflag에서 부분 변경할 데이터의 시작 offset을 바이트 단위로 나타내며,
     이 경우, 부분 변경할 데이터의 length는 뒤에 명시되는 \< fvalue \>의 length로 결정된다.
-  - \< bitwop \>는 부분 변경할 데이터에 대한 취할 bitwise 연산으로,
+  - \<bitwop\>는 부분 변경할 데이터에 대한 취할 bitwise 연산으로,
     “&”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 지정할 수 있다.
-- \< fvalue \>
+- \<fvalue\>
   - 변경할 new value를 나타낸다.
-  - 앞서 기술한 \< fwhere \>과 \< bitwop \>가 생략되면, eflag의 전체 데이터를 \< fvalue \>로 변경한다.
-    부분 변경을 위한 \< fwhere \>과 \< bitwop \>가 지정되면
-    \< fvalue \>는 eflag 부분 데이터에 대해 bitwise 연산을 취할 operand로 사용되며,
+  - 앞서 기술한 \<fwhere\>과 \<bitwop\>가 생략되면, eflag의 전체 데이터를 \< fvalue \>로 변경한다.
+    부분 변경을 위한 \<fwhere\>과 \<bitwop\>가 지정되면
+    \<fvalue\>는 eflag 부분 데이터에 대해 bitwise 연산을 취할 operand로 사용되며,
     bitwise 연산의 결과가 eflag의 new value로 변경된다.
 
 기존 eflag 값을 delete하여 eflag가 없는 상태로 변경할 수 있다.
-이를 위해서는 \< fwhere \>과 \< bitwop \>를 생략하고 \< fvalue \> 값으로 0을 주면 된다.
+이를 위해서는 \<fwhere\>과 \<bitwop\>를 생략하고 \<fvalue\> 값으로 0을 주면 된다.
 
 ### Item Attribute 설명
 

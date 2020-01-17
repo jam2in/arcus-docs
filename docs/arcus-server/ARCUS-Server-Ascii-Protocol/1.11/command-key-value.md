@@ -33,8 +33,8 @@ mget 명령은 1.11 버전부터 제공한다.
 mget <lenkeys> <numkeys>\r\n
 <"space separated keys">\r\n
 ```
-- \< ”space separated keys” \> - key list로, 스페이스(' ')로 구분한다.
-- \< lenkeys \>과 \< numkeys \> - key list 문자열의 길이와 key 개수를 나타낸다.
+- \<”space separated keys”\> - key list로, 스페이스(' ')로 구분한다.
+- \<lenkeys\>과 \<numkeys\> - key list 문자열의 길이와 key 개수를 나타낸다.
 
 ### deletion 명령
 
