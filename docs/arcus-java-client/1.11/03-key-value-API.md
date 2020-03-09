@@ -56,7 +56,7 @@ Future<Map<String, CollectionOperationStatus>> asyncSetBulk(Map<String, Object> 
 ```
 
 - 다수의 key-value item을 한번에 set한다.
-- 전자는 key list의 모든 key에 대해 동일한 obj로 set 연산을 한번에 수행하며, 
+- 전자는 key list의 모든 key에 대해 동일한 obj로 set 연산을 한번에 수행하며,
   후자는 map에 있는 모든 \<key, obj\>에 대해 set 연산을 한번에 수행한다.
 - 저장된 key-value item들은 모두 exp 초 이후에 삭제된다.
 
@@ -70,7 +70,7 @@ expiration은 key가 현재 시간부터 expire 될 때까지의 시간(초 단�
 
 ### Key-Value Item 조회
 
-하나의 key에 대한 value를 조회하는 API와 
+하나의 key에 대한 value를 조회하는 API와
 여러 key들의 value들을 한번에 조회하는 bulk API를 제공한다.
 
 ```java
@@ -91,7 +91,7 @@ Future<Map<String,Object>> asyncGetBulk(String... keys)
 
 ### Key-Value Item 값의 증감
 
-key-value item에서 value 부분의 값을 증가시키거나 감소시키는 연산이다. 
+key-value item에서 value 부분의 값을 증가시키거나 감소시키는 연산이다.
 (**[주의] 증감 연산을 사용하려면, 반드시 value 값이 String 유형의 숫자 값이어야 한다.**)
 
 
@@ -102,7 +102,7 @@ Future<Long> asyncDecr(String key, int by)
 
 - key에 저장된 정수형 데이터의 값을 by 만큼 증가/감소시킨다.
   key가 cache에 존재하지 않으면 증감연산은 수행되지 않는다.
-- 반환되는 값은 증감 후의 값이다. 
+- 반환되는 값은 증감 후의 값이다.
 
 
 ```java

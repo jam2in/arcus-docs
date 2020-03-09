@@ -9,7 +9,7 @@ Set item은 하나의 key에 대해 unique value의 집합을 저장한다. 주�
 
 Set item에 수행 가능한 기본 연산들은 다음과 같다.
 
-- [Set Item 생성](05-set-API.md#set-item-%EC%83%9D%EC%84%B1) (Set item 삭제는 key-value item 삭제 함수로 수행한다) 
+- [Set Item 생성](05-set-API.md#set-item-%EC%83%9D%EC%84%B1) (Set item 삭제는 key-value item 삭제 함수로 수행한다)
 - [Set Element 삽입](05-set-API.md#set-element-%EC%82%BD%EC%9E%85)
 - [Set Element 삭제](05-set-API.md#set-element-%EC%82%AD%EC%A0%9C)
 - [Set Element 존재 여부 확인](05-set-API.md#set-element-존재-여부-확인)
@@ -371,7 +371,7 @@ memcached_return_t memcached_sop_piped_insert(memcached_st *ptr, const char *key
                                               const size_t num_of_piped_items,
                                               const char * const *values, const size_t *values_length,
                                               memcached_coll_create_attrs_st *attributes,
-                                              memcached_return_t *results, memcached_return_t *piped_rc) 
+                                              memcached_return_t *results, memcached_return_t *piped_rc)
 ```
 
 - key, key_length: 하나의 key를 지정
@@ -379,7 +379,7 @@ memcached_return_t memcached_sop_piped_insert(memcached_st *ptr, const char *key
 - values, values_length: 다수 element 각각의 value와 그 길이
 - attributes: 해당 set이 없을 시에, attributes에 따라 set을 생성 후에 삽입한다.
 
-둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다. 
+둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다.
 
 ``` c
 memcached_return_t memcached_sop_piped_insert_bulk(memcached_st *ptr, const char * const *keys, const size_t *keylengths,

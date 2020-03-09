@@ -10,7 +10,7 @@ Set item은 하나의 key에 대해 unique value의 집합을 저장한다.
 
 Set item에 수행가능한 기본 연산들은 다음과 같다.
 
-- [Set Item 생성](05-set-API.md#set-item-생성) (Set item 삭제는 key-value item 삭제 함수로 수행한다) 
+- [Set Item 생성](05-set-API.md#set-item-생성) (Set item 삭제는 key-value item 삭제 함수로 수행한다)
 - [Set Element 삽입](05-set-API.md#set-element-%EC%82%BD%EC%9E%85)
 - [Set Element 삭제](05-set-API.md#set-element-%EC%82%AD%EC%A0%9C)
 - [Set Element 존재유무 확인](05-set-API.md#set-element-%EC%A1%B4%EC%9E%AC%EC%9C%A0%EB%AC%B4-%ED%99%95%EC%9D%B8)
@@ -47,7 +47,7 @@ CollectionFuture<Boolean> asyncSopCreate(String key, ElementValueType valueType,
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.CREATED             | 생성 성공
 False        | CollectionResponse.EXISTS              | 동일 key 가 이미 존재함
@@ -85,7 +85,7 @@ try {
 2. timeout은 1초로 지정했다. 생성에 성공하면 future는 true를 반환한다.
    지정한 시간에 생성 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
    TimeoutException이 발생한다.
-3. 생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.  
+3. 생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.
 
 
 ### Set Element 삽입
@@ -99,12 +99,12 @@ CollectionFuture<Boolean> asyncSopInsert(String key, Object value, CollectionAtt
 - key: 삽입 대상 set의 key
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 set이 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty set item 생성 후에 element 삽입한다.
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.STORED              | Set collection이 존재하여 element 만 삽입됨
 True         | CollectionResponse.CREATED_STORED      | Set collection이 create되고 element가 삽입됨
@@ -171,7 +171,7 @@ CollectionFuture<Boolean> asyncSopDelete(String key, Object value, boolean dropI
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.DELETED             | Set에서 element만 삭제됨
 True         | CollectionResponse.DELETED_DROPPED     | Set에서 element 삭제 후, empty set이 되어서 그 set도 삭제함
@@ -230,7 +230,7 @@ CollectionFuture<Boolean> asyncSopExist(String key, Object value)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.EXIST               | Element가 존재함
 True         | CollectionResponse.NOT_EXIST           | Element가 존재하지 않음
@@ -298,7 +298,7 @@ CollectionFuture<Set<Object>> asyncSopGet(String key, int count, boolean withDel
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element를 조회만 한 상태
 not null     | CollectionResponse.DELETED             | Element를 조회하고 삭제한 상태
@@ -359,10 +359,10 @@ Set에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.
 CollectionFuture <Map<Integer, CollectionOperationStatus>>
 asyncSopPipedInsertBulk(String key, List<Object> valueList, CollectionAttributes attributesForCreate)
 ```
-- key: 삽입 대상 set의 key 
-- valueList: 삽입할 element들의 value list 
+- key: 삽입 대상 set의 key
+- valueList: 삽입할 element들의 value list
 - attributesForCreate: 대상 set이 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty set item 생성 후에 element 삽입한다.
 
 둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다.
@@ -375,7 +375,7 @@ asyncSopInsertBulk(List<String> keyList, Object value, CollectionAttributes attr
 - key: 삽입 대상 set들의 key list
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 set이 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty set item 생성 후에 element 삽입한다.
 
 
@@ -451,7 +451,7 @@ CollectionFuture<Map<Object, Boolean>> asyncSopPipedExistBulk(String key, List<O
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.EXIST               | Element가 존재함
 not null     | CollectionResponse.NOT_EXIST           | Element가 존재하지 않음

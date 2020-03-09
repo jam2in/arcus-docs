@@ -22,17 +22,17 @@ OperationFuture<Boolean> flush(String prefix)
 아래는 특정 prefix를 flush하는 예제이다.
 
 ```java
-OperationFuture<Boolean> future = null; 
-try { 
-    future = client.flush(“myprefix”); 
-    boolean result = future.get(1000L, TimeUnit.MILLISECONDS); 
-    System.out.println(result); 
-} catch (InterruptedException e) { 
-    future.cancel(true); 
-} catch (TimeoutException e) { 
-    future.cancel(true); 
-} catch (ExecutionException e) { 
-    future.cancel(true); 
+OperationFuture<Boolean> future = null;
+try {
+    future = client.flush(“myprefix”);
+    boolean result = future.get(1000L, TimeUnit.MILLISECONDS);
+    System.out.println(result);
+} catch (InterruptedException e) {
+    future.cancel(true);
+} catch (TimeoutException e) {
+    future.cancel(true);
+} catch (ExecutionException e) {
+    future.cancel(true);
 }
 ```
 

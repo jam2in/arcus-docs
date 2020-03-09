@@ -3,10 +3,10 @@ Chapter 4. SET 명령
 
 Set collection에 관한 명령은 아래와 같다.
 
-- [Set collection 생성: sop create](command-set-collection.md#sop-create---set-collection-%EC%83%9D%EC%84%B1)
+- [Set collection 생성: sop create](command-set-collection.md#sop-create-set-collection-%EC%83%9D%EC%84%B1)
 - Set collection 삭제: delete (기존 key-value item의 삭제 명령을 그대로 사용)
 
-Set element에 관한 명령은 아래와 같다. 
+Set element에 관한 명령은 아래와 같다.
 
 - [Set element 삽입: sop insert](command-set-collection.md#sop-insert-set-element-%EC%82%BD%EC%9E%85)
 - [Set element 삭제: sop delete](command-set-collection.md#sop-delete-set-element-%EC%82%AD%EC%A0%9C)

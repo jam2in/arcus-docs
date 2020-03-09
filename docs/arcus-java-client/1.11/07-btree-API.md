@@ -75,7 +75,7 @@ eflag filter 조건은 아래와 같이 표현한다.
   - **compare 값**은 eflag 값에 대해 compare 연산을 취한 operand로 eflag filter에 명시된다.
 - 선택적으로, compare 연산의 수행 전에 eflag의 전체/부분 값에 대해 **bitwise 값**으로 **bitwise 연산**을 먼저 취할 수 있다.
   - **bitwise 값**은 eflag 값에 대해 bitwise 연산을 취한 operand로 eflag filter에 명시된다.
-  - **현재, bitwise 값의 길이는 compare 값의 길이와 동일해야 하는 제약이 있다.** 
+  - **현재, bitwise 값의 길이는 compare 값의 길이와 동일해야 하는 제약이 있다.**
 
 eflag filter 조건에서 compare/bitwise 연산이 수행될 eflag의 전체/부분 값은 아래와 같이 선택한다.
 
@@ -115,7 +115,7 @@ compare offset는 디폴트로 0을 값으로 가지면, bitwise 연산의 설�
 ElementFlagFilter(CompOperands compOperand, byte[] compValue)
 ```
 
-ElementFlagFilter 객체의 compare offset을 변경하거나 
+ElementFlagFilter 객체의 compare offset을 변경하거나
 bitwise 연산 설정을 하고자 한다면, 아래 메소드를 사용할 수 있다.
 
 ```java
@@ -128,9 +128,9 @@ ElementFlagFilter setBitOperand(BitWiseOperands bitOp, byte[] bitCompValue)
 첫째 예는 b+tree에 저장된 전체 element들에서 eflag 값이 0x0102와 일치하는 element의 개수를 조회한다.
 
 ```java
-ElementFlagFilter filter = new ElementFlagFilter(CompOperands.Equal, new byte[] { 1, 2 }); // (1) 
-CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
-Integer count = future.get(); 
+ElementFlagFilter filter = new ElementFlagFilter(CompOperands.Equal, new byte[] { 1, 2 }); // (1)
+CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter);
+Integer count = future.get();
 ```
 
 1. Eflag가 0x0102와 일치 여부를 판단하는 filter를 생성한다.
@@ -141,12 +141,12 @@ Integer count = future.get();
 element의 개수를 조회하는 예제이다.
 
 ```java
-ElementFlagFilter filter = new ElementFlagFilter(CompOperands.Equal, new byte[] { 1 }); // (1) 
-filter.setBitOperand(BitWiseOperands.AND, new byte[] { 1 }); // (2) 
-filter.setCompareOffset(1); // (3) 
+ElementFlagFilter filter = new ElementFlagFilter(CompOperands.Equal, new byte[] { 1 }); // (1)
+filter.setBitOperand(BitWiseOperands.AND, new byte[] { 1 }); // (2)
+filter.setCompareOffset(1); // (3)
 
-CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
-Integer count = future.get(); 
+CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter);
+Integer count = future.get();
 ```
 
 1. Eflag가 0x01와 일치 여부를 판단하는 filter를 생성한다.
@@ -187,15 +187,15 @@ ElementMultiFlagsFilter 사용 예로,
 즉, IN 연산의 filtering을 수행한다.
 
 ```java
-mentMultiFlagsFilter filter = new ElementMultiFlagsFilter(CompOperands.Equal); // (1) 
+mentMultiFlagsFilter filter = new ElementMultiFlagsFilter(CompOperands.Equal); // (1)
 filter.addCompValue(new byte[] { 1, 2 }); // (2)
 filter.addCompValue(new byte[] { 1, 4 }); // (3)
-CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter); 
-Integer count = future.get(); 
+CollectionFuture<Integer> future = mc.asyncBopGetItemCount(KEY, MIN_BKEY, MAX_BKEY, filter);
+Integer count = future.get();
 ```
 
 1. filter를 생성한다.
-2. 일치 여부 판단을 위한 값 0x0102 등록 
+2. 일치 여부 판단을 위한 값 0x0102 등록
 3. 일치 여부 판단을 위한 값 0x0104 등록
 
 ElementMultiFlagsFilter로 최대 100개 compare value를 지정할 수 있으며,
@@ -242,7 +242,7 @@ CollectionFuture<Boolean> future = mc.asyncBopUpdate(KEY, BKEY, eflagUpdate, nul
 CollectionFuture<Boolean> asyncBopCreate(String key, ElementValueType valueType, CollectionAttributes attributes)
 ```
 
-- key: 생성할 b+tree item의 key 
+- key: 생성할 b+tree item의 key
 - valueType: b+tree에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.
   - ElementValueType.STRING
   - ElementValueType.LONG
@@ -258,7 +258,7 @@ CollectionFuture<Boolean> asyncBopCreate(String key, ElementValueType valueType,
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.CREATED             | 생성 성공
 False        | CollectionResponse.EXISTS              | 동일 key가 이미 존재함
@@ -321,15 +321,15 @@ asyncBopInsert(String key, byte[] bkey, byte[] eFlag, Object value, CollectionAt
 
 - key: 삽입 대상 b+tree의 key
 - bkey: 삽입할 element의 bkey(b+tree key)
-- eflag: 삽입할 element의 eflag(element flag), that is optional. 
+- eflag: 삽입할 element의 eflag(element flag), that is optional.
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.STORED              | Element만 삽입함
 True         | CollectionResponse.CREATED_STORED      | B+tree collection 생성하고 element를 삽입함
@@ -401,16 +401,16 @@ B+tree에 bkey에 해당하는 엘리먼트를 insert 하거나 upsert 할 때 �
 - bkey: 삽입할 element의 bkey(b+tree key)
   - bkey는 element의 key로 long또는 byte[1~31] 유형을 사용할 수 있다.
   - 0이상의 값으로만 지정할 수 있고. key가 존재하는 상태에서 bkey와 value가 저장된다 하더라도
-     key에 설정된 expire time은 변하지 않는다. 
+     key에 설정된 expire time은 변하지 않는다.
 - eflag: 삽입할 element의 eflag(element flag)
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.STORED              | Element만 삽입함
 True         | CollectionResponse.CREATED_STORED      | B+tree collection 생성하고 element를 삽입함
@@ -450,8 +450,8 @@ public void testInsertAndGetTrimmedLongBKey() throws Exception {
 
 	// cause an overflow
 	assertTrue(mc.asyncBopInsert(key, 1000, null, "val", null).get());
-	
-	// expecting that bkey 10 was trimmed out and the first bkey is 11 
+
+	// expecting that bkey 10 was trimmed out and the first bkey is 11
 	Map<Integer, Element<Object>> posMap = mc.asyncBopGetByPosition(key, BTreeOrder.ASC, 0).get();
 	assertNotNull(posMap);
 	assertNotNull(posMap.get(0)); // the first element
@@ -466,8 +466,8 @@ public void testInsertAndGetTrimmedLongBKey() throws Exception {
 	assertNotNull(element);
 	assertEquals(11L, element.getLongBkey());
 	System.out.println("The insertion was succeeded and an element " + f.getElement() + " was trimmed out");
-	
-	// finally check the first bkey which is expected to be 12 
+
+	// finally check the first bkey which is expected to be 12
 	posMap = mc.asyncBopGetByPosition(key, BTreeOrder.ASC, 0).get();
 	assertNotNull(posMap);
 	assertNotNull(posMap.get(0)); // the first element
@@ -498,7 +498,7 @@ asyncBopUpsert(String key, byte[] bkey, byte[] eFlag, Object value, CollectionAt
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.STORED              | Element만 삽입함
 True         | CollectionResponse.CREATED_STORED      | B+tree collection 생성하고 element를 삽입함
@@ -575,7 +575,7 @@ CollectionFuture<Boolean> asyncBopUpdate(String key, byte[] bkey, ElementFlagUpd
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.UPDATED             | Element가 변경됨
 False        | CollectionResponse.NOT_FOUND           | Key miss (주어진 key에 해당하는 item이 없음)
@@ -633,7 +633,7 @@ CollectionFuture<Boolean>
 asyncBopDelete(String key, byte[] bkey, ElementFlagFilter eFlagFilter, boolean dropIfEmpty)
 ```
 
-둘째, B+tree에서 from부터 to까지의 bkey를 가진 elements를 탐색하면서 eFlagFilter 조건을 만족하는 
+둘째, B+tree에서 from부터 to까지의 bkey를 가진 elements를 탐색하면서 eFlagFilter 조건을 만족하는
 elements를 삭제한다. count가 0이면 bkey range에서 eFlagFilter 조건을 만족하는 모든 element를 삭제하고
 0보다 크면, count 개의 elements만 삭제한다.
 
@@ -645,7 +645,7 @@ asyncBopDelete(String key, byte[] from, byte[] to, ElementFlagFilter eFlagFilter
 ```
 
 - key: 삭제 대상 b+tree의 key
-- bkey 또는 \<from, to\>: 삭제할 element의 bkey(b+tree key) 또는 bkey range 
+- bkey 또는 \<from, to\>: 삭제할 element의 bkey(b+tree key) 또는 bkey range
 - eFlagFilter: eflag에 대한 filter 조건
 - count: 삭제할 element 개수를 지정, 0이면 조건 만족하는 모든 element 삭제
 - dropIfEmpty: element 삭제로 empty b+tree가 되면, 그 b+tree 자체를 삭제할 지를 지정
@@ -653,7 +653,7 @@ asyncBopDelete(String key, byte[] from, byte[] to, ElementFlagFilter eFlagFilter
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.DELETED             | Element만 삭제함
 True         | CollectionResponse.DELETED_DROPPED     | Element 삭제하고 B+tree 자체도 삭제함
@@ -704,7 +704,7 @@ try {
 
 ### B+tree Element 값의 증감
 
-B+tree element의 값을 증가/감소 시키는 함수는 아래와 같다. 
+B+tree element의 값을 증가/감소 시키는 함수는 아래와 같다.
 Element의 값은 String 형의 숫자이어야 한다.
 
 ```java
@@ -770,7 +770,7 @@ try {
 }
 ```
 
-1. 이 예제는 b+tree에 저장된 element의 값을 2 만큼 increment 한다. 
+1. 이 예제는 b+tree에 저장된 element의 값을 2 만큼 increment 한다.
 2. timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
    JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.
 3. Element increment 후 조회에 대한 자세한 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.
@@ -789,7 +789,7 @@ asyncBopGetItemCount(String key, byte[] from, byte[] to, ElementFlagFilter eFlag
 ```
 
 - key: b+tree item의 key
-- \< from, to \>: element 조회 범위를 나타내는 bkey range 
+- \< from, to \>: element 조회 범위를 나타내는 bkey range
 - eFlagFilter: eflag에 대한 filter 조건
 
 
@@ -865,14 +865,14 @@ asyncBopGet(String key, byte[] from, byte[] to, ElementFlagFilter eFlagFilter, i
 ```
 
 - key: b+tree item의 key
-- bkey 또는 \<from, to\>: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range 
+- bkey 또는 \<from, to\>: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range
 - eFlagFilter: eflag에 대한 filter 조건
 - withDelete: element 조회와 함께 그 element를 삭제할 것인지를 지정
 - dropIfEmpty: element 삭제로 empty b+tree가 되면, 그 b+tree 자체도 삭제할 것인지를 지정
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element만 조회, 조회 범위에 b+tree trim 영역 없음
 not null     | CollectionResponse.TRIMMED             | Element만 조회, 조회 범위에 b+tree trim 영역 있음
@@ -963,16 +963,16 @@ CollectionFuture<Map<Integer, CollectionOperationStatus>>
 asyncBopPipedInsertBulk(String key, Map<Long, Object> elements, CollectionAttributes attributesForCreate)
 ```
 
-- key: 삽입 대상 b+tree의 key 
+- key: 삽입 대상 b+tree의 key
 - elements: 삽입할 element들
   - List \< Element \< Object \> \> 유형
   - Map\< Long, Object \> 유형
 - attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.
 
 
-둘째, 여러 key들이 가리키는 b+tree들에 각각 하나의 element를 삽입하는 함수이다. 
+둘째, 여러 key들이 가리키는 b+tree들에 각각 하나의 element를 삽입하는 함수이다.
 
 ```java
 Future<Map<String, CollectionOperationStatus>>
@@ -986,7 +986,7 @@ asyncBopInsertBulk(List<String> keyList, byte[] bkey, byte[] eFlag, Object value
 - eflag: 삽입할 element의 eflag(element flag)
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 b+tree가 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty b+tree item 생성 후에 element 삽입한다.
 
 
@@ -1024,7 +1024,7 @@ try {
 
     if (!result.isEmpty()) { // (4)
         System.out.println("일부 item이 insert 실패 하였음.");
-        
+
         for (Map.Entry<Integer, CollectionOperationStatus> entry : result.entrySet()) {
             System.out.print("실패한 아이템=" + elements.get(entry.getKey()));
             System.out.println(", 실패원인=" + entry.getValue().getResponse());
@@ -1081,7 +1081,7 @@ asyncBopGetBulk(List<String> keyList, byte[] from, byte[] to, ElementFlagFilter 
 ```
 
 - keyList: b+tree items의 key list
-- bkey 또는 \<from, to\>: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range 
+- bkey 또는 \<from, to\>: element 조회 대상이 되는 bkey 또는 조회 범위를 나타내는 bkey range
 - eFlagFilter: eflag에 대한 filter 조건
   - eflag filter 조건을 지정하지 않으려면, ElementFlagFilter.DO_NOT_FILTER를 입력한다.
 - offset, count: bkey range와 eflag filter 조건을 만족하는 elements에서 실제 조회할 element의 offset과 count 지정
@@ -1091,7 +1091,7 @@ asyncBopGetBulk(List<String> keyList, byte[] from, byte[] to, ElementFlagFilter 
 이러한 Map은 개별 b+tree item의 key와 그 b+tree에서 조회한 결과를 담고 있는 BTreeGetResult 객체이다.
 BTreeGetResult 객체를 통해 개별 조회 결과를 아래와 같이 조회할 수 있다.
 
-BTreeGetResult.getElements() |  BtreeGetResult.getCollectionResponse() | 설명 
+BTreeGetResult.getElements() |  BtreeGetResult.getCollectionResponse() | 설명
 ---------------------------- | --------------------------------------- | -------
 not null                     | CollectionResponse.OK                   | Element 조회, 조회 범위에 b+tree trim 영역 없음
 not null                     | CollectionResponse.TRIMMED              | Element 조회, 조회 범위에 b+tree trim 영역 있음
@@ -1168,7 +1168,7 @@ for(Entry<String, BTreeGetResult<Long, Object>> entry : results.entrySet()) { //
 ### B+Tree Element Sort-Merge 조회
 
 다수의 B+tree들에 대해 element 조회를 sort-merge 방식으로 수행하는 기능이다.
-물리적으로 여러 b+tree들로 구성되지만, 이들이 논리적으로 하나의 거대한 b+tree라 가정하고, 
+물리적으로 여러 b+tree들로 구성되지만, 이들이 논리적으로 하나의 거대한 b+tree라 가정하고,
 이러한 b+tree에 대해 element 조회를 수행하는 기능이다.
 
 smget 동작은 조회 범위와 어떤 b+tree의 trim 영역과의 겹침에 대한 처리로,
@@ -1209,7 +1209,7 @@ missed keys에 대한 DB 조회가 offset으로 skip된 element를 가지는 경
 
 여러 b+tree들에 대해 sort-merge get을 수행하는 함수는 아래와 같다.
 여러 b+tree들로 부터 from부터 to까지의 bkey를 가지고 있으면서 eflag filter조건을 만족하는 element를 찾아
-sort merge하면서, count개의 element를 조회한다. 
+sort merge하면서, count개의 element를 조회한다.
 
 ```java
 SMGetFuture<List<SMGetElement<Object>>>
@@ -1219,7 +1219,7 @@ asyncBopSortMergeGet(List<String> keyList, byte[] from, byte[] to, ElementFlagFi
 ```
 
 - keyList: b+tree items의 key list
-- \< from, to \>: 조회 범위를 나타내는 bkey range 
+- \< from, to \>: 조회 범위를 나타내는 bkey range
 - eFlagFilter: eflag에 대한 filter 조건
   - eflag filter 조건을 지정하지 않으려면, ElementFlagFilter.DO_NOT_FILTER를 입력한다.
 - count: bkey range와 eflag filter 조건을 만족하는 elements에서 실제 조회할 element의 count 지정
@@ -1230,7 +1230,7 @@ asyncBopSortMergeGet(List<String> keyList, byte[] from, byte[] to, ElementFlagFi
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element 조회, No duplicate bkey
 not null     | CollectionResponse.DUPLICATED          | Element 조회, Duplicate bkey 존재
@@ -1277,7 +1277,7 @@ try {
         System.out.print("Missed key : " + m.getKey());
         System.out.println(", response : " + m.getValue().getResponse());
     }
-    
+
     for (SMGetTrimKey e : future.getTrimmedKeys()) { // (6)
         System.out.println("Trimmed key : " + e.getKey() + ", bkey : " + e.getBkey());
     }
@@ -1292,7 +1292,7 @@ try {
 
 1. 예제는 “KeyA”, “KeyB”, “KeyC”에 저장된 element들 중 bkey가 0부터 100까지 해당하는 element들 10개를 조회한다.
    - 주의할 점은 key로 주어진 b+tree의 attribute설정은 모두 같아야 한다. 그렇지 않으면 오류가 발생한다.
-2. ElementFlagFilter는 bkey에 지정된 eflag가 elementFlagFIlter로 지정된 조건을 만족하는 element들만 조회하는 조건이다    
+2. ElementFlagFilter는 bkey에 지정된 eflag가 elementFlagFIlter로 지정된 조건을 만족하는 element들만 조회하는 조건이다
    예제에서는 eflag filter를 사용하지 않음으로 조회하였다.
 3. timeout은 1초로 지정했다. 지정한 시간에 조회 결과가 넘어 오지 않거나
    JVM의 과부하로 operation queue에서 처리되지 않을 경우 TimeoutException이 발생한다.
@@ -1345,7 +1345,7 @@ public void testLongBKeyAsc() throws Exception {
 	for (long each : longBkeys) {
 		arcusClient.asyncBopInsert(key, each, null, "val", attrs).get();
 	}
-	
+
 	// bop position
 	for (int i=0; i<longBkeys.length; i++) {
 		CollectionFuture<Integer> f = arcusClient.asyncBopFindPosition(key, longBkeys[i], BTreeOrder.ASC);
@@ -1362,7 +1362,7 @@ public void testLongBKeyDesc() throws Exception {
 	for (long each : longBkeys) {
 		arcusClient.asyncBopInsert(key, each, null, "val", attrs).get();
 	}
-	
+
 	// bop position
 	for (int i=0; i<longBkeys.length; i++) {
 		CollectionFuture<Integer> f = arcusClient.asyncBopFindPosition(key, longBkeys[i], BTreeOrder.DESC);
@@ -1392,7 +1392,7 @@ asyncBopGetByPosition(String key, BTreeOrder order, int from, int to)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 not null     | CollectionResponse.END                 | Element를 성공적으로 조회
 null         | CollectionResponse.NOT_FOUND           | Key miss (주어진 key에 해당하는 item이 없음)
@@ -1413,7 +1413,7 @@ public void testLongBKeyMultiple() throws Exception {
 	for (long each : longBkeys) {
 		arcusClient.asyncBopInsert(key, each, null, "val", attrs).get();
 	}
-	
+
 	// 테스트 : 5 부터 8 위치의 엘리먼트를 조회한다.
 	int posFrom = 5;
 	int posTo = 8;

@@ -13,7 +13,7 @@ List item에 대해 수행가능한 기본 연산들은 아래와 같다.
 
 - [List Item 생성](04-list-API.md#list-item-%EC%83%9D%EC%84%B1) (List Item 삭제는 key-value item 삭제 함수로 수행한다)
 - [List Element 삽입](04-list-API.md#list-element-%EC%82%BD%EC%9E%85)
-- [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C) 
+- [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C)
 - [List Element 조회](04-list-API.md#list-element-%EC%A1%B0%ED%9A%8C)
 
 여러 list element들에 대해 한번에 일괄 수행하는 연산은 다음과 같다.
@@ -45,7 +45,7 @@ CollectionFuture<Boolean> asyncLopCreate(String key, ElementValueType valueType,
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.CREATED             | 생성 성공
 False        | CollectionResponse.EXISTS              | 동일 key 가 이미 존재함
@@ -86,8 +86,8 @@ try {
 2. timeout은 1초로 지정했다. 생성에 성공하면 future는 true를 반환한다.
    지정한 시간에 생성 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우
    TimeoutException이 발생한다.
-3. 생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.  
-   
+3. 생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.
+
 
 ### List Element 삽입
 
@@ -102,16 +102,16 @@ List에 새로운 element를 삽입한다.
 - key: 삽입 대상 list의 key
 - index: 삽입 위치로 0-based index로 지정
   - 0, 1, 2, ... : list의 앞에서 시작하여 각 element 위치를 나타냄
-  - -1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄 
+  - -1, -2, -3, ... : list의 뒤에서 시작하여 각 element 위치를 나타냄
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.
 
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.STORED              | List collection이 존재하여 element 만 삽입됨
 True         | CollectionResponse.CREATED_STORED      | List collection이 create되고 element가 삽입됨
@@ -119,7 +119,7 @@ False        | CollectionResponse.NOT_FOUND           | Key miss (주어진 key�
 Fasle        | CollectionResponse.TYPE_MISMATCH       | 해당 key가 list가 아님
 False        | CollectionResponse.OVERFLOWED          | Overflow 상태임
 False        | CollectionResponse.OUT_OF_RANGE        | 삽입 위치가 list의 element index 범위를 넘어섬
-             
+
 
 List element를 삽입하는 예제는 아래와 같다.
 
@@ -181,7 +181,7 @@ CollectionFuture<Boolean> asyncLopDelete(String key, int from, int to, boolean d
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.DELETED             | List에서 element만 삭제됨
 True         | CollectionResponse.DELETED_DROPPED     | List에서 element 삭제 후, empty list가 되어서 그 list도 삭제함
@@ -250,7 +250,7 @@ CollectionFuture<List<Object>> asyncLopGet(String key, int from, int to, boolean
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element를 조회만 한 상태
 not null     | CollectionResponse.DELETED             | Element를 조회하고 삭제한 상태
@@ -303,7 +303,7 @@ try {
 1. index가 0부터 5사이에 있는 element들을 조회한다.
    - withDelete값이 true이면 조회와 동시에 list collection에서 element를 삭제한다.
    - dropIfEmpty값이 true이면 element를 삭제한 다음 list collection이 비어있게 되면 list도 함께 삭제한다.
-2. timeout은 1초로 지정했다. 
+2. timeout은 1초로 지정했다.
    지정한 시간에 조회 결과가 넘어 오지 않거나 JVM의 과부하로 operation queue에서 처리되지 않을 경우,
    TimeoutException이 발생한다.
    future.get()의 반환 결과는 다음과 같다.
@@ -323,13 +323,13 @@ try {
 CollectionFuture <Map<Integer, CollectionOperationStatus>>
 asyncLopPipedInsertBulk(String key, int index, List<Object> valueList, CollectionAttributes attributesForCreate)
 ```
-- key: 삽입 대상 list의 key 
+- key: 삽입 대상 list의 key
 - index: 삽입 위치로 0-based index로 지정
   - -1이면 list의 제일 뒤에
   - 0이면 list의 제일 앞에 삽입한다.
-- valueList: 삽입할 element들의 value list 
+- valueList: 삽입할 element들의 value list
 - attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.
 
 둘째, 여러 key들이 가리키는 list들에 각각 동일한 하나의 element를 삽입하는 함수이다.
@@ -347,7 +347,7 @@ keyList로 지정된 모든 key에 대해 하나의 element를 삽입니다.
   - 0이면 list의 제일 앞에 삽입한다.
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 list가 존재하지 않을 시의 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty list item 생성 후에 element 삽입한다.
 
 

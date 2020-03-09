@@ -24,7 +24,7 @@ Arcus cache server의 key-value 모델은 아래의 기본 제약 사항을 가�
 
 ### 서비스코드
 
-서비스코드(service code)는 Arcus에서 cache cloud를 구분하는 코드이다. 
+서비스코드(service code)는 Arcus에서 cache cloud를 구분하는 코드이다.
 Arcus cache cloud 서비스를 응용들에게 제공한다는 의미에서 "서비스코드"라는 용어를 사용하게 되었다.
 
 하나의 응용에서 하나 이상의 Arcus cache cloud를 구축하여 사용할 수 있다.
@@ -38,7 +38,7 @@ Arcus admin은 ZooKeeper를 이용하여 각 서비스 코드에 해당하는 Ar
 특정 서비스 코드에 대한 cache server list를 관리하며,
 cache server 추가 및 삭제에 대해 cache server list를 최신 상태로 유지하며,
 서비스 코드에 대한 cache server list 정보를 arcus client에게 전달한다.
-Arcus admin은 highly available하여야 하므로, 
+Arcus admin은 highly available하여야 하므로,
 여러 ZooKeeper 서버들을 하나의 ZeeKeeper ensemble로 구성하여 사용한다.
 
 ### Cache Key

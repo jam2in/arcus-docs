@@ -29,7 +29,7 @@ Map item에 대해 수행가능한 기본 연산은 다음과 같다.
 CollectionFuture<Boolean> asyncMopCreate(String key, ElementValueType valueType, CollectionAttributes attributes)
 ```
 
-- key: 생성할 map item의 key 
+- key: 생성할 map item의 key
 - valueType: map에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.
   - ElementValueType.STRING
   - ElementValueType.LONG
@@ -45,7 +45,7 @@ CollectionFuture<Boolean> asyncMopCreate(String key, ElementValueType valueType,
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.CREATED             | 생성 성공
 False        | CollectionResponse.EXISTS              | 동일 key가 이미 존재함
@@ -106,12 +106,12 @@ CollectionFuture<Boolean> asyncMopInsert(String key, String mkey, Object value, 
 - mkey: 삽입할 element의 mkey
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.STORED              | Map collection이 존재하여 element만 삽입함
 True         | CollectionResponse.CREATED_STORED      | Map collection 생성하고 element를 삽입함
@@ -175,7 +175,7 @@ CollectionFuture<Boolean> asyncMopUpdate(String key, String mkey, Object value)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.UPDATED             | Element가 변경됨
 False        | CollectionResponse.NOT_FOUND           | Key miss (주어진 key에 해당하는 item이 없음)
@@ -215,7 +215,7 @@ asyncMopDelete(String key, String mkey, boolean dropIfEmpty)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.DELETED             | Element만 삭제함
 True         | CollectionResponse.DELETED_DROPPED     | Element 삭제하고 Map 자체도 삭제함
@@ -294,7 +294,7 @@ asyncMopGet(String key, List<String> mkeyList, boolean withDelete, boolean dropI
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명 
+future.get() | future.operationStatus().getResponse() | 설명
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element만 조회
 not null     | CollectionResponse.DELETED             | Element를 조회하고 삭제한 상태
@@ -366,11 +366,11 @@ CollectionFuture<Map<Integer, CollectionOperationStatus>>
 asyncMopPipedInsertBulk(String key, Map<String, Object> elements, CollectionAttributes attributesForCreate)
 ```
 
-- key: 삽입 대상 map의 key 
+- key: 삽입 대상 map의 key
 - elements: 삽입할 element들
   - Map\<String, Object\> 유형
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 
@@ -385,7 +385,7 @@ asyncMopInsertBulk(List<String> keyList, String mkey, Object value, CollectionAt
 - mkey: 삽입할 element의 mkey
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다. 
+  - null: element 삽입하지 않는다.
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 
@@ -423,7 +423,7 @@ try {
 
     if (!result.isEmpty()) { // (4)
         System.out.println("일부 item이 insert 실패 하였음.");
-        
+
         for (Map.Entry<Integer, CollectionOperationStatus> entry : result.entrySet()) {
             System.out.print("실패한 아이템=" + elements.get(entry.getKey()));
             System.out.println(", 실패원인=" + entry.getValue().getResponse());

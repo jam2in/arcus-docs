@@ -87,7 +87,7 @@ back-end 데이터 저장소로 요청을 보내는 것이 더 좋은 선택이 
 ### Expiretime 설정
 
 Expiretime은 초 단위로 지정된 시간만큼 미래의 시간인 Unix Time으로 변경되어 저장된다.
-그러나, '''expire time이 30일을 초과하면 1970년 기준의 Unix time으로 변경된다.''' 
+그러나, '''expire time이 30일을 초과하면 1970년 기준의 Unix time으로 변경된다.'''
 예를 들어, expiretime을 1000 * 60 * 60과 같은 식으로 등록을 하게 되면 대략 40일 정도가 되는데,
 이는 1970년 기준의 unix time으로 인식되어 아주 옛날 시간이 되어 버리고 즉각 expire하게 된다.
  '''따라서 client에서는 분명히 저장했다고 생각하여 retrieval command(get, gets)를 수행했을 경우에
@@ -106,7 +106,7 @@ boolean result = setResult.get(300L, TimeUnit.MILLISECONDS);
 
 위 예제는 Arcus cache server에 “testValue”를 저장할 때 timeout값을 300ms로 지정한 코드이다.
 
-첫째, 이 코드가 실행되는 시점에서 full GC(garbage collection)가 발생했고, 
+첫째, 이 코드가 실행되는 시점에서 full GC(garbage collection)가 발생했고,
 full GC time이 500ms였다면 이 요청은 timeout이 되게 된다.
 **따라서, timeout값은 JVM full GC time을 고려하여 설정해야 한다.**
 **대부분 몇십 개의 timeout이 발생하는 문제는 full GC time이 길어서 발생하는 문제이다.**

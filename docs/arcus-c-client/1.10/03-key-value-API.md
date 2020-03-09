@@ -17,8 +17,8 @@ Key-value item에 대해 수행 가능한 연산들은 아래와 같다.
 
 key-value item을 저장하는 API로 set, add, replace, prepend/append가 있다.
 
-``` c 
-memcached_return_t memcached_set(memcached_st *ptr, const char *key, size_t key_length, 
+``` c
+memcached_return_t memcached_set(memcached_st *ptr, const char *key, size_t key_length,
                                  const char *value, size_t value_length, time_t expiration, uint32_t flags);
 memcached_return_t memcached_add(memcached_st *ptr, const char *key, size_t key_length,
                                  const char *value, size_t value_length, time_t expiration, uint32_t flags);
@@ -32,7 +32,7 @@ memcached_return_t memcached_replace(memcached_st *ptr, const char *key, size_t 
 
 
 ``` c
-memcached_return_t memcached_prepend(memcached_st *ptr, const char *key, size_t key_length, 
+memcached_return_t memcached_prepend(memcached_st *ptr, const char *key, size_t key_length,
                                      const char *value, size_t value_length, time_t expiration, uint32_t flags);
 memcached_return_t memcached_append(memcached_st *ptr, const char *key, size_t key_length,
                                     const char *value, size_t value_length, time_t expiration, uint32_t flags);
@@ -78,7 +78,7 @@ error 값이 MEMCACHED_END가 될 때까지 실행하면 되며, 그 이후에 f
 Key-value item에서 숫자형 value 값에 대해서만 아래 증감 연산을 수행할 수 있다.
 
 ``` c
-memcached_return_t memcached_increment(memcached_st *ptr, const char *key, size_t key_length, 
+memcached_return_t memcached_increment(memcached_st *ptr, const char *key, size_t key_length,
                                        uint32_t offset, uint64_t *value)
 memcached_return_t memcached_decrement(memcached_st *ptr, const char *key, size_t key_length,
                                        uint32_t offset, uint64_t *value)
@@ -88,7 +88,7 @@ memcached_return_t memcached_decrement(memcached_st *ptr, const char *key, size_
 주어진 key가 존재하지 않으면, 오류를 낸다.
 
 ```c
-memcached_return_t memcached_increment_with_initial(memcached_st *ptr, const char *key, size_t key_length, 
+memcached_return_t memcached_increment_with_initial(memcached_st *ptr, const char *key, size_t key_length,
                                                     uint64_t offset, uint64_t initial, uint32_t flags,
                                                     time_t expiration, uint64_t *value)
 memcached_return_t memcached_decrement_with_initial(memcached_st *ptr, const char *key, size_t key_length,
