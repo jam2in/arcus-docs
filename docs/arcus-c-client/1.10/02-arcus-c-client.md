@@ -1,4 +1,5 @@
-## Arcus C Client
+# Arcus C Client
+--------
 
 Arcus client는 Arcus admin과 Arcus cache server군 들과의 연결을 유지하며 client로 들어온 명령을 처리하여 그 결과를 반환한다
 

@@ -1,4 +1,5 @@
-## Arcus Cloud 기본 사항
+# Arcus Cloud 기본 사항
+-----------------------
 
 Arcus는 확장된 key-value 데이터 모델을 제공한다.
 하나의 key는 하나의 데이터만을 가지는 simple key-value 유형 외에도

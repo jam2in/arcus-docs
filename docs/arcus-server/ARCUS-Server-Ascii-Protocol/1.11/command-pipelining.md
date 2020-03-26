@@ -1,4 +1,4 @@
-Chapter 7. Command Pipelining
+# Chapter 7. Command Pipelining
 ------------------
 
 Command pipelining은
