@@ -1,4 +1,4 @@
-# Collection Concept
+Collection Concept
 ------------------
 
 ### Collection 구조와 특징
@@ -12,7 +12,7 @@ Collection 유형과 그 구조 및 특징은 아래와 같다.
   특정 위치에 있는 element를 접근할 수 있다.
   많은 element를 가진 list에서 중간 위치의 임의 element 접근 시에 성능 이슈가 있으므로,
   list를 queue 개념으로 사용하길 권한다.
-
+  
 **Set** - unordered set of unique value
 
 > Set 자료 구조는 membership checking에 적합하다.
@@ -35,7 +35,7 @@ Collection 유형과 그 구조 및 특징은 아래와 같다.
   Elements 수에 비례하여 동적으로 depth를 조정하는 b+tree 구조를 사용하여 메모리 사용을 최소화한다.
   그 외에, b+tree의 nonleaf node는 각 하위 node 중심의 sub-tree에 저장된 element 개수 정보를
   담고 있도록 해서, 특정 element의 position 조회 및 position 기반의 element 조회 기능도 제공한다.
-
+  
 Collection item은 \<key, "collection meta info"\> 구조를 가진다.
 Collection meta info는 collection 유형에 따른 속성 정보를 가지며,
 해당 collection의 elements에 신속히 접근하기 정보를 가진다.
@@ -46,16 +46,16 @@ map의 최상위 hash table 구조, b+tree의 root node 주소가 이에 해당�
 
 Collection 유형에 따른 element 구조는 아래와 같다.
 
-- list/set element : \<data\>
+- list/set element : \< data \>
 
   각 element는 하나의 데이터 만을 가진다.
 
-- map element : \<field(map element key), data\>
+- map element : \<field(map element key), data \>
 
   map에서 각 element를 구분하기 위한 field를 필수적으로 가지며,
   field는 중복을 허용하지 않는다.
   
-- b+tree element : \<bkey(b+tree key), eflag(element flag), data\>
+- b+tree element : \< bkey(b+tree key), eflag(element flag), data \>
 
   b+tree에서 elements를 어떤 기준으로 정렬하기 위한 bkey를 필수적으로 가지며,
   옵션 사항으로 bkey 기반의 scan 시에 특정 element를 filtering하기 위한 eflag를 가질 수 있으며,
@@ -72,15 +72,13 @@ B+tree collection에서 사용가능한 bkey 데이터 유형은 아래 두 가�
   이 유형이 성능 및 메모리 공간 관점에서 hexadecimal 유형보다 유리하므로, 이 유형의 bkey 사용을 권장한다.
   
 - hexadecimal
-
+ 
   “0x”로 시작하는 짝수 개의 hexadecimal 문자열로 표현하며, 대소문자 모두 사용 가능하다.
   Arcus cache server는 두 hexadecimal 문자를 1 byte로 저장하며,
   1 ~ 31 길이의 variable length byte array로 저장한다.
   
   hexadecimal 표현이 올바른 경우의 저장 바이트 수와 잘못된 경우의 이유는 아래와 같다.
 
-  
-  
   hexadecimal value | storage bytes | incorrect reason
   ----------------- | ------------- | ----------------
   0x34F40056        | 4 bytes       |
@@ -112,7 +110,7 @@ eflag에 대한 filter 조건은 아래와 같이 표현하며,
 eflag_filter: <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
 ```
 
-- \<fwhere\>
+- \<fwhere\> 
   - eflag 값에서 bitwise/compare 연산을 취할 시작 offset을 바이트 단위로 나타낸다.
     bitwise/compare 연산을 취할 데이터의 length는 \<fvalue\>의 length로 한다.
     예를 들어, eflag 전체 데이터를 선택한다면, \<fwhere\>는 0이어야 하고
@@ -124,7 +122,7 @@ eflag_filter: <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
   - \<bitwop\>는 “&”(bitwise and), “|”(bitwise or), “^”(bitwise xor) 중의 하나로 bitwise 연산을 지정한다.
   - \<foperand\>는 bitwise 연산을 취할 operand로 hexadecimal로 표현한다.
     \<foperand\>의 길이는 compare 연산을 취한 \<fvalue\>의 길이와 동일하여야 한다.
-- \<compop\> \<fvalue\>
+- \<compop\> \<fvalue\>  
   - eflag에 대한 compare 연산을 지정한다.
   - \<compop\>는 "EQ", "NE', "LT", "LE", "GT", "GE" 중의 하나로 compare 연산을 지정하며,
     \<fvalue\>는 compare 연산을 취할 대상 값으로 마찬가지로 hexadecimal로 표현한다.
@@ -133,7 +131,6 @@ eflag_filter: <fwhere> [<bitwop> <foperand>] <compop> <fvalue>
     NOT IN 조건은 "NE" 연산과 comma separated hexadecimal values로 명시하면 된다.
     이 경우, comma로 구분된 hexadecimal values의 최대 수는 100 개까지만 지원한다.
   
-
 하나의 b+tree의 element에는 동일 길이의 element flag를 사용하길 권장한다.
 하지만 응용이 필요하다면, 하나의 b+tree에 소속된 elements 이더라도
 eflag가 생략될 수도 있고 서로 다른 길이의 eflag를 가질 수도 있다.
