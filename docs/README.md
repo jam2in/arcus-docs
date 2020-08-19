@@ -10,3 +10,4 @@ ARCUS is a [memcached](http://www.memcached.org/)-based cache cloud developed by
 
 [Getting started with ARCUS telnet client](arcus-server/arcus-telnet-interface/1.11-(latest).md)
 
+[Release Notes](release-notes/README.md)
