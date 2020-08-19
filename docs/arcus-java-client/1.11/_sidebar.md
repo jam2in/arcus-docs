@@ -1,6 +1,6 @@
 - ARCUS Java Client
-  - [1. Arcus Cloud 기본 사항](/arcus-java-client/1.11/01-arcus-cloud-basics.md)
-  - [2. Arcus Java Client](/arcus-java-client/1.11/02-arcus-java-client.md)
+  - [1. ARCUS Cloud 기본 사항](/arcus-java-client/1.11/01-arcus-cloud-basics.md)
+  - [2. ARCUS Java Client](/arcus-java-client/1.11/02-arcus-java-client.md)
   - [3. Key-Value Item 연산](/arcus-java-client/1.11/03-key-value-API.md)
   - [4. List Item 연산](/arcus-java-client/1.11/04-list-API.md)
   - [5. Set Item 연산](/arcus-java-client/1.11/05-set-API.md)
