@@ -8,3 +8,4 @@
   - [7. Collection Command Pipelining](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/command-pipelining.md)
   - [8. Item Attribute Command](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/command-item-attribute.md)
   - [9. Administration Command](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/command-administration.md)
+  - [ARCUS telnet client](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/arcus-telnet-interface.md)
