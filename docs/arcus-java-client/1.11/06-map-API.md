@@ -1,16 +1,16 @@
-## Map Item
+# Map Item
 
 Map item은 하나의 key에 대해 hash 구조 기반으로 mkey & value 쌍을 data 집합으로 가진다.
 Map을 Java의 Map 자료형을 저장하는 용도로 사용하길 권장한다.
 
 **제약 조건**
 - 저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)
-- 각 element에서 value 최대 크기 : 4KB
+- 각 element에서 value 최대 크기 : 16KB
 - mkey의 입력, Java map type에서 key는 string type만 가능하다. mkey 최대 길이는 250 바이트 이고, 하나의 map에 중복된 mkey는 허용하지 않는다.
 
 Map item에 대해 수행가능한 기본 연산은 다음과 같다.
 
-- [Map Item 생성](#map-item-생성)
+- [Map Item 생성](06-map-API.md#map-item-생성)
 - [Map Element 삽입](06-map-API.md#map-element-삽입)
 - [Map Element 변경](06-map-API.md#map-element-변경)
 - [Map Element 삭제](06-map-API.md#map-element-삭제)
@@ -21,7 +21,7 @@ Map item에 대해 수행가능한 기본 연산은 다음과 같다.
 - [Map Element 일괄 삽입](06-map-API.md#map-element-일괄-삽입)
 - [Map Element 일괄 변경](06-map-API.md#map-element-일괄-변경)
 
-### Map Item 생성
+## Map Item 생성
 
 새로운 empty map item을 생성한다.
 
@@ -29,7 +29,7 @@ Map item에 대해 수행가능한 기본 연산은 다음과 같다.
 CollectionFuture<Boolean> asyncMopCreate(String key, ElementValueType valueType, CollectionAttributes attributes)
 ```
 
-- key: 생성할 map item의 key
+- key: 생성할 map item의 key 
 - valueType: map에 저장할 value의 유형을 지정한다. 아래의 유형이 있다.
   - ElementValueType.STRING
   - ElementValueType.LONG
@@ -45,7 +45,7 @@ CollectionFuture<Boolean> asyncMopCreate(String key, ElementValueType valueType,
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명
+future.get() | future.operationStatus().getResponse() | 설명 
 ------------ | -------------------------------------- | -------
 True         | CollectionResponse.CREATED             | 생성 성공
 False        | CollectionResponse.EXISTS              | 동일 key가 이미 존재함
@@ -94,7 +94,7 @@ try {
 4. 생성 결과에 대한 상세 정보는 future.getOperationStatus().getResponse()를 통해 조회 할 수 있다.
 
 
-### Map Element 삽입
+## Map Element 삽입
 
 Map에 하나의 element를 삽입한다.
 
@@ -106,12 +106,12 @@ CollectionFuture<Boolean> asyncMopInsert(String key, String mkey, Object value, 
 - mkey: 삽입할 element의 mkey
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다.
+  - null: element 삽입하지 않는다. 
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명
+future.get() | future.operationStatus().getResponse() | 설명 
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.STORED              | Map collection이 존재하여 element만 삽입함
 True         | CollectionResponse.CREATED_STORED      | Map collection 생성하고 element를 삽입함
@@ -161,7 +161,7 @@ try {
    TimeoutException이 발생한다.
 3. Insert결과에 대한 자세한 결과 코드를 확인하려면 future.getOperationStatus().getResponse()를 사용한다.
 
-### Map Element 변경
+## Map Element 변경
 
 Map에서 하나의 element를 변경하는 함수이다. Element의 value를 변경한다.
 
@@ -175,7 +175,7 @@ CollectionFuture<Boolean> asyncMopUpdate(String key, String mkey, Object value)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명
+future.get() | future.operationStatus().getResponse() | 설명 
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.UPDATED             | Element가 변경됨
 False        | CollectionResponse.NOT_FOUND           | Key miss (주어진 key에 해당하는 item이 없음)
@@ -191,7 +191,7 @@ CollectionFuture<Boolean> future = mc.asyncMopUpdate(key, mkey, value);
 Element 수정에 대한 자세한 수행 결과는 future.getOperationStatus().getResponse()를 통해 조회할 수 있다.
 
 
-### Map Element 삭제
+## Map Element 삭제
 
 Map에서 element를 삭제하는 함수들은 두 가지가 있다.
 
@@ -215,7 +215,7 @@ asyncMopDelete(String key, String mkey, boolean dropIfEmpty)
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명
+future.get() | future.operationStatus().getResponse() | 설명 
 ------------ | -------------------------------------- | ---------
 True         | CollectionResponse.DELETED             | Element만 삭제함
 True         | CollectionResponse.DELETED_DROPPED     | Element 삭제하고 Map 자체도 삭제함
@@ -294,7 +294,7 @@ asyncMopGet(String key, List<String> mkeyList, boolean withDelete, boolean dropI
 
 수행 결과는 future 객체를 통해 얻는다.
 
-future.get() | future.operationStatus().getResponse() | 설명
+future.get() | future.operationStatus().getResponse() | 설명 
 ------------ | -------------------------------------- | -------
 not null     | CollectionResponse.END                 | Element만 조회
 not null     | CollectionResponse.DELETED             | Element를 조회하고 삭제한 상태
@@ -366,11 +366,11 @@ CollectionFuture<Map<Integer, CollectionOperationStatus>>
 asyncMopPipedInsertBulk(String key, Map<String, Object> elements, CollectionAttributes attributesForCreate)
 ```
 
-- key: 삽입 대상 map의 key
+- key: 삽입 대상 map의 key 
 - elements: 삽입할 element들
   - Map\<String, Object\> 유형
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다.
+  - null: element 삽입하지 않는다. 
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 
@@ -385,7 +385,7 @@ asyncMopInsertBulk(List<String> keyList, String mkey, Object value, CollectionAt
 - mkey: 삽입할 element의 mkey
 - value: 삽입할 element의 value
 - attributesForCreate: 대상 map이 없을 시, 동작을 지정한다.
-  - null: element 삽입하지 않는다.
+  - null: element 삽입하지 않는다. 
   - attributes: 주어진 attributes를 가진 empty map item 생성 후에 element 삽입한다.
 
 
@@ -423,7 +423,7 @@ try {
 
     if (!result.isEmpty()) { // (4)
         System.out.println("일부 item이 insert 실패 하였음.");
-
+        
         for (Map.Entry<Integer, CollectionOperationStatus> entry : result.entrySet()) {
             System.out.print("실패한 아이템=" + elements.get(entry.getKey()));
             System.out.println(", 실패원인=" + entry.getValue().getResponse());
@@ -455,7 +455,7 @@ try {
 6. Future로부터 얻은 Map의 Key가 입력된 값(bulkData)의 mapKey이기 때문에 위와 같은 방법으로 실패 원인을 조회하면 된다.
 
 
-### Map Element 일괄 변경
+## Map Element 일괄 변경
 
 Map에서 주어진 elements에 해당하는 모든 element의 value를 일괄 변경한다.
 

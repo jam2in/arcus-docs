@@ -1,11 +1,11 @@
-## B+Tree Item
+# B+Tree Item
 
 B+tree item은 하나의 key에 대해 b+tree 구조 기반으로 b+tree key(bkey)로 정렬된 data의 집합을 가진다.
 
 **제약 조건**
 - 저장 가능한 최대 element 개수 : 디폴트 4,000개 (attribute 설정으로 최대 50,000개 확장 가능)
 - 각 element에서 value 최대 크기 : 4KB
-- 하나의 b+tree 내에서 모든 element는 동일한 bkey 유형을 가져야 한다.
+- 하나의 b+tree 내에서 모든 element는 동일한 bkey 유형을 가져야 한다. 
   즉, 8바이트 unsigned integer bkey 유형과 byte array bkey 유형이 혼재할 수 없다.
 
 B+tree item 구조와 기본 특징은 **[Arcus Server Ascii Protocol 문서의 내용](https://github.com/naver/arcus-memcached/blob/master/doc/arcus-collection-concept.md)**을
@@ -20,7 +20,7 @@ B+tree item 연산의 설명에 앞서, b+tree 조회 및 변경에 사용하는
 
 B+tree item에 대해 수행가능한 기본 연산들은 다음과 같다.
 
-- [B+Tree Item 생성](07-btree-API.md#btree-item-%EC%83%9D%EC%84%B1) (B+tree item 삭제는 key-value item 삭제 함수로 수행한다)
+- [B+Tree Item 생성](07-btree-API.md#btree-item-%EC%83%9D%EC%84%B1) (B+tree item 삭제는 key-value item 삭제 함수로 수행한다) 
 - [B+Tree Element 삽입](07-btree-API.md#btree-element-%EC%82%BD%EC%9E%85)
 - [B+Tree Element Upsert](07-btree-API.md#btree-element-upsert)
 - [B+Tree Element 변경](07-btree-API.md#btree-element-%EB%B3%80%EA%B2%BD)
@@ -36,25 +36,25 @@ B+tree item에 대해 수행가능한 기본 연산들은 다음과 같다.
 
 여러 b+tree element들에 대해 sort-merge 조회하는 연산을 제공한다.
 
-- [B+Tree Element Sort-Merge 조회](07-btree-API.md#btree-element-sort-merge-%EC%A1%B0%ED%9A%8C)
+- [B+Tree Element Sort-Merge 조회](07-btree-API.md#btree-element-sort-merge-%EC%A1%B0%ED%9A%8C) 
 
 B+Tree내에서 element 순위(position)와 관련하여 아래 연산들을 제공한다.
 - [B+Tree Element 순위 조회](07-btree-API.md#btree-element-순위-조회)
 - [B+Tree 순위 기반의 Element 조회](07-btree-API.md#btree-순위-기반의-element-조회)
 - [B+Tree 순위와 Element 동시 조회](07-btree-API.md#btree-순위와-element-동시-조회)
 
-### BKey(B+Tree Key)와 EFlag(Element Flag)
+## BKey(B+Tree Key)와 EFlag(Element Flag)
 
 B+tree item에서 사용 가능한 bkey 데이터 타입은 아래 두 가지이다.
 
 - 8바이트 unsigned integer
-- 최대 31 크기의 byte array
+- 최대 31 크기의 byte array 
 
 eflag는 현재 b+tree element에만 존재하는 필드이다.
 eflag 데이터 타입은 최대 31 크기의 byte array 타입만 가능하다.
 
 
-### Element Flag Filter 구조체
+## Element Flag Filter 구조체
 
 B+tree의 element flag에 대한 filtering을 지정하기 위해선, `eflag_filter` 구조체를 사용해야 한다.
 
@@ -78,6 +78,25 @@ memcached_return_t memcached_coll_eflag_filter_init(memcached_ coll _eflag_filte
   - MEMCACHED_COLL_COMP_GT
   - MEMCACHED_COLL_COMP_GE
 
+비교 연산을 취할 데이터 값인 fvalue는 여러 값을 지정할 수도 있으며, 다음과 같은 API를 사용한다.
+비교 데이터 값은 최대 100개 fvalues를 지정할 수 있으며, MEMCACHED_COLL_COMP_EQ 와 MEMCACHED_COLL_COMP_NE 연산자 만을 지원한다.
+
+``` c
+memcached_return_t memcached_coll_eflags_filter_init(memcached_coll_eflag_filter_st *ptr,
+                                                    const size_t fwhere,
+                                                    const unsigned char *fvalues,
+                                                    const size_t fvalue_length,
+                                                    const size_t fvalue_count,
+                                                    memcached_coll_comp_t comp_op)
+```
+
+- fwhere: eflag에서 비교 연산을 취할 데이터의 시작 offset을 바이트 단위로 지정한다.
+- fvalues: 비교 연산을 취할 데이터 값을 array 형태로 지정한다.
+- fvalue_count: 비교 연산을 취할 데이터 값들의 개수를 지정한다.
+- comp_op: 비교 연산을 지정한다.
+  - MEMCACHED_COLL_COMP_EQ
+  - MEMCACHED_COLL_COMP_NE
+
 eflag의 전체/부분 값에 대해 어떤 operand로 bitwise 연산을 취함으로써 eflag의 특정 bits들만을 골라내어 compare할 수 있다.
 이와 같이 `eflag_filter`에 bitwise 연산을 추가할 경우에는 아래의 API를 이용할 수 있다.
 
@@ -94,7 +113,7 @@ memcached_return_t memcached_coll_eflag_filter_set_bitwise(memcached_coll_eflag_
 - foperand: eflag에서 bitwise 연산을 취할 operand를 지정한다.
 
 
-### Element Flag Update 구조체
+## Element Flag Update 구조체
 
 B+tree의 element flag를 변경하기 위해선 `eflag_update` 구조체를 사용해야 한다.
 
@@ -122,7 +141,7 @@ memcached_return_t memcached_coll_eflag_update_set_bitwise(memcached_coll_eflag_
   - MEMCACHED_COLL_BITWISE_XOR
 
 
-### B+Tree Query 구조체
+## B+Tree Query 구조체
 
 memcached_bop_query_st 구조체는 B+tree 조회 조건을 추상화하고 있으며 다양한 API에 사용될 수 있다.
 
@@ -152,7 +171,7 @@ memcached_return_t memcached_bop_ext_range_query_init (memcached_bop_query_st *p
 ```
 
 
-### B+Tree Item 생성
+## B+Tree Item 생성
 
 새로운 empty b+tree item을 생성한다.
 
@@ -222,7 +241,7 @@ void arcus_btree_item_create(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 삽입
+## B+Tree Element 삽입
 
 B+Tree에 하나의 element를 삽입한다.
 전자는 8바이트 unsigned integer 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.
@@ -233,7 +252,7 @@ memcached_return_t memcached_bop_insert(memcached_st *ptr, const char *key, size
                                         const unsigned char *eflag, size_t eflag_length,
                                         const char *value, size_t value_length,
                                         memcached_coll_create_attrs_st *attributes)
-
+                     
 memcached_return_t memcached_bop_ext_insert(memcached_st *ptr, const char *key, size_t key_length,
                                         const unsigned char *bkey, size_t bkey_length, // bkey of byte array type
                                         const unsigned char *eflag, size_t eflag_length,
@@ -302,7 +321,7 @@ void arcus_btree_element_insert(memcached_st *memc)
 하지만, C client에서는 이 기능을 아직 제공하지 않고 있다.
 
 
-### B+Tree Element Upsert
+## B+Tree Element Upsert
 
 B+Tree에 하나의 element를 upsert하는 함수들이다.
 Upsert 연산은 해당 element가 없으면 insert하고, 있으면 update하는 연산이다.
@@ -314,7 +333,7 @@ memcached_return_t memcached_bop_upsert(memcached_st *ptr, const char *key, size
                                         const unsigned char *eflag, size_t eflag_length,
                                         const char *value, size_t value_length,
                                         memcached_coll_create_attrs_st *attributes)
-
+                     
 memcached_return_t memcached_bop_ext_upsert(memcached_st *ptr, const char *key, size_t key_length,
                                         const unsigned char *bkey, size_t bkey_length, // bkey of byte array type
                                         const unsigned char *eflag, size_t eflag_length,
@@ -370,7 +389,7 @@ void arcus_btree_element_upsert(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 변경
+## B+Tree Element 변경
 
 B+Tree에서 하나의 element를 변경하는 함수이다. Element의 eflag 그리고/또는 value를 변경한다.
 전자는 8바이트 unsigned integer 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.
@@ -414,7 +433,7 @@ void arcus_btree_element_update(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 삭제
+## B+Tree Element 삭제
 
 B+tree에서 element를 삭제하는 함수들은 두 유형이 있다.
 
@@ -430,7 +449,7 @@ memcached_return_t memcached_bop_ext_delete(memcached_st *ptr, const char *key, 
                                         memcached_coll_eflag_filter_st *eflag_filter, bool drop_if_empty)
 ```
 
-둘째, b+tree에서 bkey range에 해당하는 element들을 스캔하면서
+둘째, b+tree에서 bkey range에 해당하는 element들을 스캔하면서 
 eflag filter 조건을 만족하는 N개의 element를 삭제하는 함수이다.
 
 ``` c
@@ -443,11 +462,11 @@ memcached_return_t memcached_bop_ext_delete_by_range(memcached_st *ptr, const ch
                                         const unsigned char *from, size_t from_length,
                                         const unsigned char *to, size_t to_length,
                                         memcached_coll_eflag_filter_st *eflag_filter,
-                                        size_t count, bool drop_if_empty)
+                                        size_t count, bool drop_if_empty)                    
 ```
 
 - key, key_length: b+tree item의 key
-- bkey 또는 \<from, to\>:  삭제할 element의 bkey(b+tree key) 또는 bkey range
+- bkeuy 또는 \<from, to\>:  삭제할 element의 bkey(b+tree key) 또는 bkey range 
 - eflag_filter: element의 eflag에 대한 filter 조건
 - count: 삭제할 element 개수, 0이면 bkey range의 모든 element가 삭제 대상이 된다.
 - drop_if_empty: element 삭제로 empty b+tree가 될 경우, 그 b+tree도 삭제할 것인지를 지정
@@ -508,9 +527,9 @@ void arcus_btree_element_delete(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 값의 증감
+## B+Tree Element 값의 증감
 
-B+tree element의 값을 증가/감소시키는 함수는 아래와 같다.
+B+tree element의 값을 증가/감소시키는 함수는 아래와 같다. 
 Element의 값은 숫자형 값이어야 한다.
 
 전자는 8바이트 unsigned integer 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.
@@ -523,10 +542,10 @@ memcached_return_t memcached_bop_decr(memcached_st *ptr, const char *key, size_t
 
 memcached_return_t memcached_bop_ext_incr(memcached_st *ptr, const char *key, size_t key_length,
                                       const unsigned char *bkey, size_t bkey_length,
-                                      const uint64_t delta, uint64_t *value)
+                                      const uint64_t delta, uint64_t *value)                   
 memcached_return_t memcached_bop_ext_decr(memcached_st *ptr, const char *key, size_t key_length,
                                       const unsigned char *bkey, size_t bkey_length,
-                                      const uint64_t delta, uint64_t *value)
+                                      const uint64_t delta, uint64_t *value)                   
 ```
 
 - key, key_length: b+tree item의 key
@@ -544,7 +563,9 @@ Response code는 아래와 같다.
   - MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 B+tree가 아님.
   - MEMCACHED_BKEY_MISMATCH: 주어진 bkey 유형과 해당 B+tree의 bkey 유형이 다름.
   - MEMCACHED_UNREADABLE: 주어진 key에 해당하는 B+tree가 unreadable 상태임.
-  - MEMCACHED_OUT_OF_RANGE : 주어진 조회 범위에 해당하는 element가 없으나, 조회 범위가 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음. 즉, B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 어딘가(DB)에 존재할 수도 있음을 뜻함.
+  - MEMCACHED_OUT_OF_RANGE : 주어진 조회 범위에 해당하는 element가 없으나, 조회 범위가 overflow 정책에 의해
+                             삭제되는 영역에 걸쳐 있음. 즉, B+tree 크기 제한으로 인해 삭제되어 조회되지 않은
+                             element가 어딘가(DB)에 존재할 수도 있음을 뜻함.
 
 B+tree element 값의 증감을 수행하는 예제는 아래와 같다.
 
@@ -605,7 +626,7 @@ void arcus_btree_element_decr(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 개수 확인
+## B+Tree Element 개수 확인
 
 B+tree element 개수를 확인하는 함수는 두 유형이 있다.
 
@@ -618,7 +639,7 @@ memcached_return_t memcached_bop_count(memcached_st *ptr, const char *key, size_
 
 memcached_return_t memcached_bop_ext_count(memcached_st *ptr, const char *key, size_t key_length,
                                        const unsigned char *bkey, size_t bkey_length,
-                                       memcached_coll_eflag_filter_st *eflag_filter, size_t *count)
+                                       memcached_coll_eflag_filter_st *eflag_filter, size_t *count)                    
 ```
 
 둘째, b+tree에서 bkey range에 해당하는 element들 중 eflag filter 조건을 만족하는 element 개수를 확인하는 함수이다.
@@ -631,7 +652,7 @@ memcached_return_t memcached_bop_count_by_range(memcached_st *ptr, const char *k
 memcached_return_t memcached_bop_ext_count_by_range(memcached_st *ptr, const char *key, size_t key_length,
                                        const unsigned char *from, size_t from_length,
                                        const unsigned char *to, size_t to_length,
-                                       memcached_coll_eflag_filter_st *eflag_filter, size_t *count)
+                                       memcached_coll_eflag_filter_st *eflag_filter, size_t *count)                    
 ```
 
 - key, key_length: b+tree item의 key
@@ -688,7 +709,7 @@ void arcus_btree_element_count(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 조회
+## B+Tree Element 조회
 
 B+tree element를 조회하는 함수는 세 유형이 있다.
 
@@ -706,7 +727,7 @@ memcached_return_t memcached_bop_ext_get(memcached_st *ptr, const char *key, siz
                                      bool with_delete, bool drop_if_empty, memcached_coll_result_st *result)
 ```
 
-둘째, b+tree에서 bkey range에 해당하는 element들을 스캔하면서
+둘째, b+tree에서 bkey range에 해당하는 element들을 스캔하면서 
 eflag filter 조건을 만족하는 element들 중 offset 개를 skip한 후 count 개의 element를 조회하는 함수이다.
 
 ``` c
@@ -747,7 +768,8 @@ Response code는 아래와 같다.
     - B+tree에서 정상적으로 element를 조회하였으나, 조회 범위가 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음.
     - 즉, B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 어딘가(DB)에 존재할 수도 있음을 뜻함.
   - MEMCACHED_DELETED: B+tree에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.
-  - MEMCACHED_DELETED_DROPPED: B+tree에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음. 이 결과 empty 상태가 된 B+tree를 삭제함.
+  - MEMCACHED_DELETED_DROPPED: B+tree에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.
+                               이 결과 empty 상태가 된 B+tree를 삭제함.
 - not MEMCACHED_SUCCESS
   - MEMCACHED_NOTFOUND: 주어진 key에 해당하는 B+tree가 없음.
   - MEMCACHED_NOTFOUND_ELEMENT: 주어진 bkey또는 bkey 범위에 해당하는 element가 없음.
@@ -825,7 +847,7 @@ void arcus_btree_element_get(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 일괄 삽입
+## B+Tree Element 일괄 삽입
 
 B+tree에 여러 element를 한번에 삽입하는 함수는 두 유형이 있다.
 
@@ -847,7 +869,7 @@ memcached_return_t memcached_bop_ext_piped_insert(memcached_st *ptr, const char 
                                        const unsigned char * const *eflags, const size_t *eflags_length,
                                        const char * const *values, const size_t *values_length,
                                        memcached_coll_create_attrs_st *attributes,
-                                       memcached_return_t *results, memcached_return_t *piped_rc)
+                                       memcached_return_t *results, memcached_return_t *piped_rc)     
 ```
 
 - key, key_length: b+tree item의 key
@@ -857,7 +879,7 @@ memcached_return_t memcached_bop_ext_piped_insert(memcached_st *ptr, const char 
 - values, values_length: element 개수만큼의 value array (필수)
 - attributes: B+tree 없을 시에 attributes에 따라 empty b+tree를 생성 후에 element 삽입한다.
 
-둘째, 여러 key들이 가리키는 b+tree들에 각각 하나의 element를 삽입하는 함수이다.
+둘째, 여러 key들이 가리키는 b+tree들에 각각 하나의 element를 삽입하는 함수이다. 
 전자는 8바이트 unsigned integer 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.
 
 ``` c
@@ -950,11 +972,11 @@ void arcus_btree_element_piped_insert(memcached_st *memc)
 }
 ```
 
-### B+tree Element 일괄 조회
+## B+tree Element 일괄 조회
 
 서로 다른 key로 분산되어 있는 b+tree들의 element들을 한 번의 요청으로 조회할 수 있는 기능이다.
 이 기능은 비동기(asynchronous) 방식으로 수행하며,
-(1) 다수 b+tree들의 element 조회 요청을 보내는 단계와
+(1) 다수 b+tree들의 element 조회 요청을 보내는 단계와 
 (2) 조회 결과를 받아내는 단계로 구분된다.
 
 첫째 단계로, 다수 b+tree들에 대한 element 조회 요청을 보내는 함수는 아래와 같다.
@@ -986,11 +1008,15 @@ memcached_coll_result_st *memcached_coll_fetch_result(memcached_st *ptr, memcach
 
 - result != null
   - MEMCACHED_SUCCESS: 정상적으로 element를 조회함.
-  - MEMCACHED_TRIMMED: 정상적으로 element를 조회하였으나, 조회 범위가 특정 B+tree의 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음. 즉, 해당 B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 존재할 수 있음.
+  - MEMCACHED_TRIMMED: 정상적으로 element를 조회하였으나, 조회 범위가 특정 B+tree의 overflow 정책에 의해
+                       삭제되는 영역에 걸쳐 있음. 즉, 해당 B+tree 크기 제한으로 인해 삭제되어
+                       조회되지 않은 element가 존재할 수 있음.
 - result == null
   - MEMCACHED_NOT_FOUND: 주어진 key를 찾을 수 없음.
   - MEMCACHED_NOT_FOUND_ELEMENT: 조회 조건에 해당하는 element를 찾을 수 없음.
-  - MEMCACHED_OUT_OF_RANGE: 주어진 조회 조건에 해당하는 element가 없으나, 조회 범위가 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음. 즉, 해당 B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 존재할 수 있음.
+  - MEMCACHED_OUT_OF_RANGE: 주어진 조회 조건에 해당하는 element가 없으나,
+                            조회 범위가 overflow 정책에 의해 삭제되는 영역에 걸쳐 있음.
+                            즉, 해당 B+tree 크기 제한으로 인해 삭제되어 조회되지 않은 element가 존재할 수 있음.
   - MEMCACHED_TYPE_MISMATCH: 주어진 key에 해당하는 자료구조가 B+tree가 아님.
   - MEMCACHED_BKEY_MISMATCH: 주어진 bkey 유형과 해당 B+tree의 bkey 유형이 다름.
 
@@ -1054,7 +1080,7 @@ static void arcus_btree_element_mget(memcached_st *memc)
 }
 ```
 
-### B+tree Element Sort-Merge 조회
+## B+tree Element Sort-Merge 조회
 
 서로 다른 key로 분산되어 있는 b+Tree들의 element를 sort-merge 방식으로 조회하는 기능이다.
 이는 서로 다른 b+tree들이지만, 논리적으로 하나로 합쳐진 거대한 b+tree에 대해 element 조회 연산하는 것과
@@ -1115,7 +1141,7 @@ Sort-Merge 조회 질의를 표현하는 memcached_bop_query_st 구조체 생성
 신규 sort-merge 조회에서는 아래의 sort-merge 질의 생성하는 전용 API를 사용해
 bkey range, element flag, count 그리고 unique를 명시하여 query 구조체를 생성한다.
 마지막 인자인 unique가 false이면 중복 bkey를 허용하여 조회하며,
-true이면 중복 bkey를 제거하여 unique bkey만을 조회한다.
+true이면 중복 bkey를 제거하여 unique bkey만을 조회한다. 
 
 ``` c
 memcached_return_t memcached_bop_smget_query_init(memcached_bop_query_st *ptr,
@@ -1285,7 +1311,7 @@ void arcus_btree_element_smget(memcached_st *memc)
 }
 ```
 
-### B+Tree Element 순위 조회
+## B+Tree Element 순위 조회
 
 B+Tree element 순위를 조회하는 함수는 아래와 같다.
 전자는 8바이트 unsigned integer 타입의 bkey를, 후자는 최대 31 크기의 byte array 타입의 bkey를 사용한다.
@@ -1295,7 +1321,7 @@ memcached_return_t memcached_bop_find_position(memcached_st *ptr, const char *ke
                                                const uint64_t bkey,
                                                memcached_coll_order_t order,
                                                size_t *position)
-
+                                     
 memcached_return_t memcached_bop_ext_find_position(memcached_st *ptr, const char *key, size_t key_length,
                                                    const unsigned char *bkey, size_t bkey_length,
                                                    memcached_coll_order_t order,
@@ -1354,7 +1380,7 @@ void arcus_btree_find_position(memcached_st *memc)
 }
 ```
 
-### B+Tree 순위 기반의 Element 조회
+## B+Tree 순위 기반의 Element 조회
 
 B+Tree에서 순위 범위로 element를 조회하는 함수는 아래와 같다.
 
@@ -1457,7 +1483,7 @@ void arcus_btree_get_by_position(memcached_st *memc)
 }
 ```
 
-### B+Tree 순위와 Element 동시 조회
+## B+Tree 순위와 Element 동시 조회
 
 B+Tree에서 주어진 bkey에 대한 순위를 조회하면서 그 bkey의 element를 포함하여
 앞뒤 양방향으로 각 N개의 elements를 함께 조회하는 함수는 아래와 같다.

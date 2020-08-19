@@ -1,74 +1,74 @@
-## Arcus Java Client
+# Arcus Java Client
 
-- [Arcus Client 기본 사용법](02-arcus-java-client.md#arcus-client-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95)
-- [Arcus Client 생성, 소멸, 관리](02-arcus-java-client.md#arcus-client-%EC%83%9D%EC%84%B1-%EC%86%8C%EB%A9%B8-%EA%B4%80%EB%A6%AC)
+- [Arcus Client 기본 사용법](02-arcus-java-client.md#arcus-client-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95) 
+- [Arcus Client 생성, 소멸, 관리](02-arcus-java-client.md#arcus-client-%EC%83%9D%EC%84%B1-%EC%86%8C%EB%A9%B8-%EA%B4%80%EB%A6%AC) 
 - [Arcus Client 설정](02-arcus-java-client.md#arcus-client-%EC%84%A4%EC%A0%95)
 
 
-### Arcus Client 기본 사용법
+## Arcus Client 기본 사용법
 
 예제를 통해 Arcus java client 기본 사용법을 알아본다.
 아래 예제는 Arcus cache에 key가 “sample:testKey”이고 value가 “testValue”인 cache item을 저장한다.
 
 ```java
-package com.navercorp.arcus.example;
+package com.navercorp.arcus.example; 
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import net.spy.memcached.ArcusClient;
-import net.spy.memcached.ConnectionFactoryBuilder;
+import java.util.concurrent.ExecutionException; 
+import java.util.concurrent.Future; 
+import java.util.concurrent.TimeUnit; 
+import java.util.concurrent.TimeoutException; 
+import net.spy.memcached.ArcusClient; 
+import net.spy.memcached.ConnectionFactoryBuilder; 
 
-public class HelloArcus {
+public class HelloArcus { 
 
-	private static final String ARCUS_ADMIN = "10.0.0.1:2181,10.0.0.2:2181,10.0.0.3:2181";
-	private static final String SERVICE_CODE = "test";
-	private final ArcusClient arcusClient;
+    private static final String ARCUS_ADMIN = "10.0.0.1:2181,10.0.0.2:2181,10.0.0.3:2181"; 
+    private static final String SERVICE_CODE = "test"; 
+    private final ArcusClient arcusClient; 
 
-	public static void main(String[] args) {
-		HelloArcus hello = new HelloArcus();
-		System.out.printf("hello.setTest() result=%b", hello.setTest());
-		hello.closeArcusConnection();
-	}
+    public static void main(String[] args) { 
+        HelloArcus hello = new HelloArcus(); 
+        System.out.printf("hello.setTest() result=%b", hello.setTest()); 
+        hello.closeArcusConnection(); 
+    } 
 
-	public HelloArcus() {
-		arcusClient = ArcusClient.createArcusClient(ARCUS_ADMIN, SERVICE_CODE,
-				new ConnectionFactoryBuilder()); // (1)
-	}
+    public HelloArcus() { 
+        arcusClient = ArcusClient.createArcusClient(ARCUS_ADMIN, SERVICE_CODE, 
+                new ConnectionFactoryBuilder()); // (1) 
+    } 
 
-	public boolean setTest() {
-		Future<Boolean> future = null;
-		try {
-			future = arcusClient.set("sample:testKey", 10, "testValue"); // (2)
-		} catch (IllegalStateException e) {
-			// client operation queue 문제로 요청이 등록되지 않았을 때 예외처리.
-		}
+    public boolean setTest() { 
+        Future<Boolean> future = null; 
+        try { 
+            future = arcusClient.set("sample:testKey", 10, "testValue"); // (2) 
+        } catch (IllegalStateException e) { 
+            // client operation queue 문제로 요청이 등록되지 않았을 때 예외처리. 
+        } 
 
-		if (future == null) return false;
+        if (future == null) return false; 
 
-		try {
-			return future.get(500L, TimeUnit.MILLISECONDS); // (3)
-		} catch (TimeoutException te) { // (4)
-			future.cancel(true);
-		} catch (ExecutionException re) { // (5)
-			future.cancel(true);
-		} catch (InterruptedException ie) { // (6)
-			future.cancel(true);
-		}
+        try { 
+            return future.get(500L, TimeUnit.MILLISECONDS); // (3) 
+        } catch (TimeoutException te) { // (4) 
+            future.cancel(true); 
+        } catch (ExecutionException re) { // (5) 
+            future.cancel(true); 
+        } catch (InterruptedException ie) { // (6) 
+            future.cancel(true); 
+        } 
 
-		return false;
-	}
+        return false; 
+    } 
 
-	public void closeArcusConnection() {
-		arcusClient.shutdown(); // (7)
-	}
-}
+    public void closeArcusConnection() { 
+        arcusClient.shutdown(); // (7) 
+    } 
+} 
 ```
 
 (1) ArcusClient 클래스의 객체(client 객체)를 생성한다. Client 객체는 매 요청마다 생성하지 않고
     미리 하나를 만들어 재활용하도록 한다.
-    Arcus에 접속할 때, 각종 설정을 변경하기 위해서 ConnectionFactoryBuilder를 사용하였다.
+    Arcus에 접속할 때, 각종 설정을 변경하기 위해서 ConnectionFactoryBuilder를 사용하였다. 
 
 - **잘못된 SERVICE_CODE를 지정했다면 NotExistsServiceCodeException이 발생한다.**
 - **SERVICE_CODE는 올바르지만 접속 가능한 cache 서버(또는 노드)가 없다면, 모든 요청은 Exception을 발생시킨다.**
@@ -91,7 +91,7 @@ public class HelloArcus {
 - 예를 들어, timeout 시간을 500ms로 지정했는데 GC time이 600ms걸렸다면
   Arcus cache 서버와 통신에 문제가 없음에도 불구하고 100ms를 초과했기 때문에 TimeoutException이 발생하게 된다.
 - TimeoutException이 연속해서 n(디폴트는 10)회 이상 발생하면 클라이언트는 서버와의 연결을 끊고 재접속한다.
-  여기에서 n번의 값은 ConnectionFactoryBuilder를 생성할 때 지정할 수 있다.
+  여기에서 n번의 값은 ConnectionFactoryBuilder를 생성할 때 지정할 수 있다. 
 - 또한, 모든 Exception이 발생한 상황에서는 future.cancel(true)를 반드시 호출해 주어야 한다.
 
 (5) ArcusClient의 operation queue에 대기하고 있던 작업이 취소되었을 때, ExecutionException이 발생한다.
@@ -106,9 +106,9 @@ public class HelloArcus {
 - Spring container에서 관리되는 경우 bean 설정의 destroy-method에서 `shutdown` 메소드가 호출되도록 설정해야 한다.
 
 
-### Arcus Client 생성, 소멸, 관리
+## Arcus Client 생성, 소멸, 관리
 
-#### Arcus Client 생성
+### Arcus Client 생성
 
 하나의 Arcus Client 객체는 Arcus cache cloud에 있는 모든 cache server(or cache node)와 연결을 하나씩 생성하며,
 요청되는 각 cache item의 key에 대해 그 key가 mapping되는 cache server와의 연결을 이용하여 request를 보내고
@@ -154,12 +154,12 @@ ArcusClient.createArcusClientPool(String arcusAdminAddress, String serviceCode, 
 pool에 들어갈 arcus client 객체 수를 지정하는 poolSize 인자가 있다.
 pool size가 너무 작으면 응용 요청들을 제시간에 처리할 수 없는 문제가 생기고,
 너무 크면 arcus cache server로 불필요하게 많은 연결을 맺게 한다.
-적절한 pool size는 "응용 서버의 peak arcus request 요청량"을 "하나의 arcus client의 처리량"으로 나누면
+적절한 pool size는 "응용 서버의 peak arcus request 요청량"을 "하나의 arcus client의 처리량"으로 나누면 
 얻을 수 있다. 여기서, 하나의 arcus client가 처리할 수 있는 처리량은
 응용 서버가 요청하는 arcus request 유형과 응용 서버와 cache server 간의 네트웍 상태 등에 영향받을 수 있으므로,
 실제 테스트를 통해 확인해 보고 pool size를 결정하길 권한다.
 
-특정 SERVICE_CODE에 해당하는 cache cloud로 연결되는 Arcus client 4 개를 가지는 pool을 생성하는 예는
+특정 SERVICE_CODE에 해당하는 cache cloud로 연결되는 Arcus client 4 개를 가지는 pool을 생성하는 예는 
 다음과 같다.
 
 ```java
@@ -182,7 +182,7 @@ Arcus cache cloud로 정상 연결되지 않으면, 다음과 같은 로그가 �
 WARN net.spy.memcached.CacheManager: Some arcus connections are not established.
 ```
 
-#### Arcus Client 소멸
+### Arcus Client 소멸
 
 ArcusClient 또는 ArcusClientPool를 사용하고 난 다음에는
 반드시 shutdown() 메소드를 호출하여 client와 admin, cache server간의 연결을 해제시켜주어야 한다.
@@ -192,7 +192,7 @@ client.shutdown();
 pool.shutdown();
 ```
 
-##### Arcus Client 생명주기 관리
+#### Arcus Client 생명주기 관리
 
 Arcus에 대한 매 요청마다 arcus client 객체를 생성하고 소멸시키는 것은 적절하지 못하다.
 응용 서버의 구동 시에 arcus client 객체를 생성하고, 종료 시에 arcus client 객체를 소멸하면 된다.
@@ -204,9 +204,9 @@ WAS가 초기화 될 때 Arcus server 와 연결을 맺도록 하자.
 WAS가 shutdown될 때 ArcusClient도 함께 shutdown되도록 설정하면 가장 이상적이다.
 
 
-##### Cache Server List 관리
+#### Cache Server List 관리
 
-Arcus는 cache server list를 자동으로 관리한다.
+Arcus는 cache server list를 자동으로 관리한다. 
 Cache server들 중에 일부 서버가 사용 불가능한 상태가 되면
 Arcus admin이 자동으로 상황을 인지하고 해당 서버를 cache server list에서 제거하며,
 변경된 cache server list가 있음을 각 arcus client에 알림으로써
@@ -217,9 +217,9 @@ cache key와 cache server와의 mapping을 갱신하게 한다.
 따라서, Arcus client를 사용할 때 cache server 대수의 변화에 대한 방어 로직은 신경 쓰지 않아도 된다.
 
 
-### Arcus Client 설정
+## Arcus Client 설정
 
-##### Key-Value에서 데이터 압축 설정
+### Key-Value에서 데이터 압축 설정
 
 Arcus client는 key-value item의 데이터 압축 및 해제 기능을 가지고 있다.
 즉, 일정 크기 이상의 데이터이면 그 데이터를 압축하여 cache server에 보내어 저장하고,
@@ -242,142 +242,183 @@ cfb.setTranscoder(trans);
 ArcusClient client = ArcusClient.createArcusClient(SERVICE_CODE, cfb);
 ```
 
-##### Logger 설정
+### Logger 설정
 
-Arcus client 사용 시에 ArcusClient 자체 logger(DefaultLogger), log4j, slf4j, JDK logger 등
-4가지 종류의 Logger를 사용할 수 있다.
+Arcus client 사용 시에 default(DefaultLogger), log4j(Log4JLogger), slf4j(SLF4JLogger), jdk(SunLogger) 등 4가지 종류의 Logger를 사용할 수 있다.
 사용할 logger를 지정하지 않으면 ArcusClient는 DefaultLogger를 기본으로 사용하며,
 DefaultLogger는 INFO level 이상의 로그를 stderr (System.err) 로 출력한다. (변경 불가)
 
-log4j를 사용하여 ArcusClient 로그를 관리하려면, 아래 옵션을 WAS나 자바 프로세스 옵션에 추가하여
-JVM 구동시 System property를 지정한다. (log4j 라이브러리가 클래스 패스에 있어야 오류가 발생하지 않는다.)
+log4j를 사용하여 ArcusClient 로그를 관리하려면, 아래 옵션을 WAS나 자바 프로세스 옵션에 추가하여 JVM 구동시 System property를 지정한다. 
+
 ```
 -Dnet.spy.log.LoggerImpl=net.spy.memcached.compat.log.Log4JLogger
 ```
+
 또는, 소스 코드에서 ArcusClient / ArcusClientPool을 사용하기 전에 직접 System property를 설정하여 사용할 수 있다. (programmatic configuration)
 
 ```java
-System.setProperty(“net.spy.log.LoggerImpl”, “net.spy.memcached.compat.log.Log4JLogger”);
+System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.Log4JLogger");
 ...
 ConnectionFactoryBuilder cfb = new ConnectionFactoryBuilder();
 ArcusClient client = ArcusClient.createArcusClient(SERVICE_CODE, cfb);
 ```
+
 Arcus Java client에서는 Log를 기록할 때 Class의 이름(```clazz.getName()```)을 기준으로 Logger를 구분하여 사용하며,
 class의 이름과 정확히 일치하는 로거가 없다면 logger tree 상의 상위 logger 를 사용한다.
 
 아래의 예제는 ```root``` logger 의 level을 ```WARN```으로 설정하여 WARN level 이상의 로그는 항상 기록하고, ```net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl``` class의 로그만 DEBUG level 이상의 로그를 기록하도록 한 예제이다.
 ```xml
-<logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" additivity="false">
-  <level value="DEBUG" />
-  <appender-ref ref="console" />
-</logger>
-<root>
-  <level value="WARN" />
-  <appender-ref ref="console" />
-</root>
+<Root level="WARN">
+    <AppenderRef ref="console" />
+</Root>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" additivity="false" level="DEBUG">
+    <AppenderRef ref="console" />
+</Logger>
 ```
 Application을 디버깅해야 할 때 Arcus client에서 Arcus server로 전송하는 ascii protocol 문자열이 궁금할 때가 있다. Arcus Java Client에서 Arcus server로 전송하는 protocol을 로그로 살펴보려면 아래와 같이 logger를 설정하면 된다.
 예제에 나열된 logger를 모두 설정하면 요청(get, set 등..)별로 모든 로그가 남게 되니 필요한 요청에 해당하는 logger만 설정하면 편리하다.
 Ascii Protocol에 대한 자세한 내용은 [Arcus 서버 명령 프로토콜](https://github.com/naver/arcus-memcached/blob/master/doc/arcus-ascii-protocol.md) 문서를 참고하기 바란다.
 ```xml
 <!-- collection update -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" additivity="false">
-  <level value="DEBUG" />
-  <appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- collection piped exist -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionPipedExistOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionPipedExistOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- set attributes -->
-<logger name="net.spy.memcached.protocol.ascii.SetAttrOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.SetAttrOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- collection insert -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionStoreOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionInsertOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- collection get -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionGetOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
-
-<!-- collection upsert -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionUpsertOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionGetOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- collection update -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionUpdateOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 
 <!-- collection count -->
-<logger name="net.spy.memcached.protocol.ascii.CollectionCountOperationImpl" additivity="false">
-<level value="DEBUG" />
-<appender-ref ref="console" />
-</logger>
+<Logger name="net.spy.memcached.protocol.ascii.CollectionCountOperationImpl" level="DEBUG" additivity="false">
+    <AppenderRef ref="console" />
+</Logger>
 ```
 
-기타 log4j의 자세한 설정 방법은 [log4j 설정 방법](http://logging.apache.org/log4j/1.2/manual.html)을 확인하기 바란다.
+기타 log4j의 자세한 설정 방법은 [log4j 설정 방법](http://logging.apache.org/log4j/2.x/manual/configuration.html)을 확인하기 바란다. 
 
-##### SLF4JLogger 사용시 유의 사항
+### Log4JLogger 사용시 유의사항
 
-slf4j와 호환되는 log4j 이외의 라이브러리(logback, log4j2, ...)를 쓸 경우, net.spy.memcached.compat.log.SLF4JLogger 클래스를 사용할 것이다. 이 클래스를 사용하기 전에 필수적으로 해야 하는 작업이 있다. (SLF4JLogger와 log4j를 조합해서 사용한다면 하지 않아도 된다.)
+log4j 1.2 이하 버전에서 보안 취약점이 존재하여, Arcus client의 1.11.5 버전부터 Log4JLogger를 사용하려면 log4j2 라이브러리가 요구된다. 이를 위해 응용 의존성에 아래와 같이 log4j2 라이브러리를 추가한다.
 
-ArcusClient는 기본적으로 Zookeeper에 의해서 slf4j의 구현 라이브러리인 slf4j-log4j12를 기본 dependency로 가진다. 따라서 log4j 이외의 라이브러리를 SLF4JLogger와 조합해서 사용하려면 ArcusClient dependency의 exclusion에 slf4j-log4j12를 추가해야 한다.
+```xml
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.8.2</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.8.2</version>
+</dependency>
+```
 
-예를 들어 ArcusClient 사용자가 SLF4JLogger와 logback을 조합해서 사용할 경우 dependency 설정을 다음과 같이 해야 한다.
+만약 아래와 같은 예외가 발생되면, log4j2 라이브러리가 클래스패스에 존재하지 않은 것이다. log4j2 라이브러리가 응용 의존성에 제대로 추가가 됐는지 확인하도록 한다.
 
 ```
+Warning:  net.spy.memcached.compat.log.Log4JLogger not found while initializing net.spy.compat.log.LoggerFactory
+java.lang.NoClassDefFoundError: org/apache/logging/log4j/spi/ExtendedLogger
+    at java.base/java.lang.Class.forName0(Native Method)
+    at java.base/java.lang.Class.forName(Class.java:315)
+    at net.spy.memcached.compat.log.LoggerFactory.getConstructor(LoggerFactory.java:134)
+    at net.spy.memcached.compat.log.LoggerFactory.getNewInstance(LoggerFactory.java:119)
+    at net.spy.memcached.compat.log.LoggerFactory.internalGetLogger(LoggerFactory.java:100)
+    at net.spy.memcached.compat.log.LoggerFactory.getLogger(LoggerFactory.java:89)
+    at net.spy.memcached.ArcusClient.<clinit>(ArcusClient.java:183)
+    at Main.main(Main.java:10)
+```
+
+### SLF4JLogger 사용시 유의 사항
+
+slf4j를 사용하는 경우, Arcus client의 SLF4JLogger 클래스를 사용할 것이다. 이 클래스를 사용하려면 slf4j를 구현한 로깅 라이브러리가 응용 의존성에 추가되어야 한다. 만약 추가하지 않을 경우 아래의 예외 메시지가 발생한다.
+
+```
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+log4j, logback과 같은 대표적인 자바의 로그 라이브러리들은 slf4j api를 구현한 구현 라이브러리를 제공하고 있다. 해당 라이브러리를 사용할 경우 아래와 같이 응용 의존성에 추가하도록 한다. 자세한 내용은 [slf4j](http://www.slf4j.org/manual.html#swapping) 문서를 참고한다. 
+
+```xml
+<!-- slf4j + log4j 사용시 -->
 <dependency>
     <groupId>com.navercorp.arcus</groupId>
     <artifactId>arcus-java-client</artifactId>
     <version>${arcus-java-client.version}</version>
-    <exclusions>
-        <exclusion>
-             <groupId>org.slf4j</groupId>
-             <artifactId>slf4j-log4j12</artifactId>
-        </exclusion>
-    </exclusions>
 </dependency>
 <dependency>
-	<groupId>ch.qos.logback</groupId>
-	<artifactId>logback-classic</artifactId>
-	<version>${logback.version}</version>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>${log4j.version}</version>
 </dependency>
 <dependency>
-	<groupId>ch.qos.logback</groupId>
-	<artifactId>logback-core</artifactId>
-	<version>${logback.version}</version>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j-impl</artifactId>
+    <version>${log4j.version}</version>
 </dependency>
 ```
 
-2개 이상의 slf4j의 구현 라이브러리(logback-classic, slf4j-log4j12, ...)들이 같은 classpath에 존재할 경우, SLF4J에서 [multiple binding error](http://www.slf4j.org/codes.html#multiple_bindings)가 발생하므로 반드시 exclusion 키워드를 이용해 slf4j 구현 라이브러리가 하나만 존재하도록 하여야 한다.
+```xml
+<!-- slf4j + logback 사용시 -->
+<dependency>
+    <groupId>com.navercorp.arcus</groupId>
+    <artifactId>arcus-java-client</artifactId>
+    <version>${arcus-java-client.version}</version>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>${logback.version}</version>
+</dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-core</artifactId>
+    <version>${logback.version}</version>
+</dependency>
+```
+
+또한 2개 이상의 slf4j의 구현 라이브러리(log4j-slf4j-impl, logback-classic, ...)들이 같은 클래스패스에 존재할 경우, SLF4J에서 [multiple binding error](http://www.slf4j.org/codes.html#multiple_bindings)가 발생하므로 반드시 exclusion 키워드를 이용해 slf4j 구현 라이브러리가 하나만 존재하도록 하여야 한다.
 
 ```
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 ```
 
-##### Transparent Front Cache 사용
+### Transparent Front Cache 사용
 
 Arcus는 기본적으로 원격 Cache 시스템이므로 요청에 대한 응답을 받을 때마다 데이터를 객체화해야 하는 단점이 있다.
 이는 결국 JVM의 Garbage Collector에 부담으로 작용할 것이다.
 따라서 만약 실제 데이터가 거의 변경되지 않고, 변경이 있더라도 아주 짧은 시간 내에는 이전 데이터를 보여줘도 상관없는 경우라면 Front Cache를 사용할 것을 고려해 볼 만 하다.
 
 Front cache를 이용하려면 Remote Cache에서 Hit가 되었을 경우 별도로 Front Cache 저장소에 기록을 해 주어야 하는데,
-코드가 상당히 지저분해 지는 경향이 있다. 그리고 데이터를 가져올 때도 아래 그림에 나온 것처럼 제일 먼저 Front Cache를 확인하고 다음에 Remote Cache를 확인한다면 이 또한 프로그램이 복잡해져 버린다.
+코드가 상당히 지저분해 지는 경향이 있다. 그리고 데이터를 가져올 때도 아래 그림에 나온 것처럼 제일 먼저 Front Cache를 확인하고 다음에 Remote Cache를 확인한다면 이 또한 프로그램이 복잡해져 버린다. 
 
 
 ![Alt Text](images/java_client_ehcache.png)
@@ -399,10 +440,10 @@ Front cache를 이용하려면 Remote Cache에서 Hit가 되었을 경우 별도
   Front Cache item의 expire time이다.
   Front cache는 item별 expire time을 설정하지 않고, 등록된 모든 item에 동일한 expire time이 적용된다.
   기본값은 5이며 단위는 second이다.
-  설정하지 않는다면 기본값을 그대로 사용한다면 등록된 지 5초가 지나면 자동으로 사라지게 된다.
+  설정하지 않는다면 기본값을 그대로 사용한다면 등록된 지 5초가 지나면 자동으로 사라지게 된다. 
 
 - `setFrontCacheCopyOnRead(boolean copyOnRead)` (Optional, default false)
-
+  
   Front Cache 에서 Copy Cache 기능의 copy on read 옵션을 활성화시키기 위한 설정이며, 기본값은 false 이다.
 
 - `setFrontCacheCopyOnWrite(boolean copyOnWrite)` (Optional, default false)
@@ -440,7 +481,7 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
 각 용도에 맞는 Arcus client 객체를 별도로 생성하여 사용하여야 한다.
 
 
-##### ConnectionFactoryBuilder 클래스의 주요 메소드
+### ConnectionFactoryBuilder 클래스의 주요 메소드
 
 - setFailureMode(FailureMode fm)
 
@@ -454,7 +495,7 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
   Arcus는 Cancel 모드를 디폴트로 사용한다.
   Redistribute나 Retry를 사용할 경우, 반복적인 요청에 의해 응용 서버에 부하가 발생할 수 있어
   이러한 두 가지 방식의 사용을 금지하고 있다.
-
+  
 - setOpTimeout(long t)
 
   SpyThread가 Arcus Cache Server로부터 응답을 받는 동안의 오퍼레이션 타임아웃을 밀리초 단위로 설정한다.
@@ -466,7 +507,7 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
 
   Arcus client와 server 사이에 사용할 프로토콜을 지정한다.
   Text와 Binary의 두 프로토콜이 있으나, **Arcus에서는 Text 프로토콜만을 사용해야 한다.**
-
+  
 - setMaxReconnectDelay(long to)
 
   Arcus와 연결이 끊겼을 경우 다시 연결을 맺기 위해서 대기하는 최대 시간을 초 단위로 지정한다.
@@ -483,7 +524,7 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
   GZip 압축을 사용하며, 기본값은 UTF-8과 16,384 byte이다.
   즉, 모든 요청의 data 영역은 UTF-8로 encoding/decoding 되고 data 영역의 크기가 16,384byte 이상이면
   압축하여 Arcus와 통신하게 된다.
-
+  
   만약, character set을 EUC-KR로 설정하고 압축 기준을 4,096byte로 변경하려면 다음과 같이 설정한다.
 
   ```java
@@ -505,10 +546,10 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
   (이름은 Read이지만 읽기/쓰기 버퍼의 크기는 이 값을 따른다)
   만약 ByteBuffer 크기를 넘어서는 데이터가 넘어오면 재 사용성을 높이기 위해 ByteBuffer 크기만큼 처리한 후
   ByteBuffer의 내용을 비우고, 다시 사용하도록 되어 있다. 크기의 단위는 byte이며, 기본값은 16,384이다.
-
+  
 - setDaemon(boolean d)
 
-  기본값이 true이다.
+  기본값이 true이다. 
 
 - setTimeoutExceptionThreshold(int to)
 
@@ -524,9 +565,9 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
   Client request가 오랫동안 처리되지 못하는 것이 아닌 그 처리 속도가 매우 느려진 경우에는
   일부 request에 대해 operation timeout이 발생하지만 다른 일부 requests는 정상 처리될 수 있다.
   이 경우, client request가 정상 처리되 않지만 continuous timeout이 발생하지 않을 수 있다.
-  이러한 상태를 탐지하기 위하여, 최근 100개 requests에 대해 timeout ratio를 계산하여
+  이러한 상태를 탐지하기 위하여, 최근 100개 requests에 대해 timeout ratio를 계산하여 
   특정 threshold 이상이면 현재 connection을 끊고 재접속을 시도하는 기능이다.
-
+  
   Timeout ratio threshold의 default 값은 0으로 disabled된 상태이며,
   1 ~ 99 사이의 값을 주면 그 값으로 timeout ratio threshold가 설정되어 동작하게 된다.
 
@@ -535,14 +576,3 @@ ArcusClient client = new ArcusClient(SERVICE_CODE, factory);
   Operation을 요청할 때 비동기식으로 Operation queue에 등록하여 작업을 요청하게 되어 있는데,
   이 옵션은 Queue가 모두 꽉 찬 상태가 되었을 때 최대 기다리는 시간을 의미한다.
   단위는 millisecond 이고, 기본값은 10000ms이다.
-
-- setBulkServiceLoopLimit(int limit)
-
-  Bulk insert는 Client에서 입력된 아이템을 서버로 전송한다.
-  이때 한꺼번에 몇 개의 아이템을 서버에 insert하고 결과를 기다릴지 지정한다.
-  기본값은 1이다. 즉, 100개 아이템을 bulk insert하면 서버로 한 개씩 요청한다.
-
-- setBulkServiceSingleOpTimeout(long timeout)
-
-  Bulk insert의 각 insert timeout을 설정한다. 단위는 millisecond이다.
-

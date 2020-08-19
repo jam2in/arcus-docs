@@ -128,22 +128,22 @@ net.spy.memcached.internal.CheckedOperationTimeoutException: Timed out waiting f
 - JVM Full GC time값이 operation timeout값 보다 클 때.
 
   WAS의 full GC 시간을 측정하여 timeout 값을 그보다 크게 설정한다. Operation timeout으로 매우 작은 값이 설정되지 않았는지 살펴본다. (대부분의 원인이 이것이다.)
-
+ 
 - Client와 Arcus server간의 네트워크 문제
 
 
   서비스와 Arcus server간의 네트워크 (switch, AS, DS등)에 문제는 없었는지 확인한다.
 
-  서비스와 연결되는 외부 서버와의 연결에도 문제가 있었는지 살펴본다. 만약 외부와 연결되는 서버가 없다면 Arcus admin서버와 연결에 문제는 없었는지 로그를 살펴본다. 네트워크 관련 문제가 있었더라도 Arcus timeout만 발생할 수도 있다. 예를 들어 Arcus timeout이 1초이고, DB와의 timeout이 2초라고 할 때. network단절이 1.5초간 있었다 하면 Arcus timeout메시지만 남게 될 것이다. 네트워크 단절이 3초간 발생했다고 하면 Arcus |- timeout이 먼저 발생하고 뒤따라서 DB timeout이 발생하는 것처럼 보일 것이다. 대부분 이와 같은 문제가 발생하면 WAS의 thread가 증가하는 현상을 보인다. Request process thread가 timeout내에 응답을 주지 못하게 되면 추가로 들어오는 요청을 받기 위한 thread가 추가로 생성되기 때문이다.
+  서비스와 연결되는 외부 서버와의 연결에도 문제가 있었는지 살펴본다. 만약 외부와 연결되는 서버가 없다면 Arcus admin서버와 연결에 문제는 없었는지 로그를 살펴본다. 네트워크 관련 문제가 있었더라도 Arcus timeout만 발생할 수도 있다. 예를 들어 Arcus timeout이 1초이고, DB와의 timeout이 2초라고 할 때. network단절이 1.5초간 있었다 하면 Arcus timeout메시지만 남게 될 것이다. 네트워크 단절이 3초간 발생했다고 하면 Arcus |- timeout이 먼저 발생하고 뒤따라서 DB timeout이 발생하는 것처럼 보일 것이다. 대부분 이와 같은 문제가 발생하면 WAS의 thread가 증가하는 현상을 보인다. Request process thread가 timeout내에 응답을 주지 못하게 되면 추가로 들어오는 요청을 받기 위한 thread가 추가로 생성되기 때문이다. 
 
 - Arcus server
 
   Arcus 서버의 하드웨어 및hubble 모니터 결과를 살펴보고 원인을 찾는다.
-
+  
   Timeout이 발생한 Arcus host가 한 개인지 여러 개인지 살펴본다.
 
 - 한계
 
-  Client 한 개로 처리하는데 한계이다. pool사용을 고려해본다.
+  Client 한 개로 처리하는데 한계이다. pool사용을 고려해본다.  
 
 

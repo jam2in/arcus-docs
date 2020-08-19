@@ -17,7 +17,7 @@ Item attributes를 변경하거나 조회하는 함수들을 설명한다.
 CollectionFuture <Boolean> asyncSetAttr(String key, Attributes attr)
 ```
 
-어떤 collection에 모든 element를 삽입하기 전 까지는 다른 여러 thread에서
+어떤 collection에 모든 element를 삽입하기 전 까지는 다른 여러 thread에서 
 그 collection의 element를 조회하여서는 안된다.
 이를 위해, READABLE 속성을 false로 설정해 해당 collection을 읽을 수 없는 상태로 만들어두고
 모든 element를 삽입한 후에 다시 readable 속성을 true하는 예제이다.

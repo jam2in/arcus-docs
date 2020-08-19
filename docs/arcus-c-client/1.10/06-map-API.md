@@ -1,4 +1,4 @@
-## Map Item
+# Map Item
 
 Map item은 하나의 key에 대해 hash 구조 기반으로 mkey & value 쌍을 data 집합으로 가진다.
 
@@ -20,7 +20,7 @@ Map item에 대해 수행 가능한 기본 연산들은 아래와 같다.
 - [Map Element 일괄 삽입](06-map-API.md#map-element-일괄-삽입)
 
 
-### Map Item 생성
+## Map Item 생성
 
 
 새로운 empty map item을 생성한다.
@@ -103,7 +103,7 @@ void arcus_map_item_create(memcached_st *memc)
 }
 ```
 
-### Map Element 삽입
+## Map Element 삽입
 
 
 Map에 하나의 element를 삽입하는 함수이다.
@@ -162,7 +162,7 @@ void arcus_map_element_insert(memcached_st *memc)
 }
 ```
 
-### Map Element 변경
+## Map Element 변경
 
 
 Map에 하나의 element를 변경하는 함수이다. 주어진 mkey를 가진 element의 value를 변경한다.
@@ -211,7 +211,7 @@ void arcus_map_element_update(memcached_st *memc)
 }
 ```
 
-### Map Element 삭제
+## Map Element 삭제
 
 Map element를 삭제하는 함수는 두 가지가 있다.
 
@@ -276,7 +276,7 @@ void arcus_map_element_delete(memcached_st *memc)
 }
 ```
 
-### Map Element 조회
+## Map Element 조회
 
 Map element를 조회하는 함수는 세 가지가 있다.
 
@@ -348,7 +348,7 @@ Map element를 조회하는 예제는 아래와 같다.
 void arcus_map_element_get(memcached_st *memc)
 {
     uint32_t flags= 10;
-    uint32_t exptime= 600;
+    uint32_t exptime= 600; 
     uint32_t maxcount= 1000;
 
     memcached_coll_create_attrs_st attributes;
@@ -356,7 +356,7 @@ void arcus_map_element_get(memcached_st *memc)
     memcached_return_t rc;
     memcached_coll_result_st *result;
 
-    for (uint32_t i=0; i<maxcount; i++)    {
+    for (uint32_t i=0; i<maxcount; i++)    { 
         char mkey[15];
         char buffer[15];
         size_t mkey_len = snprintf(mkey, 15, "mkey%d", i);
@@ -408,7 +408,7 @@ void arcus_map_element_get(memcached_st *memc)
 }
 ```
 
-### Map Element 일괄 삽입
+## Map Element 일괄 삽입
 
 Map에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.
 
@@ -429,7 +429,7 @@ memcached_return_t memcached_mop_piped_insert(memcached_st *ptr, const char *key
 - values, values_length: 다수 element 각각의 value와 그 길이
 - attributes: 해당 map이 없을 시에, attrbiutes에 따라 map을 생성 후에 삽입한다.
 
-둘째, 여러 key들이 가리키는 map들에 각각 하나의 element를 삽입하는 함수이다.
+둘째, 여러 key들이 가리키는 map들에 각각 하나의 element를 삽입하는 함수이다. 
 
 ``` c
 memcached_return_t memcached_mop_piped_insert_bulk(memcached_st *ptr, const char * const *keys, const size_t *keylengths,
@@ -506,7 +506,7 @@ void arcus_map_element_piped_insert(memcached_st *memc)
     for (uint32_t i=0; i<maxcount; i++)
     {
         free((void *)mkeys[i]);
-        free((void *)values[i]);
+        free((void *)values[i]);    
     }
     free((void *)mkeys);
     free((void *)values);

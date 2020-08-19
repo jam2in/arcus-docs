@@ -1,9 +1,9 @@
-## Arcus C Client
+# Arcus C Client
 
 Arcus client는 Arcus admin과 Arcus cache server군 들과의 연결을 유지하며 client로 들어온 명령을 처리하여 그 결과를 반환한다
 
 Arcus C client는 C/C++ 개발환경에서 Arcus를 사용하기 위한 라이브러리로서,
-대표적인 memcached C client인 [libmemcached](https://code.launchpad.net/libmemcached)를 기반으로 개발하였다.
+대표적인 memcached C client인 [libmemcached](https://code.launchpad.net/libmemcached)를 기반으로 개발하였다. 
 따라서 libmemcached의 기능을 대부분 사용할 수 있으며,
 Arcus cache server에서 제공하는 failover 기능과 collection 기능 등을 추가로 지원한다.
 
@@ -18,33 +18,33 @@ Arcus cache server에서 제공하는 failover 기능과 collection 기능 등�
 - [서버 모델에 따른 초기화](02-arcus-c-client.md#%EC%84%9C%EB%B2%84-%EB%AA%A8%EB%8D%B8%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B4%88%EA%B8%B0%ED%99%94)
 - [Client 설정과 사용](02-arcus-c-client.md#client-%EC%84%A4%EC%A0%95%EA%B3%BC-%EC%82%AC%EC%9A%A9)
 
-### 서버 모델에 따른 초기화
+## 서버 모델에 따른 초기화
 
 서버 모델에 따른 초기화 메소드는 아래와 같다.
 
 - Single-Threaded
 
-  ```c
+  ```C
   arcus_return_t arcus_connect(memcached_st *mc, const char *ensemble_list, const char *svc_code)
   ```
   싱글 스레드 서버에서 Arcus에 연결하기 위해 사용한다.
-
+  
 - Multi-Threaded
-
-  ```c
-  arcus_return_t arcus_pool_connect(memcached_pool_st *pool, const char *ensemble_list, const char *svc_code)
+ 
+  ```C
+  arcus_return_t arcus_pool_connect(memcached_pool_st *pool, const char *ensemble_list, const char *svc_code) 
   ```
 
   멀티 스레드 서버에서 Arcus에 연결하기 위해 사용한다.
-
+  
 - Multi-Process
 
-  ```c
+  ```C
   arcus_return_t arcus_proxy_create(memcached_st *mc, const char *ensemble_list, const char *svc_code)
   arcus_return_t arcus_proxy_connect(memcached_st *mc, memcached_pool_st *pool, memcached_st *proxy)
   ```
-
-  `arcus_proxy_create` 함수는
+ 
+  `arcus_proxy_create` 함수는 
   멀티 프로세스 서버의 부모 프로세스가 Arcus에 연결한 뒤, 자식 프로세스들이 사용할 proxy를 생성하기 위해 사용한다.
   `arcus_proxy_connect` 함수는
   멀티 프로세스 서버의 자식 프로세스에서 부모 프로세스가 생성한 proxy에 연결하기 위해 사용한다.
@@ -60,11 +60,11 @@ consistent hashing을 위한 초기화 작업을 수행한다.
 * ensemble_list : Arcus admin의 주소.
 * svc_code : 부여 받은 서비스코드.
 
-#### Multi-Threaded Example
+### Multi-Threaded Example
 
 많은 서비스에서 사용되는 Multi-threaded 서버에서는 다음과 같이 초기화 할 수 있다.
 
-```c
+```C
 #include "libmemcached/memcached.h"
 
 int main(int argc, char** argv)
@@ -102,12 +102,12 @@ int main(int argc, char** argv)
 memcached_st 구조체는 Arcus cache server 연결 정보 및 각종 설정이 포함된 기본 자료구조로서 모든 캐시 요청 API에서 사용된다.
 완전한 예제는 소스 패키지에 포함된 arcus/multi_threaded.c를 참고하기 바란다.
 
-#### Multi-Process Example
+### Multi-Process Example
 
 일부 서비스에서는 Apache와 비슷한 프로세스 prefork 모델을 이용하기도 한다.
 이 같은 멀티 프로세스 방식의 서버에서 Arcus C client를 초기화 하는 방법은 다음과 같다.
 
-```c
+```C
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -141,7 +141,7 @@ static void *my_app_thread(void *ctx_pool)
             snprintf(key, 100, "test:kv_%d", getpid());
             rc = memcached_set(mc, key, strlen(key), (char *)&value, sizeof(value), 600, 0);
             if (rc != MEMCACHED_SUCCESS) {
-                fprintf(stderr, "memcached_set: %s\n", memcached_strerror(NULL, rc));
+                fprintf(stderr, "memcached_set: %s", memcached_detail_error_message(mc, rc));
             }
         }
 
@@ -244,9 +244,9 @@ RELEASE:
 자식 프로세스에서는 부모의 memcached_st 구조체를 이용하여 Arcus admin과의 연결 없이 캐시 서버 리스트를 얻어 온다.
 특히, 각 자식 프로세스가 내부적으로 멀티 쓰레드로 동작하는 상황에서 pool을 사용하는 방법도 확인할 수 있다.
 
-### Client 설정과 사용
+## Client 설정과 사용
 
-#### 로그 남기기
+### 로그 남기기
 
 Arcus C client는 Arcus admin과의 연결 상태 및 Arcus cache server 리스트의 변경 사항에 대해 로그를 남긴다.
 로그는 ZooKeeper client에 내장된 로깅 API를 사용하고 있으며 기본적으로 표준 에러(stderr )로 출력된다.
@@ -267,7 +267,38 @@ mc = memcached_create(NULL);
 arcus_set_log_stream(mc, logfile);
 ```
 
-#### 캐시 명령에 대한 OPERATION TIMEOUT 지정
+Operation 수행 중 발생하는 오류는 Arcus C client 내부에서 보관하며,
+서비스의 로깅 시스템을 통해 출력할 수 있도록 아래와 같은 API를 제공한다.
+
+``` c
+const char *memcached_strerror(memcached_st *, memcached_return_t rc);
+const char *memcached_last_error_message(memcached_st *mc);
+const char *memcached_detail_error_message(memcached_st *mc, memcached_return_t rc);
+```
+
+  - `memcached_strerror` : memcached return code인 rc에 대응하는 return message 출력을 위해 사용한다.
+    - 출력 형식은 `<rc string>` 형태이다.
+    - `memcached_st *` 인자는 사용되지 않는 값이며, NULL로 설정해 사용한다.
+  - `memcached_last_error_message` : 하나의 operation 수행 중 마지막으로 발생한 error message 출력을 위해 사용한다.
+  - `memcached_detail_error_message` : 하나의 operation 수행 중 발생한 모든 error message 출력을 위해 사용한다.
+    - 출력 형식은 `<time> <mc_id> <mc_qid> <er_qid> <error message>` 형태이다.
+    - time : error message가 생성된 시각
+    - mc_id : 서로다른 mc를 구분하기 위해 사용하는 구분자로, mc 생성마다 1 씩 증가하는 값
+    - mc_qid : mc가 현재 수행하는 operation의 query id
+    - er_qid : error message를 생성한 operation의 query id
+    - error mssage : 실제 오류 원인이 되는 error message string
+
+위 API는 아래와 같은 방법으로 사용이 가능하며,
+정확한 오류 출력을 위해 `memcached_detail_error_message(memcached_st *mc, memcached_return_t rc)`의 사용을 추천한다.
+
+``` c
+rc = memcached_set(mc, key, strlen(key), (char *)&value, sizeof(value), 600, 0);
+if (rc != MEMCACHED_SUCCESS) {
+    fprintf(stderr, "memcached_set: %s", memcached_detail_error_message(mc, rc));
+}
+```
+
+### 캐시 명령에 대한 OPERATION TIMEOUT 지정
 
 캐시 명령을 보내고 응답을 받기까지의 timeout 시간을 지정할 수 있다.
 
@@ -278,7 +309,7 @@ memcached_behavior_set(mc, MEMCACHED_BEHAVIOR_POLL_TIMEOUT, (uint64_t)timeout);
 
 timeout 시간은 밀리초(ms) 단위이며, 기본 값은 MEMCACHED_DEFAULT_TIMEOUT (500ms) 이다.
 
-#### 캐시 노드에 대한 CONNECTION TIMEOUT 지정
+### 캐시 노드에 대한 CONNECTION TIMEOUT 지정
 
 캐시연결이 끊어진 후 재연결 요청 시의 timeout 시간을 지정할 수 있다.
 
@@ -297,7 +328,7 @@ RETRY_TIMEOUT이 0이면, connection timeout이 발생할 때마다 즉시 재�
 mc = memcached_create(NULL);
 memcached_behavior_set(mc, MEMCACHED_BEHAVIOR_RETRY_TIMEOUT, (uint64_t)timeout);
 ```
-timeout 시간은 초(s) 단위이며, 기본 값은 MEMCACHED_SERVER_FAILURE_RETRY_TIMEOUT (2초) 이다.
+timeout 시간은 초(s) 단위이며, 기본 값은 MEMCACHED_SERVER_FAILURE_RETRY_TIMEOUT (1초) 이다.
 
 참고 사항으로, 재연결 시도는 무한히 반복한다. 만약 해당 캐시 노드가 failure 상태라면,
 ARCUS의 admin인 ZooKeeper에 의해 failed 캐시 노드로 감지되어 cache node list에서 제거되어,
@@ -305,8 +336,8 @@ ARCUS의 admin인 ZooKeeper에 의해 failed 캐시 노드로 감지되어 cache
 
 그리고, 정상적으로 연결되지 않은 캐시 노드로의 요청에 대해서는
 MEMCACHED_SERVER_TEMPORARILY_DISABLED (“SERVER HAS FAILED AND IS DISABLED UNTIL TIMED RETRY”) 오류가 발생한다.
-
-#### 캐시 API의 응답코드 확인
+ 
+### 캐시 API의 응답코드 확인
 
 캐시 명령을 실행한 후에 캐시 서버로부터 받은 응답 코드를 확인할 수 있다.
 이 응답코드는 명령의 실행 결과에 대한 추가 정보를 제공한다.

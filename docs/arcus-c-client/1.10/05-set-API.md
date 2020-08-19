@@ -1,4 +1,4 @@
-## Set Item
+# Set Item
 
 Set item은 하나의 key에 대해 unique value의 집합을 저장한다. 주로 membership checking에 유용하게 사용할 수 있다.
 
@@ -9,7 +9,7 @@ Set item은 하나의 key에 대해 unique value의 집합을 저장한다. 주�
 
 Set item에 수행 가능한 기본 연산들은 다음과 같다.
 
-- [Set Item 생성](05-set-API.md#set-item-%EC%83%9D%EC%84%B1) (Set item 삭제는 key-value item 삭제 함수로 수행한다)
+- [Set Item 생성](05-set-API.md#set-item-%EC%83%9D%EC%84%B1) (Set item 삭제는 key-value item 삭제 함수로 수행한다) 
 - [Set Element 삽입](05-set-API.md#set-element-%EC%82%BD%EC%9E%85)
 - [Set Element 삭제](05-set-API.md#set-element-%EC%82%AD%EC%A0%9C)
 - [Set Element 존재 여부 확인](05-set-API.md#set-element-존재-여부-확인)
@@ -21,12 +21,12 @@ Set item에 수행 가능한 기본 연산들은 다음과 같다.
 - [Set Element 일괄 존재 여부 확인](05-set-API.md#set-element-일괄-존재-여부-확인)
 
 
-### Set Item 생성
+## Set Item 생성
 
 새로운 empty set item을 생성한다.
 
 ``` c
-memcached_return_t memcached_sop_create(memcached_st *ptr, const char *key, size_t key_length,
+emcached_return_t memcached_sop_create(memcached_st *ptr, const char *key, size_t key_length,
                                        memcached_coll_create_attrs_st *attributes)
 ```
 
@@ -90,7 +90,7 @@ void arcus_set_item_create(memcached_st *memc)
 }
 ```
 
-### Set Element 삽입
+## Set Element 삽입
 
 Set에 하나의 element를 삽입하는 함수이다.
 
@@ -156,7 +156,7 @@ void arcus_set_element_insert(memcached_st *memc)
 }
 ```
 
-### Set Element 삭제
+## Set Element 삭제
 
 Set에서 주어진 value를 가진 element를 삭제하는 함수이다.
 
@@ -219,7 +219,7 @@ void arcus_set_element_delete(memcached_st *memc)
 }
 ```
 
-### Set Element 존재 여부 확인
+## Set Element 존재 여부 확인
 
 Set에서 주어진 value를 가진 element의 존재 여부를 확인한다.
 
@@ -271,7 +271,7 @@ void arcus_set_element_exist(memcached_st *memc)
 }
 ```
 
-### Set Element 조회
+## Set Element 조회
 
 Set element를 조회하는 함수이다. 이 함수는 임의의 count 개 element를 조회한다.
 
@@ -291,7 +291,8 @@ Response code는 아래와 같다.
 - MEMCACHED_SUCCESS
   - MEMCACHED_END: Set에서 정상적으로 element를 조회하였음.
   - MEMCACHED_DELETED: Set에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.
-  - MEMCACHED_DELETED_DROPPED: Set에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음. 이 결과 empty 상태가 된 Set을 삭제함.
+  - MEMCACHED_DELETED_DROPPED: Set에서 정상적으로 element를 조회하였으며, 동시에 이들을 삭제하였음.
+                               이 결과 empty 상태가 된 Set을 삭제함.
 - not MEMCACHED_SUCCESS
   - MEMCACHED_NOTFOUND: 주어진 key에 해당하는 Set이 없음.
   - MEMCACHED_NOTFOUND_ELEMENT: 주어진 value를 가지는 element가 없음.
@@ -360,7 +361,7 @@ void arcus_set_element_get(memcached_st *memc)
 }
 ```
 
-### Set Element 일괄 삽입
+## Set Element 일괄 삽입
 
 Set에 여러 element를 한번에 삽입하는 함수는 두 가지가 있다.
 
@@ -371,7 +372,7 @@ memcached_return_t memcached_sop_piped_insert(memcached_st *ptr, const char *key
                                               const size_t num_of_piped_items,
                                               const char * const *values, const size_t *values_length,
                                               memcached_coll_create_attrs_st *attributes,
-                                              memcached_return_t *results, memcached_return_t *piped_rc)
+                                              memcached_return_t *results, memcached_return_t *piped_rc) 
 ```
 
 - key, key_length: 하나의 key를 지정
@@ -379,7 +380,7 @@ memcached_return_t memcached_sop_piped_insert(memcached_st *ptr, const char *key
 - values, values_length: 다수 element 각각의 value와 그 길이
 - attributes: 해당 set이 없을 시에, attributes에 따라 set을 생성 후에 삽입한다.
 
-둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다.
+둘째, 여러 key들이 가리키는 set들에 각각 하나의 element를 삽입하는 함수이다. 
 
 ``` c
 memcached_return_t memcached_sop_piped_insert_bulk(memcached_st *ptr, const char * const *keys, const size_t *keylengths,
@@ -450,7 +451,7 @@ void arcus_set_element_piped_insert(memcached_st *memc)
 }
 ```
 
-### Set Element 일괄 존재 여부 확인
+## Set Element 일괄 존재 여부 확인
 
 Set에서 여러 element의 존재 여부를 한번에 확인하는 함수이다.
 
