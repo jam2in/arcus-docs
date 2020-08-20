@@ -98,15 +98,15 @@ $ mvn eclipse:eclipse // 이클립스 IDE를 사용하는 경우 실행하여 �
 </project>
 ```
 
-### HelloARCUS.java
+### HelloArcus.java
 
 이제 ARCUS와 통신하는 클래스를 생성해봅시다.
 시나리오는 다음과 같습니다.
-- HelloARCUS.sayHello(): ARCUS 캐시 서버에 "Hello, ARCUS!" 값을 저장합니다.
-- HelloARCUS.listenHello(): ARCUS 캐시 서버에 저장된 "Hello, ARCUS!" 값을 읽어옵니다.
+- HelloArcus.sayHello(): Arcus 캐시 서버에 "Hello, Arcus!" 값을 저장합니다.
+- HelloArcus.listenHello(): Arcus 캐시 서버에 저장된 "Hello, Arcus!" 값을 읽어옵니다.
 
 ```java
-// HelloARCUSTest.java
+// HelloArcusTest.java
 package com.navercorp.arcus;
 
 import junit.framework.Assert;
@@ -114,40 +114,40 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HelloARCUSTest {
+public class HelloArcusTest {
 
-    HelloARCUS helloARCUS = new HelloARCUS("127.0.0.1:2181", "test");
+    HelloArcus helloArcus = new HelloArcus("127.0.0.1:2181", "test");
     
     @Before
     public void sayHello() {
-        helloARCUS.sayHello();
+        helloArcus.sayHello();
     }
     
     @Test
     public void listenHello() {
-        Assert.assertEquals("Hello, ARCUS!", helloARCUS.listenHello());
+        Assert.assertEquals("Hello, Arcus!", helloArcus.listenHello());
     }
     
 }
 ```
 
 ```java
-// HelloARCUS.java
+// HelloArcus.java
 package com.navercorp.arcus;
 
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import net.spy.memcached.ARCUSClient;
+import net.spy.memcached.ArcusClient;
 import net.spy.memcached.ConnectionFactoryBuilder;
 
-public class HelloARCUS {
+public class HelloArcus {
 
     private String arcusAdmin;
     private String serviceCode;
-    private ARCUSClient arcusClient;
+    private ArcusClient arcusClient;
 
-    public HelloARCUS(String arcusAdmin, String serviceCode) {
+    public HelloArcus(String arcusAdmin, String serviceCode) {
         this.arcusAdmin = arcusAdmin;
         this.serviceCode = serviceCode;
         
@@ -156,24 +156,24 @@ public class HelloARCUS {
         //   -Dnet.spy.log.LoggerImpl=net.spy.memcached.compat.log.Log4JLogger
         System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.Log4JLogger");
 
-        // ARCUS 클라이언트 객체를 생성합니다.
-        // - arcusAdmin : ARCUS 캐시 서버들의 그룹을 관리하는 admin 서버(ZooKeeper)의 주소입니다.
-        // - serviceCode : 사용자에게 할당된 ARCUS 캐시 서버들의 집합에 대한 코드값입니다. 
+        // Arcus 클라이언트 객체를 생성합니다.
+        // - arcusAdmin : Arcus 캐시 서버들의 그룹을 관리하는 admin 서버(ZooKeeper)의 주소입니다.
+        // - serviceCode : 사용자에게 할당된 Arcus 캐시 서버들의 집합에 대한 코드값입니다. 
         // - connectionFactoryBuilder : 클라이언트 생성 옵션을 지정할 수 있습니다.
         //
         // 정리하면 arcusAdmin과 serviceCode의 조합을 통해 유일한 캐시 서버들의 집합을 얻어 연결할 수 있는 것입니다.
-        this.arcusClient = ARCUSClient.createARCUSClient(arcusAdmin, serviceCode, new ConnectionFactoryBuilder());
+        this.arcusClient = ArcusClient.createArcusClient(arcusAdmin, serviceCode, new ConnectionFactoryBuilder());
     }
 
     public boolean sayHello() {
         Future<Boolean> future = null;
         boolean setSuccess = false;
 
-        // ARCUS의 "test:hello" 키에 "Hello, ARCUS!"라는 값을 저장합니다.
-        // 그리고 ARCUS의 거의 모든 API는 Future를 리턴하도록 되어 있으므로
+        // Arcus의 "test:hello" 키에 "Hello, Arcus!"라는 값을 저장합니다.
+        // 그리고 Arcus의 거의 모든 API는 Future를 리턴하도록 되어 있으므로
         // 비동기 처리에 특화된 서버가 아니라면 반드시 명시적으로 future.get()을 수행하여
         // 반환되는 응답을 기다려야 합니다.
-        future = this.arcusClient.set("test:hello", 600, "Hello, ARCUS!");
+        future = this.arcusClient.set("test:hello", 600, "Hello, Arcus!");
         
         try {
             setSuccess = future.get(700L, TimeUnit.MILLISECONDS);
@@ -189,8 +189,8 @@ public class HelloARCUS {
         Future<Object> future = null;
         String result = "Not OK.";
         
-        // ARCUS의 "test:hello" 키의 값을 조회합니다.
-        // ARCUS에서는 가능한 모든 명령에 명시적으로 timeout 값을 지정하도록 가이드 하고 있으며
+        // Arcus의 "test:hello" 키의 값을 조회합니다.
+        // Arcus에서는 가능한 모든 명령에 명시적으로 timeout 값을 지정하도록 가이드 하고 있으며
         // 사용자는 set을 제외한 모든 요청에 async로 시작하는 API를 사용하셔야 합니다.
         future = this.arcusClient.asyncGet("test:hello");
         

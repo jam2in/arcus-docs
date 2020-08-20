@@ -20,7 +20,7 @@ ARCUS Java Client User Guide
 - [List Item 연산](04-list-API.md)
   - [List Item 생성](04-list-API.md#list-item-%EC%83%9D%EC%84%B1)
   - [List Element 삽입](04-list-API.md#list-element-%EC%82%BD%EC%9E%85)
-  - [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C)
+  - [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C) 
   - [List Element 조회](04-list-API.md#list-element-%EC%A1%B0%ED%9A%8C)
   - [List Element 일괄 삽입](04-list-API.md#list-element-%EC%9D%BC%EA%B4%84-%EC%82%BD%EC%9E%85)
 - [Set Item 연산](05-set-API.md)
