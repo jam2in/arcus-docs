@@ -44,7 +44,7 @@ memcached_return_t memcached_append(memcached_st *ptr, const char *key, size_t k
 Key-value item 저장 연산에서 주요 파라미터는 아래와 같다.
 - expiration: key가 현재 시간부터 expire 될 때까지의 시간(초 단위). 시간이 30일을 초과하는 경우 expire 될 unix time을 입력한다.
   - 0: key가 expire 되지 않도록 설정한다.
-       하지만 Arcus cache server의 메모리가 부족한 경우 LRU에 의해 언제든지 삭제될 수 있다.
+       하지만 ARCUS cache server의 메모리가 부족한 경우 LRU에 의해 언제든지 삭제될 수 있다.
   - -1: key를 sticky item으로 만든다. Sticky item은 expire 되지 않으며 LRU에 의해 삭제되지도 않는다.
 - flags: value와는 별도로 저장할 수 있는 값으로서 Java client 등에서 내부적으로 사용하는 경우가 많으므로 사용하지 않기를 권한다.
 
@@ -52,14 +52,14 @@ Key-value item 저장 연산에서 주요 파라미터는 아래와 같다.
 
 Key-value item을 조회하는 API는 두 가지가 있다.
 
-```C
+```c
 char *             memcached_get(memcached_st *ptr, const char *key, size_t key_length, size_t *value_length,
                                  uint32_t *flags, memcached_return_t *error);
 ```
 
 주어진 key에 대한 value를 조회한다. 반환된 결과는 NULL이 아닌 경우 반드시 free 해주어야 한다.
 
-```C
+```c
 memcached_return_t memcached_mget(memcached_st *ptr, const char * const *keys,  const size_t *key_length,
                                   size_t number_of_keys);
 char *             memcached_fetch(memcached_st *ptr, char *key, size_t *key_length, size_t *value_length,
@@ -87,7 +87,7 @@ memcached_return_t memcached_decrement(memcached_st *ptr, const char *key, size_
 주어진 key의 value를 offset 만큼 증가/감소 시킨다.
 주어진 key가 존재하지 않으면, 오류를 낸다.
 
-```C
+```c
 memcached_return_t memcached_increment_with_initial(memcached_st *ptr, const char *key, size_t key_length, 
                                                     uint64_t offset, uint64_t initial, uint32_t flags,
                                                     time_t expiration, uint64_t *value)
@@ -102,7 +102,7 @@ memcached_return_t memcached_decrement_with_initial(memcached_st *ptr, const cha
 
 ## Key-Value Item 삭제
 
-```C
+```c
 memcached_return_t memcached_delete(memcached_st *ptr, const char *key, size_t key_length, time_t expiration);
 ```
 

@@ -16,7 +16,7 @@ CC=gcc4 CXX=g++4
 
 멀티프로세스 샘플($SRC/arcus/multi_process)이 "Cannot create proxy lock : No space left on device" 메시지와 함께 실행되지 않는다면 다음 명령을 실행한다. USERID는 사용자 계정으로 대치한다.
 
-```
+```console
 $ for i in `ipcs -s | awk '/USERID/ {print $2}'`; do (ipcrm -s $i); done
 ```
 
