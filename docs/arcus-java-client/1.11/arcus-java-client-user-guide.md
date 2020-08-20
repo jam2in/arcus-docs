@@ -1,17 +1,17 @@
-Arcus Java Client User Guide
+ARCUS Java Client User Guide
 
 [Content]
 
-- [Arcus Cloud 기본 사항](01-arcus-cloud-basics.md)
+- [ARCUS Cloud 기본 사항](01-arcus-cloud-basics.md)
   - [서비스코드](01-arcus-cloud-basics.md#%EC%84%9C%EB%B9%84%EC%8A%A4%EC%BD%94%EB%93%9C)
-  - [Arcus Admin](01-arcus-cloud-basics.md#arcus-admin)
+  - [ARCUS Admin](01-arcus-cloud-basics.md#arcus-admin)
   - [Cache Key](01-arcus-cloud-basics.md#cache-key)
   - [Cache Item](01-arcus-cloud-basics.md#cache-item)
   - [Expiration, Eviction, and Sticky Item](01-arcus-cloud-basics.md#expiration-eviction-and-sticky-item)
-- [Arcus Java Client](02-arcus-java-client.md)
-  - [Arcus Client 기본 사용법](02-arcus-java-client.md#arcus-client-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95) 
-  - [Arcus Client 생성, 소멸, 관리](02-arcus-java-client.md#arcus-client-%EC%83%9D%EC%84%B1-%EC%86%8C%EB%A9%B8-%EA%B4%80%EB%A6%AC) 
-  - [Arcus Client 설정](02-arcus-java-client.md#arcus-client-%EC%84%A4%EC%A0%95)
+- [ARCUS Java Client](02-arcus-java-client.md)
+  - [ARCUS Client 기본 사용법](02-arcus-java-client.md#arcus-client-%EA%B8%B0%EB%B3%B8-%EC%82%AC%EC%9A%A9%EB%B2%95)
+  - [ARCUS Client 생성, 소멸, 관리](02-arcus-java-client.md#arcus-client-%EC%83%9D%EC%84%B1-%EC%86%8C%EB%A9%B8-%EA%B4%80%EB%A6%AC)
+  - [ARCUS Client 설정](02-arcus-java-client.md#arcus-client-%EC%84%A4%EC%A0%95)
 - [Key-Value Item 연산](03-key-value-API.md)
   - [Key-Value Item 저장](03-key-value-API.md#key-value-item-%EC%A0%80%EC%9E%A5)
   - [Key-Value Item 조회](03-key-value-API.md#key-value-item-%EC%A1%B0%ED%9A%8C)
@@ -20,7 +20,7 @@ Arcus Java Client User Guide
 - [List Item 연산](04-list-API.md)
   - [List Item 생성](04-list-API.md#list-item-%EC%83%9D%EC%84%B1)
   - [List Element 삽입](04-list-API.md#list-element-%EC%82%BD%EC%9E%85)
-  - [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C) 
+  - [List Element 삭제](04-list-API.md#list-element-%EC%82%AD%EC%A0%9C)
   - [List Element 조회](04-list-API.md#list-element-%EC%A1%B0%ED%9A%8C)
   - [List Element 일괄 삽입](04-list-API.md#list-element-%EC%9D%BC%EA%B4%84-%EC%82%BD%EC%9E%85)
 - [Set Item 연산](05-set-API.md)
