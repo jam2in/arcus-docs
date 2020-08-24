@@ -1,4 +1,4 @@
-- [ARCUS ascii protocol guide](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/ch01-arcus-basic-concept.md)
+- [ARCUS Ascii Protocol Guide](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/ch01-arcus-basic-concept.md)
 - [ARCUS Java Client user guide](/arcus-java-client/1.11/01-arcus-cloud-basics.md)
 - [ARCUS C client user guide](/arcus-c-client/1.10/01-arcus-cloud-basics.md)
 - [Release Notes](release-notes/README.md)

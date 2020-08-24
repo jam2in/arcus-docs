@@ -7,7 +7,7 @@ ARCUS는 NAVER 서비스들의 요구 사항을 반영하여 개발한 memory ca
 적용하면서 얻은 안정성 및 기술력을 바탕으로 빠른 성능과 다양한 기능을 제공하고 있습니다. ARCUS는 현재
 [JaM2in](http://www.jam2in.com) 에서 개발, 유지보수 및 기술 지원을 담당하고 있습니다.
 
-[ARCUS ascii protocol guide](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/ch01-arcus-basic-concept.md)
+[ARCUS Ascii Protocol Guide](/arcus-server/ARCUS-Server-Ascii-Protocol/1.11/ch01-arcus-basic-concept.md)
 
 [ARCUS Java Client User Guide](arcus-java-client/1.11/arcus-java-client-getting-started.md)
 
