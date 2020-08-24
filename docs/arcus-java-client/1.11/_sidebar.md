@@ -10,4 +10,5 @@
   - [9. 그 외의 연산](/arcus-java-client/1.11/09-other-API.md)
   - [10. Java Client Log Messages](/arcus-java-client/1.11/10-log-message.md)
   - [11. Java Client 사용시 주의사항](/arcus-java-client/1.11/11-client-notes.md)
+  - [처음 사용자용 가이드](/arcus-java-client/1.11/arcus-java-client-getting-started)
 
