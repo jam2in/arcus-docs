@@ -1,4 +1,4 @@
-- ARCUS C client
+- ARCUS C client (1.12)
   - [1. Arcus Cloud 기본 사항](/arcus-c-client/1.12/01-arcus-cloud-basics.md)
   - [2. Arcus C Client](/arcus-c-client/1.12/02-arcus-c-client.md)
   - [3. Key-Value Item 연산](/arcus-c-client/1.12/03-key-value-API.md)
