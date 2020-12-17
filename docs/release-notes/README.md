@@ -1,6 +1,7 @@
 # ARCUS Release Notes
 
 - Server
+  - [1.13](/release-notes/server/1.13.md)
   - [1.12](/release-notes/server/1.12.md)
 - Java Client
   - [1.12](/release-notes/java-client/1.12.md)
