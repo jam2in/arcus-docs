@@ -4,7 +4,7 @@
   - [Server 1.13](docs/release-notes/server/1.13.md)
   - [Server 1.12](/release-notes/server/1.12.md)
 - ARCUS Java Client
-  - [Java Cleint 1.12](/release-notes/java-client/1.12.md)
+  - [Java Client 1.12](/release-notes/java-client/1.12.md)
 - ARCUS C Client
   - [C Client 1.13](/release-notes/c-client/1.13.md)
   - [C Client 1.12](/release-notes/c-client/1.12.md)
